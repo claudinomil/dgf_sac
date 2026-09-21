@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             RessarcimentoOrgaosSeeder::class,
             ZZZ_20260514_Seeder::class,
 
-            ZZZ_FakerSeeder::class
+            // ZZZ_FakerSeeder::class
         ]);
     }
 }
