@@ -13,8 +13,8 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
-export default defineConfig(({ mode }) => ({
-    base: mode === 'production' ? '/dgf_sistema/' : '/',
+export default defineConfig({
+    base: '/dgf_sistema/',
 
     plugins: [
         laravel({
@@ -22,4 +22,4 @@ export default defineConfig(({ mode }) => ({
             refresh: true,
         }),
     ],
-}));
+});
