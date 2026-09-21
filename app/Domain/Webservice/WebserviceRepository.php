@@ -33,6 +33,8 @@ class WebserviceRepository
             'subconta_id' => $subconta_id
         ]);
 
+        dd($response);
+
         return $response;
     }
 
@@ -84,10 +86,6 @@ class WebserviceRepository
 
         // Registro recebido com sucesso
         if (isset($registros['success'])) {
-
-
-
-        dd($registros['success']);
             return $registros['success'];
         }
 
