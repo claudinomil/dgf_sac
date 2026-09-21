@@ -33,8 +33,6 @@ class WebserviceRepository
             'subconta_id' => $subconta_id
         ]);
 
-        dd($response);
-
         return $response;
     }
 
