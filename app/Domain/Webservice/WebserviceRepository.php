@@ -84,6 +84,10 @@ class WebserviceRepository
 
         // Registro recebido com sucesso
         if (isset($registros['success'])) {
+
+
+
+        dd($registros['success']);
             return $registros['success'];
         }
 
