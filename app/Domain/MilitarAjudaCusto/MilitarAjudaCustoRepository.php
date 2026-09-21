@@ -1,0 +1,206 @@
+<?php
+
+namespace App\Domain\MilitarAjudaCusto;
+
+use App\Models\MilitarAjudaCusto;
+use App\Services\MilitarAjudaCustoSyncService;
+
+class MilitarAjudaCustoRepository
+{
+    public function index(int $limit)
+    {
+        // Limit
+        $limit = $limit ? $limit : 1000;
+
+        // Return
+        $query = MilitarAjudaCusto
+            ::join('militares', 'militares.id', 'militares_ajudas_custos.militar_id')
+            ->join('situacoes', 'situacoes.id', 'militares.situacao_id')
+            ->join('graduacoes', 'graduacoes.id', 'militares.graduacao_id')
+            ->join('unidades', 'unidades.id', 'militares.unidade_id')
+            ->join('quadros', 'quadros.id', 'militares.quadro_id')
+            ->join('ajuda_custo_tipos', 'ajuda_custo_tipos.id', 'militares_ajudas_custos.ajuda_custo_tipo_id')
+            ->select(
+                'militares_ajudas_custos.*',
+                'militares.nome as militarNome',
+                'militares.id as militar_id',
+                'militares.rg as militarRg',
+                'militares.situacao_id as militarSituacaoId',
+                'situacoes.name as militarSituacaoName',
+                'graduacoes.name as militarGraduacaoName',
+                'quadros.name as militarQuadroName',
+                'quadros.especialidade as militarQuadroEspecialidadeName',
+                'ajuda_custo_tipos.name as ajudaCustoTipoName'
+            );
+
+        // Permissão Situação do Militar
+        $query->whereIn('militares.situacao_id', retornaArrayCampoGruposPermissoesSituacoes('militares_ajudas_custos_permissoes_list_situacoes_ids'));
+
+        $query->orderBy('ajuda_custo_tipos.name')->limit($limit);
+
+        return $query->get();
+    }
+
+    public function filter($array_dados, int $limit)
+    {
+        // Limit
+        $limit = $limit ? $limit : 1000;
+
+        // Filtros enviados pelo Client
+        $filtros = explode(',', $array_dados);
+
+        // Registros
+        $registros = MilitarAjudaCusto
+            ::join('militares', 'militares.id', 'militares_ajudas_custos.militar_id')
+            ->join('situacoes', 'situacoes.id', 'militares.situacao_id')
+            ->join('graduacoes', 'graduacoes.id', 'militares.graduacao_id')
+            ->join('unidades', 'unidades.id', 'militares.unidade_id')
+            ->join('quadros', 'quadros.id', 'militares.quadro_id')
+            ->join('ajuda_custo_tipos', 'ajuda_custo_tipos.id', 'militares_ajudas_custos.ajuda_custo_tipo_id')
+            ->select(
+                'militares_ajudas_custos.*',
+                'militares.nome as militarNome',
+                'militares.id as militar_id',
+                'militares.rg as militarRg',
+                'militares.situacao_id as militarSituacaoId',
+                'situacoes.name as militarSituacaoName',
+                'graduacoes.name as militarGraduacaoName',
+                'quadros.name as militarQuadroName',
+                'quadros.especialidade as militarQuadroEspecialidadeName',
+                'ajuda_custo_tipos.name as ajudaCustoTipoName'
+            )
+            ->where(function($query) use($filtros) {
+                // Permissão Situação do Militar
+                $query->whereIn('militares.situacao_id', retornaArrayCampoGruposPermissoesSituacoes('militares_ajudas_custos_permissoes_list_situacoes_ids'));
+
+                // Variavel para controle
+                $qtdFiltros = count($filtros) / 4;
+                $indexCampo = 0;
+
+                for($i=1; $i<=$qtdFiltros; $i++) {
+                    // Valores do Filtro
+                    $condicao = $filtros[$indexCampo];
+                    $campo = $filtros[$indexCampo+1];
+                    $operacao = $filtros[$indexCampo+2];
+                    $dado = $filtros[$indexCampo+3];
+
+                    // Operações
+                    if ($operacao == 1) {
+                        if ($condicao == 1) {$query->where($campo, 'like', '%'.$dado.'%');} else {$query->orwhere($campo, 'like', '%'.$dado.'%');}
+                    }
+
+                    if ($operacao == 2) {
+                        if ($condicao == 1) {$query->where($campo, '=', $dado);} else {$query->orwhere($campo, '=', $dado);}
+                    }
+
+                    if ($operacao == 3) {
+                        if ($condicao == 1) {$query->where($campo, '>', $dado);} else {$query->orwhere($campo, '>', $dado);}
+                    }
+
+                    if ($operacao == 4) {
+                        if ($condicao == 1) {$query->where($campo, '>=', $dado);} else {$query->orwhere($campo, '>=', $dado);}
+                    }
+
+                    if ($operacao == 5) {
+                        if ($condicao == 1) {$query->where($campo, '<', $dado);} else {$query->orwhere($campo, '<', $dado);}
+                    }
+
+                    if ($operacao == 6) {
+                        if ($condicao == 1) {$query->where($campo, '<=', $dado);} else {$query->orwhere($campo, '<=', $dado);}
+                    }
+
+                    if ($operacao == 7) {
+                        if ($condicao == 1) {$query->where($campo, 'like', $dado.'%');} else {$query->orwhere($campo, 'like', $dado.'%');}
+                    }
+
+                    if ($operacao == 8) {
+                        if ($condicao == 1) {$query->where($campo, 'like', '%'.$dado);} else {$query->orwhere($campo, 'like', '%'.$dado);}
+                    }
+
+                    // Atualizar indexCampo
+                    $indexCampo = $indexCampo + 4;
+                }
+            })
+            ->orderBy('ajuda_custo_tipos.name')
+            ->limit($limit)
+            ->get();
+
+        return $registros;
+    }
+
+    public function find(int $id)
+    {
+        $query = MilitarAjudaCusto
+            ::join('militares', 'militares.id', 'militares_ajudas_custos.militar_id')
+            ->join('situacoes', 'situacoes.id', 'militares.situacao_id')
+            ->join('graduacoes', 'graduacoes.id', 'militares.graduacao_id')
+            ->join('unidades', 'unidades.id', 'militares.unidade_id')
+            ->join('quadros', 'quadros.id', 'militares.quadro_id')
+            ->join('ajuda_custo_tipos', 'ajuda_custo_tipos.id', 'militares_ajudas_custos.ajuda_custo_tipo_id')
+            ->select(
+                'militares_ajudas_custos.*',
+                'militares.nome as militarNome',
+                'militares.id as militar_id',
+                'militares.rg as militarRg',
+                'militares.identidade_funcional as militarIdentidadeFuncional',
+                'militares.situacao_id as militarSituacaoId',
+                'situacoes.name as militarSituacaoName',
+                'graduacoes.name as militarGraduacaoName',
+                'quadros.name as militarQuadroName',
+                'quadros.especialidade as militarQuadroEspecialidadeName',
+                'ajuda_custo_tipos.name as ajudaCustoTipoName'
+            );
+
+
+
+        // Permissão Situação do Militar
+        // $query->whereIn('militares.situacao_id', retornaArrayCampoGruposPermissoesSituacoes('militares_permissoes_list_situacoes_ids'));
+
+
+        return $query->find($id);
+    }
+
+    public function create(array $data)
+    {
+        // Excluído
+        $data['excluido'] = 0;
+
+        // Pagamento Ordenar
+        if (!empty($data['pagamento'])) {
+            [$mes, $ano] = explode('/', $data['pagamento']);
+            $data['pagamento_ordenar'] = "{$ano}/{$mes}";
+        }
+
+        $militar_ajuda_custo = MilitarAjudaCusto::create($data);
+
+        app(MilitarAjudaCustoSyncService::class)->insert($militar_ajuda_custo);
+
+        return $militar_ajuda_custo;
+    }
+
+    public function update(int $id, array $data)
+    {
+        // Pagamento Ordenar
+        if (!empty($data['pagamento'])) {
+            [$mes, $ano] = explode('/', $data['pagamento']);
+            $data['pagamento_ordenar'] = "{$ano}/{$mes}";
+        }
+
+        $militar_ajuda_custo = $this->find($id);
+        $militar_ajuda_custo->update($data);
+
+        app(MilitarAjudaCustoSyncService::class)->update($militar_ajuda_custo->fresh());
+
+        return $militar_ajuda_custo;
+    }
+
+    public function delete(int $id)
+    {
+        $militar_ajuda_custo = $this->find($id);
+        $militar_ajuda_custo->delete();
+
+        app(MilitarAjudaCustoSyncService::class)->delete($id);
+
+        return;
+    }
+}

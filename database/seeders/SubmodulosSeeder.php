@@ -1,0 +1,59 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class SubmodulosSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('submodulos')->insert([
+            ['id' => 9, 'modulo_id' => 1, 'name' => 'Usuários Perfil', 'menu_text' => 'Usuários Perfil', 'menu_url' => 'users_perfil', 'menu_route' => 'users_perfil', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'users_perfil', 'prefix_route' => 'users_perfil', 'descricao' => '', 'ordem_visualizacao' => 41],
+
+            // Módulo: Home
+            ['id' => 8, 'modulo_id' => 1, 'name' => 'Dashboards', 'menu_text' => 'Dashboards', 'menu_url' => 'dashboards', 'menu_route' => 'dashboards', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'dashboards', 'prefix_route' => 'dashboards', 'descricao' => '', 'ordem_visualizacao' => 10],
+            ['id' => 2, 'modulo_id' => 1, 'name' => 'Grupos', 'menu_text' => 'Grupos', 'menu_url' => 'grupos', 'menu_route' => 'grupos', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'grupos', 'prefix_route' => 'grupos', 'descricao' => '', 'ordem_visualizacao' => 30],
+            ['id' => 1, 'modulo_id' => 1, 'name' => 'Usuários', 'menu_text' => 'Usuários', 'menu_url' => 'users', 'menu_route' => 'users', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'users', 'prefix_route' => 'users', 'descricao' => '', 'ordem_visualizacao' => 40],
+            ['id' => 4, 'modulo_id' => 1, 'name' => 'Log de Transações', 'menu_text' => 'Log de Transações', 'menu_url' => 'transacoes', 'menu_route' => 'transacoes', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'transacoes', 'prefix_route' => 'transacoes', 'descricao' => '', 'ordem_visualizacao' => 50],
+            ['id' => 17, 'modulo_id' => 1, 'name' => 'Relatórios', 'menu_text' => 'Relatórios', 'menu_url' => 'relatorios', 'menu_route' => 'relatorios', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'relatorios', 'prefix_route' => 'relatorios', 'descricao' => '', 'ordem_visualizacao' => 20],
+
+            // Módulo: Auxiliares
+            ['id' => 26, 'modulo_id' => 2, 'name' => 'Situações', 'menu_text' => 'Situações', 'menu_url' => 'situacoes', 'menu_route' => 'situacoes', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'situacoes', 'prefix_route' => 'situacoes', 'descricao' => '', 'ordem_visualizacao' => 10],
+            ['id' => 27, 'modulo_id' => 2, 'name' => 'Graduações', 'menu_text' => 'Graduações', 'menu_url' => 'graduacoes', 'menu_route' => 'graduacoes', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'graduacoes', 'prefix_route' => 'graduacoes', 'descricao' => '', 'ordem_visualizacao' => 20],
+            ['id' => 28, 'modulo_id' => 2, 'name' => 'Quadros', 'menu_text' => 'Quadros', 'menu_url' => 'quadros', 'menu_route' => 'quadros', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'quadros', 'prefix_route' => 'quadros', 'descricao' => '', 'ordem_visualizacao' => 30],
+            ['id' => 29, 'modulo_id' => 2, 'name' => 'Comportamentos', 'menu_text' => 'Comportamentos', 'menu_url' => 'comportamentos', 'menu_route' => 'comportamentos', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'comportamentos', 'prefix_route' => 'comportamentos', 'descricao' => '', 'ordem_visualizacao' => 40],
+            ['id' => 30, 'modulo_id' => 2, 'name' => 'Unidades', 'menu_text' => 'Unidades', 'menu_url' => 'unidades', 'menu_route' => 'unidades', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'unidades', 'prefix_route' => 'unidades', 'descricao' => '', 'ordem_visualizacao' => 50],
+            ['id' => 31, 'modulo_id' => 2, 'name' => 'Funções', 'menu_text' => 'Funções', 'menu_url' => 'funcoes', 'menu_route' => 'funcoes', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'funcoes', 'prefix_route' => 'funcoes', 'descricao' => '', 'ordem_visualizacao' => 60],
+            ['id' => 32, 'modulo_id' => 2, 'name' => 'Gêneros', 'menu_text' => 'Gêneros', 'menu_url' => 'generos', 'menu_route' => 'generos', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'generos', 'prefix_route' => 'generos', 'descricao' => '', 'ordem_visualizacao' => 70],
+            ['id' => 33, 'modulo_id' => 2, 'name' => 'Parentescos', 'menu_text' => 'Parentescos', 'menu_url' => 'parentescos', 'menu_route' => 'parentescos', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'parentescos', 'prefix_route' => 'parentescos', 'descricao' => '', 'ordem_visualizacao' => 80],
+            ['id' => 34, 'modulo_id' => 2, 'name' => 'Cursos', 'menu_text' => 'Cursos', 'menu_url' => 'cursos', 'menu_route' => 'cursos', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'cursos', 'prefix_route' => 'cursos', 'descricao' => '', 'ordem_visualizacao' => 90],
+
+            // Módulo: Ressarcimento
+            ['id' => 7, 'modulo_id' => 3, 'name' => 'Ressarcimento - Referências', 'menu_text' => 'Referências', 'menu_url' => 'ressarcimento_referencias', 'menu_route' => 'ressarcimento_referencias', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'ressarcimento_referencias', 'prefix_route' => 'ressarcimento_referencias', 'descricao' => '', 'ordem_visualizacao' => 10],
+            ['id' => 10, 'modulo_id' => 3, 'name' => 'Ressarcimento - Órgãos', 'menu_text' => 'Órgãos', 'menu_url' => 'ressarcimento_orgaos', 'menu_route' => 'ressarcimento_orgaos', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'ressarcimento_orgaos', 'prefix_route' => 'ressarcimento_orgaos', 'descricao' => '', 'ordem_visualizacao' => 20],
+            ['id' => 12, 'modulo_id' => 3, 'name' => 'Ressarcimento - Militares', 'menu_text' => 'Militares', 'menu_url' => 'ressarcimento_militares', 'menu_route' => 'ressarcimento_militares', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'ressarcimento_militares', 'prefix_route' => 'ressarcimento_militares', 'descricao' => '', 'ordem_visualizacao' => 30],
+            ['id' => 11, 'modulo_id' => 3, 'name' => 'Ressarcimento - Pagamentos', 'menu_text' => 'Pagamentos', 'menu_url' => 'ressarcimento_pagamentos', 'menu_route' => 'ressarcimento_pagamentos', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'ressarcimento_pagamentos', 'prefix_route' => 'ressarcimento_pagamentos', 'descricao' => '', 'ordem_visualizacao' => 40],
+            ['id' => 6, 'modulo_id' => 3, 'name' => 'Ressarcimento - Configurações', 'menu_text' => 'Configurações', 'menu_url' => 'ressarcimento_configuracoes', 'menu_route' => 'ressarcimento_configuracoes', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'ressarcimento_configuracoes', 'prefix_route' => 'ressarcimento_configuracoes', 'descricao' => '', 'ordem_visualizacao' => 50],
+            ['id' => 13, 'modulo_id' => 3, 'name' => 'Ressarcimento - Cobranças', 'menu_text' => 'Cobranças', 'menu_url' => 'ressarcimento_cobrancas', 'menu_route' => 'ressarcimento_cobrancas', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'ressarcimento_cobrancas', 'prefix_route' => 'ressarcimento_cobrancas', 'descricao' => '', 'ordem_visualizacao' => 60],
+            ['id' => 14, 'modulo_id' => 3, 'name' => 'Ressarcimento - Recebimentos', 'menu_text' => 'Recebimentos', 'menu_url' => 'ressarcimento_recebimentos', 'menu_route' => 'ressarcimento_recebimentos', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'ressarcimento_recebimentos', 'prefix_route' => 'ressarcimento_recebimentos', 'descricao' => '', 'ordem_visualizacao' => 70],
+            ['id' => 25, 'modulo_id' => 3, 'name' => 'Ressarcimento - Exclusões', 'menu_text' => 'Exclusões', 'menu_url' => 'ressarcimento_exclusoes', 'menu_route' => 'ressarcimento_exclusoes', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'ressarcimento_exclusoes', 'prefix_route' => 'ressarcimento_exclusoes', 'descricao' => '', 'ordem_visualizacao' => 80],
+
+            // Módulo: Efetivo
+            ['id' => 18, 'modulo_id' => 5, 'name' => 'Militares', 'menu_text' => 'Militares', 'menu_url' => 'militares', 'menu_route' => 'militares', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'militares', 'prefix_route' => 'militares', 'descricao' => '', 'ordem_visualizacao' => 10],
+            ['id' => 23, 'modulo_id' => 5, 'name' => 'Militares Contatos', 'menu_text' => 'Contatos', 'menu_url' => 'militares_contatos', 'menu_route' => 'militares_contatos', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'militares_contatos', 'prefix_route' => 'militares_contatos', 'descricao' => '', 'ordem_visualizacao' => 15],
+            ['id' => 3, 'modulo_id' => 5, 'name' => 'Militares Ajudas de Custos', 'menu_text' => 'Ajudas de Custos', 'menu_url' => 'militares_ajudas_custos', 'menu_route' => 'militares_ajudas_custos', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'militares_ajudas_custos', 'prefix_route' => 'militares_ajudas_custos', 'descricao' => '', 'ordem_visualizacao' => 20],
+            ['id' => 5, 'modulo_id' => 5, 'name' => 'Militares Auxílios Fardamentos', 'menu_text' => 'Auxílios Fardamentos', 'menu_url' => 'militares_auxilios_fardamentos', 'menu_route' => 'militares_auxilios_fardamentos', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'militares_auxilios_fardamentos', 'prefix_route' => 'militares_auxilios_fardamentos', 'descricao' => '', 'ordem_visualizacao' => 30],
+            ['id' => 15, 'modulo_id' => 5, 'name' => 'Militares Cursos', 'menu_text' => 'Cursos', 'menu_url' => 'militares_cursos', 'menu_route' => 'militares_cursos', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'militares_cursos', 'prefix_route' => 'militares_cursos', 'descricao' => '', 'ordem_visualizacao' => 40],
+            ['id' => 16, 'modulo_id' => 5, 'name' => 'Militares Dependentes', 'menu_text' => 'Dependentes', 'menu_url' => 'militares_dependentes', 'menu_route' => 'militares_dependentes', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'militares_dependentes', 'prefix_route' => 'militares_dependentes', 'descricao' => '', 'ordem_visualizacao' => 50],
+            ['id' => 19, 'modulo_id' => 5, 'name' => 'Militares Fundos de Saúde', 'menu_text' => 'Fundos de Saúde', 'menu_url' => 'militares_fundos_saude', 'menu_route' => 'militares_fundos_saude', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'militares_fundos_saude', 'prefix_route' => 'militares_fundos_saude', 'descricao' => '', 'ordem_visualizacao' => 60],
+            ['id' => 20, 'modulo_id' => 5, 'name' => 'Militares Ferias', 'menu_text' => 'Ferias', 'menu_url' => 'militares_ferias', 'menu_route' => 'militares_ferias', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'militares_ferias', 'prefix_route' => 'militares_ferias', 'descricao' => '', 'ordem_visualizacao' => 70],
+            ['id' => 21, 'modulo_id' => 5, 'name' => 'Militares Pensões', 'menu_text' => 'Pensões', 'menu_url' => 'militares_pensoes', 'menu_route' => 'militares_pensoes', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'militares_pensoes', 'prefix_route' => 'militares_pensoes', 'descricao' => '', 'ordem_visualizacao' => 80],
+            ['id' => 22, 'modulo_id' => 5, 'name' => 'Militares Tempo Averbado', 'menu_text' => 'Tempo Averbado', 'menu_url' => 'militares_tempo_averbado', 'menu_route' => 'militares_tempo_averbado', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'militares_tempo_averbado', 'prefix_route' => 'militares_tempo_averbado', 'descricao' => '', 'ordem_visualizacao' => 90],
+
+            // Módulo: Auxiliares SAD
+            ['id' => 24, 'modulo_id' => 7, 'name' => 'Informações', 'menu_text' => 'Informações', 'menu_url' => 'sad_militares_informacoes', 'menu_route' => 'sad_militares_informacoes', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'sad_militares_informacoes', 'prefix_route' => 'sad_militares_informacoes', 'descricao' => '', 'ordem_visualizacao' => 10],
+        ]);
+    }
+}
