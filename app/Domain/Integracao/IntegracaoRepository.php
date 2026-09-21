@@ -239,6 +239,12 @@ class IntegracaoRepository
         }
 
         if ($tabela == 'militares') {
+
+
+        echo count($dadosLegado);
+        dd($dadosLegado);
+
+        
             foreach($dadosLegado as $dado) {
                 Militar::upsert(
                     [$dado],
