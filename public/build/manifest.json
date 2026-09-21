@@ -52,7 +52,7 @@
     "src": "node_modules/boxicons/fonts/boxicons.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-C2al0W7m.css",
+    "file": "assets/app-CCkpBG4X.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -61,12 +61,12 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-CCVxT1yU.js",
+    "file": "assets/app-BLHddCua.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-DKt5L8nA.css"
+      "assets/app-CxT4HmR7.css"
     ],
     "assets": [
       "assets/materialdesignicons-webfont-CSr8KVlo.eot",
