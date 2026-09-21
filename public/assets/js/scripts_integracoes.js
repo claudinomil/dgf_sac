@@ -63,8 +63,19 @@ async function impsacQuantidadesBancos() {
     const tabesc_quantidade_banco_2 = document.getElementById('tabesc_quantidade_banco_2');
     const tabsxb_quantidade_banco_1 = document.getElementById('tabsxb_quantidade_banco_1');
     const tabsxb_quantidade_banco_2 = document.getElementById('tabsxb_quantidade_banco_2');
+
     const tabmil_quantidade_banco_1 = document.getElementById('tabmil_quantidade_banco_1');
     const tabmil_quantidade_banco_2 = document.getElementById('tabmil_quantidade_banco_2');
+
+    const tabmil_quantidade_banco_1_2 = document.getElementById('tabmil_quantidade_banco_1_2');
+    const tabmil_quantidade_banco_2_2 = document.getElementById('tabmil_quantidade_banco_2_2');
+
+    const tabmil_quantidade_banco_1_3 = document.getElementById('tabmil_quantidade_banco_1_3');
+    const tabmil_quantidade_banco_2_3 = document.getElementById('tabmil_quantidade_banco_2_3');
+
+    const tabmil_quantidade_banco_1_4 = document.getElementById('tabmil_quantidade_banco_1_4');
+    const tabmil_quantidade_banco_2_4 = document.getElementById('tabmil_quantidade_banco_2_4');
+
     const tabcur_quantidade_banco_1 = document.getElementById('tabcur_quantidade_banco_1');
     const tabcur_quantidade_banco_2 = document.getElementById('tabcur_quantidade_banco_2');
     const tabcco_quantidade_banco_1 = document.getElementById('tabcco_quantidade_banco_1');
@@ -114,8 +125,19 @@ async function impsacQuantidadesBancos() {
     tabesc_quantidade_banco_2.innerText = 'null';
     tabsxb_quantidade_banco_1.innerText = 'null';
     tabsxb_quantidade_banco_2.innerText = 'null';
+
     tabmil_quantidade_banco_1.innerText = 'null';
     tabmil_quantidade_banco_2.innerText = 'null';
+
+    tabmil_quantidade_banco_1_2.innerText = 'null';
+    tabmil_quantidade_banco_2_2.innerText = 'null';
+
+    tabmil_quantidade_banco_1_3.innerText = 'null';
+    tabmil_quantidade_banco_2_3.innerText = 'null';
+
+    tabmil_quantidade_banco_1_4.innerText = 'null';
+    tabmil_quantidade_banco_2_4.innerText = 'null';
+
     tabcur_quantidade_banco_1.innerText = 'null';
     tabcur_quantidade_banco_2.innerText = 'null';
     tabcco_quantidade_banco_1.innerText = 'null';
@@ -176,8 +198,19 @@ async function impsacQuantidadesBancos() {
             tabsxb_quantidade_banco_2.innerText = data.success.totais_banco_2.total_sexos_biologicos;
             tabban_quantidade_banco_1.innerText = data.success.totais_banco_1.total_bancos;
             tabban_quantidade_banco_2.innerText = data.success.totais_banco_2.total_bancos;
+
             tabmil_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares;
             tabmil_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares;
+
+            tabmil_quantidade_banco_1_2.innerText = data.success.totais_banco_1.total_militares;
+            tabmil_quantidade_banco_2_2.innerText = data.success.totais_banco_2.total_militares;
+
+            tabmil_quantidade_banco_1_3.innerText = data.success.totais_banco_1.total_militares;
+            tabmil_quantidade_banco_2_3.innerText = data.success.totais_banco_2.total_militares;
+
+            tabmil_quantidade_banco_1_4.innerText = data.success.totais_banco_1.total_militares;
+            tabmil_quantidade_banco_2_4.innerText = data.success.totais_banco_2.total_militares;
+
             tabcur_quantidade_banco_1.innerText = data.success.totais_banco_1.total_cursos;
             tabcur_quantidade_banco_2.innerText = data.success.totais_banco_2.total_cursos;
             tabcco_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_cursos;
@@ -348,6 +381,15 @@ async function impsacIntegrarBancos() {
 
         // Militares
         await impsacAtualizarDados('militares');
+
+        // Militares 2
+        await impsacAtualizarDados('militares_2');
+
+        // Militares 3
+        await impsacAtualizarDados('militares_3');
+
+        // Militares 4
+        await impsacAtualizarDados('militares_4');
 
         // Cursos
         await impsacAtualizarDados('cursos');

@@ -396,6 +396,72 @@
                                                 </div>
                                             </div>
 
+                                            <!-- Militares 2 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares 2</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_2" onclick="impsacAtualizarDados('militares_2');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabmil_quantidade_banco_1_2">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabmil_quantidade_banco_2_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares 3 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares 3</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_3" onclick="impsacAtualizarDados('militares_3');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabmil_quantidade_banco_1_3">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabmil_quantidade_banco_2_3">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares 4 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares 4</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_4" onclick="impsacAtualizarDados('militares_4');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabmil_quantidade_banco_1_4">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabmil_quantidade_banco_2_4">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <!-- Cursos -->
                                             <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
                                                 <div class="card text-center">

@@ -238,7 +238,7 @@ class IntegracaoRepository
             }
         }
 
-        if ($tabela == 'militares') {
+        if ($tabela == 'militares' or $tabela == 'militares_2' or $tabela == 'militares_3' or $tabela == 'militares_4') {
             foreach($dadosLegado as $dado) {
                 Militar::upsert(
                     [$dado],
