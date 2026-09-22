@@ -64,36 +64,98 @@ async function impsacQuantidadesBancos() {
     const tabsxb_quantidade_banco_1 = document.getElementById('tabsxb_quantidade_banco_1');
     const tabsxb_quantidade_banco_2 = document.getElementById('tabsxb_quantidade_banco_2');
 
-    const tabmil_quantidade_banco_1 = document.getElementById('tabmil_quantidade_banco_1');
-    const tabmil_quantidade_banco_2 = document.getElementById('tabmil_quantidade_banco_2');
+    const tabmil1_quantidade_banco_1 = document.getElementById('tabmil1_quantidade_banco_1');
+    const tabmil1_quantidade_banco_2 = document.getElementById('tabmil1_quantidade_banco_2');
 
-    const tabmil_quantidade_banco_1_2 = document.getElementById('tabmil_quantidade_banco_1_2');
-    const tabmil_quantidade_banco_2_2 = document.getElementById('tabmil_quantidade_banco_2_2');
+    const tabmil2_quantidade_banco_1 = document.getElementById('tabmil2_quantidade_banco_1');
+    const tabmil2_quantidade_banco_2 = document.getElementById('tabmil2_quantidade_banco_2');
 
-    const tabmil_quantidade_banco_1_3 = document.getElementById('tabmil_quantidade_banco_1_3');
-    const tabmil_quantidade_banco_2_3 = document.getElementById('tabmil_quantidade_banco_2_3');
+    const tabmil3_quantidade_banco_1 = document.getElementById('tabmil3_quantidade_banco_1');
+    const tabmil3_quantidade_banco_2 = document.getElementById('tabmil3_quantidade_banco_2');
 
-    const tabmil_quantidade_banco_1_4 = document.getElementById('tabmil_quantidade_banco_1_4');
-    const tabmil_quantidade_banco_2_4 = document.getElementById('tabmil_quantidade_banco_2_4');
+    const tabmil4_quantidade_banco_1 = document.getElementById('tabmil4_quantidade_banco_1');
+    const tabmil4_quantidade_banco_2 = document.getElementById('tabmil4_quantidade_banco_2');
 
     const tabcur_quantidade_banco_1 = document.getElementById('tabcur_quantidade_banco_1');
     const tabcur_quantidade_banco_2 = document.getElementById('tabcur_quantidade_banco_2');
-    const tabcco_quantidade_banco_1 = document.getElementById('tabcco_quantidade_banco_1');
-    const tabcco_quantidade_banco_2 = document.getElementById('tabcco_quantidade_banco_2');
+
+    const tabcco1_quantidade_banco_1 = document.getElementById('tabcco1_quantidade_banco_1');
+    const tabcco1_quantidade_banco_2 = document.getElementById('tabcco1_quantidade_banco_2');
+
+    const tabcco2_quantidade_banco_1 = document.getElementById('tabcco2_quantidade_banco_1');
+    const tabcco2_quantidade_banco_2 = document.getElementById('tabcco2_quantidade_banco_2');
+
+    const tabcco3_quantidade_banco_1 = document.getElementById('tabcco3_quantidade_banco_1');
+    const tabcco3_quantidade_banco_2 = document.getElementById('tabcco3_quantidade_banco_2');
+
+    const tabcco4_quantidade_banco_1 = document.getElementById('tabcco4_quantidade_banco_1');
+    const tabcco4_quantidade_banco_2 = document.getElementById('tabcco4_quantidade_banco_2');
+
+    const tabcco5_quantidade_banco_1 = document.getElementById('tabcco5_quantidade_banco_1');
+    const tabcco5_quantidade_banco_2 = document.getElementById('tabcco5_quantidade_banco_2');
+
+    const tabcco6_quantidade_banco_1 = document.getElementById('tabcco6_quantidade_banco_1');
+    const tabcco6_quantidade_banco_2 = document.getElementById('tabcco6_quantidade_banco_2');
+
+    const tabcco7_quantidade_banco_1 = document.getElementById('tabcco7_quantidade_banco_1');
+    const tabcco7_quantidade_banco_2 = document.getElementById('tabcco7_quantidade_banco_2');
+
+    const tabcco8_quantidade_banco_1 = document.getElementById('tabcco8_quantidade_banco_1');
+    const tabcco8_quantidade_banco_2 = document.getElementById('tabcco8_quantidade_banco_2');
+
     const tabacu_quantidade_banco_1 = document.getElementById('tabacu_quantidade_banco_1');
     const tabacu_quantidade_banco_2 = document.getElementById('tabacu_quantidade_banco_2');
-    const tabaxf_quantidade_banco_1 = document.getElementById('tabaxf_quantidade_banco_1');
-    const tabaxf_quantidade_banco_2 = document.getElementById('tabaxf_quantidade_banco_2');
-    const tabfsa_quantidade_banco_1 = document.getElementById('tabfsa_quantidade_banco_1');
-    const tabfsa_quantidade_banco_2 = document.getElementById('tabfsa_quantidade_banco_2');
+
+    const tabaxf1_quantidade_banco_1 = document.getElementById('tabaxf1_quantidade_banco_1');
+    const tabaxf1_quantidade_banco_2 = document.getElementById('tabaxf1_quantidade_banco_2');
+
+    const tabaxf2_quantidade_banco_1 = document.getElementById('tabaxf2_quantidade_banco_1');
+    const tabaxf2_quantidade_banco_2 = document.getElementById('tabaxf2_quantidade_banco_2');
+
+    const tabaxf3_quantidade_banco_1 = document.getElementById('tabaxf3_quantidade_banco_1');
+    const tabaxf3_quantidade_banco_2 = document.getElementById('tabaxf3_quantidade_banco_2');
+
+    const tabfsa1_quantidade_banco_1 = document.getElementById('tabfsa1_quantidade_banco_1');
+    const tabfsa1_quantidade_banco_2 = document.getElementById('tabfsa1_quantidade_banco_2');
+
+    const tabfsa2_quantidade_banco_1 = document.getElementById('tabfsa2_quantidade_banco_1');
+    const tabfsa2_quantidade_banco_2 = document.getElementById('tabfsa2_quantidade_banco_2');
+
+    const tabfsa3_quantidade_banco_1 = document.getElementById('tabfsa3_quantidade_banco_1');
+    const tabfsa3_quantidade_banco_2 = document.getElementById('tabfsa3_quantidade_banco_2');
+
+    const tabfsa4_quantidade_banco_1 = document.getElementById('tabfsa4_quantidade_banco_1');
+    const tabfsa4_quantidade_banco_2 = document.getElementById('tabfsa4_quantidade_banco_2');
+
     const tabfsc_quantidade_banco_1 = document.getElementById('tabfsc_quantidade_banco_1');
     const tabfsc_quantidade_banco_2 = document.getElementById('tabfsc_quantidade_banco_2');
+
     const tabfsd_quantidade_banco_1 = document.getElementById('tabfsd_quantidade_banco_1');
     const tabfsd_quantidade_banco_2 = document.getElementById('tabfsd_quantidade_banco_2');
+
     const tabpar_quantidade_banco_1 = document.getElementById('tabpar_quantidade_banco_1');
     const tabpar_quantidade_banco_2 = document.getElementById('tabpar_quantidade_banco_2');
-    const tabmde_quantidade_banco_1 = document.getElementById('tabmde_quantidade_banco_1');
-    const tabmde_quantidade_banco_2 = document.getElementById('tabmde_quantidade_banco_2');
+
+    const tabmde1_quantidade_banco_1 = document.getElementById('tabmde1_quantidade_banco_1');
+    const tabmde1_quantidade_banco_2 = document.getElementById('tabmde1_quantidade_banco_2');
+
+    const tabmde2_quantidade_banco_1 = document.getElementById('tabmde2_quantidade_banco_1');
+    const tabmde2_quantidade_banco_2 = document.getElementById('tabmde2_quantidade_banco_2');
+
+    const tabmde3_quantidade_banco_1 = document.getElementById('tabmde3_quantidade_banco_1');
+    const tabmde3_quantidade_banco_2 = document.getElementById('tabmde3_quantidade_banco_2');
+
+    const tabmde4_quantidade_banco_1 = document.getElementById('tabmde4_quantidade_banco_1');
+    const tabmde4_quantidade_banco_2 = document.getElementById('tabmde4_quantidade_banco_2');
+
+    const tabmde5_quantidade_banco_1 = document.getElementById('tabmde5_quantidade_banco_1');
+    const tabmde5_quantidade_banco_2 = document.getElementById('tabmde5_quantidade_banco_2');
+
+    const tabmde6_quantidade_banco_1 = document.getElementById('tabmde6_quantidade_banco_1');
+    const tabmde6_quantidade_banco_2 = document.getElementById('tabmde6_quantidade_banco_2');
+
+    const tabmde7_quantidade_banco_1 = document.getElementById('tabmde7_quantidade_banco_1');
+    const tabmde7_quantidade_banco_2 = document.getElementById('tabmde7_quantidade_banco_2');
 
     const int_quantidade_banco_1 = document.getElementById('int_quantidade_banco_1');
     const int_quantidade_banco_2 = document.getElementById('int_quantidade_banco_2');
@@ -126,36 +188,98 @@ async function impsacQuantidadesBancos() {
     tabsxb_quantidade_banco_1.innerText = 'null';
     tabsxb_quantidade_banco_2.innerText = 'null';
 
-    tabmil_quantidade_banco_1.innerText = 'null';
-    tabmil_quantidade_banco_2.innerText = 'null';
+    tabmil1_quantidade_banco_1.innerText = 'null';
+    tabmil1_quantidade_banco_2.innerText = 'null';
 
-    tabmil_quantidade_banco_1_2.innerText = 'null';
-    tabmil_quantidade_banco_2_2.innerText = 'null';
+    tabmil2_quantidade_banco_1.innerText = 'null';
+    tabmil2_quantidade_banco_2.innerText = 'null';
 
-    tabmil_quantidade_banco_1_3.innerText = 'null';
-    tabmil_quantidade_banco_2_3.innerText = 'null';
+    tabmil3_quantidade_banco_1.innerText = 'null';
+    tabmil3_quantidade_banco_2.innerText = 'null';
 
-    tabmil_quantidade_banco_1_4.innerText = 'null';
-    tabmil_quantidade_banco_2_4.innerText = 'null';
+    tabmil4_quantidade_banco_1.innerText = 'null';
+    tabmil4_quantidade_banco_2.innerText = 'null';
 
     tabcur_quantidade_banco_1.innerText = 'null';
     tabcur_quantidade_banco_2.innerText = 'null';
-    tabcco_quantidade_banco_1.innerText = 'null';
-    tabcco_quantidade_banco_2.innerText = 'null';
+
+    tabcco1_quantidade_banco_1.innerText = 'null';
+    tabcco1_quantidade_banco_2.innerText = 'null';
+
+    tabcco2_quantidade_banco_1.innerText = 'null';
+    tabcco2_quantidade_banco_2.innerText = 'null';
+
+    tabcco3_quantidade_banco_1.innerText = 'null';
+    tabcco3_quantidade_banco_2.innerText = 'null';
+
+    tabcco4_quantidade_banco_1.innerText = 'null';
+    tabcco4_quantidade_banco_2.innerText = 'null';
+
+    tabcco5_quantidade_banco_1.innerText = 'null';
+    tabcco5_quantidade_banco_2.innerText = 'null';
+
+    tabcco6_quantidade_banco_1.innerText = 'null';
+    tabcco6_quantidade_banco_2.innerText = 'null';
+
+    tabcco7_quantidade_banco_1.innerText = 'null';
+    tabcco7_quantidade_banco_2.innerText = 'null';
+
+    tabcco8_quantidade_banco_1.innerText = 'null';
+    tabcco8_quantidade_banco_2.innerText = 'null';
+
     tabacu_quantidade_banco_1.innerText = 'null';
     tabacu_quantidade_banco_2.innerText = 'null';
-    tabaxf_quantidade_banco_1.innerText = 'null';
-    tabaxf_quantidade_banco_2.innerText = 'null';
-    tabfsa_quantidade_banco_1.innerText = 'null';
-    tabfsa_quantidade_banco_2.innerText = 'null';
+
+    tabaxf1_quantidade_banco_1.innerText = 'null';
+    tabaxf1_quantidade_banco_2.innerText = 'null';
+
+    tabaxf2_quantidade_banco_1.innerText = 'null';
+    tabaxf2_quantidade_banco_2.innerText = 'null';
+
+    tabaxf3_quantidade_banco_1.innerText = 'null';
+    tabaxf3_quantidade_banco_2.innerText = 'null';
+
+    tabfsa1_quantidade_banco_1.innerText = 'null';
+    tabfsa1_quantidade_banco_2.innerText = 'null';
+
+    tabfsa2_quantidade_banco_1.innerText = 'null';
+    tabfsa2_quantidade_banco_2.innerText = 'null';
+
+    tabfsa3_quantidade_banco_1.innerText = 'null';
+    tabfsa3_quantidade_banco_2.innerText = 'null';
+
+    tabfsa4_quantidade_banco_1.innerText = 'null';
+    tabfsa4_quantidade_banco_2.innerText = 'null';
+
     tabfsc_quantidade_banco_1.innerText = 'null';
     tabfsc_quantidade_banco_2.innerText = 'null';
+
     tabfsd_quantidade_banco_1.innerText = 'null';
     tabfsd_quantidade_banco_2.innerText = 'null';
+
     tabpar_quantidade_banco_1.innerText = 'null';
     tabpar_quantidade_banco_2.innerText = 'null';
-    tabmde_quantidade_banco_1.innerText = 'null';
-    tabmde_quantidade_banco_2.innerText = 'null';
+
+    tabmde1_quantidade_banco_1.innerText = 'null';
+    tabmde1_quantidade_banco_2.innerText = 'null';
+
+    tabmde2_quantidade_banco_1.innerText = 'null';
+    tabmde2_quantidade_banco_2.innerText = 'null';
+
+    tabmde3_quantidade_banco_1.innerText = 'null';
+    tabmde3_quantidade_banco_2.innerText = 'null';
+
+    tabmde4_quantidade_banco_1.innerText = 'null';
+    tabmde4_quantidade_banco_2.innerText = 'null';
+
+    tabmde5_quantidade_banco_1.innerText = 'null';
+    tabmde5_quantidade_banco_2.innerText = 'null';
+
+    tabmde6_quantidade_banco_1.innerText = 'null';
+    tabmde6_quantidade_banco_2.innerText = 'null';
+
+    tabmde7_quantidade_banco_1.innerText = 'null';
+    tabmde7_quantidade_banco_2.innerText = 'null';
 
     int_quantidade_banco_1.innerText = 'null';
     int_quantidade_banco_2.innerText = 'null';
@@ -199,36 +323,98 @@ async function impsacQuantidadesBancos() {
             tabban_quantidade_banco_1.innerText = data.success.totais_banco_1.total_bancos;
             tabban_quantidade_banco_2.innerText = data.success.totais_banco_2.total_bancos;
 
-            tabmil_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares;
-            tabmil_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares;
+            tabmil1_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares;
+            tabmil1_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares;
 
-            tabmil_quantidade_banco_1_2.innerText = data.success.totais_banco_1.total_militares;
-            tabmil_quantidade_banco_2_2.innerText = data.success.totais_banco_2.total_militares;
+            tabmil2_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares;
+            tabmil2_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares;
 
-            tabmil_quantidade_banco_1_3.innerText = data.success.totais_banco_1.total_militares;
-            tabmil_quantidade_banco_2_3.innerText = data.success.totais_banco_2.total_militares;
+            tabmil3_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares;
+            tabmil3_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares;
 
-            tabmil_quantidade_banco_1_4.innerText = data.success.totais_banco_1.total_militares;
-            tabmil_quantidade_banco_2_4.innerText = data.success.totais_banco_2.total_militares;
+            tabmil4_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares;
+            tabmil4_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares;
 
             tabcur_quantidade_banco_1.innerText = data.success.totais_banco_1.total_cursos;
             tabcur_quantidade_banco_2.innerText = data.success.totais_banco_2.total_cursos;
-            tabcco_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_cursos;
-            tabcco_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_cursos;
+
+            tabcco1_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_cursos;
+            tabcco1_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_cursos;
+
+            tabcco2_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_cursos;
+            tabcco2_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_cursos;
+
+            tabcco3_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_cursos;
+            tabcco3_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_cursos;
+
+            tabcco4_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_cursos;
+            tabcco4_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_cursos;
+
+            tabcco5_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_cursos;
+            tabcco5_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_cursos;
+
+            tabcco6_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_cursos;
+            tabcco6_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_cursos;
+
+            tabcco7_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_cursos;
+            tabcco7_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_cursos;
+
+            tabcco8_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_cursos;
+            tabcco8_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_cursos;
+
             tabacu_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ajudas_custos;
             tabacu_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ajudas_custos;
-            tabaxf_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_auxilios_fardamentos;
-            tabaxf_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_auxilios_fardamentos;
-            tabfsa_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_fundos_saude;
-            tabfsa_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_fundos_saude;
+
+            tabaxf1_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_auxilios_fardamentos;
+            tabaxf1_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_auxilios_fardamentos;
+
+            tabaxf2_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_auxilios_fardamentos;
+            tabaxf2_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_auxilios_fardamentos;
+
+            tabaxf3_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_auxilios_fardamentos;
+            tabaxf3_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_auxilios_fardamentos;
+
+            tabfsa1_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_fundos_saude;
+            tabfsa1_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_fundos_saude;
+
+            tabfsa2_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_fundos_saude;
+            tabfsa2_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_fundos_saude;
+
+            tabfsa3_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_fundos_saude;
+            tabfsa3_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_fundos_saude;
+
+            tabfsa4_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_fundos_saude;
+            tabfsa4_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_fundos_saude;
+
             tabfsc_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_fundos_saude_controle;
             tabfsc_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_fundos_saude_controle;
+
             tabfsd_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_fundos_saude_adesao;
             tabfsd_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_fundos_saude_adesao;
+
             tabpar_quantidade_banco_1.innerText = data.success.totais_banco_1.total_parentescos;
             tabpar_quantidade_banco_2.innerText = data.success.totais_banco_2.total_parentescos;
-            tabmde_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_dependentes;
-            tabmde_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_dependentes;
+
+            tabmde1_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_dependentes;
+            tabmde1_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_dependentes;
+
+            tabmde2_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_dependentes;
+            tabmde2_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_dependentes;
+
+            tabmde3_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_dependentes;
+            tabmde3_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_dependentes;
+
+            tabmde4_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_dependentes;
+            tabmde4_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_dependentes;
+
+            tabmde5_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_dependentes;
+            tabmde5_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_dependentes;
+
+            tabmde6_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_dependentes;
+            tabmde6_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_dependentes;
+
+            tabmde7_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_dependentes;
+            tabmde7_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_dependentes;
 
             let quantidade_banco_1 = Number(data.success.totais_banco_1.total_situacoes) +
                 Number(data.success.totais_banco_1.total_graduacoes) +
@@ -379,8 +565,14 @@ async function impsacIntegrarBancos() {
         // Bancos
         await impsacAtualizarDados('bancos');
 
-        // Militares
-        await impsacAtualizarDados('militares');
+        // Cursos
+        await impsacAtualizarDados('cursos');
+
+        // Parentescos
+        await impsacAtualizarDados('parentescos');
+
+        // Militares 1
+        await impsacAtualizarDados('militares_1');
 
         // Militares 2
         await impsacAtualizarDados('militares_2');
@@ -391,20 +583,53 @@ async function impsacIntegrarBancos() {
         // Militares 4
         await impsacAtualizarDados('militares_4');
 
-        // Cursos
-        await impsacAtualizarDados('cursos');
+        // Militares Cursos 1
+        await impsacAtualizarDados('militares_cursos_1');
 
-        // Militares Cursos
-        await impsacAtualizarDados('militares_cursos');
+        // Militares Cursos 2
+        await impsacAtualizarDados('militares_cursos_2');
+
+        // Militares Cursos 3
+        await impsacAtualizarDados('militares_cursos_3');
+
+        // Militares Cursos 4
+        await impsacAtualizarDados('militares_cursos_4');
+
+        // Militares Cursos 5
+        await impsacAtualizarDados('militares_cursos_5');
+
+        // Militares Cursos 6
+        await impsacAtualizarDados('militares_cursos_6');
+
+        // Militares Cursos 7
+        await impsacAtualizarDados('militares_cursos_7');
+
+        // Militares Cursos 8
+        await impsacAtualizarDados('militares_cursos_8');
 
         // Militares Ajudas Custos
         await impsacAtualizarDados('militares_ajudas_custos');
 
-        // Militares Auxílios Fardamentos
-        await impsacAtualizarDados('militares_auxilios_fardamentos');
+        // Militares Auxílios Fardamentos 1
+        await impsacAtualizarDados('militares_auxilios_fardamentos_1');
 
-        // Militares Fundos Saúde
-        await impsacAtualizarDados('militares_fundos_saude');
+        // Militares Auxílios Fardamentos 2
+        await impsacAtualizarDados('militares_auxilios_fardamentos_2');
+
+        // Militares Auxílios Fardamentos 3
+        await impsacAtualizarDados('militares_auxilios_fardamentos_3');
+
+        // Militares Fundos Saúde 1
+        await impsacAtualizarDados('militares_fundos_saude_1');
+
+        // Militares Fundos Saúde 2
+        await impsacAtualizarDados('militares_fundos_saude_2');
+
+        // Militares Fundos Saúde 3
+        await impsacAtualizarDados('militares_fundos_saude_3');
+
+        // Militares Fundos Saúde 4
+        await impsacAtualizarDados('militares_fundos_saude_4');
 
         // Militares Fundos Saúde Controle
         await impsacAtualizarDados('militares_fundos_saude_controle');
@@ -412,11 +637,26 @@ async function impsacIntegrarBancos() {
         // Militares Fundos Saúde Adesão
         await impsacAtualizarDados('militares_fundos_saude_adesao');
 
-        // Parentescos
-        await impsacAtualizarDados('parentescos');
+        // Militares Dependentes 1
+        await impsacAtualizarDados('militares_dependentes_1');
 
-        // Militares Dependentes
-        await impsacAtualizarDados('militares_dependentes');
+        // Militares Dependentes 2
+        await impsacAtualizarDados('militares_dependentes_2');
+
+        // Militares Dependentes 3
+        await impsacAtualizarDados('militares_dependentes_3');
+
+        // Militares Dependentes 4
+        await impsacAtualizarDados('militares_dependentes_4');
+
+        // Militares Dependentes 5
+        await impsacAtualizarDados('militares_dependentes_5');
+
+        // Militares Dependentes 6
+        await impsacAtualizarDados('militares_dependentes_6');
+
+        // Militares Dependentes 7
+        await impsacAtualizarDados('militares_dependentes_7');
     } catch (error) {
         console.error("Erro impsacIntegrarBancos:", error);
     } finally {

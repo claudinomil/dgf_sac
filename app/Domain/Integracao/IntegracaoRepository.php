@@ -238,7 +238,7 @@ class IntegracaoRepository
             }
         }
 
-        if ($tabela == 'militares' or $tabela == 'militares_2' or $tabela == 'militares_3' or $tabela == 'militares_4') {
+        if ($tabela == 'militares_1' or $tabela == 'militares_2' or $tabela == 'militares_3' or $tabela == 'militares_4') {
             foreach($dadosLegado as $dado) {
                 Militar::upsert(
                     [$dado],
@@ -314,7 +314,7 @@ class IntegracaoRepository
             }
         }
 
-        if ($tabela == 'militares_cursos') {
+        if ($tabela == 'militares_cursos_1' or $tabela == 'militares_cursos_2' or $tabela == 'militares_cursos_3' or $tabela == 'militares_cursos_4' or $tabela == 'militares_cursos_5' or $tabela == 'militares_cursos_6' or $tabela == 'militares_cursos_7' or $tabela == 'militares_cursos_8') {
             foreach($dadosLegado as $dado) {
                 MilitarCurso::upsert(
                     [$dado],
@@ -352,7 +352,7 @@ class IntegracaoRepository
             }
         }
 
-        if ($tabela == 'militares_auxilios_fardamentos') {
+        if ($tabela == 'militares_auxilios_fardamentos_1' or $tabela == 'militares_auxilios_fardamentos_2' or $tabela == 'militares_auxilios_fardamentos_3') {
             foreach($dadosLegado as $dado) {
                 MilitarAuxilioFardamento::upsert(
                     [$dado],
@@ -382,7 +382,7 @@ class IntegracaoRepository
             }
         }
 
-        if ($tabela == 'militares_fundos_saude') {
+        if ($tabela == 'militares_fundos_saude_1' or $tabela == 'militares_fundos_saude_2' or $tabela == 'militares_fundos_saude_3' or $tabela == 'militares_fundos_saude_4') {
             foreach($dadosLegado as $dado) {
                 MilitarFundoSaude::upsert(
                     [$dado],
@@ -445,7 +445,7 @@ class IntegracaoRepository
             }
         }
 
-        if ($tabela == 'militares_dependentes') {
+        if ($tabela == 'militares_dependentes_1' or $tabela == 'militares_dependentes_2' or $tabela == 'militares_dependentes_3' or $tabela == 'militares_dependentes_4' or $tabela == 'militares_dependentes_5' or $tabela == 'militares_dependentes_6' or $tabela == 'militares_dependentes_7') {
             foreach($dadosLegado as $dado) {
                 MilitarDependente::upsert(
                     [$dado],

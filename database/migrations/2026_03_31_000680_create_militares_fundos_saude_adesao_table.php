@@ -12,9 +12,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('militar_id')->constrained('militares');
             $table->integer('adesao')->default(0);
-            $table->string('documento_sei');
-            $table->string('processo_sei');
-            $table->string('formulario_adesao_nome');
+            $table->string('documento_sei')->nullable();
+            $table->string('processo_sei')->nullable();
+            $table->string('formulario_adesao_nome')->nullable();
             $table->integer('ciente')->default(0);
             $table->timestamps();
         });

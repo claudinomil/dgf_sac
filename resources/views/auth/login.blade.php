@@ -40,7 +40,6 @@
                                 @endif
 
                                 <form class="form-horizontal" method="POST" action="{{ url('/login') }}">
-                                <!-- <form class="form-horizontal" method="POST" action="/login"> -->
                                     @csrf
 
                                     <div class="mb-3">

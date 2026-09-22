@@ -331,7 +331,7 @@
                                             </div>
 
                                             <!-- Sexos Biologicos -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
                                                 <div class="card text-center">
                                                     <div class="card-body">
                                                         <p class="text-muted font-size-12">Sexos Biologicos</p>
@@ -353,7 +353,7 @@
                                             </div>
 
                                             <!-- Bancos -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
                                                 <div class="card text-center">
                                                     <div class="card-body">
                                                         <p class="text-muted font-size-12">Bancos</p>
@@ -374,96 +374,8 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Militares -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
-                                                <div class="card text-center">
-                                                    <div class="card-body">
-                                                        <p class="text-muted font-size-12">Militares</p>
-                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares" onclick="impsacAtualizarDados('militares');">Atualizar Dados</button>
-                                                    </div>
-                                                    <div class="card-footer bg-transparent border-top">
-                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bxs-data font-size-20"></i>
-                                                                <span class="text-danger font-size-20" id="tabmil_quantidade_banco_1">0</span>
-                                                            </div>
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bx-data font-size-20"></i>
-                                                                <span class="text-success font-size-20" id="tabmil_quantidade_banco_2">0</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Militares 2 -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
-                                                <div class="card text-center">
-                                                    <div class="card-body">
-                                                        <p class="text-muted font-size-12">Militares 2</p>
-                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_2" onclick="impsacAtualizarDados('militares_2');">Atualizar Dados</button>
-                                                    </div>
-                                                    <div class="card-footer bg-transparent border-top">
-                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bxs-data font-size-20"></i>
-                                                                <span class="text-danger font-size-20" id="tabmil_quantidade_banco_1_2">0</span>
-                                                            </div>
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bx-data font-size-20"></i>
-                                                                <span class="text-success font-size-20" id="tabmil_quantidade_banco_2_2">0</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Militares 3 -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
-                                                <div class="card text-center">
-                                                    <div class="card-body">
-                                                        <p class="text-muted font-size-12">Militares 3</p>
-                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_3" onclick="impsacAtualizarDados('militares_3');">Atualizar Dados</button>
-                                                    </div>
-                                                    <div class="card-footer bg-transparent border-top">
-                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bxs-data font-size-20"></i>
-                                                                <span class="text-danger font-size-20" id="tabmil_quantidade_banco_1_3">0</span>
-                                                            </div>
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bx-data font-size-20"></i>
-                                                                <span class="text-success font-size-20" id="tabmil_quantidade_banco_2_3">0</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Militares 4 -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
-                                                <div class="card text-center">
-                                                    <div class="card-body">
-                                                        <p class="text-muted font-size-12">Militares 4</p>
-                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_4" onclick="impsacAtualizarDados('militares_4');">Atualizar Dados</button>
-                                                    </div>
-                                                    <div class="card-footer bg-transparent border-top">
-                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bxs-data font-size-20"></i>
-                                                                <span class="text-danger font-size-20" id="tabmil_quantidade_banco_1_4">0</span>
-                                                            </div>
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bx-data font-size-20"></i>
-                                                                <span class="text-success font-size-20" id="tabmil_quantidade_banco_2_4">0</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                             <!-- Cursos -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
                                                 <div class="card text-center">
                                                     <div class="card-body">
                                                         <p class="text-muted font-size-12">Cursos</p>
@@ -484,140 +396,8 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Militares Cursos -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
-                                                <div class="card text-center">
-                                                    <div class="card-body">
-                                                        <p class="text-muted font-size-12">Militares Cursos</p>
-                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_cursos" onclick="impsacAtualizarDados('militares_cursos');">Atualizar Dados</button>
-                                                    </div>
-                                                    <div class="card-footer bg-transparent border-top">
-                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bxs-data font-size-20"></i>
-                                                                <span class="text-danger font-size-20" id="tabcco_quantidade_banco_1">0</span>
-                                                            </div>
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bx-data font-size-20"></i>
-                                                                <span class="text-success font-size-20" id="tabcco_quantidade_banco_2">0</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Militares Ajudas Custos -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
-                                                <div class="card text-center">
-                                                    <div class="card-body">
-                                                        <p class="text-muted font-size-12">Militares Ajudas Custos</p>
-                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_ajudas_custos" onclick="impsacAtualizarDados('militares_ajudas_custos');">Atualizar Dados</button>
-                                                    </div>
-                                                    <div class="card-footer bg-transparent border-top">
-                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bxs-data font-size-20"></i>
-                                                                <span class="text-danger font-size-20" id="tabacu_quantidade_banco_1">0</span>
-                                                            </div>
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bx-data font-size-20"></i>
-                                                                <span class="text-success font-size-20" id="tabacu_quantidade_banco_2">0</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Militares Auxílios Fardamentos -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
-                                                <div class="card text-center">
-                                                    <div class="card-body">
-                                                        <p class="text-muted font-size-12">Militares Auxílios Fardamentos</p>
-                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_auxilios_fardamentos" onclick="impsacAtualizarDados('militares_auxilios_fardamentos');">Atualizar Dados</button>
-                                                    </div>
-                                                    <div class="card-footer bg-transparent border-top">
-                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bxs-data font-size-20"></i>
-                                                                <span class="text-danger font-size-20" id="tabaxf_quantidade_banco_1">0</span>
-                                                            </div>
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bx-data font-size-20"></i>
-                                                                <span class="text-success font-size-20" id="tabaxf_quantidade_banco_2">0</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Militares Fundos Saúde -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
-                                                <div class="card text-center">
-                                                    <div class="card-body">
-                                                        <p class="text-muted font-size-12">Militares Fundos Saúde</p>
-                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_fundos_saude" onclick="impsacAtualizarDados('militares_fundos_saude');">Atualizar Dados</button>
-                                                    </div>
-                                                    <div class="card-footer bg-transparent border-top">
-                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bxs-data font-size-20"></i>
-                                                                <span class="text-danger font-size-20" id="tabfsa_quantidade_banco_1">0</span>
-                                                            </div>
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bx-data font-size-20"></i>
-                                                                <span class="text-success font-size-20" id="tabfsa_quantidade_banco_2">0</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Militares Fundos Saúde Controle -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
-                                                <div class="card text-center">
-                                                    <div class="card-body">
-                                                        <p class="text-muted font-size-12">Militares Fundos Saúde Controle</p>
-                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_fundos_saude_controle" onclick="impsacAtualizarDados('militares_fundos_saude_controle');">Atualizar Dados</button>
-                                                    </div>
-                                                    <div class="card-footer bg-transparent border-top">
-                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bxs-data font-size-20"></i>
-                                                                <span class="text-danger font-size-20" id="tabfsc_quantidade_banco_1">0</span>
-                                                            </div>
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bx-data font-size-20"></i>
-                                                                <span class="text-success font-size-20" id="tabfsc_quantidade_banco_2">0</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Militares Fundos Saúde Adesão -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
-                                                <div class="card text-center">
-                                                    <div class="card-body">
-                                                        <p class="text-muted font-size-12">Militares Fundos Saúde Adesão</p>
-                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_fundos_saude_adesao" onclick="impsacAtualizarDados('militares_fundos_saude_adesao');">Atualizar Dados</button>
-                                                    </div>
-                                                    <div class="card-footer bg-transparent border-top">
-                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bxs-data font-size-20"></i>
-                                                                <span class="text-danger font-size-20" id="tabfsd_quantidade_banco_1">0</span>
-                                                            </div>
-                                                            <div class="col-auto d-flex align-items-center gap-2">
-                                                                <i class="bx bx-data font-size-20"></i>
-                                                                <span class="text-success font-size-20" id="tabfsd_quantidade_banco_2">0</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                             <!-- Parentescos -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
                                                 <div class="card text-center">
                                                     <div class="card-body">
                                                         <p class="text-muted font-size-12">Parentescos</p>
@@ -638,22 +418,670 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Militares Dependentes -->
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 col-xxl-2">
+
+                                            <div class="col-12">&nbsp;</div>
+
+
+                                            <!-- Militares 1 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
                                                 <div class="card text-center">
                                                     <div class="card-body">
-                                                        <p class="text-muted font-size-12">Militares Dependentes</p>
-                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_dependentes" onclick="impsacAtualizarDados('militares_dependentes');">Atualizar Dados</button>
+                                                        <p class="text-muted font-size-12">Militares 1</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_1" onclick="impsacAtualizarDados('militares_1');">Atualizar Dados</button>
                                                     </div>
                                                     <div class="card-footer bg-transparent border-top">
                                                         <div class="row flex-nowrap justify-content-center g-4 text-center">
                                                             <div class="col-auto d-flex align-items-center gap-2">
                                                                 <i class="bx bxs-data font-size-20"></i>
-                                                                <span class="text-danger font-size-20" id="tabmde_quantidade_banco_1">0</span>
+                                                                <span class="text-danger font-size-20" id="tabmil1_quantidade_banco_1">0</span>
                                                             </div>
                                                             <div class="col-auto d-flex align-items-center gap-2">
                                                                 <i class="bx bx-data font-size-20"></i>
-                                                                <span class="text-success font-size-20" id="tabmde_quantidade_banco_2">0</span>
+                                                                <span class="text-success font-size-20" id="tabmil1_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares 2 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares 2</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_2" onclick="impsacAtualizarDados('militares_2');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabmil2_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabmil2_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares 3 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares 3</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_3" onclick="impsacAtualizarDados('militares_3');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabmil3_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabmil3_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares 4 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares 4</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_4" onclick="impsacAtualizarDados('militares_4');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabmil4_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabmil4_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12">&nbsp;</div>
+
+
+                                            <!-- Militares Cursos 1 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Cursos 1</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_cursos_1" onclick="impsacAtualizarDados('militares_cursos_1');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabcco1_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabcco1_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Cursos 2 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Cursos 2</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_cursos_2" onclick="impsacAtualizarDados('militares_cursos_2');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabcco2_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabcco2_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Cursos 3 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Cursos 3</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_cursos_3" onclick="impsacAtualizarDados('militares_cursos_3');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabcco3_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabcco3_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Cursos 4 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Cursos 4</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_cursos_4" onclick="impsacAtualizarDados('militares_cursos_4');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabcco4_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabcco4_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Cursos 5 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Cursos 5</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_cursos_5" onclick="impsacAtualizarDados('militares_cursos_5');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabcco5_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabcco5_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Cursos 6 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Cursos 6</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_cursos_6" onclick="impsacAtualizarDados('militares_cursos_6');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabcco6_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabcco6_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Cursos 7 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Cursos 7</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_cursos_7" onclick="impsacAtualizarDados('militares_cursos_7');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabcco7_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabcco7_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Cursos 8 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Cursos 8</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_cursos_8" onclick="impsacAtualizarDados('militares_cursos_8');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabcco8_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabcco8_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12">&nbsp;</div>
+
+
+                                            <!-- Militares Ajudas Custos -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-12 col-xxl-12">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Ajudas Custos</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_ajudas_custos" onclick="impsacAtualizarDados('militares_ajudas_custos');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabacu_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabacu_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12">&nbsp;</div>
+
+
+                                            <!-- Militares Auxílios Fardamentos 1 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-4 col-xxl-4">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Auxílios Fardamentos 1</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_auxilios_fardamentos_1" onclick="impsacAtualizarDados('militares_auxilios_fardamentos_1');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabaxf1_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabaxf1_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Auxílios Fardamentos 2 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-4 col-xxl-4">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Auxílios Fardamentos 2</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_auxilios_fardamentos_2" onclick="impsacAtualizarDados('militares_auxilios_fardamentos_2');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabaxf2_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabaxf2_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Auxílios Fardamentos 3 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-4 col-xxl-4">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Auxílios Fardamentos 3</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_auxilios_fardamentos_3" onclick="impsacAtualizarDados('militares_auxilios_fardamentos_3');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabaxf3_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabaxf3_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12">&nbsp;</div>
+
+
+                                            <!-- Militares Fundos Saúde 1 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Fundos Saúde 1</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_fundos_saude_1" onclick="impsacAtualizarDados('militares_fundos_saude_1');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabfsa1_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabfsa1_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Fundos Saúde 2 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Fundos Saúde 2</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_fundos_saude_2" onclick="impsacAtualizarDados('militares_fundos_saude_2');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabfsa2_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabfsa2_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Fundos Saúde 3 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Fundos Saúde 3</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_fundos_saude_3" onclick="impsacAtualizarDados('militares_fundos_saude_3');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabfsa3_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabfsa3_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Fundos Saúde 4 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Fundos Saúde 4</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_fundos_saude_4" onclick="impsacAtualizarDados('militares_fundos_saude_4');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabfsa4_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabfsa4_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12">&nbsp;</div>
+
+
+                                            <!-- Militares Fundos Saúde Controle -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-12 col-xxl-12">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Fundos Saúde Controle</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_fundos_saude_controle" onclick="impsacAtualizarDados('militares_fundos_saude_controle');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabfsc_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabfsc_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12">&nbsp;</div>
+
+
+                                            <!-- Militares Fundos Saúde Adesão -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-12 col-xxl-12">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Fundos Saúde Adesão</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_fundos_saude_adesao" onclick="impsacAtualizarDados('militares_fundos_saude_adesao');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabfsd_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabfsd_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12">&nbsp;</div>
+
+
+                                            <!-- Militares Dependentes 1 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Dependentes 1</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_dependentes_1" onclick="impsacAtualizarDados('militares_dependentes_1');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabmde1_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabmde1_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Dependentes 2 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Dependentes 2</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_dependentes_2" onclick="impsacAtualizarDados('militares_dependentes_2');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabmde2_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabmde2_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Dependentes 3 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Dependentes 3</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_dependentes_3" onclick="impsacAtualizarDados('militares_dependentes_3');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabmde3_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabmde3_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Dependentes 4 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Dependentes 4</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_dependentes_4" onclick="impsacAtualizarDados('militares_dependentes_4');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabmde4_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabmde4_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Dependentes 5 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-4 col-xxl-4">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Dependentes 5</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_dependentes_5" onclick="impsacAtualizarDados('militares_dependentes_5');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabmde5_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabmde5_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Dependentes 6 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-4 col-xxl-4">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Dependentes 6</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_dependentes_6" onclick="impsacAtualizarDados('militares_dependentes_6');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabmde6_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabmde6_quantidade_banco_2">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Militares Dependentes 7 -->
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-4 col-xxl-4">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <p class="text-muted font-size-12">Militares Dependentes 7</p>
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light font-size-12" id="impsac_btn_militares_dependentes_7" onclick="impsacAtualizarDados('militares_dependentes_7');">Atualizar Dados</button>
+                                                    </div>
+                                                    <div class="card-footer bg-transparent border-top">
+                                                        <div class="row flex-nowrap justify-content-center g-4 text-center">
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bxs-data font-size-20"></i>
+                                                                <span class="text-danger font-size-20" id="tabmde7_quantidade_banco_1">0</span>
+                                                            </div>
+                                                            <div class="col-auto d-flex align-items-center gap-2">
+                                                                <i class="bx bx-data font-size-20"></i>
+                                                                <span class="text-success font-size-20" id="tabmde7_quantidade_banco_2">0</span>
                                                             </div>
                                                         </div>
                                                     </div>
