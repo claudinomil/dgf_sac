@@ -45,11 +45,11 @@
 
                                     <div class="mb-3">
                                         <label class="form-label">{{ __('Usuário') }}</label>
-                                        <input type="text" class="form-control" id="user" name="user" placeholder="Entre com o Usuário" value="27335" required>
+                                        <input type="text" class="form-control" id="user" name="user" placeholder="Entre com o Usuário" value="" required>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">{{ __('Senha') }}</label>
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Entre com a Senha" value="12345678" required>
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Entre com a Senha" value="" required>
                                     </div>
                                     <div class="mb-3">
                                         <button class="btn btn-primary lo-bg-thema col-12" type="submit">{{ __('Login') }}</button>

@@ -430,8 +430,8 @@ if (!function_exists('getValorFormatado')) {
 if (!function_exists('getRG')) {
     /*
     * Formatar RG
-    * @PARAM op=1 : recebe 00/0027.335 e retorna 27335
-    * @PARAM op=2 : recebe 27335 e retorna 00/0027.335
+    * @PARAM op=1 : recebe 00/0099.999 e retorna 99999
+    * @PARAM op=2 : recebe 99999 e retorna 00/0099.999
     */
     function getRG(int $op, string $rg) {
         if ($op == 1) {
