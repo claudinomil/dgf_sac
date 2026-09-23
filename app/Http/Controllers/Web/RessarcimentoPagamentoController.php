@@ -169,8 +169,15 @@ public function importar(Request $request)
             'success' => $resultado
         ]);
     } catch (\Exception $e) {
+
+        \Log::error('ERRO IMPORTAR PAGAMENTO', [
+            'mensagem' => $e->getMessage(),
+            'arquivo' => $e->getFile(),
+            'linha' => $e->getLine(),
+        ]);
+
         return response()->json([
-            'error' => $e->getMessage()
+            'error' => 'Erro interno.'
         ], 400);
     }
 }
