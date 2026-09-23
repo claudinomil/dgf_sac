@@ -47,6 +47,13 @@ class AuthController extends Controller
     {
         Auth::logout();
 
+
+
+        echo "xxxxxxxxxxxxxxxxxxxxxxxxx";
+
+
+        dd('dsfdskjfhdskjfhjkdshfkjdshfjkdsf');
+
         return redirect(config('app.url'));
     }
 
