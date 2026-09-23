@@ -47,7 +47,7 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        return redirect('/dgf_sistema');
+        return redirect(config('app.url'));
     }
 
     public function forgot_password_request()
