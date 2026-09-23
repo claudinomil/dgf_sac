@@ -213,9 +213,12 @@ class MilitarSyncService
 
     private function converterBanco($id)
     {
-        return DB::table('bancos')
-            ->where('id', $id)
-            ->value('name');
+        return '237';
+
+        // return DB::table('bancos')
+        //     ->where('id', $id)
+        //     ->value('name');
+        
     }
 
     private function converterEstadoCivil($id)
