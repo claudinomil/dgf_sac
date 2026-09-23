@@ -98,7 +98,7 @@ Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
 // Fazer Logout
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
 // Esqueceu sua senha - Chamar Tela para digitar usuário (user) para ser enviado E-mail
 Route::get('/forgot/password/reset', [AuthController::class, 'forgot_password_request'])->name('forgot_password.request');

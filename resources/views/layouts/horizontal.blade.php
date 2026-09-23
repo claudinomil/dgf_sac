@@ -39,9 +39,15 @@
                     <a class="dropdown-item" onclick="crudOffCanvaProfilleView(2, {{ session('userContext.user.id') }})"><i class="bx bx-user font-size-16 align-middle me-1"></i> {{ __('Perfil') }}</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">{{ __('Logout') }}</span></a>
-                    <form id="logout-form" action="/logout" method="GET" style="display: none;">
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
+
+
+                    <!-- <form id="logout-form" action="/logout" method="GET" style="display: none;">
+                        @csrf
+                    </form> -->
+                    
                 </div>
             </div>
         </div>
