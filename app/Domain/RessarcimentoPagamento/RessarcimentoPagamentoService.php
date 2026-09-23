@@ -107,126 +107,371 @@ class RessarcimentoPagamentoService
 
     // Importar Pagamentos - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     // Importar Pagamentos - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    public function importar(Request $request)
-    {
-        if (!$request->hasFile('ressarcimento_pagamento_file')) {
-            throw new \Exception('Selecione um arquivo CSV.');
-        }
+public function importar(Request $request)
+{
+    if (!$request->hasFile('ressarcimento_pagamento_file')) {
+        throw new \Exception('Selecione um arquivo CSV.');
+    }
 
-        $file = $request->file('ressarcimento_pagamento_file');
+    $file = $request->file('ressarcimento_pagamento_file');
 
-        if (!$file->isValid()) {
-            throw new \Exception('Upload inválido.');
-        }
+    if (!$file->isValid()) {
+        throw new \Exception('Upload inválido.');
+    }
 
-        $this->validarArquivo($file);
+    $this->validarArquivo($file);
 
-        $referencia = $request->ressarcimento_pagamento_referencia;
+    $referencia = $request->ressarcimento_pagamento_referencia;
 
-        $this->validarReferencia($referencia);
+    $this->validarReferencia($referencia);
 
-        ini_set('max_execution_time', 2400);
-        ini_set('memory_limit', '1024M');
+    ini_set('max_execution_time', 2400);
+    ini_set('memory_limit', '1024M');
 
-        $handle = fopen($file->getPathname(), 'r');
+    /*
+    ========================================================
+    LER ARQUIVO E NORMALIZAR CODIFICAÇÃO
+    ========================================================
+    */
 
-        if (!$handle) {
-            throw new \Exception('Não foi possível abrir o arquivo.');
-        }
+    $conteudo = file_get_contents($file->getPathname());
 
-        $delimitador = ';';
+    if ($conteudo === false) {
+        throw new \Exception('Não foi possível ler o arquivo.');
+    }
 
-        $cabecalho = fgetcsv($handle, 0, $delimitador);
+    /*
+     * Detecta automaticamente:
+     * - UTF-8
+     * - Windows-1252
+     * - ISO-8859-1
+     */
+    $encoding = mb_detect_encoding(
+        $conteudo,
+        ['UTF-8', 'Windows-1252', 'ISO-8859-1'],
+        true
+    );
 
-        if (!$cabecalho) {
-            fclose($handle);
-            throw new \Exception('Arquivo sem dados.');
-        }
+    if ($encoding === false) {
+        throw new \Exception(
+            'Não foi possível identificar a codificação do arquivo CSV.'
+        );
+    }
 
-        // remover BOM
-        $cabecalho[0] = preg_replace('/^\xEF\xBB\xBF/', '', $cabecalho[0]);
+    /*
+     * Converte para UTF-8 caso o arquivo não esteja
+     * originalmente nessa codificação.
+     */
+    if ($encoding !== 'UTF-8') {
+        $conteudo = mb_convert_encoding(
+            $conteudo,
+            'UTF-8',
+            $encoding
+        );
+    }
 
-        $planilha_error = $this->validarCabecalho($cabecalho);
+    /*
+     * Cria um arquivo temporário com o conteúdo
+     * convertido para UTF-8.
+     */
+    $arquivoTemporario = tmpfile();
 
-        if (count($planilha_error) > 0) {
-            fclose($handle);
+    if ($arquivoTemporario === false) {
+        throw new \Exception(
+            'Não foi possível criar o arquivo temporário.'
+        );
+    }
 
-            return [
-                'registros_importados' => 0,
-                'registros_erros' => [],
-                'registros_importados_anteriormente' => [],
-                'planilha_error' => $planilha_error,
-                'referencia_militares_existe' => true
-            ];
-        }
+    fwrite($arquivoTemporario, $conteudo);
+    rewind($arquivoTemporario);
 
-        $militares = $this->repository->buscarMilitaresPorReferencia($referencia);
+    $handle = $arquivoTemporario;
 
-        if ($militares->count() == 0) {
-            fclose($handle);
+    /*
+    ========================================================
+    CABEÇALHO
+    ========================================================
+    */
 
-            $resultado = [
-                'registros_importados' => 0,
-                'registros_erros' => [],
-                'registros_importados_anteriormente' => [],
-                'planilha_error' => [],
-                'referencia_militares_existe' => false
-            ];
+    $delimitador = ';';
 
-            $this->gravarTransacao($referencia, $resultado);
+    $cabecalho = fgetcsv(
+        $handle,
+        0,
+        $delimitador
+    );
 
-            return $resultado;
-        }
+    if (!$cabecalho) {
+        fclose($handle);
+
+        throw new \Exception('Arquivo sem dados.');
+    }
+
+    /*
+     * Remover BOM UTF-8 do primeiro campo.
+     */
+    $cabecalho[0] = preg_replace(
+        '/^\xEF\xBB\xBF/',
+        '',
+        $cabecalho[0]
+    );
+
+    $planilha_error = $this->validarCabecalho($cabecalho);
+
+    if (count($planilha_error) > 0) {
+        fclose($handle);
+
+        return [
+            'registros_importados' => 0,
+            'registros_erros' => [],
+            'registros_importados_anteriormente' => [],
+            'planilha_error' => $planilha_error,
+            'referencia_militares_existe' => true
+        ];
+    }
+
+    /*
+    ========================================================
+    BUSCAR MILITARES
+    ========================================================
+    */
+
+    $militares = $this->repository->buscarMilitaresPorReferencia(
+        $referencia
+    );
+
+    if ($militares->count() == 0) {
+        fclose($handle);
 
         $resultado = [
             'registros_importados' => 0,
             'registros_erros' => [],
             'registros_importados_anteriormente' => [],
             'planilha_error' => [],
-            'referencia_militares_existe' => true
+            'referencia_militares_existe' => false
         ];
 
-        while (($linha = fgetcsv($handle, 0, $delimitador)) !== false) {
-
-            if ($this->linhaVazia($linha)) {
-                continue;
-            }
-
-            $linha = array_pad($linha, count($cabecalho), '');
-
-            $linhaDados = array_combine($cabecalho, $linha);
-
-            if (!$linhaDados) {
-                continue;
-            }
-
-            $militar = $this->localizarMilitar($linhaDados['ID_FUNCIONAL'], $militares);
-
-            if (!$militar) {
-                continue;
-            }
-
-            $existe = $this->repository->registroExiste($referencia, $linhaDados['ID_FUNCIONAL']);
-
-            if ($existe) {
-                $resultado['registros_importados_anteriormente'][] = $linhaDados['NOME_COMPLETO'];
-
-                continue;
-            }
-
-            $dados = $this->montarRegistro($linhaDados, $militar->id, $referencia);
-
-            $this->repository->insertRegistro($dados);
-
-            $resultado['registros_importados']++;
-        }
-
-        fclose($handle);
-
-        $this->gravarTransacao($referencia, $resultado);
+        $this->gravarTransacao(
+            $referencia,
+            $resultado
+        );
 
         return $resultado;
     }
+
+    /*
+    ========================================================
+    RESULTADO
+    ========================================================
+    */
+
+    $resultado = [
+        'registros_importados' => 0,
+        'registros_erros' => [],
+        'registros_importados_anteriormente' => [],
+        'planilha_error' => [],
+        'referencia_militares_existe' => true
+    ];
+
+    /*
+    ========================================================
+    PROCESSAR LINHAS
+    ========================================================
+    */
+
+    while (($linha = fgetcsv(
+        $handle,
+        0,
+        $delimitador
+    )) !== false) {
+
+        if ($this->linhaVazia($linha)) {
+            continue;
+        }
+
+        $linha = array_pad(
+            $linha,
+            count($cabecalho),
+            ''
+        );
+
+        $linhaDados = array_combine(
+            $cabecalho,
+            $linha
+        );
+
+        if (!$linhaDados) {
+            continue;
+        }
+
+        $militar = $this->localizarMilitar(
+            $linhaDados['ID_FUNCIONAL'],
+            $militares
+        );
+
+        if (!$militar) {
+            continue;
+        }
+
+        $existe = $this->repository->registroExiste(
+            $referencia,
+            $linhaDados['ID_FUNCIONAL']
+        );
+
+        if ($existe) {
+            $resultado['registros_importados_anteriormente'][] =
+                $linhaDados['NOME_COMPLETO'];
+
+            continue;
+        }
+
+        $dados = $this->montarRegistro(
+            $linhaDados,
+            $militar->id,
+            $referencia
+        );
+
+        $this->repository->insertRegistro($dados);
+
+        $resultado['registros_importados']++;
+    }
+
+    fclose($handle);
+
+    /*
+    ========================================================
+    GRAVAR TRANSAÇÃO
+    ========================================================
+    */
+
+    $this->gravarTransacao(
+        $referencia,
+        $resultado
+    );
+
+    return $resultado;
+}
+
+    // public function importar(Request $request)
+    // {
+    //     if (!$request->hasFile('ressarcimento_pagamento_file')) {
+    //         throw new \Exception('Selecione um arquivo CSV.');
+    //     }
+
+    //     $file = $request->file('ressarcimento_pagamento_file');
+
+    //     if (!$file->isValid()) {
+    //         throw new \Exception('Upload inválido.');
+    //     }
+
+    //     $this->validarArquivo($file);
+
+    //     $referencia = $request->ressarcimento_pagamento_referencia;
+
+    //     $this->validarReferencia($referencia);
+
+    //     ini_set('max_execution_time', 2400);
+    //     ini_set('memory_limit', '1024M');
+
+    //     $handle = fopen($file->getPathname(), 'r');
+
+    //     if (!$handle) {
+    //         throw new \Exception('Não foi possível abrir o arquivo.');
+    //     }
+
+    //     $delimitador = ';';
+
+    //     $cabecalho = fgetcsv($handle, 0, $delimitador);
+
+    //     if (!$cabecalho) {
+    //         fclose($handle);
+    //         throw new \Exception('Arquivo sem dados.');
+    //     }
+
+    //     // remover BOM
+    //     $cabecalho[0] = preg_replace('/^\xEF\xBB\xBF/', '', $cabecalho[0]);
+
+    //     $planilha_error = $this->validarCabecalho($cabecalho);
+
+    //     if (count($planilha_error) > 0) {
+    //         fclose($handle);
+
+    //         return [
+    //             'registros_importados' => 0,
+    //             'registros_erros' => [],
+    //             'registros_importados_anteriormente' => [],
+    //             'planilha_error' => $planilha_error,
+    //             'referencia_militares_existe' => true
+    //         ];
+    //     }
+
+    //     $militares = $this->repository->buscarMilitaresPorReferencia($referencia);
+
+    //     if ($militares->count() == 0) {
+    //         fclose($handle);
+
+    //         $resultado = [
+    //             'registros_importados' => 0,
+    //             'registros_erros' => [],
+    //             'registros_importados_anteriormente' => [],
+    //             'planilha_error' => [],
+    //             'referencia_militares_existe' => false
+    //         ];
+
+    //         $this->gravarTransacao($referencia, $resultado);
+
+    //         return $resultado;
+    //     }
+
+    //     $resultado = [
+    //         'registros_importados' => 0,
+    //         'registros_erros' => [],
+    //         'registros_importados_anteriormente' => [],
+    //         'planilha_error' => [],
+    //         'referencia_militares_existe' => true
+    //     ];
+
+    //     while (($linha = fgetcsv($handle, 0, $delimitador)) !== false) {
+
+    //         if ($this->linhaVazia($linha)) {
+    //             continue;
+    //         }
+
+    //         $linha = array_pad($linha, count($cabecalho), '');
+
+    //         $linhaDados = array_combine($cabecalho, $linha);
+
+    //         if (!$linhaDados) {
+    //             continue;
+    //         }
+
+    //         $militar = $this->localizarMilitar($linhaDados['ID_FUNCIONAL'], $militares);
+
+    //         if (!$militar) {
+    //             continue;
+    //         }
+
+    //         $existe = $this->repository->registroExiste($referencia, $linhaDados['ID_FUNCIONAL']);
+
+    //         if ($existe) {
+    //             $resultado['registros_importados_anteriormente'][] = $linhaDados['NOME_COMPLETO'];
+
+    //             continue;
+    //         }
+
+    //         $dados = $this->montarRegistro($linhaDados, $militar->id, $referencia);
+
+    //         $this->repository->insertRegistro($dados);
+
+    //         $resultado['registros_importados']++;
+    //     }
+
+    //     fclose($handle);
+
+    //     $this->gravarTransacao($referencia, $resultado);
+
+    //     return $resultado;
+    // }
 
     private function validarArquivo($file)
     {
