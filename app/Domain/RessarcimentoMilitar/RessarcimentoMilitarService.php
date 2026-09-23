@@ -34,12 +34,12 @@ class RessarcimentoMilitarService
         return $this->repository->filter($array_dados, $limit);
     }
 
-    public function getRessarcimentoMilitar($id)
+    public function getRessarcimentoMilitar(int $id)
     {
         return $this->repository->find($id);
     }
 
-    public function getMilitaresLotacaoReferencia($lotacao_id, $referencia)
+    public function getMilitaresLotacaoReferencia(int $lotacao_id, string $referencia)
     {
         return $this->repository->militares_lotacao_referencia($lotacao_id, $referencia);
     }
@@ -49,14 +49,14 @@ class RessarcimentoMilitarService
         return $this->repository->create($data);
     }
 
-    public function editRessarcimentoMilitar($id)
+    public function editRessarcimentoMilitar(int $id)
     {
         $this->lockService->bloquear('ressarcimento_militares', $id, Auth::user()->id);
 
         return $this->repository->find($id);
     }
 
-    public function updateRessarcimentoMilitar($id, array $data)
+    public function updateRessarcimentoMilitar(int $id, array $data)
     {
         $user_id = Auth::user()->id;
 

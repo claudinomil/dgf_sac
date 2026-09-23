@@ -108,9 +108,9 @@ class RessarcimentoExclusaoController extends Controller
                 $arqNotaNome = 'cobranca_'.$referencia.'_nota_'.$orgao['id'].'.pdf';
                 $arqOficioNome = 'cobranca_'.$referencia.'_oficio_'.$orgao['id'].'.pdf';
 
-                if (file_exists('build/assets/pdfs/cobrancas/'.$arqListagemNome)) {$arqListagemQtd++;}
-                if (file_exists('build/assets/pdfs/cobrancas/'.$arqNotaNome)) {$arqNotaQtd++;}
-                if (file_exists('build/assets/pdfs/cobrancas/'.$arqOficioNome)) {$arqOficioQtd++;}
+                if (file_exists('assets/pdfs/cobrancas/'.$arqListagemNome)) {$arqListagemQtd++;}
+                if (file_exists('assets/pdfs/cobrancas/'.$arqNotaNome)) {$arqNotaQtd++;}
+                if (file_exists('assets/pdfs/cobrancas/'.$arqOficioNome)) {$arqOficioQtd++;}
             }
 
             // Verificação de status: Listagens
@@ -186,16 +186,16 @@ class RessarcimentoExclusaoController extends Controller
     public function deletar_pdfs_gerados(string $referencia)
     {
         // Apagando listagem
-        array_map('unlink', glob('build/assets/pdfs/cobrancas/cobranca_'.$referencia.'_listagem_*.pdf'));
+        array_map('unlink', glob('assets/pdfs/cobrancas/cobranca_'.$referencia.'_listagem_*.pdf'));
 
         // Apagando Notas
-        array_map('unlink', glob('build/assets/pdfs/cobrancas/cobranca_'.$referencia.'_nota_*.pdf'));
+        array_map('unlink', glob('assets/pdfs/cobrancas/cobranca_'.$referencia.'_nota_*.pdf'));
 
         // Apagando Ofícios
-        array_map('unlink', glob('build/assets/pdfs/cobrancas/cobranca_'.$referencia.'_oficio_*.pdf'));
+        array_map('unlink', glob('assets/pdfs/cobrancas/cobranca_'.$referencia.'_oficio_*.pdf'));
 
         // Apagando ZIP
-        array_map('unlink', glob('build/assets/pdfs/cobrancas/cobranca_'.$referencia.'.zip'));
+        array_map('unlink', glob('assets/pdfs/cobrancas/cobranca_'.$referencia.'.zip'));
     }
 
     public function deletar_cobranca(string $referencia)

@@ -71,12 +71,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('re_btn_gerar_pdfs_confirmar').addEventListener('click', function () {
         document.querySelectorAll('.confirmacaoGerarPdfsModal_loading').forEach(el => el.style.display = 'block');
+        document.querySelectorAll('.confirmacaoGerarPdfsModal_progresso').forEach(el => el.style.display = 'block');
         document.querySelectorAll('.confirmacaoGerarPdfsModal_botoes').forEach(el => el.style.display = 'none');
 
         var referencia = document.getElementById('ctrl_referencia').value;
 
+        // Verificar Progresso dos PDFs''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        var intervaloProgresso = setInterval(function () {
+            fetch(url + 'ressarcimento_cobrancas/progresso_gerar_pdfs/' + referencia)
+                .then(response => response.json())
+                .then(function (data) {
+                    document.getElementById('pdfs_listagens').textContent = data.listagens;
+                    document.getElementById('pdfs_notas').textContent = data.notas;
+                    document.getElementById('pdfs_oficios').textContent = data.oficios;
+                })
+                .catch(function (error) {
+                    console.error('Erro ao consultar progresso dos PDFs:', error);
+                });
+        }, 1000);
+        //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+        // Deletar PDF's
         fetch(url + 'ressarcimento_cobrancas/deletar_pdfs_gerados/' + referencia);
 
+        // Gerar PDF's
         fetch(url + 'ressarcimento_cobrancas/gerar_pdfs/' + referencia)
             .then(response => response.json())
             .then(function (data) {
@@ -92,7 +110,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             })
             .finally(function () {
+                // Interromper Progresso dos PDFs''''''''''''
+                clearInterval(intervaloProgresso);
+                //'''''''''''''''''''''''''''''''''''''''''''
+
                 document.querySelectorAll('.confirmacaoGerarPdfsModal_loading').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.confirmacaoGerarPdfsModal_progresso').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('.confirmacaoGerarPdfsModal_botoes').forEach(el => el.style.display = 'block');
 
                 var modal = document.querySelector('.confirmacaoGerarPdfsModal');
@@ -111,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     var url_atual = window.location.protocol + '//' + window.location.host + '/';
 
                     const link = document.createElement('a');
-                    link.href = url_atual + 'build/assets/pdfs/cobrancas/cobranca_' + referencia + '.zip';
+                    link.href = url_atual + 'assets/pdfs/cobrancas/cobranca_' + referencia + '.zip';
                     link.download = 'cobranca_' + referencia + '.zip';
 
                     document.body.appendChild(link);

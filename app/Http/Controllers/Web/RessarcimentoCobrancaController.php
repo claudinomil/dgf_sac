@@ -55,9 +55,9 @@ class RessarcimentoCobrancaController extends Controller
                 $arqNotaNome = 'cobranca_'.$referencia.'_nota_'.$orgao['id'].'.pdf';
                 $arqOficioNome = 'cobranca_'.$referencia.'_oficio_'.$orgao['id'].'.pdf';
 
-                if (file_exists('build/assets/pdfs/cobrancas/'.$arqListagemNome)) {$arqListagemQtd++;}
-                if (file_exists('build/assets/pdfs/cobrancas/'.$arqNotaNome)) {$arqNotaQtd++;}
-                if (file_exists('build/assets/pdfs/cobrancas/'.$arqOficioNome)) {$arqOficioQtd++;}
+                if (file_exists('assets/pdfs/cobrancas/'.$arqListagemNome)) {$arqListagemQtd++;}
+                if (file_exists('assets/pdfs/cobrancas/'.$arqNotaNome)) {$arqNotaQtd++;}
+                if (file_exists('assets/pdfs/cobrancas/'.$arqOficioNome)) {$arqOficioQtd++;}
             }
 
             //Variáveis de Controle''''''''
@@ -217,7 +217,7 @@ class RessarcimentoCobrancaController extends Controller
             foreach ($listagens as $listagem) {
                 $listagem = $listagem;
                 $pdf = Pdf::loadView('ressarcimento_cobrancas.pdf_listagem', compact('listagem', 'listagens_dados'))->setPaper('a4', 'portrait');
-                $pdf->save('build/assets/pdfs/cobrancas/cobranca_' . $referencia . '_listagem_' . $listagem['ressarcimento_orgao_id'] . '.pdf');
+                $pdf->save('assets/pdfs/cobrancas/cobranca_' . $referencia . '_listagem_' . $listagem['ressarcimento_orgao_id'] . '.pdf');
 
                 $total_pdfs_listagens++;
             }
@@ -227,7 +227,7 @@ class RessarcimentoCobrancaController extends Controller
             foreach ($notas as $nota) {
                 $dados = $nota;
                 $pdf = Pdf::loadView('ressarcimento_cobrancas.pdf_nota', compact('dados'))->setPaper('a4', 'portrait');
-                $pdf->save('build/assets/pdfs/cobrancas/cobranca_' . $referencia . '_nota_' . $nota['ressarcimento_orgao_id'] . '.pdf');
+                $pdf->save('assets/pdfs/cobrancas/cobranca_' . $referencia . '_nota_' . $nota['ressarcimento_orgao_id'] . '.pdf');
 
                 $total_pdfs_notas++;
             }
@@ -237,13 +237,13 @@ class RessarcimentoCobrancaController extends Controller
             foreach ($oficios as $oficio) {
                 $dados = $oficio;
                 $pdf = Pdf::loadView('ressarcimento_cobrancas.pdf_oficio', compact('dados'))->setPaper('a4', 'portrait');
-                $pdf->save('build/assets/pdfs/cobrancas/cobranca_' . $referencia . '_oficio_' . $oficio['ressarcimento_orgao_id'] . '.pdf');
+                $pdf->save('assets/pdfs/cobrancas/cobranca_' . $referencia . '_oficio_' . $oficio['ressarcimento_orgao_id'] . '.pdf');
 
                 $total_pdfs_oficios++;
             }
 
             // Gerar ZIP
-            $pasta = 'build/assets/pdfs/cobrancas/';
+            $pasta = 'assets/pdfs/cobrancas/';
             $arquivos = glob($pasta . '*_'.$referencia.'*.pdf');
 
             if (count($arquivos) > 0) {
@@ -295,9 +295,24 @@ class RessarcimentoCobrancaController extends Controller
         }
     }
 
+    public function progresso_gerar_pdfs(string $referencia)
+    {
+        $pasta = public_path('assets/pdfs/cobrancas/');
+
+        $listagens = glob($pasta . 'cobranca_' . $referencia . '_listagem_*.pdf');
+        $notas = glob($pasta . 'cobranca_' . $referencia . '_nota_*.pdf');
+        $oficios = glob($pasta . 'cobranca_' . $referencia . '_oficio_*.pdf');
+
+        return response()->json([
+            'listagens' => count($listagens),
+            'notas' => count($notas),
+            'oficios' => count($oficios),
+        ]);
+    }
+
     public function verificar_existe_zip($referencia)
     {
-        if (file_exists('build/assets/pdfs/cobrancas/cobranca_' . $referencia . '.zip')) {
+        if (file_exists('assets/pdfs/cobrancas/cobranca_' . $referencia . '.zip')) {
             return response()->json(['success' => 'Arquivo encontrado.']);
         } else {
             return response()->json(['error' => 'Arquivo não encontrado.']);
@@ -307,15 +322,15 @@ class RessarcimentoCobrancaController extends Controller
     public function deletar_pdfs_gerados($referencia)
     {
         // Apagando listagem
-        array_map('unlink', glob('build/assets/pdfs/cobrancas/cobranca_'.$referencia.'_listagem_*.pdf'));
+        array_map('unlink', glob('assets/pdfs/cobrancas/cobranca_'.$referencia.'_listagem_*.pdf'));
 
         // Apagando Notas
-        array_map('unlink', glob('build/assets/pdfs/cobrancas/cobranca_'.$referencia.'_nota_*.pdf'));
+        array_map('unlink', glob('assets/pdfs/cobrancas/cobranca_'.$referencia.'_nota_*.pdf'));
 
         // Apagando Ofícios
-        array_map('unlink', glob('build/assets/pdfs/cobrancas/cobranca_'.$referencia.'_oficio_*.pdf'));
+        array_map('unlink', glob('assets/pdfs/cobrancas/cobranca_'.$referencia.'_oficio_*.pdf'));
 
         // Apagando ZIP
-        array_map('unlink', glob('build/assets/pdfs/cobrancas/cobranca_'.$referencia.'.zip'));
+        array_map('unlink', glob('assets/pdfs/cobrancas/cobranca_'.$referencia.'.zip'));
     }
 }

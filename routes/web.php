@@ -565,6 +565,8 @@ Route::middleware('auth')->prefix('ressarcimento_cobrancas')->group(function () 
     Route::get('/gerar_pdfs/{referencia}', [RessarcimentoCobrancaController::class, 'gerar_pdfs'])->middleware('permissao:ressarcimento_cobrancas_list');
     Route::get('/verificar_existe_zip/{referencia}', [RessarcimentoCobrancaController::class, 'verificar_existe_zip'])->middleware('permissao:ressarcimento_cobrancas_list');
     Route::get('/deletar_pdfs_gerados/{referencia}', [RessarcimentoCobrancaController::class, 'deletar_pdfs_gerados'])->name('ressarcimento_cobrancas.deletar_pdfs_gerados');
+
+    Route::get('/progresso_gerar_pdfs/{referencia}', [RessarcimentoCobrancaController::class, 'progresso_gerar_pdfs']);
 });
 // Ressarcimento Cobranças - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 

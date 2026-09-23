@@ -8,7 +8,7 @@
         <meta content="Themesbrand" name="author" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset('build/assets/images/image_favicon.png') }}" id="appFavicon">
+        <link rel="shortcut icon" href="{{ asset('assets/images/image_favicon.png') }}" id="appFavicon">
 
         <style>
             @page {margin: 100px 50px 100px 50px;}

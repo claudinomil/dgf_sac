@@ -8,7 +8,7 @@
         <meta content="Themesbrand" name="author" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset('build/assets/images/image_favicon.png') }}" id="appFavicon">
+        <link rel="shortcut icon" href="{{ asset('assets/images/image_favicon.png') }}" id="appFavicon">
 
         <style>
             @page {margin: 170px 50px 100px 50px;}
@@ -22,7 +22,7 @@
         <header>
             <table width="100%" style="font-size: 12px;">
                 <tr>
-                    <th><img src="build/assets/images/logo_governo_rj.png" alt="" width="18%"></th>
+                    <th><img src="assets/images/logo_governo_rj.png" alt="" width="18%"></th>
                 </tr>
                 <tr>
                     <th align="center" style="vertical-align: middle;">

@@ -117,12 +117,12 @@ class RessarcimentoOrgaoRepository
         return $registros;
     }
 
-    public function find($id)
+    public function find(int $id)
     {
         return RessarcimentoOrgao::find($id);
     }
 
-    public function orgaos_referencia($referencia)
+    public function orgaos_referencia(string $referencia)
     {
         return RessarcimentoOrgao::join('ressarcimento_militares', 'ressarcimento_militares.lotacao_id', 'ressarcimento_orgaos.lotacao_id')
             ->join('esferas', 'esferas.id', 'ressarcimento_orgaos.esfera_id')
@@ -132,7 +132,6 @@ class RessarcimentoOrgaoRepository
             ->join('ressarcimento_funcoes', 'ressarcimento_funcoes.id', 'ressarcimento_orgaos.ressarcimento_funcao_id')
             ->select('ressarcimento_orgaos.*', 'esferas.name as esferaName', 'poderes.name as poderName', 'tratamentos.completo as tratamentoCompleto', 'tratamentos.reduzido as tratamentoReduzido', 'vocativos.name as vocativoName', 'ressarcimento_funcoes.name as funcaoName')
             ->distinct()
-            ->where('ressarcimento_orgaos.cobranca_realizar', 1)
             ->where('ressarcimento_militares.referencia', $referencia)
             ->get();
     }

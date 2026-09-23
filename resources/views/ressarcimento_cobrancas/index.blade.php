@@ -217,6 +217,11 @@
             </div>
             <div class="modal-footer">
                 <div class="col-12 text-center confirmacaoGerarPdfsModal_loading" style="display: none;">Executando serviço...</div>
+                <div class="col-12 text-center font-size-11 pb-3 confirmacaoGerarPdfsModal_progresso" style="display: none;">
+                    <div class="text-success">Listagens:&nbsp;&nbsp;<strong id="pdfs_listagens">0</strong></div>
+                    <div class="text-primary">Notas:&nbsp;&nbsp;<strong id="pdfs_notas">0</strong></div>
+                    <div class="text-warning">Ofícios:&nbsp;&nbsp;<strong id="pdfs_oficios">0</strong></div>
+                </div>
                 <div class="col-12 text-center spinner-chase confirmacaoGerarPdfsModal_loading" style="display: none;">
                     <div class="spinner-chase">
                         <div class="chase-dot"></div>
@@ -227,6 +232,15 @@
                         <div class="chase-dot"></div>
                     </div>
                 </div>
+
+
+
+
+                
+
+
+
+
 
                 <button type="button" class="btn btn-sm btn-secondary confirmacaoGerarPdfsModal_botoes" data-bs-dismiss="modal">Fechar</button>
                 <button type="button" class="btn btn-sm btn-success confirmacaoGerarPdfsModal_botoes" id="re_btn_gerar_pdfs_confirmar">Confirmar</button>

@@ -139,30 +139,13 @@ class RessarcimentoExclusaoService
                 $orgao_nome = $orgao['name'];
 
                 if ($orgao['name'] == '' or $orgao['name'] === null
-                    //or $orgao['cnpj'] == '' or $orgao['cnpj'] === null
-                    //or $orgao['ug'] == '' or $orgao['ug'] === null
-                    //or $orgao['responsavel'] == '' or $orgao['responsavel'] === null
                     or $orgao['esfera_id'] == '' or $orgao['esfera_id'] === null
                     or $orgao['poder_id'] == '' or $orgao['poder_id'] === null
                     or $orgao['tratamento_id'] == '' or $orgao['tratamento_id'] === null
                     or $orgao['vocativo_id'] == '' or $orgao['vocativo_id'] === null
                     or $orgao['ressarcimento_funcao_id'] == '' or $orgao['ressarcimento_funcao_id'] === null
-                    //or $orgao['telefone_1'] == '' or $orgao['telefone_1'] === null
-                    //or $orgao['telefone_2'] == '' or $orgao['telefone_2'] === null
                     or $orgao['cep'] == '' or $orgao['cep'] === null
                     or $orgao['numero'] == '' or $orgao['numero'] === null
-                    //or $orgao['complemento'] == '' or $orgao['complemento'] === null
-                    //or $orgao['logradouro'] == '' or $orgao['logradouro'] === null
-                    //or $orgao['bairro'] == '' or $orgao['bairro'] === null
-                    //or $orgao['localidade'] == '' or $orgao['localidade'] === null
-                    //or $orgao['uf'] == '' or $orgao['uf'] === null
-                    //or $orgao['contato_nome'] == '' or $orgao['contato_nome'] === null
-                    //or $orgao['contato_telefone'] == '' or $orgao['contato_telefone'] === null
-                    //or $orgao['contato_celular'] == '' or $orgao['contato_celular'] === null
-                    //or $orgao['contato_email'] == '' or $orgao['contato_email'] === null
-                    //or $orgao['lotacao_id'] == '' or $orgao['lotacao_id'] === null
-                    //or $orgao['lotacao'] == '' or $orgao['lotacao'] === null
-                    //or $orgao['cobranca_realizar'] == '' or $orgao['cobranca_realizar'] === null
                     ) {
                     //Variáveis de Controle''''''''
                     $re_status_dados = 0;
