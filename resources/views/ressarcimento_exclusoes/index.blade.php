@@ -22,7 +22,7 @@
                                 <!-- Botões -->
                                 <div class="col-12 col-md-6 pb-2">
                                     @if(temPermissao('ressarcimento_exclusoes_create'))
-                                    <button onclick="prepararExclusao();" type="button" class="btn btn-sm btn-primary text-white mb-2 font-size-12 waves-effect btn-label waves-light " data-bs-toggle="tooltip" data-bs-placement="top" data-bs-target="" data-bs-original-title="Excluir último Ressarcimento">
+                                    <button onclick="prepararExclusao();" type="button" class="btn btn-sm btn-danger text-white mb-2 font-size-12 waves-effect btn-label waves-light " data-bs-toggle="tooltip" data-bs-placement="top" data-bs-target="" data-bs-original-title="Excluir último Ressarcimento">
                                         <i class="bx bx-trash label-icon"></i>
                                         Excluir último Ressarcimento
                                     </button>

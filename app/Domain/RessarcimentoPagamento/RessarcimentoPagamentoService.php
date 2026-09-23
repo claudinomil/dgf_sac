@@ -139,30 +139,34 @@ class RessarcimentoPagamentoService
         if ($conteudo === false) {
             throw new \Exception('Não foi possível ler o arquivo.');
         }
-        
+
         /*
-        * Detecta automaticamente:
-        * - UTF-8
-        * - Windows-1252
-        * - ISO-8859-1
+        ========================================================
+        Detecta automaticamente:
+        - UTF-8
+        - Windows-1252
+        - ISO-8859-1
+        ========================================================
         */
         $encoding = mb_detect_encoding($conteudo, ['UTF-8', 'Windows-1252', 'ISO-8859-1'], true);
 
         if ($encoding === false) {
             throw new \Exception('Não foi possível identificar a codificação do arquivo CSV.');
         }
-        
+
         /*
-        * Converte para UTF-8 caso o arquivo não esteja
-        * originalmente nessa codificação.
+        ========================================================
+        Converte para UTF-8 caso o arquivo não esteja originalmente nessa codificação.
+        ========================================================
         */
         if ($encoding !== 'UTF-8') {
             $conteudo = mb_convert_encoding($conteudo, 'UTF-8', $encoding);
         }
 
         /*
-        * Cria um arquivo temporário com o conteúdo
-        * convertido para UTF-8.
+        ========================================================
+        Cria um arquivo temporário com o conteúdo convertido para UTF-8.
+        ========================================================
         */
         $arquivoTemporario = tmpfile();
 
@@ -172,7 +176,7 @@ class RessarcimentoPagamentoService
 
         fwrite($arquivoTemporario, $conteudo);
         rewind($arquivoTemporario);
-        
+
         $handle = $arquivoTemporario;
 
         /*
@@ -187,21 +191,30 @@ class RessarcimentoPagamentoService
 
         if (!$cabecalho) {
             fclose($handle);
-            
+
             throw new \Exception('Arquivo sem dados.');
         }
 
         /*
-        * Remover BOM UTF-8 do primeiro campo.
+        ========================================================
+        Remover BOM UTF-8 do primeiro campo.
+        ========================================================
         */
 
         $cabecalho[0] = preg_replace('/^\xEF\xBB\xBF/', '', $cabecalho[0]);
+
         $planilha_error = $this->validarCabecalho($cabecalho);
 
         if (count($planilha_error) > 0) {
             fclose($handle);
-            
-            return ['registros_importados' => 0, 'registros_erros' => [], 'registros_importados_anteriormente' => [], 'planilha_error' => $planilha_error, 'referencia_militares_existe' => true];
+
+            return [
+                'registros_importados' => 0,
+                'registros_erros' => [],
+                'registros_importados_anteriormente' => [],
+                'planilha_error' => $planilha_error,
+                'referencia_militares_existe' => true
+            ];
         }
 
         /*
@@ -214,11 +227,17 @@ class RessarcimentoPagamentoService
 
         if ($militares->count() == 0) {
             fclose($handle);
-            
-            $resultado = ['registros_importados' => 0, 'registros_erros' => [], 'registros_importados_anteriormente' => [], 'planilha_error' => [], 'referencia_militares_existe' => false];
-            
+
+            $resultado = [
+                'registros_importados' => 0,
+                'registros_erros' => [],
+                'registros_importados_anteriormente' => [],
+                'planilha_error' => [],
+                'referencia_militares_existe' => false
+            ];
+
             $this->gravarTransacao($referencia, $resultado);
-            
+
             return $resultado;
         }
 
@@ -228,8 +247,14 @@ class RessarcimentoPagamentoService
         ========================================================
         */
 
-        $resultado = ['registros_importados' => 0, 'registros_erros' => [], 'registros_importados_anteriormente' => [], 'planilha_error' => [], 'referencia_militares_existe' => true];
-        
+        $resultado = [
+            'registros_importados' => 0,
+            'registros_erros' => [],
+            'registros_importados_anteriormente' => [],
+            'planilha_error' => [],
+            'referencia_militares_existe' => true
+        ];
+
         /*
         ========================================================
         PROCESSAR LINHAS
@@ -240,16 +265,16 @@ class RessarcimentoPagamentoService
             if ($this->linhaVazia($linha)) {
                 continue;
             }
-            
+
             $linha = array_pad($linha, count($cabecalho), '');
             $linhaDados = array_combine($cabecalho, $linha);
-            
+
             if (!$linhaDados) {
                 continue;
             }
 
             $militar = $this->localizarMilitar($linhaDados['ID_FUNCIONAL'], $militares);
-            
+
             if (!$militar) {
                 continue;
             }
@@ -258,19 +283,19 @@ class RessarcimentoPagamentoService
 
             if ($existe) {
                 $resultado['registros_importados_anteriormente'][] = $linhaDados['NOME_COMPLETO'];
-                
+
                 continue;
             }
 
             $dados = $this->montarRegistro($linhaDados, $militar->id, $referencia);
-            
+
             $this->repository->insertRegistro($dados);
-            
+
             $resultado['registros_importados']++;
         }
-        
+
         fclose($handle);
-        
+
         /*
         ========================================================
         GRAVAR TRANSAÇÃO
@@ -278,7 +303,7 @@ class RessarcimentoPagamentoService
         */
 
         $this->gravarTransacao($referencia, $resultado);
-        
+
         return $resultado;
     }
     

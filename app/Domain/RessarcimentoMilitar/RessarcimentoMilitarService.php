@@ -122,13 +122,67 @@ class RessarcimentoMilitarService
 
         $this->validarReferencia($referencia);
 
-        $path = $file->getPathname();
+        ini_set('max_execution_time', 2400);
+        ini_set('memory_limit', '1024M');
 
-        $handle = fopen($path, 'r');
+        /*
+        ========================================================
+        LER ARQUIVO E NORMALIZAR CODIFICAÇÃO
+        ========================================================
+        */
 
-        if (!$handle) {
-            throw new \Exception('Não foi possível abrir o arquivo.');
+        $conteudo = file_get_contents($file->getPathname());
+
+        if ($conteudo === false) {
+            throw new \Exception('Não foi possível ler o arquivo.');
         }
+
+        /*
+        ========================================================
+        Detecta automaticamente:
+        - UTF-8
+        - Windows-1252
+        - ISO-8859-1
+        ========================================================
+        */
+        $encoding = mb_detect_encoding($conteudo, ['UTF-8', 'Windows-1252', 'ISO-8859-1'], true);
+
+        if ($encoding === false) {
+            throw new \Exception('Não foi possível identificar a codificação do arquivo CSV.');
+        }
+
+        /*
+        ========================================================
+        Converte para UTF-8 caso o arquivo não esteja originalmente nessa codificação.
+        ========================================================
+        */
+
+        if ($encoding !== 'UTF-8') {
+            $conteudo = mb_convert_encoding($conteudo, 'UTF-8', $encoding);
+        }
+
+        /*
+        ========================================================
+        Cria um arquivo temporário com o conteúdo convertido para UTF-8.
+        ========================================================
+        */
+
+        $arquivoTemporario = tmpfile();
+
+        if ($arquivoTemporario === false) {
+            throw new \Exception('Não foi possível criar o arquivo temporário.');
+        }
+
+        fwrite($arquivoTemporario, $conteudo);
+        rewind($arquivoTemporario);
+
+        $handle = $arquivoTemporario;
+
+        /*
+        ========================================================
+        CABEÇALHO
+        ========================================================
+        */
 
         $delimitador = ';';
 
@@ -136,10 +190,16 @@ class RessarcimentoMilitarService
 
         if (!$cabecalho) {
             fclose($handle);
+
             throw new \Exception('Arquivo sem dados.');
         }
 
-        // remove BOM
+        /*
+        ========================================================
+        Remover BOM UTF-8 do primeiro campo.
+        ========================================================
+        */
+
         $cabecalho[0] = preg_replace('/^\xEF\xBB\xBF/', '', $cabecalho[0]);
 
         $errosPlanilha = $this->validarCabecalho($cabecalho);
@@ -159,6 +219,12 @@ class RessarcimentoMilitarService
             ];
         }
 
+        /*
+        ========================================================
+        RESULTADO
+        ========================================================
+        */
+
         $resultado = [
             'registros_importados' => 0,
             'registros_erros' => [],
@@ -170,13 +236,28 @@ class RessarcimentoMilitarService
             'configuracoes_depois' => 0
         ];
 
-        // Verificar a quantidade de orgaos antes da Importação
+        /*
+        ========================================================
+        VERIFICAR QUANTIDADE DE ÓRGÃOS ANTES DA IMPORTAÇÃO
+        ========================================================
+        */
+
         $resultado['orgaos_antes'] = $this->ressarcimentoOrgaoRepository->quantidade_registros();
 
-        // Verificar a quantidade de configuracoes antes da Importação
+        /*
+        ========================================================
+        VERIFICAR QUANTIDADE DE CONFIGURAÇÕES ANTES DA IMPORTAÇÃO
+        ========================================================
+        */
+
         $resultado['configuracoes_antes'] = $this->ressarcimentoConfiguracaoRepository->quantidade_registros();
 
-        // Transação
+        /*
+        ========================================================
+        TRANSAÇÃO
+        ========================================================
+        */
+
         $numeroLinha = 1;
 
         DB::beginTransaction();
@@ -195,6 +276,7 @@ class RessarcimentoMilitarService
 
                 if (!$dadosLinha) {
                     $resultado['registros_erros'][] = 'Linha ' . $numeroLinha;
+
                     continue;
                 }
 
@@ -207,7 +289,9 @@ class RessarcimentoMilitarService
                 }
 
                 $this->processarRegistro($registro, $resultado);
+
                 $this->processarOrgao($registro);
+
                 $this->processarConfiguracao($registro);
             }
 
@@ -222,27 +306,47 @@ class RessarcimentoMilitarService
             throw $e;
         }
 
-        // Verificar a quantidade de orgaos depois da Importação
+        /*
+        ========================================================
+        VERIFICAR QUANTIDADE DE ÓRGÃOS DEPOIS DA IMPORTAÇÃO
+        ========================================================
+        */
+
         $resultado['orgaos_depois'] = $this->ressarcimentoOrgaoRepository->quantidade_registros();
 
-        // Verificar a quantidade de configuracoes depois da Importação
+        /*
+        ========================================================
+        VERIFICAR QUANTIDADE DE CONFIGURAÇÕES DEPOIS DA IMPORTAÇÃO
+        ========================================================
+        */
+
         $resultado['configuracoes_depois'] = $this->ressarcimentoConfiguracaoRepository->quantidade_registros();
 
-        // Gravar Transação''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-        // Montando Dados
-        $dados = [
-            'campos' => [['campo' => 'referencia','etiqueta' => 'Referência','anterior' => null,'atual' => $referencia,'anterior_view' => null,'atual_view' => $referencia,],
-                    ['campo' => 'registros_importados','etiqueta' => 'Registros Importados','anterior' => null,'atual' => $resultado['registros_importados'],'anterior_view' => null,'atual_view' => $resultado['registros_importados'],],
-                    ['campo' => 'registros_erros','etiqueta' => 'Registros Erros','anterior' => null,'atual' => count($resultado['registros_erros']),'anterior_view' => null,'atual_view' => count($resultado['registros_erros']),],
-                    ['campo' => 'registros_importados_anteriormente','etiqueta' => 'Registros Importados Anteriormente','anterior' => null,'atual' => count($resultado['registros_importados_anteriormente']),'anterior_view' => null,'atual_view' => count($resultado['registros_importados_anteriormente']),],
-                    ['campo' => 'orgaos_antes','etiqueta' => 'Órgãos Antes','anterior' => null,'atual' => $resultado['orgaos_antes'],'anterior_view' => null,'atual_view' => $resultado['orgaos_antes'],],
-                    ['campo' => 'orgaos_depois','etiqueta' => 'Órgãos Depois','anterior' => null,'atual' => $resultado['orgaos_depois'],'anterior_view' => null,'atual_view' => $resultado['orgaos_depois'],],
-                    ['campo' => 'configuracoes_antes','etiqueta' => 'Configurações Antes','anterior' => null,'atual' => $resultado['configuracoes_antes'],'anterior_view' => null,'atual_view' => $resultado['configuracoes_antes'],],
-                    ['campo' => 'configuracoes_depois','etiqueta' => 'Configurações Depois','anterior' => null,'atual' => $resultado['configuracoes_depois'],'anterior_view' => null,'atual_view' => $resultado['configuracoes_depois'],],
-                    ]
-                ];
+        /*
+        ========================================================
+        GRAVAR TRANSAÇÃO
+        ========================================================
+        */
 
-        // Gravando
+        $dados = [
+            'campos' => [
+                ['campo' => 'referencia', 'etiqueta' => 'Referência', 'anterior' => null, 'atual' => $referencia, 'anterior_view' => null, 'atual_view' => $referencia],
+                ['campo' => 'registros_importados', 'etiqueta' => 'Registros Importados', 'anterior' => null, 'atual' => $resultado['registros_importados'], 'anterior_view' => null, 'atual_view' => $resultado['registros_importados']],
+                ['campo' => 'registros_erros', 'etiqueta' => 'Registros Erros', 'anterior' => null, 'atual' => count($resultado['registros_erros']), 'anterior_view' => null, 'atual_view' => count($resultado['registros_erros'])],
+                ['campo' => 'registros_importados_anteriormente', 'etiqueta' => 'Registros Importados Anteriormente', 'anterior' => null, 'atual' => count($resultado['registros_importados_anteriormente']), 'anterior_view' => null, 'atual_view' => count($resultado['registros_importados_anteriormente'])],
+                ['campo' => 'orgaos_antes', 'etiqueta' => 'Órgãos Antes', 'anterior' => null, 'atual' => $resultado['orgaos_antes'], 'anterior_view' => null, 'atual_view' => $resultado['orgaos_antes']],
+                ['campo' => 'orgaos_depois', 'etiqueta' => 'Órgãos Depois', 'anterior' => null, 'atual' => $resultado['orgaos_depois'], 'anterior_view' => null, 'atual_view' => $resultado['orgaos_depois']],
+                ['campo' => 'configuracoes_antes', 'etiqueta' => 'Configurações Antes', 'anterior' => null, 'atual' => $resultado['configuracoes_antes'], 'anterior_view' => null, 'atual_view' => $resultado['configuracoes_antes']],
+                ['campo' => 'configuracoes_depois', 'etiqueta' => 'Configurações Depois', 'anterior' => null, 'atual' => $resultado['configuracoes_depois'], 'anterior_view' => null, 'atual_view' => $resultado['configuracoes_depois']],
+            ]
+        ];
+
+        /*
+        ========================================================
+        GRAVANDO TRANSAÇÃO
+        ========================================================
+        */
+
         $transacaoData = [
             'date' => date('Y-m-d'),
             'time' => date('H:i:s'),
@@ -253,10 +357,164 @@ class RessarcimentoMilitarService
         ];
 
         $this->transacaoRepository->create($transacaoData);
-        //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return $resultado;
     }
+
+
+    // public function importar(Request $request)
+    // {
+    //     if (!$request->hasFile('ressarcimento_militar_file')) {
+    //         throw new \Exception('Selecione um arquivo CSV.');
+    //     }
+
+    //     $file = $request->file('ressarcimento_militar_file');
+
+    //     if (!$file->isValid()) {
+    //         throw new \Exception('Upload inválido.');
+    //     }
+
+    //     $this->validarArquivo($file);
+
+    //     $referencia = $request->ressarcimento_militar_referencia;
+
+    //     $this->validarReferencia($referencia);
+
+    //     $path = $file->getPathname();
+
+    //     $handle = fopen($path, 'r');
+
+    //     if (!$handle) {
+    //         throw new \Exception('Não foi possível abrir o arquivo.');
+    //     }
+
+    //     $delimitador = ';';
+
+    //     $cabecalho = fgetcsv($handle, 0, $delimitador);
+
+    //     if (!$cabecalho) {
+    //         fclose($handle);
+    //         throw new \Exception('Arquivo sem dados.');
+    //     }
+
+    //     // remove BOM
+    //     $cabecalho[0] = preg_replace('/^\xEF\xBB\xBF/', '', $cabecalho[0]);
+
+    //     $errosPlanilha = $this->validarCabecalho($cabecalho);
+
+    //     if (count($errosPlanilha) > 0) {
+    //         fclose($handle);
+
+    //         return [
+    //             'registros_importados' => 0,
+    //             'registros_erros' => [],
+    //             'registros_importados_anteriormente' => [],
+    //             'planilha_error' => $errosPlanilha,
+    //             'orgaos_antes' => 0,
+    //             'orgaos_depois' => 0,
+    //             'configuracoes_antes' => 0,
+    //             'configuracoes_depois' => 0
+    //         ];
+    //     }
+
+    //     $resultado = [
+    //         'registros_importados' => 0,
+    //         'registros_erros' => [],
+    //         'registros_importados_anteriormente' => [],
+    //         'planilha_error' => [],
+    //         'orgaos_antes' => 0,
+    //         'orgaos_depois' => 0,
+    //         'configuracoes_antes' => 0,
+    //         'configuracoes_depois' => 0
+    //     ];
+
+    //     // Verificar a quantidade de orgaos antes da Importação
+    //     $resultado['orgaos_antes'] = $this->ressarcimentoOrgaoRepository->quantidade_registros();
+
+    //     // Verificar a quantidade de configuracoes antes da Importação
+    //     $resultado['configuracoes_antes'] = $this->ressarcimentoConfiguracaoRepository->quantidade_registros();
+
+    //     // Transação
+    //     $numeroLinha = 1;
+
+    //     DB::beginTransaction();
+
+    //     try {
+    //         while (($linha = fgetcsv($handle, 0, $delimitador)) !== false) {
+    //             $numeroLinha++;
+
+    //             if ($this->linhaVazia($linha)) {
+    //                 continue;
+    //             }
+
+    //             $linha = array_pad($linha, count($cabecalho), '');
+
+    //             $dadosLinha = array_combine($cabecalho, $linha);
+
+    //             if (!$dadosLinha) {
+    //                 $resultado['registros_erros'][] = 'Linha ' . $numeroLinha;
+    //                 continue;
+    //             }
+
+    //             $registro = $this->montarRegistro($dadosLinha, $referencia);
+
+    //             if (empty($registro['identidade_funcional']) || empty($registro['nome'])) {
+    //                 $resultado['registros_erros'][] = $registro['nome'] ?: 'Linha ' . $numeroLinha;
+
+    //                 continue;
+    //             }
+
+    //             $this->processarRegistro($registro, $resultado);
+    //             $this->processarOrgao($registro);
+    //             $this->processarConfiguracao($registro);
+    //         }
+
+    //         fclose($handle);
+
+    //         DB::commit();
+    //     } catch (\Exception $e) {
+    //         fclose($handle);
+
+    //         DB::rollBack();
+
+    //         throw $e;
+    //     }
+
+    //     // Verificar a quantidade de orgaos depois da Importação
+    //     $resultado['orgaos_depois'] = $this->ressarcimentoOrgaoRepository->quantidade_registros();
+
+    //     // Verificar a quantidade de configuracoes depois da Importação
+    //     $resultado['configuracoes_depois'] = $this->ressarcimentoConfiguracaoRepository->quantidade_registros();
+
+    //     // Gravar Transação''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    //     // Montando Dados
+    //     $dados = [
+    //         'campos' => [['campo' => 'referencia','etiqueta' => 'Referência','anterior' => null,'atual' => $referencia,'anterior_view' => null,'atual_view' => $referencia,],
+    //                 ['campo' => 'registros_importados','etiqueta' => 'Registros Importados','anterior' => null,'atual' => $resultado['registros_importados'],'anterior_view' => null,'atual_view' => $resultado['registros_importados'],],
+    //                 ['campo' => 'registros_erros','etiqueta' => 'Registros Erros','anterior' => null,'atual' => count($resultado['registros_erros']),'anterior_view' => null,'atual_view' => count($resultado['registros_erros']),],
+    //                 ['campo' => 'registros_importados_anteriormente','etiqueta' => 'Registros Importados Anteriormente','anterior' => null,'atual' => count($resultado['registros_importados_anteriormente']),'anterior_view' => null,'atual_view' => count($resultado['registros_importados_anteriormente']),],
+    //                 ['campo' => 'orgaos_antes','etiqueta' => 'Órgãos Antes','anterior' => null,'atual' => $resultado['orgaos_antes'],'anterior_view' => null,'atual_view' => $resultado['orgaos_antes'],],
+    //                 ['campo' => 'orgaos_depois','etiqueta' => 'Órgãos Depois','anterior' => null,'atual' => $resultado['orgaos_depois'],'anterior_view' => null,'atual_view' => $resultado['orgaos_depois'],],
+    //                 ['campo' => 'configuracoes_antes','etiqueta' => 'Configurações Antes','anterior' => null,'atual' => $resultado['configuracoes_antes'],'anterior_view' => null,'atual_view' => $resultado['configuracoes_antes'],],
+    //                 ['campo' => 'configuracoes_depois','etiqueta' => 'Configurações Depois','anterior' => null,'atual' => $resultado['configuracoes_depois'],'anterior_view' => null,'atual_view' => $resultado['configuracoes_depois'],],
+    //                 ]
+    //             ];
+
+    //     // Gravando
+    //     $transacaoData = [
+    //         'date' => date('Y-m-d'),
+    //         'time' => date('H:i:s'),
+    //         'user_id' => Auth::user()->id,
+    //         'operacao_id' => 1,
+    //         'submodulo_id' => 12,
+    //         'dados' => $dados
+    //     ];
+
+    //     $this->transacaoRepository->create($transacaoData);
+    //     //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+    //     return $resultado;
+    // }
 
     private function validarArquivo($file)
     {
