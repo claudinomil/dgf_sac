@@ -164,9 +164,16 @@ class RessarcimentoPagamentoController extends Controller
             $resultado = $this->ressarcimentoPagamentoService->importar($request);
 
             return response()->json(['success' => $resultado]);
-        } catch (\Exception $e) {
-            return response()->json(['error' => config('app.debug') ? $e->getMessage() : 'Erro interno.'], 400);
-        }
+} catch (\Throwable $e) {
+    return response()->json([
+        'error' => $e->getMessage(),
+        'file' => $e->getFile(),
+        'line' => $e->getLine(),
+    ], 400);
+}
+        // } catch (\Exception $e) {
+        //     return response()->json(['error' => config('app.debug') ? $e->getMessage() : 'Erro interno.'], 400);
+        // }
     }
     // Importar Pagamentos - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     // Importar Pagamentos - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
