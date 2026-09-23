@@ -158,23 +158,33 @@ class RessarcimentoPagamentoController extends Controller
 
     // Importar Pagamentos - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     // Importar Pagamentos - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    public function importar(Request $request)
-    {
-        try {
-            $resultado = $this->ressarcimentoPagamentoService->importar($request);
 
-            return response()->json(['success' => $resultado]);
-} catch (\Throwable $e) {
-    return response()->json([
-        'error' => $e->getMessage(),
-        'file' => $e->getFile(),
-        'line' => $e->getLine(),
-    ], 400);
-}
-        // } catch (\Exception $e) {
-        //     return response()->json(['error' => config('app.debug') ? $e->getMessage() : 'Erro interno.'], 400);
-        // }
+
+public function importar(Request $request)
+{
+    try {
+        $resultado = $this->ressarcimentoPagamentoService->importar($request);
+
+        return response()->json([
+            'success' => $resultado
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'error' => $e->getMessage()
+        ], 400);
     }
+}
+
+// public function importar(Request $request)
+//     {
+//         try {
+//             $resultado = $this->ressarcimentoPagamentoService->importar($request);
+
+//             return response()->json(['success' => $resultado]);
+//         } catch (\Exception $e) {
+//             return response()->json(['error' => config('app.debug') ? $e->getMessage() : 'Erro interno.'], 400);
+//         }
+//     }
     // Importar Pagamentos - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     // Importar Pagamentos - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 }
