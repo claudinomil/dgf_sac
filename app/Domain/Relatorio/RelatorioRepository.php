@@ -2,6 +2,7 @@
 
 namespace App\Domain\Relatorio;
 
+use App\Domain\Militar\MilitarRepository;
 use App\Models\Grupo;
 use App\Models\GrupoRelatorio;
 use App\Models\Militar;
@@ -703,6 +704,37 @@ class RelatorioRepository
             })
             ->orderBy('militares.rg')
             ->get();
+
+        // Retorno
+        $content = array();
+        $content['relatorio_data'] = $relatorio_data;
+        $content['relatorio_hora'] = $relatorio_hora;
+        $content['relatorio_nome'] = $relatorio_nome;
+        $content['relatorio_parametros'] = $relatorio_parametros;
+        $content['relatorio_registros'] = $relatorio_registros;
+
+        return $content;
+    }
+
+    public function relatorio_13(int $militar_id)
+    {
+        // Relatório Data
+        $relatorio_data = date('d/m/Y');
+
+        // Relatório Hora
+        $relatorio_hora = date('H:i:s');
+
+        // Relatório Nome
+        $relatorio = Relatorio::where('id', 13)->get();
+        $relatorio_nome = $relatorio[0]['name'];
+
+        // Parâmetros
+        $relatorio_parametros = '';
+
+        // Registros
+        $militarRepository = new MilitarRepository;
+
+        $relatorio_registros = $militarRepository->informacoes_geral($militar_id);
 
         // Retorno
         $content = array();

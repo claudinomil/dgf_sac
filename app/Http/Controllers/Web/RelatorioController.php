@@ -184,8 +184,18 @@ class RelatorioController extends Controller
         // Verificando Origem enviada pelo Fetch
         if ($request->header('request-origin') == 'fetch') {
             ini_set('memory_limit', '1024M');
-            
+
             $retorno = $this->relatorioService->getRelatorio12($request, $situacoes, $graduacoes, $unidades, $quadros, $comportamentos);
+
+            return response()->json(['success' => $retorno]);
+        }
+    }
+
+    public function relatorio_13(Request $request, int $militar_id)
+    {
+        // Verificando Origem enviada pelo Fetch
+        if ($request->header('request-origin') == 'fetch') {
+            $retorno = $this->relatorioService->getRelatorio13($militar_id);
 
             return response()->json(['success' => $retorno]);
         }

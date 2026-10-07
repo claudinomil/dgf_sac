@@ -239,7 +239,7 @@ async function checkboxesPermissoesSituacoes(data) {
     if (frm_operacao.value != 'create') {
         try {
             // Prefixos dos submódulos
-            const prefixos = ['militares', 'militares_cursos', 'militares_contatos', 'militares_ajudas_custos', 'militares_auxilios_fardamentos', 'militares_dependentes', 'militares_fundos_saude'];
+            const prefixos = ['militares', 'militares_cursos', 'militares_contatos', 'militares_ajudas_custos', 'militares_auxilios_fardamentos', 'militares_dependentes', 'militares_fundos_saude', 'militares_ferias', 'militares_tempos_averbados', 'militares_pensoes'];
 
             // Tipos de permissão
             const operacoes = ['list', 'show', 'create', 'edit', 'destroy'];

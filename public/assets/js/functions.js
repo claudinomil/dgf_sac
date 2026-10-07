@@ -367,6 +367,19 @@ function validacao({op=0, value='', minCaracteres=0, maxCaracteres=0, id=''}) {
     if (op == 22) {
         return /^(0[1-9]|1[0-2])\/\d{4}$/.test(value);
     }
+
+    // Número com 5 dígitos
+    if (op == 23) {
+        // Expressão regular que verifica se a entrada tem exatamente 5 números
+        regex = /^\d{5}$/;
+
+        // Verificando
+        if (regex.test(value) === true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 // Modal para Mensagens
@@ -882,7 +895,21 @@ function formatarDocumento(op, valor) {
 * @PARAM p_data (Data da Geração do Relatório)
 * @PARAM p_hora (Hora da Geração do Relatório)
  */
-function gerarPdfTabela({p_orientation='p', p_header=true, p_topo_1=false, p_topo_2=true, p_nome='Relatório', p_parametros=true, p_parametros_texto='Parâmetros aqui...', p_dadosTableCabecalho=[], p_dadosTableLinhas=[], p_columnStyles={}, p_footer=true, p_data='', p_hora=''}) {
+function gerarPdfTabela({
+    p_orientation = 'p',
+    p_header = true,
+    p_topo_1 = false,
+    p_topo_2 = true,
+    p_nome = 'Relatório',
+    p_parametros = true,
+    p_parametros_texto = 'Parâmetros aqui...',
+    p_dadosTableCabecalho = [],
+    p_dadosTableLinhas = [],
+    p_columnStyles = {},
+    p_footer = true,
+    p_data = '',
+    p_hora = ''
+}) {
     //Configurações
     if (!window.jsPDF) window.jsPDF = window.jspdf.jsPDF;
     if (!window.autoTable) window.autoTable = window.jspdf.autoTable;
@@ -1068,6 +1095,443 @@ function gerarPdfTabela({p_orientation='p', p_header=true, p_topo_1=false, p_top
     window.open(url, '_blank');
 }
 
+// Gera PDF para Informações do Militar
+/********************
+Como chamar:
+
+gerarPdfFichaMilitar({
+    p_nome: 'Relatório de Dados Pessoais',
+
+    p_dadosPessoais: [
+        [
+            { label: 'Nome', valor: 'João da Silva' },
+            { label: 'Matrícula', valor: '123456' }
+        ],
+        [
+            { label: 'Endereço', valor: 'Rua Exemplo, 100' }
+        ],
+        [
+            { label: 'CPF', valor: '123.456.789-00' },
+            { label: 'RG', valor: '1234567' },
+            { label: 'Nascimento', valor: '01/01/1980' }
+        ]
+    ],
+
+    p_tabelas: [
+        {
+            titulo: 'TABELA 1',
+            cabecalho: ['Descrição', 'Valor'],
+            linhas: [
+                ['Registro 1', '100,00'],
+                ['Registro 2', '200,00']
+            ],
+            columnStyles: {
+                0: { cellWidth: 'auto' },
+                1: { cellWidth: 40, halign: 'right' }
+            }
+        },
+        {
+            titulo: 'TABELA 2',
+            cabecalho: ['Código', 'Descrição', 'Valor'],
+            linhas: [
+                ['001', 'Descrição 1', '150,00'],
+                ['002', 'Descrição 2', '250,00']
+            ]
+        }
+    ],
+
+    p_data: '24/09/2026',
+    p_hora: '19:00'
+});
+********************/
+
+/*
+ * Gera PDF com dados pessoais e múltiplas tabelas.
+ *
+ * p_orientation: p = Retrato / l = Paisagem
+ * p_header: Exibir cabeçalho institucional
+ * p_topo_1: Cabeçalho centralizado
+ * p_topo_2: Cabeçalho com logotipo à esquerda
+ * p_nome: Nome do relatório
+ * p_dadosPessoais: Array de linhas com campos pessoais
+ * p_tabelas: Array de tabelas
+ * p_footer: Exibir rodapé
+ * p_data: Data da geração
+ * p_hora: Hora da geração
+ */
+function gerarPdfInformacoesMilitar({
+    p_orientation = 'p',
+    p_header = true,
+    p_topo_1 = false,
+    p_topo_2 = true,
+    p_nome = 'Relatório',
+    p_dadosPessoais = [],
+    p_tabelas = [],
+    p_footer = true,
+    p_data = '',
+    p_hora = ''
+}) {
+    // Configurações
+    if (!window.jsPDF) {
+        window.jsPDF = window.jspdf.jsPDF;
+    }
+
+    if (!window.autoTable) {
+        window.autoTable = window.jspdf.autoTable;
+    }
+
+    // Iniciando jsPDF
+    var doc = new jsPDF({
+        orientation: p_orientation
+    });
+
+    // Variáveis
+    var pageHeight = doc.internal.pageSize.getHeight();
+    var pageWidth = doc.internal.pageSize.getWidth();
+    var totalPagesExp = '{total_pages_count_string}';
+
+    // Margens Topo 1
+    var topo_1_image_margin_left = 81;
+    var topo_1_image_margin_top = 10;
+    var topo_1_image_width = 50;
+    var topo_1_image_height = 32;
+
+    var topo_1_text_1_margin_top =
+        topo_1_image_margin_top + topo_1_image_height + 5;
+
+    var topo_1_text_2_margin_top =
+        topo_1_image_margin_top + topo_1_image_height + 10;
+
+    var topo_1_text_3_margin_top =
+        topo_1_image_margin_top + topo_1_image_height + 15;
+
+    // Margens Topo 2
+    var topo_2_image_margin_left = 10;
+    var topo_2_image_margin_top = 10;
+    var topo_2_image_width = 19;
+    var topo_2_image_height = 21;
+
+    var topo_2_text_margin_left = topo_2_image_width + 20;
+
+    var topo_2_text_1_margin_top =
+        topo_2_image_margin_top + 5;
+
+    var topo_2_text_2_margin_top =
+        topo_2_image_margin_top + 11;
+
+    var topo_2_text_3_margin_top =
+        topo_2_image_margin_top + 17;
+
+    // Margens gerais
+    var margemHorizontal = 10;
+    var margemInferior = p_footer ? 25 : 10;
+
+    // Posição inicial
+    var posicaoY = 10;
+
+    if (p_header) {
+        if (p_topo_1) {
+            posicaoY = topo_1_text_3_margin_top + 10;
+        }
+
+        if (p_topo_2) {
+            posicaoY = Math.max(
+                posicaoY,
+                topo_2_image_margin_top +
+                topo_2_image_height + 10
+            );
+        }
+    }
+
+    var nome_margin_top = posicaoY;
+
+    // Desenha o cabeçalho institucional
+    function desenharCabecalho() {
+        if (!p_header) return;
+
+        // Topo 1
+        if (p_topo_1) {
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+
+            doc.addImage(
+                'assets/images/logo_governo_rj.png',
+                'PNG',
+                topo_1_image_margin_left,
+                topo_1_image_margin_top,
+                topo_1_image_width,
+                topo_1_image_height
+            );
+
+            doc.text(
+                'Secretaria de Estado de Defesa Civil',
+                pageWidth / 2,
+                topo_1_text_1_margin_top,
+                { align: 'center' }
+            );
+
+            doc.text(
+                'Corpo de Bombeiros Militar do Estado do Rio de Janeiro',
+                pageWidth / 2,
+                topo_1_text_2_margin_top,
+                { align: 'center' }
+            );
+
+            doc.text(
+                'Diretoria Geral de Finanças',
+                pageWidth / 2,
+                topo_1_text_3_margin_top,
+                { align: 'center' }
+            );
+        }
+
+        // Topo 2
+        if (p_topo_2) {
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+
+            doc.addImage(
+                'assets/images/image_logo_relatorio.png',
+                'PNG',
+                topo_2_image_margin_left,
+                topo_2_image_margin_top,
+                topo_2_image_width,
+                topo_2_image_height
+            );
+
+            doc.text(
+                'Secretaria de Estado de Defesa Civil',
+                topo_2_text_margin_left,
+                topo_2_text_1_margin_top
+            );
+
+            doc.text(
+                'Corpo de Bombeiros Militar do Estado do Rio de Janeiro',
+                topo_2_text_margin_left,
+                topo_2_text_2_margin_top
+            );
+
+            doc.text(
+                'Diretoria Geral de Finanças',
+                topo_2_text_margin_left,
+                topo_2_text_3_margin_top
+            );
+        }
+    }
+
+    // Desenha o rodapé
+    function desenharRodape() {
+        if (!p_footer) return;
+
+        var pagina = doc.internal.getCurrentPageInfo().pageNumber;
+
+        var texto = 'Página ' + pagina;
+
+        if (typeof doc.putTotalPages === 'function') {
+            texto += ' de ' + totalPagesExp;
+        }
+
+        if (p_data !== '') {
+            texto += '  -  ' + p_data;
+        }
+
+        if (p_hora !== '') {
+            texto += ' às ' + p_hora;
+        }
+
+        var footer_text_1_margin_left =
+            p_orientation === 'p' ? 105 : 150;
+
+        var footer_text_2_margin_left =
+            p_orientation === 'p' ? 125 : 170;
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+
+        doc.text(
+            'Gerado pelo Sistema SAC - DGF',
+            footer_text_1_margin_left,
+            pageHeight - 15,
+            { align: 'center' }
+        );
+
+        doc.text(
+            texto,
+            footer_text_2_margin_left,
+            pageHeight - 10,
+            { align: 'center' }
+        );
+    }
+
+    // Retorna a posição inicial das páginas seguintes
+    function posicaoNovaPagina() {
+        return p_header
+            ? Math.max(
+                p_topo_1 ? topo_1_text_3_margin_top + 10 : 10,
+                p_topo_2
+                    ? topo_2_image_margin_top +
+                      topo_2_image_height + 10
+                    : 10
+            )
+            : 15;
+    }
+
+    // Adiciona nova página
+    function adicionarPagina() {
+        doc.addPage();
+        desenharCabecalho();
+        return posicaoNovaPagina();
+    }
+
+    // Primeira página
+    desenharCabecalho();
+
+    // Nome do relatório
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+
+    doc.text(
+        p_nome,
+        pageWidth / 2,
+        nome_margin_top,
+        { align: 'center' }
+    );
+
+    posicaoY = posicaoY + 10;
+
+    // Dados pessoais
+    doc.setFontSize(9);
+
+    p_dadosPessoais.forEach(linha => {
+        var larguraDisponivel = pageWidth - 20;
+
+        var totalProporcoes = linha.reduce(
+            (total, campo) => total + (campo.largura || 1),
+            0
+        );
+
+        var campos = [];
+        var alturaLinha = 0;
+
+        linha.forEach(campo => {
+            var largura =
+                larguraDisponivel *
+                (campo.largura || 1) /
+                totalProporcoes;
+
+            var texto =
+                campo.label + ': ' + (campo.valor ?? '');
+
+            var linhas = doc.splitTextToSize(
+                texto,
+                largura - 4
+            );
+
+            alturaLinha = Math.max(
+                alturaLinha,
+                linhas.length * 4.5
+            );
+
+            campos.push({
+                largura: largura,
+                linhas: linhas
+            });
+        });
+
+        if (posicaoY + alturaLinha >
+            pageHeight - margemInferior) {
+            posicaoY = adicionarPagina();
+        }
+
+        var posicaoX = margemHorizontal;
+
+        campos.forEach(campo => {
+            doc.text(campo.linhas, posicaoX, posicaoY);
+            posicaoX += campo.largura;
+        });
+
+        posicaoY += alturaLinha + 4;
+    });
+
+    posicaoY += 5;
+
+    // Múltiplas tabelas
+    p_tabelas.forEach(tabela => {
+        // Reserva espaço para o título e o cabeçalho
+        if (posicaoY + 25 >
+            pageHeight - margemInferior) {
+            posicaoY = adicionarPagina();
+        }
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(10);
+
+        doc.text(
+            tabela.titulo,
+            margemHorizontal,
+            posicaoY
+        );
+
+        posicaoY += 5;
+
+        doc.autoTable({
+            startY: posicaoY,
+
+            head: [tabela.cabecalho],
+            body: tabela.linhas,
+
+            theme: 'striped',
+
+            margin: {
+                left: margemHorizontal,
+                right: margemHorizontal,
+                top: posicaoNovaPagina(),
+                bottom: margemInferior
+            },
+
+            columnStyles: tabela.columnStyles || {},
+
+            styles: {
+                fontSize: 7
+            },
+
+            showHead: 'everyPage',
+
+            // Cabeçalho nas páginas criadas pelo AutoTable
+            willDrawPage: function(data) {
+                if (data.pageNumber > 1) {
+                    desenharCabecalho();
+                }
+            }
+        });
+
+        // Posição da próxima tabela
+        posicaoY = doc.lastAutoTable.finalY + 12;
+    });
+
+    // Rodapé em todas as páginas
+    var totalPaginas = doc.internal.getNumberOfPages();
+
+    for (var pagina = 1; pagina <= totalPaginas; pagina++) {
+        doc.setPage(pagina);
+        desenharRodape();
+    }
+
+    // Total de páginas
+    if (typeof doc.putTotalPages === 'function') {
+        doc.putTotalPages(totalPagesExp);
+    }
+
+    // Gerar blob do PDF
+    const blob = doc.output('blob');
+
+    // Criar URL temporária
+    const url = URL.createObjectURL(blob);
+
+    // Abrir nova aba
+    window.open(url, '_blank');
+}
+
 // Função para verificar permissão (Similar a temPermissao() do helper.php)
 function temPermissao(permissao) {
     const permissoes = window.userPermissions ?? [];
@@ -1208,6 +1672,8 @@ function autocompleteMilitar() {
         setValue("militarQuadroEspecialidadeName", m.militarQuadroEspecialidadeName);
 
         setValue("user", m.militarRg);
+
+        setValue("modal_relatorio_13_militar_id", m.militar_id);
     }
 
     function setValue(id, value) {

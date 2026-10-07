@@ -90,6 +90,7 @@ class ZZZ_20260514_Seeder extends Seeder
         Relatorio::create(['id' => 10, 'relatorio_grupo_id' => 2, 'name' => 'MILITARES POR QUADRO', 'ordem' => 100]);
         Relatorio::create(['id' => 11, 'relatorio_grupo_id' => 2, 'name' => 'MILITARES POR COMPORTAMENTO', 'ordem' => 110]);
         Relatorio::create(['id' => 12, 'relatorio_grupo_id' => 2, 'name' => 'MILITARES', 'ordem' => 120]);
+        Relatorio::create(['id' => 13, 'relatorio_grupo_id' => 2, 'name' => 'INFORMAÇÕES DO MILITAR', 'ordem' => 130]);
 
         // Grupos Relatórios
         GrupoRelatorio::create(['grupo_id' => 1, 'relatorio_id' => 1]);
@@ -104,6 +105,7 @@ class ZZZ_20260514_Seeder extends Seeder
         GrupoRelatorio::create(['grupo_id' => 1, 'relatorio_id' => 10]);
         GrupoRelatorio::create(['grupo_id' => 1, 'relatorio_id' => 11]);
         GrupoRelatorio::create(['grupo_id' => 1, 'relatorio_id' => 12]);
+        GrupoRelatorio::create(['grupo_id' => 1, 'relatorio_id' => 13]);
         //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     }
 }

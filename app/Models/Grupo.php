@@ -58,11 +58,11 @@ class Grupo extends Model
         'militares_pensoes_permissoes_create_situacoes_ids',
         'militares_pensoes_permissoes_edit_situacoes_ids',
         'militares_pensoes_permissoes_destroy_situacoes_ids',
-        'militares_tempo_averbado_permissoes_list_situacoes_ids',
-        'militares_tempo_averbado_permissoes_show_situacoes_ids',
-        'militares_tempo_averbado_permissoes_create_situacoes_ids',
-        'militares_tempo_averbado_permissoes_edit_situacoes_ids',
-        'militares_tempo_averbado_permissoes_destroy_situacoes_ids'
+        'militares_tempos_averbados_permissoes_list_situacoes_ids',
+        'militares_tempos_averbados_permissoes_show_situacoes_ids',
+        'militares_tempos_averbados_permissoes_create_situacoes_ids',
+        'militares_tempos_averbados_permissoes_edit_situacoes_ids',
+        'militares_tempos_averbados_permissoes_destroy_situacoes_ids'
     ];
 
     public function setNameAttribute($value) {$this->attributes['name'] = mb_strtoupper($value);}

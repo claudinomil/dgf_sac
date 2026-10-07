@@ -151,11 +151,8 @@ class MilitarAuxilioFardamentoRepository
                 'auxilio_fardamento_tipos.name as auxilioFardamentoTipoName'
             );
 
-
-
         // Permissão Situação do Militar
-        // $query->whereIn('militares.situacao_id', retornaArrayCampoGruposPermissoesSituacoes('militares_permissoes_list_situacoes_ids'));
-
+        $query->whereIn('militares.situacao_id', retornaArrayCampoGruposPermissoesSituacoes('militares_auxilios_fardamentos_permissoes_list_situacoes_ids'));
 
         return $query->find($id);
     }

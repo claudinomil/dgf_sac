@@ -77,20 +77,6 @@ return [
             'engine' => null
         ],
 
-        'cbmerj' => [
-            'driver' => 'mysql',
-            'host' => env('CBMERJ_HOST'),
-            'port' => env('CBMERJ_PORT'),
-            'database' => env('CBMERJ_DATABASE'),
-            'username' => env('CBMERJ_USERNAME'),
-            'password' => env('CBMERJ_PASSWORD'),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'strict' => true,
-            'engine' => null
-        ],
-
         'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),

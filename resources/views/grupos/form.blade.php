@@ -90,7 +90,7 @@
                                                         @endif
                                                     </div>
 
-                                                    @if(in_array($submodulo['prefix_permissao'], ['militares', 'militares_cursos', 'militares_contatos', 'militares_ajudas_custos', 'militares_auxilios_fardamentos', 'militares_dependentes', 'militares_fundos_saude']))
+                                                    @if(in_array($submodulo['prefix_permissao'], ['militares', 'militares_cursos', 'militares_contatos', 'militares_ajudas_custos', 'militares_auxilios_fardamentos', 'militares_dependentes', 'militares_fundos_saude', 'militares_ferias', 'militares_tempos_averbados', 'militares_pensoes']))
                                                     <input type="hidden" id="{{ $submodulo['prefix_permissao'] }}_permissoes_list_situacoes_ids" name="{{ $submodulo['prefix_permissao'] }}_permissoes_list_situacoes_ids">
 
                                                     <div class="text-start pt-2">
@@ -113,7 +113,7 @@
                                                         @endif
                                                     </div>
 
-                                                    @if(in_array($submodulo['prefix_permissao'], ['militares', 'militares_cursos', 'militares_contatos', 'militares_ajudas_custos', 'militares_auxilios_fardamentos', 'militares_dependentes', 'militares_fundos_saude']))
+                                                    @if(in_array($submodulo['prefix_permissao'], ['militares', 'militares_cursos', 'militares_contatos', 'militares_ajudas_custos', 'militares_auxilios_fardamentos', 'militares_dependentes', 'militares_fundos_saude', 'militares_ferias', 'militares_tempos_averbados', 'militares_pensoes']))
                                                     <input type="hidden" id="{{ $submodulo['prefix_permissao'] }}_permissoes_show_situacoes_ids" name="{{ $submodulo['prefix_permissao'] }}_permissoes_show_situacoes_ids">
 
                                                     <div class="text-start pt-2">
@@ -136,7 +136,7 @@
                                                         @endif
                                                     </div>
 
-                                                    @if(in_array($submodulo['prefix_permissao'], ['militares', 'militares_cursos', 'militares_contatos', 'militares_ajudas_custos', 'militares_auxilios_fardamentos', 'militares_dependentes', 'militares_fundos_saude']))
+                                                    @if(in_array($submodulo['prefix_permissao'], ['militares', 'militares_cursos', 'militares_contatos', 'militares_ajudas_custos', 'militares_auxilios_fardamentos', 'militares_dependentes', 'militares_fundos_saude', 'militares_ferias', 'militares_tempos_averbados', 'militares_pensoes']))
                                                     <input type="hidden" id="{{ $submodulo['prefix_permissao'] }}_permissoes_create_situacoes_ids" name="{{ $submodulo['prefix_permissao'] }}_permissoes_create_situacoes_ids">
 
                                                     <div class="text-start pt-2">
@@ -159,7 +159,7 @@
                                                         @endif
                                                     </div>
 
-                                                    @if(in_array($submodulo['prefix_permissao'], ['militares', 'militares_cursos', 'militares_contatos', 'militares_ajudas_custos', 'militares_auxilios_fardamentos', 'militares_dependentes', 'militares_fundos_saude']))
+                                                    @if(in_array($submodulo['prefix_permissao'], ['militares', 'militares_cursos', 'militares_contatos', 'militares_ajudas_custos', 'militares_auxilios_fardamentos', 'militares_dependentes', 'militares_fundos_saude', 'militares_ferias', 'militares_tempos_averbados', 'militares_pensoes']))
                                                     <input type="hidden" id="{{ $submodulo['prefix_permissao'] }}_permissoes_edit_situacoes_ids" name="{{ $submodulo['prefix_permissao'] }}_permissoes_edit_situacoes_ids">
 
                                                     <div class="text-start pt-2">
@@ -182,7 +182,7 @@
                                                         @endif
                                                     </div>
 
-                                                    @if(in_array($submodulo['prefix_permissao'], ['militares', 'militares_cursos', 'militares_contatos', 'militares_ajudas_custos', 'militares_auxilios_fardamentos', 'militares_dependentes', 'militares_fundos_saude']))
+                                                    @if(in_array($submodulo['prefix_permissao'], ['militares', 'militares_cursos', 'militares_contatos', 'militares_ajudas_custos', 'militares_auxilios_fardamentos', 'militares_dependentes', 'militares_fundos_saude', 'militares_ferias', 'militares_tempos_averbados', 'militares_pensoes']))
                                                     <input type="hidden" id="{{ $submodulo['prefix_permissao'] }}_permissoes_destroy_situacoes_ids" name="{{ $submodulo['prefix_permissao'] }}_permissoes_destroy_situacoes_ids">
 
                                                     <div class="text-start pt-2">

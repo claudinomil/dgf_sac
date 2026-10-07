@@ -1187,6 +1187,323 @@ function relatorio12ComportamentosCheckboxesAlterarTodos(marcar = true) {
     });
 }
 
+// Relatório 13 : Informações do Militar
+async function relatoriosRelatorio13(op = 1, relatorio_name = '') {
+    if (op == 1) {
+        // Título Modal
+        document.getElementById('modal_relatorio_13_titulo').innerHTML = relatorio_name;
+
+        // Abrir Modal
+        new bootstrap.Modal(document.getElementById('modal_relatorio_13')).show();
+
+        // Pesquisar Militar
+        const militarAuto = autocompleteMilitar();
+        militarAuto.init();
+    } else {
+        try {
+            // Colocar Processando...
+            document.getElementById('modal_relatorio_13_footer_1').style.display = 'none';
+            document.getElementById('modal_relatorio_13_footer_2').style.display = 'block';
+
+            // Pegar valores
+            const pesquisar_militar = document.getElementById('pesquisar_militar');
+            const militar_id = document.getElementById('modal_relatorio_13_militar_id');
+            const dados = pegarCheckboxesMarcados('modal_relatorio_13_dados_checkboxes');
+
+            // Validação'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+            var validacao_ok = true;
+            var mensagem = "";
+
+            // Campo: pesquisar_militar (requerido)
+            if (validacao({ op: 1, value: pesquisar_militar.value }) === false) {
+                validacao_ok = false;
+                mensagem += "Militar requerido." + "<br>";
+            }
+
+            // Campo: militar_id (requerido)
+            if (validacao({ op: 1, value: militar_id.value }) === false) {
+                validacao_ok = false;
+                mensagem += "Escolha um Militar válido." + "<br>";
+            }
+
+            // Campo: dados (requerido)
+            if (dados == 0) {
+                validacao_ok = false;
+                mensagem += "Marque ao menos um Dado." + "<br>";
+            }
+
+            // Mensagem
+            if (validacao_ok === false) {
+                var texto = `<div class="pt-3"><div class="col-12 text-start font-size-12">${mensagem}</div></div>`;
+
+                alertSwal("warning", "Validação", texto, "true", 2000);
+
+                // Retirar Processando...
+                document.getElementById('modal_relatorio_13_footer_2').style.display = 'none';
+                document.getElementById('modal_relatorio_13_footer_1').style.display = 'block';
+
+                return;
+            }
+            //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+            // Montar URL
+            const rota = `${url}relatorios/relatorio_13/${militar_id.value}`;
+
+            // Buscar Dados
+            const response = await fetch(rota, {
+                method: 'GET',
+                headers: { 'REQUEST-ORIGIN': 'fetch' }
+            });
+
+            const data = await response.json();
+
+            if (!data.success) {
+                alert(data.error);
+
+                // Retirar Processando...
+                document.getElementById('modal_relatorio_13_footer_2').style.display = 'none';
+                document.getElementById('modal_relatorio_13_footer_1').style.display = 'block';
+
+                return;
+            }
+
+            // Preparando Dados
+            const relatorio_data = data.success.relatorio_data;
+            const relatorio_hora = data.success.relatorio_hora;
+            const relatorio_nome = data.success.relatorio_nome;
+            const relatorio_registros = data.success.relatorio_registros;
+
+            const militar_dados = relatorio_registros.militar;
+
+            // Gerar PDF
+            gerarPdfInformacoesMilitar({
+                p_orientation: 'p',
+                p_header: true,
+                p_topo_1: false,
+                p_topo_2: true,
+                p_nome: relatorio_nome,
+                p_dadosPessoais: relatorio13MontarDadosPessoais(militar_dados),
+                p_tabelas: relatorio13MontarTabelasMilitar(relatorio_registros),
+                p_footer: true,
+                p_data: relatorio_data,
+                p_hora: relatorio_hora
+            });
+
+            // Retirar Processando...
+            document.getElementById('modal_relatorio_13_footer_2').style.display = 'none';
+            document.getElementById('modal_relatorio_13_footer_1').style.display = 'block';
+
+            // Fechar Modal
+            document.getElementById('modal_relatorio_13_cancelar').click();
+
+        } catch (error) {
+            console.error('Erro relatoriosRelatorio13 : ', error);
+
+            alert('Erro ao gerar relatório.');
+
+            // Retirar Processando...
+            document.getElementById('modal_relatorio_13_footer_2').style.display = 'none';
+            document.getElementById('modal_relatorio_13_footer_1').style.display = 'block';
+        }
+    }
+}
+
+function relatorio13CriarTabelaPdf(titulo, cabecalho, registros, campos) {
+    if (!Array.isArray(registros) || registros.length === 0) {
+        return null;
+    }
+
+    var numLinha = 1;
+
+    return {
+        titulo: titulo,
+        cabecalho: cabecalho,
+        linhas: registros.map(registro =>
+
+
+
+            campos.map(campo => {
+
+
+                if (campo.nome == '#') {
+
+                    return String(numLinha++);
+                } else if (campo.nome == 'cancelar_desconto') {
+                                        return registro.cancelar_desconto == 1 ? 'Sim' : 'Não';
+                } else if (campo.nome == 'acesso_sistema_saude') {
+                                        return registro.acesso_sistema_saude == 1 ? 'Sim' : 'Não';
+                } else if (campo.nome == 'tipo_acesso') {
+                    return { 1: 'Integral', 2: 'Ambulatorial' }[Number(registro.tipo_acesso)] ?? 'Negado';
+                }
+
+
+
+
+
+
+                const valor = registro[campo.nome];
+
+                return campo.tipo === 'data'
+                    ? formatarData(2, valor)
+                    : valor === null || valor === undefined ? '' : String(primeiraMaiuscula(valor));
+            })
+        )
+    };
+}
+
+function relatorio13MontarDadosPessoais(militar) {
+    return [
+        [
+            { label: 'RG', valor: militar.rg, largura: 2 },
+            { label: 'Id.Funcional', valor: militar.identidade_funcional, largura: 2 }
+        ],
+        [
+            { label: 'Vínculo', valor: militar.vinculo, largura: 2 },
+            { label: 'Nome', valor: primeiraMaiuscula(militar.nome), largura: 2 }
+        ],
+        [
+            { label: 'Nome de Guerra', valor: primeiraMaiuscula(militar.nome_guerra), largura: 2 },
+            { label: 'Situação', valor: primeiraMaiuscula(militar.situacaoName), largura: 2 }
+        ],
+        [
+            { label: 'Quadro', valor: primeiraMaiuscula(militar.quadroName), largura: 2 },
+            { label: 'Posto/Graduação', valor: primeiraMaiuscula(militar.graduacaoName), largura: 2 }
+        ],
+        [
+            { label: 'Data Ingresso', valor: formatarData(2, militar.data_ingresso), largura: 2 },
+            { label: 'Unidade', valor: primeiraMaiuscula(militar.unidadeName), largura: 2 }
+        ],
+        [
+            { label: 'Prestando Serviço', valor: primeiraMaiuscula(militar.prestandoServicoName), largura: 2 },
+            { label: 'Função', valor: primeiraMaiuscula(militar.funcaoName), largura: 2 }
+        ],
+        [
+            { label: 'Comportamento', valor: primeiraMaiuscula(militar.comportamentoName), largura: 2 },
+            { label: 'Data Nascimento', valor: formatarData(2, militar.data_nascimento), largura: 2 }
+        ]
+    ].map(linha =>
+        linha.map(campo => ({
+            ...campo,
+            valor: campo.valor === null || campo.valor === undefined ? '' : String(campo.valor)
+        }))
+    );
+}
+
+function relatorio13MontarTabelasMilitar(data) {
+    const tabelas = [
+        relatorio13CriarTabelaPdf(
+            'AJUDAS DE CUSTO',
+            ['#', 'Tipo', 'Boletim', 'Pagamento', 'Processo SEI'],
+
+
+
+
+            data.militar_ajudas_custos,
+            [
+                { nome: '#' },
+                { nome: 'ajudaCustoTipoName' },
+                { nome: 'boletim' },
+                { nome: 'pagamento' },
+                { nome: 'processo_sei' }
+            ]
+        ),
+
+        relatorio13CriarTabelaPdf(
+            'AUXÍLIOS FARDAMENTO',
+            ['#', 'Tipo', 'Boletim', 'Pagamento', 'Processo SEI'],
+            data.militar_auxilios_fardamentos,
+            [
+            { nome: '#' },
+                { nome: 'auxilioFardamentoTipoName' },
+                { nome: 'boletim' },
+                { nome: 'pagamento' },
+                { nome: 'processo_sei' }
+            ]
+        ),
+
+        relatorio13CriarTabelaPdf(
+            'CURSOS',
+            ['#', 'Curso', 'Boletim', 'Conceito'],
+            data.militar_cursos,
+            [
+            { nome: '#' },
+                { nome: 'cursoName' },
+                { nome: 'boletim' },
+                { nome: 'conceito' }
+            ]
+        ),
+
+        relatorio13CriarTabelaPdf(
+            'DEPENDENTES',
+            ['#', 'Parentesco', 'Nome'],
+            data.militar_dependentes,
+            [
+            { nome: '#' },
+                { nome: 'parentescoName' },
+                { nome: 'name' }
+            ]
+        ),
+
+        relatorio13CriarTabelaPdf(
+            'FUNDO DE SAÚDE',
+            ['#', 'Cancelar Desconto', 'Acesso Sistema Saúde', 'Tipo Acesso'],
+            data.militar_fundos_saude,
+            [
+            { nome: '#' },
+                { nome: 'cancelar_desconto' },
+                { nome: 'acesso_sistema_saude' },
+                { nome: 'tipo_acesso' }
+            ]
+        ),
+
+        relatorio13CriarTabelaPdf(
+            'FÉRIAS',
+            ['#', 'Ano', 'Referência', 'Mês'],
+            data.militar_ferias.slice(0, 5),
+            [
+                { nome: '#' },
+                { nome: 'ano' },
+                { nome: 'referencia' },
+                { nome: 'mes' }
+            ]
+        ),
+
+        relatorio13CriarTabelaPdf(
+            'PENSÕES',
+            ['#', 'Tipo', 'Beneficiário', 'Desconto', 'Representante Legal'],
+            data.militar_pensoes,
+            [
+            { nome: '#' },
+                { nome: 'pensaoTipoName' },
+                { nome: 'beneficiario' },
+                { nome: 'desconto' },
+                { nome: 'representante_legal' }
+            ]
+        ),
+
+        relatorio13CriarTabelaPdf(
+            'TEMPOS AVERBADOS',
+            ['#', 'Local', 'Data Ingresso', 'Data Término', 'Tempo Apurado'],
+            data.militar_tempos_averbados,
+            [
+            { nome: '#' },
+                { nome: 'tempoAverbadoLocalName' },
+                { nome: 'data_ingresso_local', tipo: 'data' },
+                { nome: 'data_termino_local', tipo: 'data' },
+                { nome: 'tempo_apurado_local' }
+            ]
+        )
+    ];
+
+    return tabelas.filter(tabela => tabela !== null);
+}
+
+function relatorio13DadosCheckboxesAlterarTodos(marcar = true) {
+    document.querySelectorAll('input[name="modal_relatorio_13_dados_checkboxes"]').forEach(function (checkbox) {
+        checkbox.checked = marcar;
+    });
+}
+
 function pegarCheckboxesMarcados(name) {
     const valores = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(checkbox => checkbox.value);
 
@@ -1203,4 +1520,7 @@ document.addEventListener("DOMContentLoaded", async function (event) {
     relatorio12UnidadesCheckboxesAlterarTodos();
     relatorio12QuadrosCheckboxesAlterarTodos();
     relatorio12ComportamentosCheckboxesAlterarTodos();
+
+    // Relatório 13 - Marcar Todos
+    relatorio13DadosCheckboxesAlterarTodos();
 });

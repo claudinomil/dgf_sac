@@ -72,11 +72,11 @@ class CreateGruposTable extends Migration
             $table->string('militares_pensoes_permissoes_edit_situacoes_ids', 100)->default(0);
             $table->string('militares_pensoes_permissoes_destroy_situacoes_ids', 100)->default(0);
 
-            $table->string('militares_tempo_averbado_permissoes_list_situacoes_ids', 100)->default(0);
-            $table->string('militares_tempo_averbado_permissoes_show_situacoes_ids', 100)->default(0);
-            $table->string('militares_tempo_averbado_permissoes_create_situacoes_ids', 100)->default(0);
-            $table->string('militares_tempo_averbado_permissoes_edit_situacoes_ids', 100)->default(0);
-            $table->string('militares_tempo_averbado_permissoes_destroy_situacoes_ids', 100)->default(0);
+            $table->string('militares_tempos_averbados_permissoes_list_situacoes_ids', 100)->default(0);
+            $table->string('militares_tempos_averbados_permissoes_show_situacoes_ids', 100)->default(0);
+            $table->string('militares_tempos_averbados_permissoes_create_situacoes_ids', 100)->default(0);
+            $table->string('militares_tempos_averbados_permissoes_edit_situacoes_ids', 100)->default(0);
+            $table->string('militares_tempos_averbados_permissoes_destroy_situacoes_ids', 100)->default(0);
             //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
             $table->timestamps();

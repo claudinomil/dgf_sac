@@ -15,15 +15,19 @@ use App\Models\FatorRh;
 use App\Models\Funcao;
 use App\Models\Graduacao;
 use App\Models\MilitarDependente;
+use App\Models\MilitarFerias;
 use App\Models\MilitarFundoSaude;
 use App\Models\MilitarFundoSaudeAdesao;
 use App\Models\MilitarFundoSaudeControle;
+use App\Models\MilitarPensao;
+use App\Models\MilitarTempoAverbado;
 use App\Models\Nacionalidade;
 use App\Models\Naturalidade;
 use App\Models\Parentesco;
 use App\Models\Quadro;
 use App\Models\SexoBiologico;
 use App\Models\Situacao;
+use App\Models\TempoAverbadoLocal;
 use App\Models\TipoSanguineo;
 use App\Models\Unidade;
 
@@ -58,7 +62,11 @@ class IntegracaoRepository
             'total_militares_fundos_saude_controle' => MilitarFundoSaudeControle::count(),
             'total_militares_fundos_saude_adesao' => MilitarFundoSaudeAdesao::count(),
             'total_parentescos' => Parentesco::count(),
-            'total_militares_dependentes' => MilitarDependente::count()
+            'total_militares_dependentes' => MilitarDependente::count(),
+            'total_tempos_averbados_locais' => TempoAverbadoLocal::count(),
+            'total_militares_tempos_averbados' => MilitarTempoAverbado::count(),
+            'total_militares_pensoes' => MilitarPensao::count(),
+            'total_militares_ferias' => MilitarFerias::count()
         );
 
         return $ar[0];
@@ -445,6 +453,19 @@ class IntegracaoRepository
             }
         }
 
+        if ($tabela == 'tempos_averbados_locais') {
+            foreach($dadosLegado as $dado) {
+                TempoAverbadoLocal::upsert(
+                    [$dado],
+                    ['id'],
+                    [
+                        'tipo',
+                        'name'
+                    ]
+                );
+            }
+        }
+
         if ($tabela == 'militares_dependentes_1' or $tabela == 'militares_dependentes_2' or $tabela == 'militares_dependentes_3' or $tabela == 'militares_dependentes_4' or $tabela == 'militares_dependentes_5' or $tabela == 'militares_dependentes_6' or $tabela == 'militares_dependentes_7') {
             foreach($dadosLegado as $dado) {
                 MilitarDependente::upsert(
@@ -480,6 +501,134 @@ class IntegracaoRepository
                         'acesso_sistema_saude_dependente',
                         'tipo_acesso',
                         'referencia_processo_sei'
+                    ]
+                );
+            }
+        }
+
+        if ($tabela == 'militares_pensoes_1' or $tabela == 'militares_pensoes_2') {
+            foreach($dadosLegado as $dado) {
+                MilitarPensao::upsert(
+                    [$dado],
+                    ['id'],
+                    [
+                        'militar_id',
+                        'excluido',
+                        'pensao_tipo_id',
+                        'nome_militar',
+                        'beneficiario',
+                        'desconto',
+                        'representante_legal',
+                        'logradouro',
+                        'bairro',
+                        'cidade',
+                        'estado',
+                        'cep',
+                        'telefone',
+                        'celular',
+                        'banco',
+                        'agencia',
+                        'conta_corrente',
+                        'cpf',
+                        'documento',
+                        'data_documento',
+                        'numero_processo',
+                        'vara_familia',
+                        'implantacao',
+                        'nascimento',
+                        'cancelar_em',
+                        'alterar_em',
+                        'nascimento_beneficiario',
+                        'observacao',
+                        'pasta_dip'
+                    ]
+                );
+            }
+        }
+
+        if ($tabela == 'militares_tempos_averbados') {
+            foreach($dadosLegado as $dado) {
+                MilitarTempoAverbado::upsert(
+                    [$dado],
+                    ['id'],
+                    [
+                        'militar_id',
+                        'excluido',
+                        'tempo_averbado_local_id',
+                        'data_ingresso_local',
+                        'data_termino_local',
+                        'tempo_apurado_local',
+                        'boletim',
+                        'proderj_servico_publico',
+                        'proderj_servico_publico_rj',
+                        'proderj_servico_cargo',
+                        'proderj_controle',
+                        'lancado_proderj',
+                        'observacao',
+                        'referencia_processo_sei'
+                    ]
+                );
+            }
+        }
+
+        if ($tabela == 'militares_ferias_1' or
+            $tabela == 'militares_ferias_2' or
+            $tabela == 'militares_ferias_3' or
+            $tabela == 'militares_ferias_4' or
+            $tabela == 'militares_ferias_5' or
+            $tabela == 'militares_ferias_6' or
+            $tabela == 'militares_ferias_7' or
+            $tabela == 'militares_ferias_8' or
+            $tabela == 'militares_ferias_9' or
+            $tabela == 'militares_ferias_10' or
+            $tabela == 'militares_ferias_11' or
+            $tabela == 'militares_ferias_12' or
+            $tabela == 'militares_ferias_13' or
+            $tabela == 'militares_ferias_14' or
+            $tabela == 'militares_ferias_15' or
+            $tabela == 'militares_ferias_16' or
+            $tabela == 'militares_ferias_17' or
+            $tabela == 'militares_ferias_18' or
+            $tabela == 'militares_ferias_19' or
+            $tabela == 'militares_ferias_20' or
+            $tabela == 'militares_ferias_21' or
+            $tabela == 'militares_ferias_22' or
+            $tabela == 'militares_ferias_23' or
+            $tabela == 'militares_ferias_24' or
+            $tabela == 'militares_ferias_25' or
+            $tabela == 'militares_ferias_26' or
+            $tabela == 'militares_ferias_27' or
+            $tabela == 'militares_ferias_28' or
+            $tabela == 'militares_ferias_29' or
+            $tabela == 'militares_ferias_30' or
+            $tabela == 'militares_ferias_31' or
+            $tabela == 'militares_ferias_32' or
+            $tabela == 'militares_ferias_33' or
+            $tabela == 'militares_ferias_34' or
+            $tabela == 'militares_ferias_35' or
+            $tabela == 'militares_ferias_36' or
+            $tabela == 'militares_ferias_37' or
+            $tabela == 'militares_ferias_38' or
+            $tabela == 'militares_ferias_39' or
+            $tabela == 'militares_ferias_40') {
+            foreach($dadosLegado as $dado) {
+                MilitarFerias::upsert(
+                    [$dado],
+                    ['id'],
+                    [
+                        'militar_id',
+                        'excluido',
+                        'mes',
+                        'ano',
+                        'referencia',
+                        'documento_origem',
+                        'boletim',
+                        'ciente',
+                        'documento',
+                        'unidade',
+                        'excecao_id',
+                        'controle_sistema_cadastramento_ferias',
+                        'observacao'
                     ]
                 );
             }

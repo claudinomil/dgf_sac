@@ -144,11 +144,8 @@ class MilitarContatoRepository
                 'quadros.especialidade as militarQuadroEspecialidadeName'
             );
 
-
-
         // Permissão Situação do Militar
-        // $query->whereIn('militares.situacao_id', retornaArrayCampoGruposPermissoesSituacoes('militares_permissoes_list_situacoes_ids'));
-
+        $query->whereIn('militares.situacao_id', retornaArrayCampoGruposPermissoesSituacoes('militares_contatos_permissoes_list_situacoes_ids'));
 
         return $query->find($id);
     }

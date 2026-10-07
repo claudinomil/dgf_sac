@@ -33,7 +33,7 @@ class MilitarCursoController extends Controller
             // Definir CRUD Sessions
             setCrudSessions('militares_cursos');
 
-            $cursos = $this->cursoService->getCursos();
+            $cursos = $this->cursoService->getCursos(99999);
 
             return view('militares_cursos.index', compact(['cursos']));
         }

@@ -151,11 +151,8 @@ class MilitarAjudaCustoRepository
                 'ajuda_custo_tipos.name as ajudaCustoTipoName'
             );
 
-
-
         // Permissão Situação do Militar
-        // $query->whereIn('militares.situacao_id', retornaArrayCampoGruposPermissoesSituacoes('militares_permissoes_list_situacoes_ids'));
-
+        $query->whereIn('militares.situacao_id', retornaArrayCampoGruposPermissoesSituacoes('militares_ajudas_custos_permissoes_list_situacoes_ids'));
 
         return $query->find($id);
     }

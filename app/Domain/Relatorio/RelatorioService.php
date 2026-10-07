@@ -74,4 +74,9 @@ class RelatorioService
     {
         return $this->repository->relatorio_12($request, $situacoes, $graduacoes, $unidades, $quadros, $comportamentos);
     }
+
+    public function getRelatorio13(int $militar_id)
+    {
+        return $this->repository->relatorio_13($militar_id);
+    }
 }

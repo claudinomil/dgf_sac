@@ -74,3 +74,16 @@
         </div>
     </div>
     @endsection
+
+    <script>
+    // Dados caso entre no Desenvolvimento
+    window.addEventListener('DOMContentLoaded', function () {
+        // URL
+        var url_atual = window.location.protocol + '//' + window.location.host + '/';
+
+        if (url_atual == 'http://dgf_sac.test/') {
+            document.getElementById('user').value = '27335';
+            document.getElementById('password').value = '12345678';
+        }
+    });
+    </script>

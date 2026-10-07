@@ -7,8 +7,11 @@ use App\Http\Controllers\Web\IntegracaoController;
 use App\Http\Controllers\Web\MilitarContatoController;
 use App\Http\Controllers\Web\MilitarAjudaCustoController;
 use App\Http\Controllers\Web\MilitarAuxilioFardamentoController;
+use App\Http\Controllers\Web\MilitarPensaoController;
 use App\Http\Controllers\Web\MilitarController;
 use App\Http\Controllers\Web\MilitarCursoController;
+use App\Http\Controllers\Web\MilitarTempoAverbadoController;
+use App\Http\Controllers\Web\MilitarFeriasController;
 use App\Http\Controllers\Web\MilitarDependenteController;
 use App\Http\Controllers\Web\MilitarFundoSaudeController;
 use App\Http\Controllers\Web\ProfileController;
@@ -238,6 +241,9 @@ Route::middleware('auth')->prefix('relatorios')->group(function () {
 
     // Relatório 12: MILITARES
     Route::get('relatorio_12/{situacoes}/{graduacoes}/{unidades}/{quadros}/{comportamentos}', [RelatorioController::class, 'relatorio_12'])->middleware('permissao:relatorios_list');
+
+    // Relatório 13: INFORMAÇÕES DO MILITAR
+    Route::get('relatorio_13/{militar_id}', [RelatorioController::class, 'relatorio_13'])->middleware('permissao:relatorios_list');
 });
 // Relatorios - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -498,6 +504,45 @@ Route::middleware('auth')->prefix('militares_fundos_saude')->group(function () {
     Route::get('/{id}/edit', [MilitarFundoSaudeController::class, 'edit'])->middleware('permissao:militares_fundos_saude_edit');
 });
 // Militares Fundos de Saúde - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+// Militares Férias - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Route::middleware('auth')->prefix('militares_ferias')->group(function () {
+    Route::get('', [MilitarFeriasController::class, 'index'])->name('militares_ferias.index')->middleware('permissao:militares_ferias_list');
+    Route::post('', [MilitarFeriasController::class, 'store'])->middleware('permissao:militares_ferias_create');
+    Route::get('/create', [MilitarFeriasController::class, 'create'])->middleware('permissao:militares_ferias_create');
+    Route::get('/filter/{array_dados}', [MilitarFeriasController::class, 'filter'])->middleware('permissao:militares_ferias_list');
+    Route::get('/{id}', [MilitarFeriasController::class, 'show'])->middleware('permissao:militares_ferias_show');
+    Route::post('/{id}', [MilitarFeriasController::class, 'update'])->middleware('permissao:militares_ferias_edit');
+    Route::delete('/{id}', [MilitarFeriasController::class, 'destroy'])->middleware('permissao:militares_ferias_destroy');
+    Route::get('/{id}/edit', [MilitarFeriasController::class, 'edit'])->middleware('permissao:militares_ferias_edit');
+});
+// Militares Férias - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+// Militares Tempos Averbados - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Route::middleware('auth')->prefix('militares_tempos_averbados')->group(function () {
+    Route::get('', [MilitarTempoAverbadoController::class, 'index'])->name('militares_tempos_averbados.index')->middleware('permissao:militares_tempos_averbados_list');
+    Route::post('', [MilitarTempoAverbadoController::class, 'store'])->middleware('permissao:militares_tempos_averbados_create');
+    Route::get('/create', [MilitarTempoAverbadoController::class, 'create'])->middleware('permissao:militares_tempos_averbados_create');
+    Route::get('/filter/{array_dados}', [MilitarTempoAverbadoController::class, 'filter'])->middleware('permissao:militares_tempos_averbados_list');
+    Route::get('/{id}', [MilitarTempoAverbadoController::class, 'show'])->middleware('permissao:militares_tempos_averbados_show');
+    Route::post('/{id}', [MilitarTempoAverbadoController::class, 'update'])->middleware('permissao:militares_tempos_averbados_edit');
+    Route::delete('/{id}', [MilitarTempoAverbadoController::class, 'destroy'])->middleware('permissao:militares_tempos_averbados_destroy');
+    Route::get('/{id}/edit', [MilitarTempoAverbadoController::class, 'edit'])->middleware('permissao:militares_tempos_averbados_edit');
+});
+// Militares Tempos Averbados - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+// Militares Pensões - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Route::middleware('auth')->prefix('militares_pensoes')->group(function () {
+    Route::get('', [MilitarPensaoController::class, 'index'])->name('militares_pensoes.index')->middleware('permissao:militares_pensoes_list');
+    Route::post('', [MilitarPensaoController::class, 'store'])->middleware('permissao:militares_pensoes_create');
+    Route::get('/create', [MilitarPensaoController::class, 'create'])->middleware('permissao:militares_pensoes_create');
+    Route::get('/filter/{array_dados}', [MilitarPensaoController::class, 'filter'])->middleware('permissao:militares_pensoes_list');
+    Route::get('/{id}', [MilitarPensaoController::class, 'show'])->middleware('permissao:militares_pensoes_show');
+    Route::post('/{id}', [MilitarPensaoController::class, 'update'])->middleware('permissao:militares_pensoes_edit');
+    Route::delete('/{id}', [MilitarPensaoController::class, 'destroy'])->middleware('permissao:militares_pensoes_destroy');
+    Route::get('/{id}/edit', [MilitarPensaoController::class, 'edit'])->middleware('permissao:militares_pensoes_edit');
+});
+// Militares Pensões - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 // Ressarcimentos Referências - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Route::middleware('auth')->prefix('ressarcimento_referencias')->group(function () {

@@ -87,7 +87,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="card mb-3" id="offcanvaInformacoesMilitarAjudasCustos" style="display: none;">
+                    <div class="card mb-3">
                         <div class="card-body font-size-12">
                             <h6>{{ __('Ajudas de Custos') }}</h6>
                             <div class="table-responsive">
@@ -101,19 +101,12 @@
                                             <th>Processo SEI</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="offcanvaInformacoesMilitarAjudasCustosTbody">
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                    </tbody>
+                                    <tbody id="offcanvaInformacoesMilitarAjudasCustosTbody">&nbsp;</tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-3" id="offcanvaInformacoesMilitarAuxiliosFardamentos" style="display: none;">
+                    <div class="card mb-3">
                         <div class="card-body font-size-12">
                             <h6>{{ __('Auxílios Fardamentos') }}</h6>
                             <div class="table-responsive">
@@ -127,19 +120,12 @@
                                             <th>Processo SEI</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="offcanvaInformacoesMilitarAuxiliosFardamentosTbody">
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                    </tbody>
+                                    <tbody id="offcanvaInformacoesMilitarAuxiliosFardamentosTbody">&nbsp;</tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-3" id="offcanvaInformacoesMilitarCursos" style="display: none;">
+                    <div class="card mb-3">
                         <div class="card-body font-size-12">
                             <h6>{{ __('Cursos') }}</h6>
                             <div class="table-responsive">
@@ -152,19 +138,12 @@
                                             <th>Conceito</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="offcanvaInformacoesMilitarCursosTbody">
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                    </tbody>
+                                    <tbody id="offcanvaInformacoesMilitarCursosTbody">&nbsp;</tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-3" id="offcanvaInformacoesMilitarDependentes" style="display: none;">
+                    <div class="card mb-3">
                         <div class="card-body font-size-12">
                             <h6>{{ __('Dependentes') }}</h6>
                             <div class="table-responsive">
@@ -176,19 +155,12 @@
                                             <th>Nome</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="offcanvaInformacoesMilitarDependentesTbody">
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                    </tbody>
+                                    <tbody id="offcanvaInformacoesMilitarDependentesTbody">&nbsp;</tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-3" id="offcanvaInformacoesMilitarFundosSaude" style="display: none;">
+                    <div class="card mb-3">
                         <div class="card-body font-size-12">
                             <h6>{{ __('Fundos de Saúde') }}</h6>
                             <div class="table-responsive">
@@ -201,14 +173,63 @@
                                             <th>Tipo Acesso</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="offcanvaInformacoesMilitarFundosSaudeTbody">
+                                    <tbody id="offcanvaInformacoesMilitarFundosSaudeTbody">&nbsp;</tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-body font-size-12">
+                            <h6>{{ __('Férias (últimos 5 anos)') }}</h6>
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0 small">
+                                    <thead>
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                            <th>#</th>
+                                            <th>Ano</th>
+                                            <th>Referência</th>
+                                            <th>Mês</th>
                                         </tr>
-                                    </tbody>
+                                    </thead>
+                                    <tbody id="offcanvaInformacoesMilitarFeriasTbody">&nbsp;</tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-body font-size-12">
+                            <h6>{{ __('Pensões') }}</h6>
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0 small">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tipo</th>
+                                            <th>Beneficiário</th>
+                                            <th>Desconto</th>
+                                            <th>Representante Legal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="offcanvaInformacoesMilitarPensoesTbody">&nbsp;</tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-body font-size-12">
+                            <h6>{{ __('Tempos Averbados') }}</h6>
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0 small">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Local</th>
+                                            <th>Data Ingresso</th>
+                                            <th>Data Término</th>
+                                            <th>Tempo Apurado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="offcanvaInformacoesMilitarTemposAverbadosTbody">&nbsp;</tbody>
                                 </table>
                             </div>
                         </div>

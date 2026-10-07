@@ -19,11 +19,13 @@ use App\Models\Militar;
 use App\Models\Nacionalidade;
 use App\Models\Naturalidade;
 use App\Models\Parentesco;
+use App\Models\PensaoTipo;
 use App\Models\Poder;
 use App\Models\Quadro;
 use App\Models\RessarcimentoOrgao;
 use App\Models\SexoBiologico;
 use App\Models\Situacao;
+use App\Models\TempoAverbadoLocal;
 use App\Models\TipoSanguineo;
 use App\Models\Transacao;
 use App\Models\Tratamento;
@@ -359,6 +361,18 @@ class TransacaoRepository
             if ($model_id == 3) {return 'ÓRGÃO EXTERNO';}
             if ($model_id == 4) {return 'SAÚDE';}
 
+            return '';
+        }
+
+        if ($model_op == 37) {
+            $registro = TempoAverbadoLocal::find($model_id);
+            if ($registro) {return $registro->name;}
+            return '';
+        }
+        
+        if ($model_op == 38) {
+            $registro = PensaoTipo::find($model_id);
+            if ($registro) {return $registro->name;}
             return '';
         }
     }

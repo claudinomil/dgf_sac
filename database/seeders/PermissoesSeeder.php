@@ -213,5 +213,26 @@ class PermissoesSeeder extends Seeder
         Permissao::create(['id' => 160, 'submodulo_id' => 34, 'name' => 'cursos_show']);
         Permissao::create(['id' => 161, 'submodulo_id' => 34, 'name' => 'cursos_edit']);
         Permissao::create(['id' => 162, 'submodulo_id' => 34, 'name' => 'cursos_destroy']);
+
+        // Militares Férias
+        Permissao::create(['id' => 163, 'submodulo_id' => 20, 'name' => 'militares_ferias_list']);
+        Permissao::create(['id' => 164, 'submodulo_id' => 20, 'name' => 'militares_ferias_create']);
+        Permissao::create(['id' => 165, 'submodulo_id' => 20, 'name' => 'militares_ferias_show']);
+        Permissao::create(['id' => 166, 'submodulo_id' => 20, 'name' => 'militares_ferias_edit']);
+        Permissao::create(['id' => 167, 'submodulo_id' => 20, 'name' => 'militares_ferias_destroy']);
+
+        // Militares Tempos Averbados
+        Permissao::create(['id' => 168, 'submodulo_id' => 22, 'name' => 'militares_tempos_averbados_list']);
+        Permissao::create(['id' => 169, 'submodulo_id' => 22, 'name' => 'militares_tempos_averbados_create']);
+        Permissao::create(['id' => 170, 'submodulo_id' => 22, 'name' => 'militares_tempos_averbados_show']);
+        Permissao::create(['id' => 171, 'submodulo_id' => 22, 'name' => 'militares_tempos_averbados_edit']);
+        Permissao::create(['id' => 172, 'submodulo_id' => 22, 'name' => 'militares_tempos_averbados_destroy']);
+
+        // Militares Pensões
+        Permissao::create(['id' => 173, 'submodulo_id' => 21, 'name' => 'militares_pensoes_list']);
+        Permissao::create(['id' => 174, 'submodulo_id' => 21, 'name' => 'militares_pensoes_create']);
+        Permissao::create(['id' => 175, 'submodulo_id' => 21, 'name' => 'militares_pensoes_show']);
+        Permissao::create(['id' => 176, 'submodulo_id' => 21, 'name' => 'militares_pensoes_edit']);
+        Permissao::create(['id' => 177, 'submodulo_id' => 21, 'name' => 'militares_pensoes_destroy']);
     }
 }

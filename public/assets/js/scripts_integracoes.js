@@ -136,6 +136,9 @@ async function impsacQuantidadesBancos() {
     const tabpar_quantidade_banco_1 = document.getElementById('tabpar_quantidade_banco_1');
     const tabpar_quantidade_banco_2 = document.getElementById('tabpar_quantidade_banco_2');
 
+    const tabtal_quantidade_banco_1 = document.getElementById('tabtal_quantidade_banco_1');
+    const tabtal_quantidade_banco_2 = document.getElementById('tabtal_quantidade_banco_2');
+
     const tabmde1_quantidade_banco_1 = document.getElementById('tabmde1_quantidade_banco_1');
     const tabmde1_quantidade_banco_2 = document.getElementById('tabmde1_quantidade_banco_2');
 
@@ -156,6 +159,135 @@ async function impsacQuantidadesBancos() {
 
     const tabmde7_quantidade_banco_1 = document.getElementById('tabmde7_quantidade_banco_1');
     const tabmde7_quantidade_banco_2 = document.getElementById('tabmde7_quantidade_banco_2');
+
+    const tabmpe1_quantidade_banco_1 = document.getElementById('tabmpe1_quantidade_banco_1');
+    const tabmpe1_quantidade_banco_2 = document.getElementById('tabmpe1_quantidade_banco_2');
+
+    const tabmpe2_quantidade_banco_1 = document.getElementById('tabmpe2_quantidade_banco_1');
+    const tabmpe2_quantidade_banco_2 = document.getElementById('tabmpe2_quantidade_banco_2');
+
+    const tabmta_quantidade_banco_1 = document.getElementById('tabmta_quantidade_banco_1');
+    const tabmta_quantidade_banco_2 = document.getElementById('tabmta_quantidade_banco_2');
+
+    const tabmfe1_quantidade_banco_1 = document.getElementById('tabmfe1_quantidade_banco_1');
+    const tabmfe1_quantidade_banco_2 = document.getElementById('tabmfe1_quantidade_banco_2');
+
+    const tabmfe2_quantidade_banco_1 = document.getElementById('tabmfe2_quantidade_banco_1');
+    const tabmfe2_quantidade_banco_2 = document.getElementById('tabmfe2_quantidade_banco_2');
+
+    const tabmfe3_quantidade_banco_1 = document.getElementById('tabmfe3_quantidade_banco_1');
+    const tabmfe3_quantidade_banco_2 = document.getElementById('tabmfe3_quantidade_banco_2');
+
+    const tabmfe4_quantidade_banco_1 = document.getElementById('tabmfe4_quantidade_banco_1');
+    const tabmfe4_quantidade_banco_2 = document.getElementById('tabmfe4_quantidade_banco_2');
+
+    const tabmfe5_quantidade_banco_1 = document.getElementById('tabmfe5_quantidade_banco_1');
+    const tabmfe5_quantidade_banco_2 = document.getElementById('tabmfe5_quantidade_banco_2');
+
+    const tabmfe6_quantidade_banco_1 = document.getElementById('tabmfe6_quantidade_banco_1');
+    const tabmfe6_quantidade_banco_2 = document.getElementById('tabmfe6_quantidade_banco_2');
+
+    const tabmfe7_quantidade_banco_1 = document.getElementById('tabmfe7_quantidade_banco_1');
+    const tabmfe7_quantidade_banco_2 = document.getElementById('tabmfe7_quantidade_banco_2');
+
+    const tabmfe8_quantidade_banco_1 = document.getElementById('tabmfe8_quantidade_banco_1');
+    const tabmfe8_quantidade_banco_2 = document.getElementById('tabmfe8_quantidade_banco_2');
+
+    const tabmfe9_quantidade_banco_1 = document.getElementById('tabmfe9_quantidade_banco_1');
+    const tabmfe9_quantidade_banco_2 = document.getElementById('tabmfe9_quantidade_banco_2');
+
+    const tabmfe10_quantidade_banco_1 = document.getElementById('tabmfe10_quantidade_banco_1');
+    const tabmfe10_quantidade_banco_2 = document.getElementById('tabmfe10_quantidade_banco_2');
+
+    const tabmfe11_quantidade_banco_1 = document.getElementById('tabmfe11_quantidade_banco_1');
+    const tabmfe11_quantidade_banco_2 = document.getElementById('tabmfe11_quantidade_banco_2');
+
+    const tabmfe12_quantidade_banco_1 = document.getElementById('tabmfe12_quantidade_banco_1');
+    const tabmfe12_quantidade_banco_2 = document.getElementById('tabmfe12_quantidade_banco_2');
+
+    const tabmfe13_quantidade_banco_1 = document.getElementById('tabmfe13_quantidade_banco_1');
+    const tabmfe13_quantidade_banco_2 = document.getElementById('tabmfe13_quantidade_banco_2');
+
+    const tabmfe14_quantidade_banco_1 = document.getElementById('tabmfe14_quantidade_banco_1');
+    const tabmfe14_quantidade_banco_2 = document.getElementById('tabmfe14_quantidade_banco_2');
+
+    const tabmfe15_quantidade_banco_1 = document.getElementById('tabmfe15_quantidade_banco_1');
+    const tabmfe15_quantidade_banco_2 = document.getElementById('tabmfe15_quantidade_banco_2');
+
+    const tabmfe16_quantidade_banco_1 = document.getElementById('tabmfe16_quantidade_banco_1');
+    const tabmfe16_quantidade_banco_2 = document.getElementById('tabmfe16_quantidade_banco_2');
+
+    const tabmfe17_quantidade_banco_1 = document.getElementById('tabmfe17_quantidade_banco_1');
+    const tabmfe17_quantidade_banco_2 = document.getElementById('tabmfe17_quantidade_banco_2');
+
+    const tabmfe18_quantidade_banco_1 = document.getElementById('tabmfe18_quantidade_banco_1');
+    const tabmfe18_quantidade_banco_2 = document.getElementById('tabmfe18_quantidade_banco_2');
+
+    const tabmfe19_quantidade_banco_1 = document.getElementById('tabmfe19_quantidade_banco_1');
+    const tabmfe19_quantidade_banco_2 = document.getElementById('tabmfe19_quantidade_banco_2');
+
+    const tabmfe20_quantidade_banco_1 = document.getElementById('tabmfe20_quantidade_banco_1');
+    const tabmfe20_quantidade_banco_2 = document.getElementById('tabmfe20_quantidade_banco_2');
+
+    const tabmfe21_quantidade_banco_1 = document.getElementById('tabmfe21_quantidade_banco_1');
+    const tabmfe21_quantidade_banco_2 = document.getElementById('tabmfe21_quantidade_banco_2');
+
+    const tabmfe22_quantidade_banco_1 = document.getElementById('tabmfe22_quantidade_banco_1');
+    const tabmfe22_quantidade_banco_2 = document.getElementById('tabmfe22_quantidade_banco_2');
+
+    const tabmfe23_quantidade_banco_1 = document.getElementById('tabmfe23_quantidade_banco_1');
+    const tabmfe23_quantidade_banco_2 = document.getElementById('tabmfe23_quantidade_banco_2');
+
+    const tabmfe24_quantidade_banco_1 = document.getElementById('tabmfe24_quantidade_banco_1');
+    const tabmfe24_quantidade_banco_2 = document.getElementById('tabmfe24_quantidade_banco_2');
+
+    const tabmfe25_quantidade_banco_1 = document.getElementById('tabmfe25_quantidade_banco_1');
+    const tabmfe25_quantidade_banco_2 = document.getElementById('tabmfe25_quantidade_banco_2');
+
+    const tabmfe26_quantidade_banco_1 = document.getElementById('tabmfe26_quantidade_banco_1');
+    const tabmfe26_quantidade_banco_2 = document.getElementById('tabmfe26_quantidade_banco_2');
+
+    const tabmfe27_quantidade_banco_1 = document.getElementById('tabmfe27_quantidade_banco_1');
+    const tabmfe27_quantidade_banco_2 = document.getElementById('tabmfe27_quantidade_banco_2');
+
+    const tabmfe28_quantidade_banco_1 = document.getElementById('tabmfe28_quantidade_banco_1');
+    const tabmfe28_quantidade_banco_2 = document.getElementById('tabmfe28_quantidade_banco_2');
+
+    const tabmfe29_quantidade_banco_1 = document.getElementById('tabmfe29_quantidade_banco_1');
+    const tabmfe29_quantidade_banco_2 = document.getElementById('tabmfe29_quantidade_banco_2');
+
+    const tabmfe30_quantidade_banco_1 = document.getElementById('tabmfe30_quantidade_banco_1');
+    const tabmfe30_quantidade_banco_2 = document.getElementById('tabmfe30_quantidade_banco_2');
+
+    const tabmfe31_quantidade_banco_1 = document.getElementById('tabmfe31_quantidade_banco_1');
+    const tabmfe31_quantidade_banco_2 = document.getElementById('tabmfe31_quantidade_banco_2');
+
+    const tabmfe32_quantidade_banco_1 = document.getElementById('tabmfe32_quantidade_banco_1');
+    const tabmfe32_quantidade_banco_2 = document.getElementById('tabmfe32_quantidade_banco_2');
+
+    const tabmfe33_quantidade_banco_1 = document.getElementById('tabmfe33_quantidade_banco_1');
+    const tabmfe33_quantidade_banco_2 = document.getElementById('tabmfe33_quantidade_banco_2');
+
+    const tabmfe34_quantidade_banco_1 = document.getElementById('tabmfe34_quantidade_banco_1');
+    const tabmfe34_quantidade_banco_2 = document.getElementById('tabmfe34_quantidade_banco_2');
+
+    const tabmfe35_quantidade_banco_1 = document.getElementById('tabmfe35_quantidade_banco_1');
+    const tabmfe35_quantidade_banco_2 = document.getElementById('tabmfe35_quantidade_banco_2');
+
+    const tabmfe36_quantidade_banco_1 = document.getElementById('tabmfe36_quantidade_banco_1');
+    const tabmfe36_quantidade_banco_2 = document.getElementById('tabmfe36_quantidade_banco_2');
+
+    const tabmfe37_quantidade_banco_1 = document.getElementById('tabmfe37_quantidade_banco_1');
+    const tabmfe37_quantidade_banco_2 = document.getElementById('tabmfe37_quantidade_banco_2');
+
+    const tabmfe38_quantidade_banco_1 = document.getElementById('tabmfe38_quantidade_banco_1');
+    const tabmfe38_quantidade_banco_2 = document.getElementById('tabmfe38_quantidade_banco_2');
+
+    const tabmfe39_quantidade_banco_1 = document.getElementById('tabmfe39_quantidade_banco_1');
+    const tabmfe39_quantidade_banco_2 = document.getElementById('tabmfe39_quantidade_banco_2');
+
+    const tabmfe40_quantidade_banco_1 = document.getElementById('tabmfe40_quantidade_banco_1');
+    const tabmfe40_quantidade_banco_2 = document.getElementById('tabmfe40_quantidade_banco_2');
 
     const int_quantidade_banco_1 = document.getElementById('int_quantidade_banco_1');
     const int_quantidade_banco_2 = document.getElementById('int_quantidade_banco_2');
@@ -260,6 +392,9 @@ async function impsacQuantidadesBancos() {
     tabpar_quantidade_banco_1.innerText = 'null';
     tabpar_quantidade_banco_2.innerText = 'null';
 
+    tabtal_quantidade_banco_1.innerText = 'null';
+    tabtal_quantidade_banco_2.innerText = 'null';
+
     tabmde1_quantidade_banco_1.innerText = 'null';
     tabmde1_quantidade_banco_2.innerText = 'null';
 
@@ -280,6 +415,135 @@ async function impsacQuantidadesBancos() {
 
     tabmde7_quantidade_banco_1.innerText = 'null';
     tabmde7_quantidade_banco_2.innerText = 'null';
+
+    tabmpe1_quantidade_banco_1.innerText = 'null';
+    tabmpe1_quantidade_banco_2.innerText = 'null';
+
+    tabmpe2_quantidade_banco_1.innerText = 'null';
+    tabmpe2_quantidade_banco_2.innerText = 'null';
+
+    tabmta_quantidade_banco_1.innerText = 'null';
+    tabmta_quantidade_banco_2.innerText = 'null';
+
+    tabmfe1_quantidade_banco_1.innerText = 'null';
+    tabmfe1_quantidade_banco_2.innerText = 'null';
+
+    tabmfe2_quantidade_banco_1.innerText = 'null';
+    tabmfe2_quantidade_banco_2.innerText = 'null';
+
+    tabmfe3_quantidade_banco_1.innerText = 'null';
+    tabmfe3_quantidade_banco_2.innerText = 'null';
+
+    tabmfe4_quantidade_banco_1.innerText = 'null';
+    tabmfe4_quantidade_banco_2.innerText = 'null';
+
+    tabmfe5_quantidade_banco_1.innerText = 'null';
+    tabmfe5_quantidade_banco_2.innerText = 'null';
+
+    tabmfe6_quantidade_banco_1.innerText = 'null';
+    tabmfe6_quantidade_banco_2.innerText = 'null';
+
+    tabmfe7_quantidade_banco_1.innerText = 'null';
+    tabmfe7_quantidade_banco_2.innerText = 'null';
+
+    tabmfe8_quantidade_banco_1.innerText = 'null';
+    tabmfe8_quantidade_banco_2.innerText = 'null';
+
+    tabmfe9_quantidade_banco_1.innerText = 'null';
+    tabmfe9_quantidade_banco_2.innerText = 'null';
+
+    tabmfe10_quantidade_banco_1.innerText = 'null';
+    tabmfe10_quantidade_banco_2.innerText = 'null';
+
+    tabmfe11_quantidade_banco_1.innerText = 'null';
+    tabmfe11_quantidade_banco_2.innerText = 'null';
+
+    tabmfe12_quantidade_banco_1.innerText = 'null';
+    tabmfe12_quantidade_banco_2.innerText = 'null';
+
+    tabmfe13_quantidade_banco_1.innerText = 'null';
+    tabmfe13_quantidade_banco_2.innerText = 'null';
+
+    tabmfe14_quantidade_banco_1.innerText = 'null';
+    tabmfe14_quantidade_banco_2.innerText = 'null';
+
+    tabmfe15_quantidade_banco_1.innerText = 'null';
+    tabmfe15_quantidade_banco_2.innerText = 'null';
+
+    tabmfe16_quantidade_banco_1.innerText = 'null';
+    tabmfe16_quantidade_banco_2.innerText = 'null';
+
+    tabmfe17_quantidade_banco_1.innerText = 'null';
+    tabmfe17_quantidade_banco_2.innerText = 'null';
+
+    tabmfe18_quantidade_banco_1.innerText = 'null';
+    tabmfe18_quantidade_banco_2.innerText = 'null';
+
+    tabmfe19_quantidade_banco_1.innerText = 'null';
+    tabmfe19_quantidade_banco_2.innerText = 'null';
+
+    tabmfe20_quantidade_banco_1.innerText = 'null';
+    tabmfe20_quantidade_banco_2.innerText = 'null';
+
+    tabmfe21_quantidade_banco_1.innerText = 'null';
+    tabmfe21_quantidade_banco_2.innerText = 'null';
+
+    tabmfe22_quantidade_banco_1.innerText = 'null';
+    tabmfe22_quantidade_banco_2.innerText = 'null';
+
+    tabmfe23_quantidade_banco_1.innerText = 'null';
+    tabmfe23_quantidade_banco_2.innerText = 'null';
+
+    tabmfe24_quantidade_banco_1.innerText = 'null';
+    tabmfe24_quantidade_banco_2.innerText = 'null';
+
+    tabmfe25_quantidade_banco_1.innerText = 'null';
+    tabmfe25_quantidade_banco_2.innerText = 'null';
+
+    tabmfe26_quantidade_banco_1.innerText = 'null';
+    tabmfe26_quantidade_banco_2.innerText = 'null';
+
+    tabmfe27_quantidade_banco_1.innerText = 'null';
+    tabmfe27_quantidade_banco_2.innerText = 'null';
+
+    tabmfe28_quantidade_banco_1.innerText = 'null';
+    tabmfe28_quantidade_banco_2.innerText = 'null';
+
+    tabmfe29_quantidade_banco_1.innerText = 'null';
+    tabmfe29_quantidade_banco_2.innerText = 'null';
+
+    tabmfe30_quantidade_banco_1.innerText = 'null';
+    tabmfe30_quantidade_banco_2.innerText = 'null';
+
+    tabmfe31_quantidade_banco_1.innerText = 'null';
+    tabmfe31_quantidade_banco_2.innerText = 'null';
+
+    tabmfe32_quantidade_banco_1.innerText = 'null';
+    tabmfe32_quantidade_banco_2.innerText = 'null';
+
+    tabmfe33_quantidade_banco_1.innerText = 'null';
+    tabmfe33_quantidade_banco_2.innerText = 'null';
+
+    tabmfe34_quantidade_banco_1.innerText = 'null';
+    tabmfe34_quantidade_banco_2.innerText = 'null';
+
+    tabmfe35_quantidade_banco_1.innerText = 'null';
+    tabmfe35_quantidade_banco_2.innerText = 'null';
+
+    tabmfe36_quantidade_banco_1.innerText = 'null';
+    tabmfe36_quantidade_banco_2.innerText = 'null';
+
+    tabmfe37_quantidade_banco_1.innerText = 'null';
+    tabmfe37_quantidade_banco_2.innerText = 'null';
+
+    tabmfe38_quantidade_banco_1.innerText = 'null';
+    tabmfe38_quantidade_banco_2.innerText = 'null';
+
+    tabmfe39_quantidade_banco_1.innerText = 'null';
+    tabmfe39_quantidade_banco_2.innerText = 'null';
+
+    tabmfe40_quantidade_banco_1.innerText = 'null';
+    tabmfe40_quantidade_banco_2.innerText = 'null';
 
     int_quantidade_banco_1.innerText = 'null';
     int_quantidade_banco_2.innerText = 'null';
@@ -395,6 +659,9 @@ async function impsacQuantidadesBancos() {
             tabpar_quantidade_banco_1.innerText = data.success.totais_banco_1.total_parentescos;
             tabpar_quantidade_banco_2.innerText = data.success.totais_banco_2.total_parentescos;
 
+            tabtal_quantidade_banco_1.innerText = data.success.totais_banco_1.total_tempos_averbados_locais;
+            tabtal_quantidade_banco_2.innerText = data.success.totais_banco_2.total_tempos_averbados_locais;
+
             tabmde1_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_dependentes;
             tabmde1_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_dependentes;
 
@@ -415,6 +682,135 @@ async function impsacQuantidadesBancos() {
 
             tabmde7_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_dependentes;
             tabmde7_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_dependentes;
+
+            tabmfe1_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe1_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe2_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe2_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe3_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe3_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe4_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe4_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe5_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe5_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe6_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe6_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe7_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe7_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe8_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe8_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe9_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe9_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe10_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe10_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe11_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe11_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe12_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe12_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe13_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe13_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe14_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe14_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe15_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe15_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe16_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe16_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe17_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe17_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe18_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe18_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe19_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe19_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe20_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe20_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe21_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe21_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe22_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe22_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe23_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe23_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe24_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe24_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe25_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe25_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe26_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe26_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe27_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe27_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe28_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe28_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe29_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe29_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe30_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe30_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe31_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe31_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe32_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe32_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe33_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe33_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe34_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe34_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe35_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe35_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe36_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe36_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe37_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe37_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe38_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe38_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe39_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe39_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmfe40_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_ferias;
+            tabmfe40_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_ferias;
+
+            tabmpe1_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_pensoes;
+            tabmpe1_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_pensoes;
+
+            tabmpe2_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_pensoes;
+            tabmpe2_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_pensoes;
+
+            tabmta_quantidade_banco_1.innerText = data.success.totais_banco_1.total_militares_tempos_averbados;
+            tabmta_quantidade_banco_2.innerText = data.success.totais_banco_2.total_militares_tempos_averbados;
 
             let quantidade_banco_1 = Number(data.success.totais_banco_1.total_situacoes) +
                 Number(data.success.totais_banco_1.total_graduacoes) +
@@ -439,7 +835,11 @@ async function impsacQuantidadesBancos() {
                 Number(data.success.totais_banco_1.total_militares_fundos_saude_controle) +
                 Number(data.success.totais_banco_1.total_militares_fundos_saude_adesao) +
                 Number(data.success.totais_banco_1.total_parentescos) +
-                Number(data.success.totais_banco_1.total_militares_dependentes);
+                Number(data.success.totais_banco_1.total_militares_dependentes) +
+                Number(data.success.totais_banco_1.total_militares_ferias) +
+                Number(data.success.totais_banco_1.total_tempos_averbados_locais) +
+                Number(data.success.totais_banco_1.total_militares_tempos_averbados) +
+                Number(data.success.totais_banco_1.total_militares_pensoes);
 
             int_quantidade_banco_1.innerText = quantidade_banco_1;
 
@@ -466,7 +866,11 @@ async function impsacQuantidadesBancos() {
                 Number(data.success.totais_banco_2.total_militares_fundos_saude_controle) +
                 Number(data.success.totais_banco_2.total_militares_fundos_saude_adesao) +
                 Number(data.success.totais_banco_2.total_parentescos) +
-                Number(data.success.totais_banco_2.total_militares_dependentes);
+                Number(data.success.totais_banco_2.total_militares_dependentes) +
+                Number(data.success.totais_banco_2.total_militares_ferias) +
+                Number(data.success.totais_banco_2.total_tempos_averbados_locais) +
+                Number(data.success.totais_banco_2.total_militares_tempos_averbados) +
+                Number(data.success.totais_banco_2.total_militares_pensoes);
 
             int_quantidade_banco_2.innerText = quantidade_banco_2;
         } else {
@@ -571,6 +975,9 @@ async function impsacIntegrarBancos() {
         // Parentescos
         await impsacAtualizarDados('parentescos');
 
+        // Tempos Averbados Locais
+        await impsacAtualizarDados('tempos_averbados_locais');
+
         // Militares 1
         await impsacAtualizarDados('militares_1');
 
@@ -657,6 +1064,135 @@ async function impsacIntegrarBancos() {
 
         // Militares Dependentes 7
         await impsacAtualizarDados('militares_dependentes_7');
+
+        // Militares Tempos Averbados
+        await impsacAtualizarDados('militares_tempos_averbados');
+
+        // Militares Pensoes 1
+        await impsacAtualizarDados('militares_pensoes_1');
+
+        // Militares Pensoes 2
+        await impsacAtualizarDados('militares_pensoes_2');
+
+        // Militares Férias 1
+        await impsacAtualizarDados('militares_ferias_1');
+
+        // Militares Férias 2
+        await impsacAtualizarDados('militares_ferias_2');
+
+        // Militares Férias 3
+        await impsacAtualizarDados('militares_ferias_3');
+
+        // Militares Férias 4
+        await impsacAtualizarDados('militares_ferias_4');
+
+        // Militares Férias 5
+        await impsacAtualizarDados('militares_ferias_5');
+
+        // Militares Férias 6
+        await impsacAtualizarDados('militares_ferias_6');
+
+        // Militares Férias 7
+        await impsacAtualizarDados('militares_ferias_7');
+
+        // Militares Férias 8
+        await impsacAtualizarDados('militares_ferias_8');
+
+        // Militares Férias 9
+        await impsacAtualizarDados('militares_ferias_9');
+
+        // Militares Férias 10
+        await impsacAtualizarDados('militares_ferias_10');
+
+        // Militares Férias 11
+        await impsacAtualizarDados('militares_ferias_11');
+
+        // Militares Férias 12
+        await impsacAtualizarDados('militares_ferias_12');
+
+        // Militares Férias 13
+        await impsacAtualizarDados('militares_ferias_13');
+
+        // Militares Férias 14
+        await impsacAtualizarDados('militares_ferias_14');
+
+        // Militares Férias 15
+        await impsacAtualizarDados('militares_ferias_15');
+
+        // Militares Férias 16
+        await impsacAtualizarDados('militares_ferias_16');
+
+        // Militares Férias 17
+        await impsacAtualizarDados('militares_ferias_17');
+
+        // Militares Férias 18
+        await impsacAtualizarDados('militares_ferias_18');
+
+        // Militares Férias 19
+        await impsacAtualizarDados('militares_ferias_19');
+
+        // Militares Férias 20
+        await impsacAtualizarDados('militares_ferias_20');
+
+        // Militares Férias 21
+        await impsacAtualizarDados('militares_ferias_21');
+
+        // Militares Férias 22
+        await impsacAtualizarDados('militares_ferias_22');
+
+        // Militares Férias 23
+        await impsacAtualizarDados('militares_ferias_23');
+
+        // Militares Férias 24
+        await impsacAtualizarDados('militares_ferias_24');
+
+        // Militares Férias 25
+        await impsacAtualizarDados('militares_ferias_25');
+
+        // Militares Férias 26
+        await impsacAtualizarDados('militares_ferias_26');
+
+        // Militares Férias 27
+        await impsacAtualizarDados('militares_ferias_27');
+
+        // Militares Férias 28
+        await impsacAtualizarDados('militares_ferias_28');
+
+        // Militares Férias 29
+        await impsacAtualizarDados('militares_ferias_29');
+
+        // Militares Férias 30
+        await impsacAtualizarDados('militares_ferias_30');
+
+        // Militares Férias 31
+        await impsacAtualizarDados('militares_ferias_31');
+
+        // Militares Férias 32
+        await impsacAtualizarDados('militares_ferias_32');
+
+        // Militares Férias 33
+        await impsacAtualizarDados('militares_ferias_33');
+
+        // Militares Férias 34
+        await impsacAtualizarDados('militares_ferias_34');
+
+        // Militares Férias 35
+        await impsacAtualizarDados('militares_ferias_35');
+
+        // Militares Férias 36
+        await impsacAtualizarDados('militares_ferias_36');
+
+        // Militares Férias 37
+        await impsacAtualizarDados('militares_ferias_37');
+
+        // Militares Férias 38
+        await impsacAtualizarDados('militares_ferias_38');
+
+        // Militares Férias 39
+        await impsacAtualizarDados('militares_ferias_39');
+
+        // Militares Férias 40
+        await impsacAtualizarDados('militares_ferias_40');
     } catch (error) {
         console.error("Erro impsacIntegrarBancos:", error);
     } finally {

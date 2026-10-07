@@ -941,11 +941,8 @@ async function crudOffCanvaInformacoesMilitar(militar_id) {
             militarInformacaoPrestandoServico.innerText = militar.prestandoServicoName
 
             // Informações do Militar (Ajudas de Custos)
-            const offcanvaInformacoesMilitarAjudasCustos = document.getElementById('offcanvaInformacoesMilitarAjudasCustos');
             const offcanvaInformacoesMilitarAjudasCustosTbody = document.getElementById('offcanvaInformacoesMilitarAjudasCustosTbody');
             const militarAjudasCustos = data.success.militar_ajudas_custos ?? [];
-
-            offcanvaInformacoesMilitarAjudasCustos.style.display = militarAjudasCustos.length ? 'block' : 'none';
 
             var tbody = '';
 
@@ -964,14 +961,15 @@ async function crudOffCanvaInformacoesMilitar(militar_id) {
                         </tr>`;
             });
 
+            if (tbody === '') {
+                tbody = `<tr><td colspan="5">Nenhuma informação encontrada.</td></tr>`;
+            }
+
             offcanvaInformacoesMilitarAjudasCustosTbody.innerHTML = tbody;
 
             // Informações do Militar (Auxílios Fardamentos)
-            const offcanvaInformacoesMilitarAuxiliosFardamentos = document.getElementById('offcanvaInformacoesMilitarAuxiliosFardamentos');
             const offcanvaInformacoesMilitarAuxiliosFardamentosTbody = document.getElementById('offcanvaInformacoesMilitarAuxiliosFardamentosTbody');
             const militarAuxiliosFardamentos = data.success.militar_auxilios_fardamentos ?? [];
-
-            offcanvaInformacoesMilitarAuxiliosFardamentos.style.display = militarAuxiliosFardamentos.length ? 'block' : 'none';
 
             var tbody = '';
 
@@ -990,14 +988,15 @@ async function crudOffCanvaInformacoesMilitar(militar_id) {
                         </tr>`;
             });
 
+            if (tbody === '') {
+                tbody = `<tr><td colspan="5">Nenhuma informação encontrada.</td></tr>`;
+            }
+
             offcanvaInformacoesMilitarAuxiliosFardamentosTbody.innerHTML = tbody;
 
             // Informações do Militar (Cursos)
-            const offcanvaInformacoesMilitarCursos = document.getElementById('offcanvaInformacoesMilitarCursos');
             const offcanvaInformacoesMilitarCursosTbody = document.getElementById('offcanvaInformacoesMilitarCursosTbody');
             const militarCursos = data.success.militar_cursos ?? [];
-
-            offcanvaInformacoesMilitarCursos.style.display = militarCursos.length ? 'block' : 'none';
 
             var tbody = '';
 
@@ -1014,14 +1013,15 @@ async function crudOffCanvaInformacoesMilitar(militar_id) {
                         </tr>`;
             });
 
+            if (tbody === '') {
+                tbody = `<tr><td colspan="4">Nenhuma informação encontrada.</td></tr>`;
+            }
+
             offcanvaInformacoesMilitarCursosTbody.innerHTML = tbody;
 
             // Informações do Militar (Dependentes)
-            const offcanvaInformacoesMilitarDependentes = document.getElementById('offcanvaInformacoesMilitarDependentes');
             const offcanvaInformacoesMilitarDependentesTbody = document.getElementById('offcanvaInformacoesMilitarDependentesTbody');
             const militarDependentes = data.success.militar_dependentes ?? [];
-
-            offcanvaInformacoesMilitarDependentes.style.display = militarDependentes.length ? 'block' : 'none';
 
             var tbody = '';
 
@@ -1036,14 +1036,15 @@ async function crudOffCanvaInformacoesMilitar(militar_id) {
                         </tr>`;
             });
 
+            if (tbody === '') {
+                tbody = `<tr><td colspan="3">Nenhuma informação encontrada.</td></tr>`;
+            }
+
             offcanvaInformacoesMilitarDependentesTbody.innerHTML = tbody;
 
             // Informações do Militar (Fundos Saúde)
-            const offcanvaInformacoesMilitarFundosSaude = document.getElementById('offcanvaInformacoesMilitarFundosSaude');
             const offcanvaInformacoesMilitarFundosSaudeTbody = document.getElementById('offcanvaInformacoesMilitarFundosSaudeTbody');
             const militarFundosSaude = data.success.militar_fundos_saude ?? [];
-
-            offcanvaInformacoesMilitarFundosSaude.style.display = militarFundosSaude.length ? 'block' : 'none';
 
             var tbody = '';
 
@@ -1060,7 +1061,97 @@ async function crudOffCanvaInformacoesMilitar(militar_id) {
                         </tr>`;
             });
 
+            if (tbody === '') {
+                tbody = `<tr><td colspan="4">Nenhuma informação encontrada.</td></tr>`;
+            }
+
             offcanvaInformacoesMilitarFundosSaudeTbody.innerHTML = tbody;
+
+            // Informações do Militar (Férias)
+            const offcanvaInformacoesMilitarFeriasTbody = document.getElementById('offcanvaInformacoesMilitarFeriasTbody');
+            const militarFerias = data.success.militar_ferias ?? [];
+
+            var tbody = '';
+
+            // Variável para controlar a qtd de registros de férias que vai visualizar na grade
+            var qtd_reg = 0;
+
+            militarFerias.forEach((registro, index) => {
+                qtd_reg++;
+
+                if (qtd_reg <= 5) {
+                    const ano = registro.ano ?? '';
+                    const referencia = registro.referencia ?? '';
+                    const mes = `${registro.mes} (${getMes(1, registro.mes)})` ?? '';
+
+                    tbody += `<tr>
+                                <th scope="row">${index + 1}</th>
+                                <td>${ano}</td>
+                                <td>${referencia}</td>
+                                <td>${mes}</td>
+                        </tr>`;
+                }
+            });
+
+            if (tbody === '') {
+                tbody = `<tr><td colspan="3">Nenhuma informação encontrada.</td></tr>`;
+            }
+
+            offcanvaInformacoesMilitarFeriasTbody.innerHTML = tbody;
+
+            // Informações do Militar (Pensões)
+            const offcanvaInformacoesMilitarPensoesTbody = document.getElementById('offcanvaInformacoesMilitarPensoesTbody');
+            const militarPensoes = data.success.militar_pensoes ?? [];
+
+            var tbody = '';
+
+            militarPensoes.forEach((registro, index) => {
+                const pensao_tipo = registro.pensaoTipoName ?? '';
+                const beneficiario = registro.beneficiario ?? '';
+                const desconto = registro.desconto ?? '';
+                const representante_legal = registro.representante_legal ?? '';
+
+                tbody += `<tr>
+                            <th scope="row">${index + 1}</th>
+                            <td>${pensao_tipo}</td>
+                            <td>${beneficiario}</td>
+                            <td>${desconto}</td>
+                            <td>${representante_legal}</td>
+                        </tr>`;
+            });
+
+            if (tbody === '') {
+                tbody = `<tr><td colspan="5">Nenhuma informação encontrada.</td></tr>`;
+            }
+
+            offcanvaInformacoesMilitarPensoesTbody.innerHTML = tbody;
+
+            // Informações do Militar (Tempos Averbados)
+            const offcanvaInformacoesMilitarTemposAverbadosTbody = document.getElementById('offcanvaInformacoesMilitarTemposAverbadosTbody');
+            const militarTemposAverbados = data.success.militar_tempos_averbados ?? [];
+
+            var tbody = '';
+
+            militarTemposAverbados.forEach((registro, index) => {
+                const local = registro.tempoAverbadoLocalName ?? '';
+                const data_ingresso_local = registro.data_ingresso_local ?? '';
+                const data_termino_local = registro.data_termino_local ?? '';
+                const tempo_apurado_local = registro.tempo_apurado_local ?? '';
+
+                tbody += `<tr>
+                            <th scope="row">${index + 1}</th>
+                            <td>${local}</td>
+                            <td>${formatarData(2, data_ingresso_local)}</td>
+                            <td>${formatarData(2, data_termino_local)}</td>
+                            <td>${tempo_apurado_local}</td>
+                        </tr>`;
+            });
+
+            if (tbody === '') {
+                tbody = `<tr><td colspan="5">Nenhuma informação encontrada.</td></tr>`;
+            }
+
+            offcanvaInformacoesMilitarTemposAverbadosTbody.innerHTML = tbody;
         } else if (data.error) {
             alertSwal('warning', data.error, '', 'true', 3000);
         } else {

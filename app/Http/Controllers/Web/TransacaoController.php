@@ -140,6 +140,9 @@ class TransacaoController extends Controller
                             5   =>  ['militar_id'],         // Submódulo Militares Auxílios Fardamentos
                             16  =>  ['militar_id'],         // Submódulo Militares Dependentes
                             19  =>  ['militar_id'],         // Submódulo Militares Fundos Saúde
+                            20  =>  ['militar_id'],         // Submódulo Militares Férias
+                            21  =>  ['militar_id'],         // Submódulo Militares Pensões
+                            22  =>  ['militar_id'],         // Submódulo Militares Tempos Averbados
                             26  =>  ['name'],               // Submódulo Situações
                             27  =>  ['name'],               // Submódulo Graduações
                             28  =>  ['name'],               // Submódulo Quadros

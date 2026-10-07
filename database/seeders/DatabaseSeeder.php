@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AjudaCustoTiposSeeder::class,
             AuxilioFardamentoTiposSeeder::class,
+            PensaoTiposSeeder::class,
             GenerosSeeder::class,
             SetoresSeeder::class,
             ModulosSeeder::class,

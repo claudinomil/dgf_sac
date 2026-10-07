@@ -338,6 +338,78 @@ class TransacaoService
             ];
         }
 
+        // militares_ferias
+        if ($prefix_permissao == 'militares_ferias') {
+            $estruturas = [
+                ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
+                ['campo' => 'militar_id', 'etiqueta' => 'Militar', 'model_op' => '27', 'tipo' => 'string'],
+                ['campo' => 'mes', 'etiqueta' => 'Mês', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'ano', 'etiqueta' => 'Ano', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'referencia', 'etiqueta' => 'Referência', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'boletim', 'etiqueta' => 'Boletim', 'model_op' => '', 'tipo' => 'string']
+            ];
+        }
+
+        // militares_tempos_averbados
+        if ($prefix_permissao == 'militares_tempos_averbados') {
+            $estruturas = [
+                ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
+                ['campo' => 'militar_id', 'etiqueta' => 'Militar', 'model_op' => '27', 'tipo' => 'string'],
+                ['campo' => 'tempo_averbado_local_id', 'etiqueta' => 'Tempo Averbado Local', 'model_op' => '37', 'tipo' => 'string'],
+                ['campo' => 'data_ingresso_local', 'etiqueta' => 'Data Ingresso Local', 'model_op' => '', 'tipo' => 'date'],
+                ['campo' => 'data_termino_local', 'etiqueta' => 'Data Término Local', 'model_op' => '', 'tipo' => 'date'],
+                ['campo' => 'tempo_apurado_local', 'etiqueta' => 'Tempo Apurado Local', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'boletim', 'etiqueta' => 'Boletim', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'proderj_servico_publico', 'etiqueta' => 'PRODERJ Serviço Público', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'proderj_servico_publico_rj', 'etiqueta' => 'PRODERJ Serviço Público RJ', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'proderj_servico_cargo', 'etiqueta' => 'PRODERJ Serviço Cargo', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'proderj_controle', 'etiqueta' => 'PRODERJ Controle', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'lancado_proderj', 'etiqueta' => 'Lançado PRODERJ', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'observacao', 'etiqueta' => 'Observação', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'referencia_processo_sei', 'etiqueta' => 'Referência Processo SEI', 'model_op' => '', 'tipo' => 'string']
+            ];
+        }
+
+        // militares_pensoes
+        if ($prefix_permissao == 'militares_pensoes') {
+            $estruturas = [
+                ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
+                ['campo' => 'militar_id', 'etiqueta' => 'Militar', 'model_op' => '27', 'tipo' => 'string'],
+                ['campo' => 'pensao_tipo_id', 'etiqueta' => 'Pensão Tipo', 'model_op' => '38', 'tipo' => 'string'],
+                ['campo' => 'nome_militar', 'etiqueta' => 'Nome Militar', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'beneficiario', 'etiqueta' => 'Beneficiário', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'desconto', 'etiqueta' => 'Desconto', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'representante_legal', 'etiqueta' => 'Representante Legal', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'logradouro', 'etiqueta' => 'Logradouro', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'bairro', 'etiqueta' => 'Bairro', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'cidade', 'etiqueta' => 'Cidade', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'estado', 'etiqueta' => 'Estado', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'cep', 'etiqueta' => 'CEP', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'telefone', 'etiqueta' => 'Telefone', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'celular', 'etiqueta' => 'Celular', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'banco', 'etiqueta' => 'Banco', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'agencia', 'etiqueta' => 'Agência', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'conta_corrente', 'etiqueta' => 'Conta Corrente', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'cpf', 'etiqueta' => 'CPF', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'documento', 'etiqueta' => 'Documento', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'data_documento', 'etiqueta' => 'Data Documento', 'model_op' => '', 'tipo' => 'date'],
+                ['campo' => 'numero_processo', 'etiqueta' => 'Número Processo', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'vara_familia', 'etiqueta' => 'Vara Família', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'implantacao', 'etiqueta' => 'Implantação', 'model_op' => '', 'tipo' => 'date'],
+                ['campo' => 'nascimento', 'etiqueta' => 'Nascimento', 'model_op' => '', 'tipo' => 'date'],
+                ['campo' => 'cancelar_em', 'etiqueta' => 'Cancelar Em', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'alterar_em', 'etiqueta' => 'Alterar Em', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'nascimento_beneficiario', 'etiqueta' => 'Nascimento Beneficiário', 'model_op' => '', 'tipo' => 'date'],
+                ['campo' => 'cpf_beneficiario', 'etiqueta' => 'CPF Beneficiário', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'observacao', 'etiqueta' => 'Observação', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'pasta_dip', 'etiqueta' => 'Pasta DIP', 'model_op' => '', 'tipo' => 'string'],
+                ['campo' => 'referencia_processo_sei', 'etiqueta' => 'Referência Processo SEI', 'model_op' => '', 'tipo' => 'string']
+            ];
+        }
+
         // ressarcimento_referencias
         if ($prefix_permissao == 'ressarcimento_referencias') {
             $estruturas = [

@@ -956,6 +956,156 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Relatorio 13 -->
+    <div class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" id="modal_relatorio_13">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-size-12" id="modal_relatorio_13_titulo">Xxxxxxxxxxxx</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" name="frm_modal_relatorio_13" id="frm_modal_relatorio_13">
+                        <div class="form-group col-12 pb-3">
+                            <label class="form-label">Militar (Nome / RG / Id. Funcional)</label>
+                            <input type="text" class="form-control" id="pesquisar_militar" name="pesquisar_militar" value="{{ session('userContext.user.name') }}">
+                            <div id="autocomplete_militar" class="list-group position-absolute col-12 col-md-8" style="z-index:999;"></div>
+                            <input type="hidden" id="modal_relatorio_13_militar_id" name="modal_relatorio_13_militar_id" value="{{ session('userContext.user.militar_id') }}">
+                        </div>
+
+                        <div class="accordion accordion-flush" id="modal_relatorio_13_accordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="modal_relatorio_13_accordion_dados">
+                                    <button class="accordion-button fw-medium font-size-10" type="button" data-bs-toggle="collapse" data-bs-target="#modal_relatorio_13_collapse_dados" aria-expanded="true" aria-controls="modal_relatorio_13_collapse_dados">
+                                        <b>Dados</b>
+                                    </button>
+                                </h2>
+                                <div id="modal_relatorio_13_collapse_dados" class="accordion-collapse collapse show" aria-labelledby="modal_relatorio_13_accordion_dados" data-bs-parent="#modal_relatorio_13_accordion">
+                                    <div class="accordion-body text-muted p-0 px-3 py-2">
+                                        <div class="row">
+                                            <div class="col-12 pb-3">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="modal_relatorio_13_dados_checkboxes_todos" name="modal_relatorio_13_dados_checkboxes_todos" onchange="relatorio13DadosCheckboxesAlterarTodos(this.checked);" checked>
+                                                    <label class="form-check-label font-size-10" for="modal_relatorio_13_dados_checkboxes_todos"><b>Marcar / Desmarcar todos</b></label>
+                                                </div>
+                                            </div>
+
+                                            @php
+                                            $dados_nome = 'Ajudas de Custos';
+                                            $dados_numero = 1;
+                                            @endphp
+
+                                            <div class="col-12 col-md-6 flex-fill text-start font-size-11">
+                                                <div class="form-check form-check-primary">
+                                                    <input class="form-check-input" type="checkbox" name="modal_relatorio_13_dados_checkboxes" id="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}" value="{{ $dados_numero }}">
+                                                    <label class="form-check-label" for="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}">{{ primeiraMaiuscula($dados_nome) }}</label>
+                                                </div>
+                                            </div>
+
+                                            @php
+                                            $dados_nome = 'Auxílios Fardamentos';
+                                            $dados_numero = 2;
+                                            @endphp
+
+                                            <div class="col-12 col-md-6 flex-fill text-start font-size-11">
+                                                <div class="form-check form-check-primary">
+                                                    <input class="form-check-input" type="checkbox" name="modal_relatorio_13_dados_checkboxes" id="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}" value="{{ $dados_numero }}">
+                                                    <label class="form-check-label" for="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}">{{ primeiraMaiuscula($dados_nome) }}</label>
+                                                </div>
+                                            </div>
+
+                                            @php
+                                            $dados_nome = 'Cursos';
+                                            $dados_numero = 3;
+                                            @endphp
+
+                                            <div class="col-12 col-md-6 flex-fill text-start font-size-11">
+                                                <div class="form-check form-check-primary">
+                                                    <input class="form-check-input" type="checkbox" name="modal_relatorio_13_dados_checkboxes" id="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}" value="{{ $dados_numero }}">
+                                                    <label class="form-check-label" for="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}">{{ primeiraMaiuscula($dados_nome) }}</label>
+                                                </div>
+                                            </div>
+
+                                            @php
+                                            $dados_nome = 'Dependentes';
+                                            $dados_numero = 4;
+                                            @endphp
+
+                                            <div class="col-12 col-md-6 flex-fill text-start font-size-11">
+                                                <div class="form-check form-check-primary">
+                                                    <input class="form-check-input" type="checkbox" name="modal_relatorio_13_dados_checkboxes" id="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}" value="{{ $dados_numero }}">
+                                                    <label class="form-check-label" for="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}">{{ primeiraMaiuscula($dados_nome) }}</label>
+                                                </div>
+                                            </div>
+
+                                            @php
+                                            $dados_nome = 'Fundo de Saúde';
+                                            $dados_numero = 5;
+                                            @endphp
+
+                                            <div class="col-12 col-md-6 flex-fill text-start font-size-11">
+                                                <div class="form-check form-check-primary">
+                                                    <input class="form-check-input" type="checkbox" name="modal_relatorio_13_dados_checkboxes" id="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}" value="{{ $dados_numero }}">
+                                                    <label class="form-check-label" for="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}">{{ primeiraMaiuscula($dados_nome) }}</label>
+                                                </div>
+                                            </div>
+
+                                            @php
+                                            $dados_nome = 'Férias';
+                                            $dados_numero = 6;
+                                            @endphp
+
+                                            <div class="col-12 col-md-6 flex-fill text-start font-size-11">
+                                                <div class="form-check form-check-primary">
+                                                    <input class="form-check-input" type="checkbox" name="modal_relatorio_13_dados_checkboxes" id="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}" value="{{ $dados_numero }}">
+                                                    <label class="form-check-label" for="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}">{{ primeiraMaiuscula($dados_nome) }}</label>
+                                                </div>
+                                            </div>
+
+                                            @php
+                                            $dados_nome = 'Pensões';
+                                            $dados_numero = 7;
+                                            @endphp
+
+                                            <div class="col-12 col-md-6 flex-fill text-start font-size-11">
+                                                <div class="form-check form-check-primary">
+                                                    <input class="form-check-input" type="checkbox" name="modal_relatorio_13_dados_checkboxes" id="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}" value="{{ $dados_numero }}">
+                                                    <label class="form-check-label" for="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}">{{ primeiraMaiuscula($dados_nome) }}</label>
+                                                </div>
+                                            </div>
+
+                                            @php
+                                            $dados_nome = 'Tempos Averbados';
+                                            $dados_numero = 8;
+                                            @endphp
+
+                                            <div class="col-12 col-md-6 flex-fill text-start font-size-11">
+                                                <div class="form-check form-check-primary">
+                                                    <input class="form-check-input" type="checkbox" name="modal_relatorio_13_dados_checkboxes" id="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}" value="{{ $dados_numero }}">
+                                                    <label class="form-check-label" for="modal_relatorio_13_dados_checkboxes_{{ $dados_numero }}">{{ primeiraMaiuscula($dados_nome) }}</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-12 text-end" id="modal_relatorio_13_footer_1">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal_relatorio_13_cancelar">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="relatoriosRelatorio13(2)">Gerar</button>
+                    </div>
+                    <div class="col-12 text-center" id="modal_relatorio_13_footer_2" style="display: none;">
+                        <i class="bx bx-loader bx-spin font-size-16 align-middle me-2"></i> Processando...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection

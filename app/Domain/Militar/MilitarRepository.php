@@ -7,7 +7,10 @@ use App\Models\MilitarAjudaCusto;
 use App\Models\MilitarAuxilioFardamento;
 use App\Models\MilitarCurso;
 use App\Models\MilitarDependente;
+use App\Models\MilitarFerias;
 use App\Models\MilitarFundoSaude;
+use App\Models\MilitarPensao;
+use App\Models\MilitarTempoAverbado;
 use App\Services\MilitarSyncService;
 use Illuminate\Support\Facades\DB;
 
@@ -353,28 +356,40 @@ class MilitarRepository
             )->find($militar_id);
 
         $data['militar_ajudas_custos'] = MilitarAjudaCusto::join('ajuda_custo_tipos', 'ajuda_custo_tipos.id', 'militares_ajudas_custos.ajuda_custo_tipo_id')
-                                            ->select('militares_ajudas_custos.*', 'ajuda_custo_tipos.name as ajudaCustoTipoName')
+                                            ->select(
+                                                'militares_ajudas_custos.*',
+                                                'ajuda_custo_tipos.name as ajudaCustoTipoName'
+                                            )
                                             ->where('militares_ajudas_custos.excluido', 0)
                                             ->where('militares_ajudas_custos.militar_id', $militar_id)
                                             ->orderby('pagamento_ordenar')
                                             ->get();
 
         $data['militar_auxilios_fardamentos'] = MilitarAuxilioFardamento::join('auxilio_fardamento_tipos', 'auxilio_fardamento_tipos.id', 'militares_auxilios_fardamentos.auxilio_fardamento_tipo_id')
-                                            ->select('militares_auxilios_fardamentos.*', 'auxilio_fardamento_tipos.name as auxilioFardamentoTipoName')
+                                            ->select(
+                                                'militares_auxilios_fardamentos.*',
+                                                'auxilio_fardamento_tipos.name as auxilioFardamentoTipoName'
+                                            )
                                             ->where('militares_auxilios_fardamentos.excluido', 0)
                                             ->where('militar_id', $militar_id)
                                             ->orderby('pagamento_ordenar')
                                             ->get();
 
         $data['militar_cursos'] = MilitarCurso::join('cursos', 'cursos.id', 'militares_cursos.curso_id')
-                                            ->select('militares_cursos.*', 'cursos.name as cursoName')
+                                            ->select(
+                                                'militares_cursos.*',
+                                                'cursos.name as cursoName'
+                                            )
                                             ->where('militares_cursos.excluido', 0)
                                             ->where('militares_cursos.militar_id', $militar_id)
                                             ->orderby('data_termino')
                                             ->get();
 
         $data['militar_dependentes'] = MilitarDependente::join('parentescos', 'parentescos.id', 'militares_dependentes.parentesco_id')
-                                            ->select('militares_dependentes.*', 'parentescos.name as parentescoName')
+                                            ->select(
+                                                'militares_dependentes.*',
+                                                'parentescos.name as parentescoName'
+                                            )
                                             ->where('militares_dependentes.excluido', 0)
                                             ->where('militares_dependentes.militar_id', $militar_id)
                                             ->orderby('parentescos.name')
@@ -383,6 +398,28 @@ class MilitarRepository
 
         $data['militar_fundos_saude'] = MilitarFundoSaude::select('militares_fundos_saude.*')
                                             ->where('militares_fundos_saude.militar_id', $militar_id)
+                                            ->get();
+
+        $data['militar_ferias'] = MilitarFerias::select('militares_ferias.*')
+                                            ->where('militares_ferias.excluido', 0)
+                                            ->where('militares_ferias.militar_id', $militar_id)
+                                            ->orderby('militares_ferias.ano', 'DESC')
+                                            ->orderby('militares_ferias.referencia', 'DESC')
+                                            ->get();
+
+        $data['militar_pensoes'] = MilitarPensao::select('militares_pensoes.*')
+                                            ->where('militares_pensoes.excluido', 0)
+                                            ->where('militares_pensoes.militar_id', $militar_id)
+                                            ->get();
+
+        $data['militar_tempos_averbados'] = MilitarTempoAverbado::join('tempos_averbados_locais', 'tempos_averbados_locais.id', 'militares_tempos_averbados.tempo_averbado_local_id')
+                                            ->select(
+                                                'militares_tempos_averbados.*',
+                                                'tempos_averbados_locais.name as tempoAverbadoLocalName'
+                                            )
+                                            ->where('militares_tempos_averbados.excluido', 0)
+                                            ->where('militares_tempos_averbados.militar_id', $militar_id)
+                                            ->orderby('militares_tempos_averbados.data_ingresso_local')
                                             ->get();
 
         return $data;
