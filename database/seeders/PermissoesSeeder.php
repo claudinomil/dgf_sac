@@ -234,5 +234,21 @@ class PermissoesSeeder extends Seeder
         Permissao::create(['id' => 175, 'submodulo_id' => 21, 'name' => 'militares_pensoes_show']);
         Permissao::create(['id' => 176, 'submodulo_id' => 21, 'name' => 'militares_pensoes_edit']);
         Permissao::create(['id' => 177, 'submodulo_id' => 21, 'name' => 'militares_pensoes_destroy']);
+
+
+
+
+
+
+
+
+
+
+        // Homologação Solicitações
+        Permissao::create(['id' => 9991, 'submodulo_id' => 9991, 'name' => 'homologacao_solicitacoes_list']);
+        Permissao::create(['id' => 9992, 'submodulo_id' => 9991, 'name' => 'homologacao_solicitacoes_create']);
+        Permissao::create(['id' => 9993, 'submodulo_id' => 9991, 'name' => 'homologacao_solicitacoes_show']);
+        Permissao::create(['id' => 9994, 'submodulo_id' => 9991, 'name' => 'homologacao_solicitacoes_edit']);
+        Permissao::create(['id' => 9995, 'submodulo_id' => 9991, 'name' => 'homologacao_solicitacoes_destroy']);
     }
 }

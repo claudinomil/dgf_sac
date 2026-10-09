@@ -36,11 +36,11 @@
                             <input type="hidden" id="frm_operacao" name="frm_operacao" />
                             <input type="hidden" id="registro_id" name="registro_id" />
 
-                            <input type="hiddenx" id="militar_id" name="militar_id" value="0" />
-                            <input type="hiddenx" id="militar_id_token" name="militar_id_token" value="xxxyyyzzz" />
+                            <input type="hidden" id="militar_id" name="militar_id" value="0" />
+                            <input type="hidden" id="militar_id_token" name="militar_id_token" value="xxxyyyzzz" />
 
-                            <input type="hiddenx" id="militarSituacaoId" name="militarSituacaoId" value="0" />
-                            <input type="hiddenx" id="militarSituacaoId_token" name="militarSituacaoId_token" value="xxxyyyzzz" />
+                            <input type="hidden" id="militarSituacaoId" name="militarSituacaoId" value="0" />
+                            <input type="hidden" id="militarSituacaoId_token" name="militarSituacaoId_token" value="xxxyyyzzz" />
 
                             <div class="row pt-4" id="divPesquisarMilitar" style="display: none;">
                                 <div class="font-size-16 pb-4"><i class="fas fa-person-military-pointing text-start"></i>- <b>Pesquisar Militar</b></div>

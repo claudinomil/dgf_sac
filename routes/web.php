@@ -37,6 +37,7 @@ use App\Http\Controllers\Web\GeneroController;
 use App\Http\Controllers\Web\ParentescoController;
 use App\Http\Controllers\Web\CursoController;
 use App\Http\Controllers\Web\WebserviceController;
+use App\Http\Controllers\Web\HomologacaoSolicitacaoController;
 use App\Models\RessarcimentoCobranca;
 use App\Models\RessarcimentoCobrancaDado;
 use App\Models\RessarcimentoCobrancaPdfListagem;
@@ -653,3 +654,25 @@ Route::middleware('auth')->prefix('token_service')->group(function () {
     Route::get('/id/{token}', [TokenServiceController::class, 'id']);
 });
 // Token Service - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+
+
+
+
+
+
+
+
+
+// Homologação Solicitações - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Route::middleware('auth')->prefix('homologacao_solicitacoes')->group(function () {
+    Route::get('', [HomologacaoSolicitacaoController::class, 'index'])->name('homologacao_solicitacoes.index')->middleware('permissao:homologacao_solicitacoes_list');
+    Route::post('', [HomologacaoSolicitacaoController::class, 'store'])->middleware('permissao:homologacao_solicitacoes_create');
+    Route::get('/create', [HomologacaoSolicitacaoController::class, 'create'])->middleware('permissao:homologacao_solicitacoes_create');
+    Route::get('/filter/{array_dados}', [HomologacaoSolicitacaoController::class, 'filter'])->middleware('permissao:homologacao_solicitacoes_list');
+    Route::get('/{id}', [HomologacaoSolicitacaoController::class, 'show'])->middleware('permissao:homologacao_solicitacoes_show');
+    Route::post('/{id}', [HomologacaoSolicitacaoController::class, 'update'])->middleware('permissao:homologacao_solicitacoes_edit');
+    Route::delete('/{id}', [HomologacaoSolicitacaoController::class, 'destroy'])->middleware('permissao:homologacao_solicitacoes_destroy');
+    Route::get('/{id}/edit', [HomologacaoSolicitacaoController::class, 'edit'])->middleware('permissao:homologacao_solicitacoes_edit');
+});
+// Homologação Solicitações - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''

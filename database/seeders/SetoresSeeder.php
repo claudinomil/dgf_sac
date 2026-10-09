@@ -16,5 +16,6 @@ class SetoresSeeder extends Seeder
         Setor::create(['id' => 5, 'name' => 'Pagadoria', 'menu_icon' => 'fas fa-sign-in-alt', 'ordem_visualizacao' => 6]);
         Setor::create(['id' => 6, 'name' => 'Diretoria', 'menu_icon' => 'fas fa-sign-in-alt', 'ordem_visualizacao' => 1]);
         Setor::create(['id' => 7, 'name' => 'SAD', 'menu_icon' => 'fas fa-sign-in-alt', 'ordem_visualizacao' => 7]);
+        Setor::create(['id' => 999, 'name' => 'Sistema', 'menu_icon' => 'fas fa-shield-alt', 'ordem_visualizacao' => 999]);
     }
 }

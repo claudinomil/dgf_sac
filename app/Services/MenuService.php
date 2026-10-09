@@ -56,10 +56,16 @@ class MenuService
                                     $li_active = 'mm-active';
                                 }
 
+                                // Módulo Realçado
+                                $class_realce = '';
+                                if ($modulo['id'] == 999) {
+                                    $class_realce = 'text-warning';
+                                }
+
                                 if ($menu_setor != '') {
                                     $menu .= "<li>
-                                                <a href='javascript: void(0);' class='has-arrow waves-effect text-decoration-none'>
-                                                    <i class='" . $menu_setor_icon . "' style='font-size:16px;'></i><span>&nbsp;&nbsp;" . __($menu_setor) . "</span>
+                                                <a href='javascript: void(0);' class='has-arrow waves-effect text-decoration-none ".$class_realce."'>
+                                                    <i class='" . $menu_setor_icon . " ".$class_realce."' style='font-size:16px;'></i><span>&nbsp;&nbsp;" . __($menu_setor) . "</span>
                                                 </a>
                                                 <ul class='sub-menu' aria-expanded='true'>";
                                 }

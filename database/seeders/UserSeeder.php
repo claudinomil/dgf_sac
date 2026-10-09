@@ -144,5 +144,35 @@ class UserSeeder extends Seeder
             'militar_id' => 16509,
             'created_at' => now()
         ]);
+        
+        User::create([
+            'id' => 10,
+            'name' => 'ROBERTO AUGUSTO VIEIRA',
+            'user' => '24098',
+            'email' => 'augusto@yahoo.com.br',
+            'password' => Hash::make('12345678'),
+            'email_verified_at' => now(),
+            'avatar' => 'assets/images/users/avatar-0.png',
+            'grupo_id' => '1',
+            'user_situacao_id' => '1',
+            'user_tipo_id' => '1',
+            'militar_id' => 15158,
+            'created_at' => now()
+        ]);
+        
+        User::create([
+            'id' => 11,
+            'name' => 'VANDERLEI PEREIRA DA COSTA JUNIOR',
+            'user' => '25685',
+            'email' => 'vanderlei@yahoo.com.br',
+            'password' => Hash::make('12345678'),
+            'email_verified_at' => now(),
+            'avatar' => 'assets/images/users/avatar-0.png',
+            'grupo_id' => '1',
+            'user_situacao_id' => '1',
+            'user_tipo_id' => '1',
+            'militar_id' => 15807,
+            'created_at' => now()
+        ]);
     }
 }

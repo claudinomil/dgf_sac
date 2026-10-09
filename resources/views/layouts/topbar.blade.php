@@ -34,6 +34,15 @@
         </div>
 
         <div class="d-flex">
+            <!-- Mensagem -->
+            <div class="align-self-center text-center">
+                <div class="font-size-12 text-danger"><b>SISTEMA EM HOMOLOGAÇÃO</b></div>
+                <div class="font-size-11 text-danger">Esta versão está disponível para testes e validação antes da entrada em produção.</div>
+            </div>
+            <!-- Mensagem -->
+        </div>
+
+        <div class="d-flex">
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user url_user_avatar" src="{{ session('userContext.user.avatar') ? asset(session('userContext.user.avatar')) : asset('/assets/images/users/avatar-0.png') }}" alt="Header Avatar">
@@ -53,7 +62,7 @@
                         @csrf
                     </form> -->
 
-                    
+
                 </div>
             </div>
         </div>

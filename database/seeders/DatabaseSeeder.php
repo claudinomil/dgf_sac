@@ -33,7 +33,11 @@ class DatabaseSeeder extends Seeder
             VocativosSeeder::class,
             RessarcimentoFuncoesSeeder::class,
             RessarcimentoOrgaosSeeder::class,
+
             ZZZ_20260514_Seeder::class,
+
+            HomologacaoSolicitacaoSeeder::class,
+
 
             // ZZZ_FakerSeeder::class
         ]);
