@@ -33,7 +33,7 @@
                                         ['value' => 'homologacao_solicitacoes.solicitacao', 'descricao' => 'Solicitação'],
                                         ['value' => 'homologacao_solicitacoes.tipo', 'descricao' => 'Tipo'],
                                         ['value' => 'homologacao_solicitacoes.prioridade', 'descricao' => 'Prioridade'],
-                                        ['value' => 'homologacao_solicitacoes.solicitacao_status', 'descricao' => 'Status'],
+                                        ['value' => 'homologacao_solicitacoes.resposta_status', 'descricao' => 'Status'],
                                         ['value' => 'submodulos.name', 'descricao' => 'Submódulo'],
                                         ['value' => 'users.name', 'descricao' => 'Usuário']
                                         ];

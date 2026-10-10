@@ -21,13 +21,13 @@ class HomologacaoSolicitacaoRepository
                 $query->where('homologacao_solicitacoes.resposta', '')
                     ->orWhereNull('homologacao_solicitacoes.resposta');
             })
-            ->orderby('homologacao_solicitacoes.data_solicitacao')
-            ->orderby('homologacao_solicitacoes.hora_solicitacao')
+            ->orderby('homologacao_solicitacoes.solicitacao_data')
+            ->orderby('homologacao_solicitacoes.solicitacao_hora')
             ->limit($limit)
             ->get();
     }
 
-    public function filter($array_dados, int $limit)
+    public function filter(string $array_dados, int $limit)
     {
         // Limit
         $limit = $limit ? $limit : 1000;
@@ -36,7 +36,7 @@ class HomologacaoSolicitacaoRepository
         $filtros = explode(',', $array_dados);
 
         // Registros
-        $registros = HomologacaoSolicitacao::join('submodulos', 'submodulos.id', 'homologacao_solicitacoes.submodulo_id')
+        $registros = HomologacaoSolicitacao::leftjoin('submodulos', 'submodulos.id', 'homologacao_solicitacoes.submodulo_id')
             ->select(
                 'homologacao_solicitacoes.*',
                 'submodulos.name as submoduloName'
@@ -98,7 +98,7 @@ class HomologacaoSolicitacaoRepository
 
     public function find(int $id)
     {
-        $query = HomologacaoSolicitacao::join('submodulos', 'submodulos.id', 'homologacao_solicitacoes.submodulo_id')
+        $query = HomologacaoSolicitacao::leftjoin('submodulos', 'submodulos.id', 'homologacao_solicitacoes.submodulo_id')
             ->select(
                 'homologacao_solicitacoes.*',
                 'submodulos.name as submoduloName'
@@ -110,21 +110,41 @@ class HomologacaoSolicitacaoRepository
     public function create(array $data)
     {
         // Acertos
-        $data['data_solicitacao'] = date('Y-m-d');
-        $data['hora_solicitacao'] = date('H:i:s');
+        $data['solicitacao_data'] = date('Y-m-d');
+        $data['solicitacao_hora'] = date('H:i:s');
         $data['user_id'] = session('userContext.user.id');
 
         // Criar
         $homologacao_solicitacao = HomologacaoSolicitacao::create($data);
 
+        // Solicitação Imagem
+        if ($data['solicitacao_imagem_file']) {
+            $file = $data['solicitacao_imagem_file'];
+            $ext = $file->getClientOriginalExtension();
+            $fileName = 'imagem-' . $homologacao_solicitacao->id . '.' . $ext;
+            $destination = public_path('/assets/images/homologacao_solicitacoes');
+            $file->move($destination, $fileName);
+            $solicitacao_imagem = 'assets/images/homologacao_solicitacoes/' . $fileName;
+            
+            $this->update_solicitacao_imagem($homologacao_solicitacao->id, $solicitacao_imagem);
+        }
+
         return $homologacao_solicitacao;
     }
-
+    
+    public function update_solicitacao_imagem(int $id, string $solicitacao_imagem)
+    {
+        $homologacao_solicitacao = $this->find($id);
+        $homologacao_solicitacao->update(['solicitacao_imagem' => $solicitacao_imagem]);
+        
+        return;
+    }
+    
     public function update(int $id, array $data)
     {
         // Acertos
-        $data['data_resposta'] = date('Y-m-d');
-        $data['hora_resposta'] = date('H:i:s');
+        $data['resposta_data'] = date('Y-m-d');
+        $data['resposta_hora'] = date('H:i:s');
 
         $homologacao_solicitacao = $this->find($id);
         $homologacao_solicitacao->update($data);

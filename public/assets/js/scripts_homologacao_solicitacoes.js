@@ -10,20 +10,20 @@ const user_id = document.getElementById('user_id');
 const solicitacao = document.getElementById('solicitacao');
 const solicitacao_tipo = document.getElementById('solicitacao_tipo');
 const solicitacao_prioridade = document.getElementById('solicitacao_prioridade');
-const data_solicitacao = document.getElementById('data_solicitacao');
-const hora_solicitacao = document.getElementById('hora_solicitacao');
+const solicitacao_data = document.getElementById('solicitacao_data');
+const solicitacao_hora = document.getElementById('solicitacao_hora');
 const resposta = document.getElementById('resposta');
-const solicitacao_status = document.getElementById('solicitacao_status');
-const data_resposta = document.getElementById('data_resposta');
-const hora_resposta = document.getElementById('hora_resposta');
+const resposta_status = document.getElementById('resposta_status');
+const resposta_data = document.getElementById('resposta_data');
+const resposta_hora = document.getElementById('resposta_hora');
 
-const div_cp_data_solicitacao = document.getElementById('div_cp_data_solicitacao');
-const div_cp_hora_solicitacao = document.getElementById('div_cp_hora_solicitacao');
+const div_cp_solicitacao_data = document.getElementById('div_cp_solicitacao_data');
+const div_cp_solicitacao_hora = document.getElementById('div_cp_solicitacao_hora');
 const div_cp_user_id = document.getElementById('div_cp_user_id');
 
 const div_resposta = document.getElementById('div_resposta');
-const div_cp_data_resposta = document.getElementById('div_cp_data_resposta');
-const div_cp_hora_resposta = document.getElementById('div_cp_hora_resposta');
+const div_cp_resposta_data = document.getElementById('div_cp_resposta_data');
+const div_cp_resposta_hora = document.getElementById('div_cp_resposta_hora');
 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 // Validação
@@ -52,7 +52,6 @@ async function validar_frm_homologacao_solicitacoes() {
     // Retorno
     return validacao_ok;
 }
-
 // Funções Settings Submodulo - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 // Funções Settings Submodulo - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 async function settingsSubmoduloCrudCreate() {
@@ -60,23 +59,40 @@ async function settingsSubmoduloCrudCreate() {
     submodulo_id.value = '';
     solicitacao_tipo.value = 'Sugestão';
     solicitacao_prioridade.value = 'Normal';
-    solicitacao_status.value = 'Em Análise';
+    resposta_status.value = 'Em Análise';
 
     // d-none
-    div_cp_data_solicitacao.classList.add('d-none');
-    div_cp_hora_solicitacao.classList.add('d-none');
+    div_cp_solicitacao_data.classList.add('d-none');
+    div_cp_solicitacao_hora.classList.add('d-none');
     div_cp_user_id.classList.add('d-none');
     div_resposta.classList.add('d-none');
 }
 
-async function settingsSubmoduloCrudView() {
+async function settingsSubmoduloCrudView(data) {
     // d-none
-    div_cp_data_solicitacao.classList.remove('d-none');
-    div_cp_hora_solicitacao.classList.remove('d-none');
+    div_cp_solicitacao_data.classList.remove('d-none');
+    div_cp_solicitacao_hora.classList.remove('d-none');
     div_cp_user_id.classList.remove('d-none');
     div_resposta.classList.remove('d-none');
-    div_cp_data_resposta.classList.remove('d-none');
-    div_cp_hora_resposta.classList.remove('d-none');
+    div_cp_resposta_data.classList.remove('d-none');
+    div_cp_resposta_hora.classList.remove('d-none');
+    
+    // Visualizar Solicitação Imagem''''''''''''''''''''''''''''''''''''''''''''''''''
+    if (data.solicitacao_imagem !== null) {
+        const container_file = document.getElementById('solicitacao_imagem_salva_container_file');
+        const container_visualizacao = document.getElementById('solicitacao_imagem_salva_container_visualizacao');
+        const imagem = document.getElementById('solicitacao_imagem_salva');
+
+        // Limpar visualização anterior
+        imagem.removeAttribute('src');
+        container_file.classList.add('d-none');
+        container_visualizacao.classList.add('d-none');
+
+        imagem.src = data.solicitacao_imagem;
+
+        container_visualizacao.classList.remove('d-none');
+    }
+    //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 }
 
 async function settingsSubmoduloCrudEdit() {
@@ -85,17 +101,17 @@ async function settingsSubmoduloCrudEdit() {
     solicitacao_tipo.disabled = true;
     solicitacao_prioridade.disabled = true;
     solicitacao.disabled = true;
-    data_solicitacao.disabled = true;
-    hora_solicitacao.disabled = true;
+    solicitacao_data.disabled = true;
+    solicitacao_hora.disabled = true;
     user_id.disabled = true;
 
     // d-none
-    div_cp_data_solicitacao.classList.remove('d-none');
-    div_cp_hora_solicitacao.classList.remove('d-none');
+    div_cp_solicitacao_data.classList.remove('d-none');
+    div_cp_solicitacao_hora.classList.remove('d-none');
     div_cp_user_id.classList.remove('d-none');
     div_resposta.classList.remove('d-none');
-    div_cp_data_resposta.classList.add('d-none');
-    div_cp_hora_resposta.classList.add('d-none');
+    div_cp_resposta_data.classList.add('d-none');
+    div_cp_resposta_hora.classList.add('d-none');
 
 }
 

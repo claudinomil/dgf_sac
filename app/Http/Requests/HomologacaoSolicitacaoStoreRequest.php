@@ -19,7 +19,8 @@ class HomologacaoSolicitacaoStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'solicitacao' => ['required']
+            'solicitacao' => ['required'],
+            'solicitacao_imagem_file' => ['nullable', 'image', 'mimes:jpeg,jpg,png,webp', 'max:5120']
         ];
     }
 

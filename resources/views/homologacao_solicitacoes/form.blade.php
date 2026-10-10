@@ -31,7 +31,7 @@
                     </div>
 
                     <!-- Formulário - Form -->
-                    <form id="{{ session('crudNameFormSubmodulo') }}" name="{{ session('crudNameFormSubmodulo') }}">
+                    <form id="{{ session('crudNameFormSubmodulo') }}" name="{{ session('crudNameFormSubmodulo') }}" enctype="multipart/form-data">
                         <fieldset>
                             <input type="hidden" id="frm_operacao" name="frm_operacao" />
                             <input type="hidden" id="registro_id" name="registro_id" />
@@ -72,13 +72,13 @@
                                     <label class="form-label">Solicitação</label>
                                     <textarea class="form-control" id="solicitacao" name="solicitacao" rows="3" required="required"></textarea>
                                 </div>
-                                <div class="form-group col-12 col-md-4 pb-3 d-none" id="div_cp_data_solicitacao">
-                                    <label class="form-label">Data Solicitação</label>
-                                    <input type="text" class="form-control mask_date" id="data_solicitacao" name="data_solicitacao">
+                                <div class="form-group col-12 col-md-4 pb-3 d-none" id="div_cp_solicitacao_data">
+                                    <label class="form-label">Solicitação Data</label>
+                                    <input type="text" class="form-control mask_date" id="solicitacao_data" name="solicitacao_data">
                                 </div>
-                                <div class="form-group col-12 col-md-4 pb-3 d-none" id="div_cp_hora_solicitacao">
-                                    <label class="form-label">Hora Solicitação</label>
-                                    <input type="text" class="form-control" id="hora_solicitacao" name="hora_solicitacao">
+                                <div class="form-group col-12 col-md-4 pb-3 d-none" id="div_cp_solicitacao_hora">
+                                    <label class="form-label">Solicitação Hora</label>
+                                    <input type="text" class="form-control" id="solicitacao_hora" name="solicitacao_hora">
                                 </div>
                                 <div class="form-group col-12 col-md-4 pb-3 d-none" id="div_cp_user_id">
                                     <label class="form-label">Usuário Solicitante</label>
@@ -90,6 +90,16 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group col-12 col-md-12 pb-3" id="solicitacao_imagem_salva_container_file">
+                                    <label class="form-label">Imagem do erro (opcional)</label>
+                                    <input type="file" class="form-control" id="solicitacao_imagem_file" name="solicitacao_imagem_file" accept="image/jpeg,image/png,image/webp">
+                                </div>
+                                <div class="form-group col-12 col-md-12 d-none pb-3" id="solicitacao_imagem_salva_container_visualizacao">
+                                    <label class="form-label">Imagem anexada à solicitação</label>
+                                    <div class="col-12">
+                                        <img id="solicitacao_imagem_salva" class="img-thumbnail" style="max-width: 100%; max-height: 500px">
+                                    </div>
+                                </div>
                             </div>
                             <div class="row pt-4 d-none" id="div_resposta">
                                 <div class="font-size-16 pb-4"><i class="fas fa-clipboard-check text-start"></i>- <b>Resposta</b></div>
@@ -99,7 +109,7 @@
                                 </div>
                                 <div class="form-group col-12 col-md-4 pb-3">
                                     <label class="form-label">Status</label>
-                                    <select class="form-control" name="solicitacao_status" id="solicitacao_status" required="required">
+                                    <select class="form-control" name="resposta_status" id="resposta_status" required="required">
                                         <option value="Em Análise">Em Análise</option>
                                         <option value="Em Desenvolvimento">Em Desenvolvimento</option>
                                         <option value="Aguardando Validação">Aguardando Validação</option>
@@ -107,13 +117,13 @@
                                         <option value="Não Realizado">Não Realizado</option>
                                     </select>
                                 </div>
-                                <div class="form-group col-12 col-md-4 pb-3" id="div_cp_data_resposta">
-                                    <label class="form-label">Data Resposta</label>
-                                    <input type="text" class="form-control mask_date" id="data_resposta" name="data_resposta">
+                                <div class="form-group col-12 col-md-4 pb-3" id="div_cp_resposta_data">
+                                    <label class="form-label">Resposta Data</label>
+                                    <input type="text" class="form-control mask_date" id="resposta_data" name="resposta_data">
                                 </div>
-                                <div class="form-group col-12 col-md-4 pb-3" id="div_cp_hora_resposta">
-                                    <label class="form-label">Hora Resposta</label>
-                                    <input type="text" class="form-control" id="hora_resposta" name="hora_resposta">
+                                <div class="form-group col-12 col-md-4 pb-3" id="div_cp_resposta_hora">
+                                    <label class="form-label">Resposta Hora</label>
+                                    <input type="text" class="form-control" id="resposta_hora" name="resposta_hora">
                                 </div>
                             </div>
                         </fieldset>

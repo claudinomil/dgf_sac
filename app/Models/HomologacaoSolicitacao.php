@@ -17,16 +17,17 @@ class HomologacaoSolicitacao extends Model
         'solicitacao',
         'solicitacao_tipo',
         'solicitacao_prioridade',
-        'data_solicitacao',
-        'hora_solicitacao',
+        'solicitacao_data',
+        'solicitacao_hora',
+        'solicitacao_imagem',
         'resposta',
-        'solicitacao_status',
-        'data_resposta',
-        'hora_resposta'
+        'resposta_status',
+        'resposta_data',
+        'resposta_hora'
     ];
 
     protected $casts = [
-        'data_solicitacao' => 'date',
-        'data_resposta' => 'date'
+        'solicitacao_data' => 'date',
+        'resposta_data' => 'date'
     ];
 }

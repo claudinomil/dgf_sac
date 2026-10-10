@@ -79,8 +79,8 @@ class HomologacaoSolicitacaoController extends Controller
                                             <tr>
                                                 <td>' . $row["solicitacao_tipo"] . '</th>
                                                 <td>' . $row["solicitacao_prioridade"] . '</td>
-                                                <td>' . getDataFormatada(1, $row["data_solicitacao"]) . '</td>
-                                                <td>' . $row["hora_solicitacao"] . '</td>
+                                                <td>' . getDataFormatada(1, $row["solicitacao_data"]) . '</td>
+                                                <td>' . $row["solicitacao_hora"] . '</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -103,9 +103,9 @@ class HomologacaoSolicitacaoController extends Controller
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>' . $row["solicitacao_status"] . '</th>
-                                                <td>' . getDataFormatada(1, $row["data_resposta"]) . '</td>
-                                                <td>' . $row["hora_resposta"] . '</td>
+                                                <td>' . $row["resposta_status"] . '</th>
+                                                <td>' . getDataFormatada(1, $row["resposta_data"]) . '</td>
+                                                <td>' . $row["resposta_hora"] . '</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -155,8 +155,8 @@ class HomologacaoSolicitacaoController extends Controller
                 // Preparando Dados para a View''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
                 $dados = $homologacao_solicitacao->toArray();
 
-                $dados['data_solicitacao'] = $homologacao_solicitacao->data_solicitacao ? $homologacao_solicitacao->data_solicitacao->format('d/m/Y') : '';
-                $dados['data_resposta'] = $homologacao_solicitacao->data_resposta ? $homologacao_solicitacao->data_resposta->format('d/m/Y') : '';
+                $dados['solicitacao_data'] = $homologacao_solicitacao->solicitacao_data ? $homologacao_solicitacao->solicitacao_data->format('d/m/Y') : '';
+                $dados['resposta_data'] = $homologacao_solicitacao->resposta_data ? $homologacao_solicitacao->resposta_data->format('d/m/Y') : '';
                 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
                 return response()->json(['success' => $dados]);
@@ -188,8 +188,8 @@ class HomologacaoSolicitacaoController extends Controller
                 // Preparando Dados para a View''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
                 $dados = $homologacao_solicitacao->toArray();
 
-                $dados['data_solicitacao'] = $homologacao_solicitacao->data_solicitacao ? $homologacao_solicitacao->data_solicitacao->format('d/m/Y') : '';
-                $dados['data_resposta'] = $homologacao_solicitacao->data_resposta ? $homologacao_solicitacao->data_resposta->format('d/m/Y') : '';
+                $dados['solicitacao_data'] = $homologacao_solicitacao->solicitacao_data ? $homologacao_solicitacao->solicitacao_data->format('d/m/Y') : '';
+                $dados['resposta_data'] = $homologacao_solicitacao->resposta_data ? $homologacao_solicitacao->resposta_data->format('d/m/Y') : '';
                 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
                 return response()->json(['success' => $dados]);

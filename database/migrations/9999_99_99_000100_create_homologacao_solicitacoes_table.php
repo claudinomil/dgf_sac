@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -17,14 +18,15 @@ return new class extends Migration
             $table->text('solicitacao');
             $table->enum('solicitacao_tipo', ['Correção', 'Ajuste', 'Melhoria', 'Nova Funcionalidade', 'Dúvida', 'Sugestão']);
             $table->enum('solicitacao_prioridade', ['Baixa', 'Normal', 'Alta', 'Urgente'])->default('Normal');
-            $table->date('data_solicitacao');
-            $table->time('hora_solicitacao');
+            $table->date('solicitacao_data');
+            $table->time('solicitacao_hora');
+            $table->string('solicitacao_imagem')->nullable();
 
             // Resposta
             $table->text('resposta')->nullable();
-            $table->enum('solicitacao_status', ['Em Análise', 'Em Desenvolvimento', 'Aguardando Validação', 'Concluído', 'Não Realizado'])->nullable()->default('Em Análise');
-            $table->date('data_resposta')->nullable();
-            $table->time('hora_resposta')->nullable();
+            $table->enum('resposta_status', ['Em Análise', 'Em Desenvolvimento', 'Aguardando Validação', 'Concluído', 'Não Realizado'])->nullable()->default('Em Análise');
+            $table->date('resposta_data')->nullable();
+            $table->time('resposta_hora')->nullable();
 
             $table->timestamps();
         });
