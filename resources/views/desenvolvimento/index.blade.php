@@ -70,26 +70,6 @@
                     </div>
                 </div>
 
-                <!-- Missões -->
-                <div class="col-12 mt-5">
-                    <h1 class="text-primary mt-5">Missões</h1>
-                    <div class="col-12 font-size-10">
-                        @php
-                            $numLn = 0;
-                        @endphp
-
-                        @foreach ($solicitacoes as $dado)
-                            @if (empty($dado->resposta))
-                                @php
-                                    $numLn++;
-                                @endphp
-
-                                {{ $numLn . '. ' . $dado->solicitacao }};<br>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-
                 <!-- Users Seeder -->
                 <div class="col-12 mt-5">
                     <h1 class="text-success">Users Seeder</h1>
@@ -124,10 +104,98 @@
                         @endforeach
                     </div>
                 </div>
+
+                <!-- Grupos Seeder -->
+                <div class="col-12 mt-5">
+                    <h1 class="text-success">Grupos Seeder</h1>
+                    <div class="col-12 font-size-10">
+                        @foreach ($grupos as $grupo)
+                            @php
+                                $campos = [
+                                    'id' => $grupo->id,
+                                    'name' => $grupo->name,
+                                    'militares_permissoes_list_situacoes_ids' => $grupo->militares_permissoes_list_situacoes_ids,
+                                    'militares_permissoes_show_situacoes_ids' => $grupo->militares_permissoes_show_situacoes_ids,
+                                    'militares_permissoes_create_situacoes_ids' => $grupo->militares_permissoes_create_situacoes_ids,
+                                    'militares_permissoes_edit_situacoes_ids' => $grupo->militares_permissoes_edit_situacoes_ids,
+                                    'militares_permissoes_destroy_situacoes_ids' => $grupo->militares_permissoes_destroy_situacoes_ids,
+                                    'militares_ajudas_custos_permissoes_list_situacoes_ids' => $grupo->militares_ajudas_custos_permissoes_list_situacoes_ids,
+                                    'militares_ajudas_custos_permissoes_show_situacoes_ids' => $grupo->militares_ajudas_custos_permissoes_show_situacoes_ids,
+                                    'militares_ajudas_custos_permissoes_create_situacoes_ids' => $grupo->militares_ajudas_custos_permissoes_create_situacoes_ids,
+                                    'militares_ajudas_custos_permissoes_edit_situacoes_ids' => $grupo->militares_ajudas_custos_permissoes_edit_situacoes_ids,
+                                    'militares_ajudas_custos_permissoes_destroy_situacoes_ids' => $grupo->militares_ajudas_custos_permissoes_destroy_situacoes_ids,
+                                    'militares_auxilios_fardamentos_permissoes_list_situacoes_ids' => $grupo->militares_auxilios_fardamentos_permissoes_list_situacoes_ids,
+                                    'militares_auxilios_fardamentos_permissoes_show_situacoes_ids' => $grupo->militares_auxilios_fardamentos_permissoes_show_situacoes_ids,
+                                    'militares_auxilios_fardamentos_permissoes_create_situacoes_ids' => $grupo->militares_auxilios_fardamentos_permissoes_create_situacoes_ids,
+                                    'militares_auxilios_fardamentos_permissoes_edit_situacoes_ids' => $grupo->militares_auxilios_fardamentos_permissoes_edit_situacoes_ids,
+                                    'militares_auxilios_fardamentos_permissoes_destroy_situacoes_ids' => $grupo->militares_auxilios_fardamentos_permissoes_destroy_situacoes_ids,
+                                    'militares_cursos_permissoes_list_situacoes_ids' => $grupo->militares_cursos_permissoes_list_situacoes_ids,
+                                    'militares_cursos_permissoes_show_situacoes_ids' => $grupo->militares_cursos_permissoes_show_situacoes_ids,
+                                    'militares_cursos_permissoes_create_situacoes_ids' => $grupo->militares_cursos_permissoes_create_situacoes_ids,
+                                    'militares_cursos_permissoes_edit_situacoes_ids' => $grupo->militares_cursos_permissoes_edit_situacoes_ids,
+                                    'militares_cursos_permissoes_destroy_situacoes_ids' => $grupo->militares_cursos_permissoes_destroy_situacoes_ids,
+                                    'militares_contatos_permissoes_list_situacoes_ids' => $grupo->militares_contatos_permissoes_list_situacoes_ids,
+                                    'militares_contatos_permissoes_show_situacoes_ids' => $grupo->militares_contatos_permissoes_show_situacoes_ids,
+                                    'militares_contatos_permissoes_create_situacoes_ids' => $grupo->militares_contatos_permissoes_create_situacoes_ids,
+                                    'militares_contatos_permissoes_edit_situacoes_ids' => $grupo->militares_contatos_permissoes_edit_situacoes_ids,
+                                    'militares_contatos_permissoes_destroy_situacoes_ids' => $grupo->militares_contatos_permissoes_destroy_situacoes_ids,
+                                    'militares_dependentes_permissoes_list_situacoes_ids' => $grupo->militares_dependentes_permissoes_list_situacoes_ids,
+                                    'militares_dependentes_permissoes_show_situacoes_ids' => $grupo->militares_dependentes_permissoes_show_situacoes_ids,
+                                    'militares_dependentes_permissoes_create_situacoes_ids' => $grupo->militares_dependentes_permissoes_create_situacoes_ids,
+                                    'militares_dependentes_permissoes_edit_situacoes_ids' => $grupo->militares_dependentes_permissoes_edit_situacoes_ids,
+                                    'militares_dependentes_permissoes_destroy_situacoes_ids' => $grupo->militares_dependentes_permissoes_destroy_situacoes_ids,
+                                    'militares_fundos_saude_permissoes_list_situacoes_ids' => $grupo->militares_fundos_saude_permissoes_list_situacoes_ids,
+                                    'militares_fundos_saude_permissoes_show_situacoes_ids' => $grupo->militares_fundos_saude_permissoes_show_situacoes_ids,
+                                    'militares_fundos_saude_permissoes_create_situacoes_ids' => $grupo->militares_fundos_saude_permissoes_create_situacoes_ids,
+                                    'militares_fundos_saude_permissoes_edit_situacoes_ids' => $grupo->militares_fundos_saude_permissoes_edit_situacoes_ids,
+                                    'militares_fundos_saude_permissoes_destroy_situacoes_ids' => $grupo->militares_fundos_saude_permissoes_destroy_situacoes_ids,
+                                    'militares_ferias_permissoes_list_situacoes_ids' => $grupo->militares_ferias_permissoes_list_situacoes_ids,
+                                    'militares_ferias_permissoes_show_situacoes_ids' => $grupo->militares_ferias_permissoes_show_situacoes_ids,
+                                    'militares_ferias_permissoes_create_situacoes_ids' => $grupo->militares_ferias_permissoes_create_situacoes_ids,
+                                    'militares_ferias_permissoes_edit_situacoes_ids' => $grupo->militares_ferias_permissoes_edit_situacoes_ids,
+                                    'militares_ferias_permissoes_destroy_situacoes_ids' => $grupo->militares_ferias_permissoes_destroy_situacoes_ids,
+                                    'militares_pensoes_permissoes_list_situacoes_ids' => $grupo->militares_pensoes_permissoes_list_situacoes_ids,
+                                    'militares_pensoes_permissoes_show_situacoes_ids' => $grupo->militares_pensoes_permissoes_show_situacoes_ids,
+                                    'militares_pensoes_permissoes_create_situacoes_ids' => $grupo->militares_pensoes_permissoes_create_situacoes_ids,
+                                    'militares_pensoes_permissoes_edit_situacoes_ids' => $grupo->militares_pensoes_permissoes_edit_situacoes_ids,
+                                    'militares_pensoes_permissoes_destroy_situacoes_ids' => $grupo->militares_pensoes_permissoes_destroy_situacoes_ids,
+                                    'militares_tempos_averbados_permissoes_list_situacoes_ids' => $grupo->militares_tempos_averbados_permissoes_list_situacoes_ids,
+                                    'militares_tempos_averbados_permissoes_show_situacoes_ids' => $grupo->militares_tempos_averbados_permissoes_show_situacoes_ids,
+                                    'militares_tempos_averbados_permissoes_create_situacoes_ids' => $grupo->militares_tempos_averbados_permissoes_create_situacoes_ids,
+                                    'militares_tempos_averbados_permissoes_edit_situacoes_ids' => $grupo->militares_tempos_averbados_permissoes_edit_situacoes_ids,
+                                    'militares_tempos_averbados_permissoes_destroy_situacoes_ids' => $grupo->militares_tempos_averbados_permissoes_destroy_situacoes_ids
+                                ];
+
+                                $camposFormatados = [];
+
+                                foreach ($campos as $campo => $valor) {
+                                    $camposFormatados[] = var_export($campo, true)
+                                        . ' => '
+                                        . var_export($valor, true);
+                                }
+                            @endphp
+
+                            Grupo::create([{!! implode(', ', $camposFormatados) !!}]);
+                            <br>
+                        @endforeach
+                    </div>
+                </div>
+
+                <!-- Missões -->
+                <div class="col-12 mt-5">
+                    <h1 class="text-primary mt-5">Missões</h1>
+                    <div class="col-12 font-size-10">
+                        @foreach ($solicitacoes as $dado)
+                            @if (empty($dado->resposta))
+                            {{ '##. ' . $dado->solicitacao }};<br>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
                 @endif
             </div>
         </div>
-        
+
         @include('layouts.vendor-scripts')
     </body>
 </html>
