@@ -13,6 +13,6 @@ class AuxilioFardamentoTiposSeeder extends Seeder
         AuxilioFardamentoTipo::create(['id' => 2, 'name' => 'POR PROMOÇÃO']);
         AuxilioFardamentoTipo::create(['id' => 3, 'name' => 'POR CURSO']);
         AuxilioFardamentoTipo::create(['id' => 4, 'name' => '4 ANOS NA MESMA GRADUAÇÃO']);
-        AuxilioFardamentoTipo::create(['id' => 5, 'name' => 'ART. 64, LEI 9537/2021']);
+        AuxilioFardamentoTipo::create(['id' => 5, 'name' => 'ART. 64 da Lei 279/1979, alterado pela Lei 9537/2021.']);
     }
 }

@@ -17,12 +17,8 @@ class HomologacaoSolicitacaoRepository
                 'homologacao_solicitacoes.*',
                 'submodulos.name as submoduloName'
             )
-            // ->where(function ($query) {
-            //     $query->where('homologacao_solicitacoes.resposta', '')
-            //         ->orWhereNull('homologacao_solicitacoes.resposta');
-            // })
             ->orderby('homologacao_solicitacoes.solicitacao_data')
-            ->orderby('homologacao_solicitacoes.solicitacao_hora')
+            ->orderby('homologacao_solicitacoes.solicitacao')
             ->limit($limit)
             ->get();
     }
@@ -90,6 +86,8 @@ class HomologacaoSolicitacaoRepository
                     $indexCampo = $indexCampo + 4;
                 }
             })
+            ->orderby('homologacao_solicitacoes.solicitacao_data')
+            ->orderby('homologacao_solicitacoes.solicitacao')
             ->limit($limit)
             ->get();
 
@@ -125,21 +123,21 @@ class HomologacaoSolicitacaoRepository
             $destination = public_path('/assets/images/homologacao_solicitacoes');
             $file->move($destination, $fileName);
             $solicitacao_imagem = 'assets/images/homologacao_solicitacoes/' . $fileName;
-            
+
             $this->update_solicitacao_imagem($homologacao_solicitacao->id, $solicitacao_imagem);
         }
 
         return $homologacao_solicitacao;
     }
-    
+
     public function update_solicitacao_imagem(int $id, string $solicitacao_imagem)
     {
         $homologacao_solicitacao = $this->find($id);
         $homologacao_solicitacao->update(['solicitacao_imagem' => $solicitacao_imagem]);
-        
+
         return;
     }
-    
+
     public function update(int $id, array $data)
     {
         // Acertos
