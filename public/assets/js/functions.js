@@ -25,6 +25,8 @@
 * @PARAM op=20 : Boletim
 * @PARAM op=21 : RG Militar
 * @PARAM op=22 : Pagamento
+* @PARAM op=23 : Número com 5 dígitos
+* @PARAM op=24 : Requerimento
  */
 function validacao({op=0, value='', minCaracteres=0, maxCaracteres=0, id=''}) {
     var regex;
@@ -379,6 +381,11 @@ function validacao({op=0, value='', minCaracteres=0, maxCaracteres=0, id=''}) {
         } else {
             return false;
         }
+    }
+
+    // Campo Requerimento: 99999/yyyy
+    if (op == 24) {
+        return /^\d{5}\/\d{4}$/.test(value);
     }
 }
 

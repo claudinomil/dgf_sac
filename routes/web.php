@@ -36,6 +36,7 @@ use App\Http\Controllers\Web\FuncaoController;
 use App\Http\Controllers\Web\GeneroController;
 use App\Http\Controllers\Web\ParentescoController;
 use App\Http\Controllers\Web\CursoController;
+use App\Http\Controllers\Web\DesenvolvimentoController;
 use App\Http\Controllers\Web\WebserviceController;
 use App\Http\Controllers\Web\HomologacaoSolicitacaoController;
 use App\Models\RessarcimentoCobranca;
@@ -229,16 +230,16 @@ Route::middleware('auth')->prefix('relatorios')->group(function () {
     Route::get('relatorio_7', [RelatorioController::class, 'relatorio_7'])->middleware('permissao:relatorios_list');
 
     // Relatório 8: MILITARES POR GRADUAÇÃO
-    Route::get('relatorio_8', [RelatorioController::class, 'relatorio_8'])->middleware('permissao:relatorios_list');
+    Route::get('relatorio_8/{situacao_id}', [RelatorioController::class, 'relatorio_8'])->middleware('permissao:relatorios_list');
 
     // Relatório 9: MILITARES POR UNIDADE
-    Route::get('relatorio_9', [RelatorioController::class, 'relatorio_9'])->middleware('permissao:relatorios_list');
+    Route::get('relatorio_9/{situacao_id}', [RelatorioController::class, 'relatorio_9'])->middleware('permissao:relatorios_list');
 
     // Relatório 10: MILITARES POR QUADRO
-    Route::get('relatorio_10', [RelatorioController::class, 'relatorio_10'])->middleware('permissao:relatorios_list');
+    Route::get('relatorio_10/{situacao_id}', [RelatorioController::class, 'relatorio_10'])->middleware('permissao:relatorios_list');
 
     // Relatório 11: MILITARES POR COMPORTAMENTO
-    Route::get('relatorio_11', [RelatorioController::class, 'relatorio_11'])->middleware('permissao:relatorios_list');
+    Route::get('relatorio_11/{situacao_id}', [RelatorioController::class, 'relatorio_11'])->middleware('permissao:relatorios_list');
 
     // Relatório 12: MILITARES
     Route::get('relatorio_12/{situacoes}/{graduacoes}/{unidades}/{quadros}/{comportamentos}', [RelatorioController::class, 'relatorio_12'])->middleware('permissao:relatorios_list');
@@ -675,4 +676,10 @@ Route::middleware('auth')->prefix('homologacao_solicitacoes')->group(function ()
     Route::delete('/{id}', [HomologacaoSolicitacaoController::class, 'destroy'])->middleware('permissao:homologacao_solicitacoes_destroy');
     Route::get('/{id}/edit', [HomologacaoSolicitacaoController::class, 'edit'])->middleware('permissao:homologacao_solicitacoes_edit');
 });
-// Homologação Solicitações - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+// Homologação Solicitações - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+// Desenvolvimento - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Route::middleware('auth')->prefix('desenvolvimento')->group(function () {
+    Route::get('', [DesenvolvimentoController::class, 'index']);
+});
+// Homologação Solicitações - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''

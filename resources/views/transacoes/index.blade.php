@@ -26,11 +26,12 @@
                                 <div class="col-12 col-md-6 float-end">
                                     @php
                                         $selectCampoPesquisar = [
-                                        ['value' => 'transacoes.date', 'descricao' => __('Data')],
-                                        ['value' => 'transacoes.time', 'descricao' => __('Hora')],
                                         ['value' => 'users.name', 'descricao' => __('Usuário')],
+                                        ['value' => 'users.user', 'descricao' => __('RG')],
                                         ['value' => 'operacoes.name', 'descricao' => __('Operação')],
                                         ['value' => 'submodulos.name', 'descricao' => __('Submódulo')],
+                                        ['value' => 'transacoes.date', 'descricao' => __('Data')],
+                                        ['value' => 'transacoes.time', 'descricao' => __('Hora')],
                                         ['value' => 'transacoes.dados', 'descricao' => __('Dados')]
                                         ];
                                     @endphp
@@ -45,7 +46,7 @@
 
                     <!-- Tabela (Componente Blade) -->
                     <x-table-crud-ajax :colsNames="[__('Data/Hora'), __('Usuário'), __('Submódulo/Operação'), __('Dados')]" />
-                    <input type="hidden" id="crudFieldsColumnsTable" name="crudFieldsColumnsTable" value="date,userName,submoduloName,dados">
+                    <input type="hidden" id="crudFieldsColumnsTable" name="crudFieldsColumnsTable" value="date,usuario,submoduloName,dados">
                 </div>
             </div>
         </div>

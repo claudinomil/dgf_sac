@@ -36,9 +36,11 @@ class MilitarCursoRepository
         // Permissão Situação do Militar
         $query->whereIn('militares.situacao_id', retornaArrayCampoGruposPermissoesSituacoes('militares_cursos_permissoes_list_situacoes_ids'));
 
-        $query->orderBy('cursos.name')->limit($limit);
-
-        return $query->get();
+        $query->orderBy('militares.situacao_id');
+        $query->orderBy('militares.graduacao_id');
+        $query->orderBy('militares.rg');
+        
+        return $query->limit($limit)->get();
     }
 
     public function filter($array_dados, int $limit)
@@ -121,7 +123,9 @@ class MilitarCursoRepository
                     $indexCampo = $indexCampo + 4;
                 }
             })
-            ->orderBy('cursos.name')
+            ->orderBy('militares.situacao_id')
+            ->orderBy('militares.graduacao_id')
+            ->orderBy('militares.rg')
             ->limit($limit)
             ->get();
 

@@ -10,6 +10,7 @@ use App\Models\Operacao;
 use App\Models\Relatorio;
 use App\Models\RessarcimentoCobrancaDado;
 use App\Models\RessarcimentoOrgao;
+use App\Models\Situacao;
 use App\Models\Submodulo;
 use App\Models\Transacao;
 use App\Models\User;
@@ -470,7 +471,7 @@ class RelatorioRepository
         return $content;
     }
 
-    public function relatorio_8()
+    public function relatorio_8(int $situacao_id)
     {
         // Relatório Data
         $relatorio_data = date('d/m/Y');
@@ -484,6 +485,12 @@ class RelatorioRepository
 
         // Parâmetros
         $relatorio_parametros = '';
+        if ($situacao_id == 0) {
+            $relatorio_parametros = 'Todos as Situações';
+        } else {
+            $situacao = Situacao::where('id', $situacao_id)->get();
+            $relatorio_parametros = 'Situação: '.$situacao[0]['name'];
+        }
 
         // Registros
         $relatorio_registros = Militar::join('graduacoes', 'graduacoes.id', '=', 'militares.graduacao_id')
@@ -492,6 +499,9 @@ class RelatorioRepository
                 'graduacoes.name',
                 DB::raw('COUNT(militares.id) as quantidade')
             )
+            ->when($situacao_id != 0, function ($query) use ($situacao_id) {
+                $query->where('militares.situacao_id', $situacao_id);
+            })
             ->groupBy('graduacoes.id', 'graduacoes.name')
             ->orderBy('graduacoes.id')
             ->get();
@@ -507,7 +517,7 @@ class RelatorioRepository
         return $content;
     }
 
-    public function relatorio_9()
+    public function relatorio_9(int $situacao_id)
     {
         // Relatório Data
         $relatorio_data = date('d/m/Y');
@@ -521,6 +531,12 @@ class RelatorioRepository
 
         // Parâmetros
         $relatorio_parametros = '';
+        if ($situacao_id == 0) {
+            $relatorio_parametros = 'Todos as Situações';
+        } else {
+            $situacao = Situacao::where('id', $situacao_id)->get();
+            $relatorio_parametros = 'Situação: '.$situacao[0]['name'];
+        }
 
         // Registros
         $relatorio_registros = Militar::join('unidades', 'unidades.id', '=', 'militares.unidade_id')
@@ -528,6 +544,9 @@ class RelatorioRepository
                 'unidades.name',
                 DB::raw('COUNT(militares.id) as quantidade')
             )
+            ->when($situacao_id != 0, function ($query) use ($situacao_id) {
+                $query->where('militares.situacao_id', $situacao_id);
+            })
             ->groupBy('unidades.name')
             ->orderBy('unidades.name')
             ->get();
@@ -543,7 +562,7 @@ class RelatorioRepository
         return $content;
     }
 
-    public function relatorio_10()
+    public function relatorio_10(int $situacao_id)
     {
         // Relatório Data
         $relatorio_data = date('d/m/Y');
@@ -557,6 +576,12 @@ class RelatorioRepository
 
         // Parâmetros
         $relatorio_parametros = '';
+        if ($situacao_id == 0) {
+            $relatorio_parametros = 'Todos as Situações';
+        } else {
+            $situacao = Situacao::where('id', $situacao_id)->get();
+            $relatorio_parametros = 'Situação: '.$situacao[0]['name'];
+        }
 
         // Registros
         $relatorio_registros = Militar::join('quadros', 'quadros.id', '=', 'militares.quadro_id')
@@ -564,6 +589,9 @@ class RelatorioRepository
                 'quadros.name',
                 DB::raw('COUNT(militares.id) as quantidade')
             )
+            ->when($situacao_id != 0, function ($query) use ($situacao_id) {
+                $query->where('militares.situacao_id', $situacao_id);
+            })
             ->groupBy('quadros.name')
             ->orderBy('quadros.name')
             ->get();
@@ -579,7 +607,7 @@ class RelatorioRepository
         return $content;
     }
 
-    public function relatorio_11()
+    public function relatorio_11(int $situacao_id)
     {
         // Relatório Data
         $relatorio_data = date('d/m/Y');
@@ -593,6 +621,12 @@ class RelatorioRepository
 
         // Parâmetros
         $relatorio_parametros = '';
+        if ($situacao_id == 0) {
+            $relatorio_parametros = 'Todos as Situações';
+        } else {
+            $situacao = Situacao::where('id', $situacao_id)->get();
+            $relatorio_parametros = 'Situação: '.$situacao[0]['name'];
+        }
 
         // Registros
         $relatorio_registros = Militar::join('comportamentos', 'comportamentos.id', '=', 'militares.comportamento_id')
@@ -600,6 +634,9 @@ class RelatorioRepository
                 'comportamentos.name',
                 DB::raw('COUNT(militares.id) as quantidade')
             )
+            ->when($situacao_id != 0, function ($query) use ($situacao_id) {
+                $query->where('militares.situacao_id', $situacao_id);
+            })
             ->groupBy('comportamentos.name')
             ->orderBy('comportamentos.name')
             ->get();

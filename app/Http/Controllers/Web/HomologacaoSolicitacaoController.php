@@ -35,10 +35,11 @@ class HomologacaoSolicitacaoController extends Controller
             // Definir CRUD Sessions
             setCrudSessions('homologacao_solicitacoes');
 
+            $solicitacoes = $this->homologacaoSolicitacoesService->getHomologacaoSolicitacoes(1000);
             $submodulos = $this->submoduloService->getSubmodulos();
             $users = $this->userService->getUsers(1000);
 
-            return view('homologacao_solicitacoes.index', compact(['submodulos', 'users']));
+            return view('homologacao_solicitacoes.index', compact(['solicitacoes', 'submodulos', 'users']));
         }
     }
 
@@ -91,6 +92,12 @@ class HomologacaoSolicitacaoController extends Controller
                 return $retorno;
             })
             ->editColumn('resposta', function ($row) {
+                if (trim($row['resposta'] ?? '') !== '') {
+                    $resposta = '<b>Resposta: </b>' . $row['resposta'] . '</div>';
+                } else {
+                    $resposta = '';
+                }
+
                 $retorno = '<div class="row py-3">
                                 <div class="col-12">
                                     <table class="table table-bordered mb-0">
@@ -110,7 +117,7 @@ class HomologacaoSolicitacaoController extends Controller
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="col-12 mt-3" style="text-align: justify;"><b>Resposta: </b>' . $row["resposta"] . '</div>
+                                <div class="col-12 mt-3 text-success" style="text-align: justify;">'.$resposta.'</div>
                             </div>';
 
                 return $retorno;

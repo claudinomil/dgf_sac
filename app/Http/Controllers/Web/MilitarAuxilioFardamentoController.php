@@ -126,8 +126,9 @@ class MilitarAuxilioFardamentoController extends Controller
                 // Preparando Dados para a View''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
                 $dados = $militar_auxilio_fardamento->toArray();
 
-                $dados['data_inicio'] = $militar_auxilio_fardamento->data_inicio ? $militar_auxilio_fardamento->data_inicio->format('d/m/Y') : '';
-                $dados['data_termino'] = $militar_auxilio_fardamento->data_termino ? $militar_auxilio_fardamento->data_termino->format('d/m/Y') : '';
+                $dados['requerimento_data'] = $militar_auxilio_fardamento->requerimento_data ? $militar_auxilio_fardamento->requerimento_data->format('d/m/Y') : '';
+                $dados['data_ultima_promocao'] = $militar_auxilio_fardamento->data_ultima_promocao ? $militar_auxilio_fardamento->data_ultima_promocao->format('d/m/Y') : '';
+                $dados['data_requerimento'] = $militar_auxilio_fardamento->data_requerimento ? $militar_auxilio_fardamento->data_requerimento->format('d/m/Y') : '';
                 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
                 return response()->json(['success' => $dados]);
@@ -159,8 +160,9 @@ class MilitarAuxilioFardamentoController extends Controller
                 // Preparando Dados para a View''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
                 $dados = $auxilio_fardamento->toArray();
 
-                $dados['data_inicio'] = $auxilio_fardamento->data_inicio ? $auxilio_fardamento->data_inicio->format('d/m/Y') : '';
-                $dados['data_termino'] = $auxilio_fardamento->data_termino ? $auxilio_fardamento->data_termino->format('d/m/Y') : '';
+                $dados['requerimento_data'] = $auxilio_fardamento->requerimento_data ? $auxilio_fardamento->requerimento_data->format('d/m/Y') : '';
+                $dados['data_ultima_promocao'] = $auxilio_fardamento->data_ultima_promocao ? $auxilio_fardamento->data_ultima_promocao->format('d/m/Y') : '';
+                $dados['data_requerimento'] = $auxilio_fardamento->data_requerimento ? $auxilio_fardamento->data_requerimento->format('d/m/Y') : '';
                 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
                 return response()->json(['success' => $dados]);

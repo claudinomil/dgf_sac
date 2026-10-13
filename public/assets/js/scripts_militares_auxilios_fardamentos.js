@@ -87,6 +87,45 @@ async function validar_frm_militares_auxilios_fardamentos() {
         }
     }
 
+    // Campo: requerimento_numero (requerido)
+    if (validacao({ op: 1, value: document.getElementById("requerimento_numero").value }) === false) {
+        validacao_ok = false;
+        mensagem += "Requerimento Número requerido." + "<br>";
+    } else {
+        if (validacao({ op: 24, value: document.getElementById('requerimento_numero').value }) === false) {
+            validacao_ok = false;
+            mensagem += 'Requerimento Número inválido.' + '<br>';
+        }
+    }
+
+    // Campo: requerimento_data (requerido)
+    if (validacao({ op: 1, value: document.getElementById("requerimento_data").value }) === false) {
+        validacao_ok = false;
+        mensagem += "Requerimento Data requerido." + "<br>";
+    } else {
+        if (validacao({ op: 8, value: document.getElementById('requerimento_data').value }) === false) {
+            validacao_ok = false;
+            mensagem += 'Requerimento Data inválida.' + '<br>';
+        }
+    }
+
+    // Campo: requerimento_unidade (requerido)
+    if (validacao({ op: 1, value: document.getElementById("requerimento_unidade").value }) === false) {
+        validacao_ok = false;
+        mensagem += "Requerimento Unidade requerido." + "<br>";
+    }
+
+    // Campo: data_ultima_promocao (requerido)
+    if (validacao({ op: 1, value: document.getElementById("data_ultima_promocao").value }) === false) {
+        validacao_ok = false;
+        mensagem += "Data Última Promoção requerido." + "<br>";
+    } else {
+        if (validacao({ op: 8, value: document.getElementById('data_ultima_promocao').value }) === false) {
+            validacao_ok = false;
+            mensagem += 'Data Última Promoção inválida.' + '<br>';
+        }
+    }
+
     // Mensagem
     if (validacao_ok === false) {
         var texto = '<div class="pt-3">';

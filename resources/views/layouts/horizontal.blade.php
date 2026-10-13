@@ -3,25 +3,25 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="index" class="logo logo-dark">
+                <a href="dashboards" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ URL::asset ('/assets/images/logo.svg') }}" alt="" height="22">
+                        <img src="{{ URL::asset('/assets/images/logo.svg') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ URL::asset ('/assets/images/logo-dark.png') }}" alt="" height="17">
+                        <img src="{{ URL::asset('/assets/images/logo-dark.png') }}" alt="" height="17">
                     </span>
                 </a>
 
-                <a href="index" class="logo logo-light">
-                    <span class="logo-sm">
-                        <img src="{{ URL::asset ('/assets/images/logo-light.svg') }}" alt="" height="22">
+                <a href="dashboards" class="logo logo-light">
+                    <span class="logo-sm p-0">
+                        <img src="{{ asset('/assets/images/logo_cbmerj_min_branco.png') }}" alt="" height="60" style="margin-left: -16px;">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ URL::asset ('/assets/images/logo-light.png') }}" alt="" height="19">
+                        <img src="{{ asset('/assets/images/logo_cbmerj_dgf_branco.png') }}" alt="" height="50">
                     </span>
                 </a>
             </div>
-
+            
             <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light"
                 data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
                 <i class="fa fa-fw fa-bars"></i>
@@ -42,12 +42,6 @@
                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-
-
-                    <!-- <form id="logout-form" action="/logout" method="GET" style="display: none;">
-                        @csrf
-                    </form> -->
-                    
                 </div>
             </div>
         </div>

@@ -139,41 +139,41 @@ class RelatorioController extends Controller
         }
     }
 
-    public function relatorio_8(Request $request)
+    public function relatorio_8(Request $request, int $situacao_id)
     {
         // Verificando Origem enviada pelo Fetch
         if ($request->header('request-origin') == 'fetch') {
-            $retorno = $this->relatorioService->getRelatorio8();
+            $retorno = $this->relatorioService->getRelatorio8($situacao_id);
 
             return response()->json(['success' => $retorno]);
         }
     }
 
-    public function relatorio_9(Request $request)
+    public function relatorio_9(Request $request, int $situacao_id)
     {
         // Verificando Origem enviada pelo Fetch
         if ($request->header('request-origin') == 'fetch') {
-            $retorno = $this->relatorioService->getRelatorio9();
+            $retorno = $this->relatorioService->getRelatorio9($situacao_id);
 
             return response()->json(['success' => $retorno]);
         }
     }
 
-    public function relatorio_10(Request $request)
+    public function relatorio_10(Request $request, int $situacao_id)
     {
         // Verificando Origem enviada pelo Fetch
         if ($request->header('request-origin') == 'fetch') {
-            $retorno = $this->relatorioService->getRelatorio10();
+            $retorno = $this->relatorioService->getRelatorio10($situacao_id);
 
             return response()->json(['success' => $retorno]);
         }
     }
 
-    public function relatorio_11(Request $request)
+    public function relatorio_11(Request $request, int $situacao_id)
     {
         // Verificando Origem enviada pelo Fetch
         if ($request->header('request-origin') == 'fetch') {
-            $retorno = $this->relatorioService->getRelatorio11();
+            $retorno = $this->relatorioService->getRelatorio11($situacao_id);
 
             return response()->json(['success' => $retorno]);
         }

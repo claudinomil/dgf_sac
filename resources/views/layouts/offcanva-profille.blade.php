@@ -12,6 +12,7 @@
                         <div class="card-body text-center">
                             <img src="{{ asset('/assets/images/users/avatar-0.png') }}" class="rounded-circle mb-3 url_user_avatar" width="120" id="profilleImgAvatar">
                             <h6 id="profilleName"></h6>
+                            <button class="btn btn-sm text-danger" data-bs-dismiss="offcanvas"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Sair</button>
                         </div>
                     </div>
                     <div class="card mb-3">

@@ -77,6 +77,18 @@ function maskProcessoSei(v) {
     return r;
 }
 
+function maskRequerimento(v) {
+    // Remove tudo que não for número e limita a 9 dígitos
+    v = v.replace(/\D/g, '').slice(0, 9);
+
+    // Formato 99999/9999
+    if (v.length > 5) {
+        v = v.substring(0, 5) + '/' + v.substring(5);
+    }
+
+    return v;
+}
+
 function maskRg(v) {
     v = v.replace(/\D/g, '')
          .slice(0, 9); // 2 + 4 + 3 números
@@ -208,13 +220,20 @@ function putMask() {
         el.value = maskPagamento(el.value);
     });
 
-
     document.querySelectorAll(".mask_processo_sei").forEach(el => {
         el.addEventListener("input", () => {
             el.value = maskProcessoSei(el.value);
         });
 
         el.value = maskProcessoSei(el.value);
+    });
+
+    document.querySelectorAll(".mask_requerimento").forEach(el => {
+        el.addEventListener("input", () => {
+            el.value = maskRequerimento(el.value);
+        });
+
+        el.value = maskRequerimento(el.value);
     });
 
     document.querySelectorAll(".mask_rg").forEach(el => {

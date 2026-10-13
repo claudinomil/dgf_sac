@@ -228,6 +228,7 @@ async function crudTable(route, fieldsColumns='', pageLength=5) {
         lengthChange: true,
         autoWidth: true,
         order: [],
+        ordering: true,
         processing: true,
         serverSide: false,
         pageLength: pageLength,

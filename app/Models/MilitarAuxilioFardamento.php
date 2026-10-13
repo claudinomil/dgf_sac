@@ -21,22 +21,24 @@ class MilitarAuxilioFardamento extends Model
         'pagamento_ordenar',
         'observacao',
         'referencia_processo_sei',
-        'requerimento_numero',
-        'requerimento_data',
-        'requerimento_unidade',
         'documento',
         'unidade',
         'mes_pagamento',
         'ano_pagamento',
         'mes_recebimento',
         'ano_recebimento',
+        'controle_sistema_cadastramento_fardamentos',
+        'requerimento_numero',
+        'requerimento_data',
+        'requerimento_unidade',
         'data_requerimento',
-        'controle_sistema_cadastramento_fardamentos'
+        'data_ultima_promocao'
     ];
 
     protected $casts = [
         'requerimento_data' => 'date',
-        'data_requerimento' => 'date'
+        'data_requerimento' => 'date',
+        'data_ultima_promocao' => 'date'
     ];
 
     public function setRequerimentoDataAttribute($value)
@@ -57,5 +59,15 @@ class MilitarAuxilioFardamento extends Model
         }
 
         $this->attributes['data_requerimento'] = Carbon::createFromFormat('d/m/Y', trim($value))->format('Y-m-d');
+    }
+
+    public function setDataUltimaPromocaoAttribute($value)
+    {
+        if (blank($value)) {
+            $this->attributes['data_ultima_promocao'] = null;
+            return;
+        }
+
+        $this->attributes['data_ultima_promocao'] = Carbon::createFromFormat('d/m/Y', trim($value))->format('Y-m-d');
     }
 }

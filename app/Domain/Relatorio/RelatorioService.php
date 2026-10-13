@@ -50,24 +50,24 @@ class RelatorioService
         return $this->repository->relatorio_7();
     }
 
-    public function getRelatorio8()
+    public function getRelatorio8(int $situacao_id)
     {
-        return $this->repository->relatorio_8();
+        return $this->repository->relatorio_8($situacao_id);
     }
 
-    public function getRelatorio9()
+    public function getRelatorio9(int $situacao_id)
     {
-        return $this->repository->relatorio_9();
+        return $this->repository->relatorio_9($situacao_id);
     }
 
-    public function getRelatorio10()
+    public function getRelatorio10(int $situacao_id)
     {
-        return $this->repository->relatorio_10();
+        return $this->repository->relatorio_10($situacao_id);
     }
 
-    public function getRelatorio11()
+    public function getRelatorio11(int $situacao_id)
     {
-        return $this->repository->relatorio_11();
+        return $this->repository->relatorio_11($situacao_id);
     }
 
     public function getRelatorio12(object $request, string $situacoes, string $graduacoes, string $unidades, string $quadros, string $comportamentos)

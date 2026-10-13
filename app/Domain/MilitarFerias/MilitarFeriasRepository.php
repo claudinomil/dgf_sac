@@ -37,9 +37,8 @@ class MilitarFeriasRepository
         $query->orderBy('militares.situacao_id');
         $query->orderBy('militares.graduacao_id');
         $query->orderBy('militares.rg');
-        $query->limit($limit);
-
-        return $query->get();
+        
+        return $query->limit($limit)->get();
     }
 
     public function filter($array_dados, int $limit)

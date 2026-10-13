@@ -3,7 +3,7 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="index" class="logo logo-dark">
+                <a href="dashboards" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="{{ URL::asset('/assets/images/logo.svg') }}" alt="" height="22">
                     </span>
@@ -12,7 +12,7 @@
                     </span>
                 </a>
 
-                <a href="index" class="logo logo-light">
+                <a href="dashboards" class="logo logo-light">
                     <span class="logo-sm p-0">
                         <img src="{{ asset('/assets/images/logo_cbmerj_min_branco.png') }}" alt="" height="60" style="margin-left: -16px;">
                     </span>
@@ -56,13 +56,6 @@
                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-
-
-<!-- <form id="logout-form" action="/logout" method="GET" style="display: none;">
-                        @csrf
-                    </form> -->
-
-
                 </div>
             </div>
         </div>

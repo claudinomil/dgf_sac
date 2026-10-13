@@ -49,7 +49,14 @@ class TransacaoRepository
         return Transacao::join('users', 'transacoes.user_id', '=', 'users.id')
             ->join('operacoes', 'transacoes.operacao_id', '=', 'operacoes.id')
             ->join('submodulos', 'transacoes.submodulo_id', '=', 'submodulos.id')
-            ->select(['transacoes.*', 'users.name as userName', 'operacoes.name as operacaoName', 'submodulos.name as submoduloName'])
+            ->select([
+                'transacoes.*',
+                'users.name as userName',
+                'users.user',
+                'users.user_tipo_id',
+                'operacoes.name as operacaoName',
+                'submodulos.name as submoduloName'
+            ])
             ->orderby('transacoes.date', 'DESC')
             ->orderby('transacoes.time', 'DESC')
             ->limit($limit)
@@ -68,7 +75,14 @@ class TransacaoRepository
         $registros = Transacao::join('users', 'transacoes.user_id', '=', 'users.id')
             ->join('operacoes', 'transacoes.operacao_id', '=', 'operacoes.id')
             ->join('submodulos', 'transacoes.submodulo_id', '=', 'submodulos.id')
-            ->select(['transacoes.*', 'users.name as userName', 'operacoes.name as operacaoName', 'submodulos.name as submoduloName'])
+            ->select([
+                'transacoes.*',
+                'users.name as userName',
+                'users.user',
+                'users.user_tipo_id',
+                'operacoes.name as operacaoName',
+                'submodulos.name as submoduloName'
+            ])
             ->orderby('transacoes.date', 'DESC')
             ->orderby('transacoes.time', 'DESC')
             ->where(function($query) use($filtros) {

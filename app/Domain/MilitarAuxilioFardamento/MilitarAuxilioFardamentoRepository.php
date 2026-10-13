@@ -36,9 +36,11 @@ class MilitarAuxilioFardamentoRepository
         // Permissão Situação do Militar
         $query->whereIn('militares.situacao_id', retornaArrayCampoGruposPermissoesSituacoes('militares_auxilios_fardamentos_permissoes_list_situacoes_ids'));
 
-        $query->orderBy('auxilio_fardamento_tipos.name')->limit($limit);
-
-        return $query->get();
+        $query->orderBy('militares.situacao_id');
+        $query->orderBy('militares.graduacao_id');
+        $query->orderBy('militares.rg');
+        
+        return $query->limit($limit)->get();
     }
 
     public function filter($array_dados, int $limit)
@@ -121,7 +123,9 @@ class MilitarAuxilioFardamentoRepository
                     $indexCampo = $indexCampo + 4;
                 }
             })
-            ->orderBy('auxilio_fardamento_tipos.name')
+            ->orderBy('militares.situacao_id')
+            ->orderBy('militares.graduacao_id')
+            ->orderBy('militares.rg')
             ->limit($limit)
             ->get();
 

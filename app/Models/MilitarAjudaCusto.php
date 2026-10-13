@@ -16,11 +16,30 @@ class MilitarAjudaCusto extends Model
         'excluido',
         'militar_id',
         'ajuda_custo_tipo_id',
-        'curso',
         'boletim',
         'pagamento',
         'pagamento_ordenar',
         'observacao',
-        'referencia_processo_sei'
+        'referencia_processo_sei',
+        'requerimento_numero',
+        'requerimento_data',
+        'unidade_origem',
+        'unidade_destino',
+        'curso',
+        'boletim_movimentacao'
     ];
+
+    protected $casts = [
+        'requerimento_data' => 'date'
+    ];
+
+    public function setRequerimentoDataAttribute($value)
+    {
+        if (blank($value)) {
+            $this->attributes['requerimento_data'] = null;
+            return;
+        }
+
+        $this->attributes['requerimento_data'] = Carbon::createFromFormat('d/m/Y', trim($value))->format('Y-m-d');
+    }
 }

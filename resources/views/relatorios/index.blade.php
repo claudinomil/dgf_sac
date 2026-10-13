@@ -350,7 +350,18 @@
                     <h5 class="modal-title font-size-12" id="modal_relatorio_8_titulo">Xxxxxxxxxxxx</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">&nbsp;</div>
+                <div class="modal-body">
+                    <div class="form-group col-12 pb-3">
+                        <label class="form-label font-size-12">Situação</label>
+                        <select class="form-select font-size-12" name="modal_relatorio_8_situacao_id" id="modal_relatorio_8_situacao_id">
+                            <option value="0">Todas as Situações</option>
+
+                            @foreach ($situacoes as $situacao)
+                            <option value="{{$situacao['id']}}">{{$situacao['name']}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <div class="col-12 text-end" id="modal_relatorio_8_footer_1">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal_relatorio_8_cancelar">Cancelar</button>
@@ -372,7 +383,18 @@
                     <h5 class="modal-title font-size-12" id="modal_relatorio_9_titulo">Xxxxxxxxxxxx</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">&nbsp;</div>
+                <div class="modal-body">
+                    <div class="form-group col-12 pb-3">
+                        <label class="form-label font-size-12">Situação</label>
+                        <select class="form-select font-size-12" name="modal_relatorio_9_situacao_id" id="modal_relatorio_9_situacao_id">
+                            <option value="0">Todas as Situações</option>
+
+                            @foreach ($situacoes as $situacao)
+                            <option value="{{$situacao['id']}}">{{$situacao['name']}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <div class="col-12 text-end" id="modal_relatorio_9_footer_1">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal_relatorio_9_cancelar">Cancelar</button>
@@ -394,7 +416,18 @@
                     <h5 class="modal-title font-size-12" id="modal_relatorio_10_titulo">Xxxxxxxxxxxx</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">&nbsp;</div>
+                <div class="modal-body">
+                    <div class="form-group col-12 pb-3">
+                        <label class="form-label font-size-12">Situação</label>
+                        <select class="form-select font-size-12" name="modal_relatorio_10_situacao_id" id="modal_relatorio_10_situacao_id">
+                            <option value="0">Todas as Situações</option>
+
+                            @foreach ($situacoes as $situacao)
+                            <option value="{{$situacao['id']}}">{{$situacao['name']}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <div class="col-12 text-end" id="modal_relatorio_10_footer_1">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal_relatorio_10_cancelar">Cancelar</button>
@@ -416,7 +449,18 @@
                     <h5 class="modal-title font-size-12" id="modal_relatorio_11_titulo">Xxxxxxxxxxxx</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">&nbsp;</div>
+                <div class="modal-body">
+                    <div class="form-group col-12 pb-3">
+                        <label class="form-label font-size-12">Situação</label>
+                        <select class="form-select font-size-12" name="modal_relatorio_11_situacao_id" id="modal_relatorio_11_situacao_id">
+                            <option value="0">Todas as Situações</option>
+
+                            @foreach ($situacoes as $situacao)
+                            <option value="{{$situacao['id']}}">{{$situacao['name']}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <div class="col-12 text-end" id="modal_relatorio_11_footer_1">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal_relatorio_11_cancelar">Cancelar</button>

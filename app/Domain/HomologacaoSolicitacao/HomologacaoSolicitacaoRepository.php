@@ -17,10 +17,10 @@ class HomologacaoSolicitacaoRepository
                 'homologacao_solicitacoes.*',
                 'submodulos.name as submoduloName'
             )
-            ->where(function ($query) {
-                $query->where('homologacao_solicitacoes.resposta', '')
-                    ->orWhereNull('homologacao_solicitacoes.resposta');
-            })
+            // ->where(function ($query) {
+            //     $query->where('homologacao_solicitacoes.resposta', '')
+            //         ->orWhereNull('homologacao_solicitacoes.resposta');
+            // })
             ->orderby('homologacao_solicitacoes.solicitacao_data')
             ->orderby('homologacao_solicitacoes.solicitacao_hora')
             ->limit($limit)

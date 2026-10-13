@@ -73,9 +73,9 @@
                                 <div class="form-group col-12 col-md-2 pb-3">
                                     <label class="form-label">Menu</label>
                                     <select class="form-control" name="layout_menu" id="layout_menu">
-                                        <option value="">Selecione...</option>
+                                        <!-- <option value="">Selecione...</option> -->
                                         <option value="1">Vertical</option>
-                                        <option value="2">Horizontal</option>
+                                        <!-- <option value="2">Horizontal</option> -->
                                     </select>
                                 </div>
                                 <div class="form-group col-12 col-md-3 pb-3">

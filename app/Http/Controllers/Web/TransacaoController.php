@@ -63,6 +63,19 @@ class TransacaoController extends Controller
 
                 return $retorno;
             })
+            ->editColumn('usuario', function ($row) {
+                $userName = $row['userName'];
+                $user = $row['user'];
+                $user_tipo_id = $row['user_tipo_id'];
+
+                if ($user_tipo_id == 1) {$user = 'Militar: '.$user;}
+                if ($user_tipo_id == 2) {$user = 'Civil: '.$user;}
+
+                $retorno = "<h5 class='text-truncate font-size-14'>" . $userName . "</h5>";
+                $retorno .= "<p class='text-muted mb-0'>" . $user . "</p>";
+
+                return $retorno;
+            })
             ->editColumn('submoduloName', function ($row) {
                 $submodulo = e($row['submoduloName']);
                 $operacao = e($row['operacaoName']);

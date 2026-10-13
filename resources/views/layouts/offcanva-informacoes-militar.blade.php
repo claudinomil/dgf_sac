@@ -12,6 +12,7 @@
                         <div class="card-body text-center">
                             <img src="{{ asset('/assets/images/militares/fotografia-0.png') }}" class="rounded-circle mb-3" width="110" id="militarImgFotografia">
                             <div class="font-size-13" id="militarName"></div>
+                            <button class="btn btn-sm text-danger" data-bs-dismiss="offcanvas"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Sair</button>
                         </div>
                     </div>
                     <div class="card mb-3">

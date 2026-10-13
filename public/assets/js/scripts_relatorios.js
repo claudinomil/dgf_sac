@@ -678,9 +678,15 @@ async function relatoriosRelatorio7(op = 1, relatorio_name = '') {
             // Dados da tabela Linhas
             let dadosTableLinhas = [];
 
-            data.success['relatorio_registros'].forEach(function(item) {
+            // Total de Militares
+            let totalMilitares = 0;
+
+            data.success['relatorio_registros'].forEach(function (item) {
+                totalMilitares = totalMilitares + item.quantidade;
                 dadosTableLinhas.push([item.name, item.quantidade]);
             });
+
+            dadosTableLinhas.push(['## TOTAL DE MILITARES', totalMilitares]);
 
             // Gerar PDF
             gerarPdfTabela({
@@ -731,7 +737,7 @@ async function relatoriosRelatorio8(op = 1, relatorio_name = '') {
             document.getElementById('modal_relatorio_8_footer_2').style.display = 'block';
 
             // Buscar Dados
-            const response = await fetch(url + 'relatorios/relatorio_8', {
+            const response = await fetch(url + 'relatorios/relatorio_8' + '/' + document.getElementById('modal_relatorio_8_situacao_id').value, {
                 method: 'GET',
                 headers: { 'REQUEST-ORIGIN': 'fetch' }
             });
@@ -754,9 +760,15 @@ async function relatoriosRelatorio8(op = 1, relatorio_name = '') {
             // Dados da tabela Linhas
             let dadosTableLinhas = [];
 
-            data.success['relatorio_registros'].forEach(function(item) {
+            // Total de Militares
+            let totalMilitares = 0;
+
+            data.success['relatorio_registros'].forEach(function (item) {
+                totalMilitares = totalMilitares + item.quantidade;
                 dadosTableLinhas.push([item.name, item.quantidade]);
             });
+
+            dadosTableLinhas.push(['## TOTAL DE MILITARES', totalMilitares]);
 
             // Gerar PDF
             gerarPdfTabela({
@@ -807,7 +819,7 @@ async function relatoriosRelatorio9(op = 1, relatorio_name = '') {
             document.getElementById('modal_relatorio_9_footer_2').style.display = 'block';
 
             // Buscar Dados
-            const response = await fetch(url + 'relatorios/relatorio_9', {
+            const response = await fetch(url + 'relatorios/relatorio_9' + '/' + document.getElementById('modal_relatorio_9_situacao_id').value, {
                 method: 'GET',
                 headers: { 'REQUEST-ORIGIN': 'fetch' }
             });
@@ -830,9 +842,15 @@ async function relatoriosRelatorio9(op = 1, relatorio_name = '') {
             // Dados da tabela Linhas
             let dadosTableLinhas = [];
 
-            data.success['relatorio_registros'].forEach(function(item) {
+            // Total de Militares
+            let totalMilitares = 0;
+
+            data.success['relatorio_registros'].forEach(function (item) {
+                totalMilitares = totalMilitares + item.quantidade;
                 dadosTableLinhas.push([item.name, item.quantidade]);
             });
+
+            dadosTableLinhas.push(['## TOTAL DE MILITARES', totalMilitares]);
 
             // Gerar PDF
             gerarPdfTabela({
@@ -883,7 +901,7 @@ async function relatoriosRelatorio10(op = 1, relatorio_name = '') {
             document.getElementById('modal_relatorio_10_footer_2').style.display = 'block';
 
             // Buscar Dados
-            const response = await fetch(url + 'relatorios/relatorio_10', {
+            const response = await fetch(url + 'relatorios/relatorio_10' + '/' + document.getElementById('modal_relatorio_10_situacao_id').value, {
                 method: 'GET',
                 headers: { 'REQUEST-ORIGIN': 'fetch' }
             });
@@ -906,9 +924,15 @@ async function relatoriosRelatorio10(op = 1, relatorio_name = '') {
             // Dados da tabela Linhas
             let dadosTableLinhas = [];
 
-            data.success['relatorio_registros'].forEach(function(item) {
+            // Total de Militares
+            let totalMilitares = 0;
+
+            data.success['relatorio_registros'].forEach(function (item) {
+                totalMilitares = totalMilitares + item.quantidade;
                 dadosTableLinhas.push([item.name, item.quantidade]);
             });
+
+            dadosTableLinhas.push(['## TOTAL DE MILITARES', totalMilitares]);
 
             // Gerar PDF
             gerarPdfTabela({
@@ -959,7 +983,7 @@ async function relatoriosRelatorio11(op = 1, relatorio_name = '') {
             document.getElementById('modal_relatorio_11_footer_2').style.display = 'block';
 
             // Buscar Dados
-            const response = await fetch(url + 'relatorios/relatorio_11', {
+            const response = await fetch(url + 'relatorios/relatorio_11' + '/' + document.getElementById('modal_relatorio_11_situacao_id').value, {
                 method: 'GET',
                 headers: { 'REQUEST-ORIGIN': 'fetch' }
             });
@@ -982,9 +1006,15 @@ async function relatoriosRelatorio11(op = 1, relatorio_name = '') {
             // Dados da tabela Linhas
             let dadosTableLinhas = [];
 
-            data.success['relatorio_registros'].forEach(function(item) {
+            // Total de Militares
+            let totalMilitares = 0;
+
+            data.success['relatorio_registros'].forEach(function (item) {
+                totalMilitares = totalMilitares + item.quantidade;
                 dadosTableLinhas.push([item.name, item.quantidade]);
             });
+
+            dadosTableLinhas.push(['## TOTAL DE MILITARES', totalMilitares]);
 
             // Gerar PDF
             gerarPdfTabela({
