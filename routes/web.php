@@ -39,6 +39,7 @@ use App\Http\Controllers\Web\CursoController;
 use App\Http\Controllers\Web\DesenvolvimentoController;
 use App\Http\Controllers\Web\WebserviceController;
 use App\Http\Controllers\Web\HomologacaoSolicitacaoController;
+use App\Http\Controllers\Web\HomologacaoTransacaoController;
 use App\Models\RessarcimentoCobranca;
 use App\Models\RessarcimentoCobrancaDado;
 use App\Models\RessarcimentoCobrancaPdfListagem;
@@ -678,11 +679,18 @@ Route::middleware('auth')->prefix('homologacao_solicitacoes')->group(function ()
 });
 // Homologação Solicitações - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
+// Homologação Transações - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Route::middleware('auth')->prefix('homologacao_transacoes')->group(function () {
+    Route::get('', [HomologacaoTransacaoController::class, 'index'])->name('homologacao_transacoes.index')->middleware('permissao:homologacao_transacoes_list');
+    Route::get('/filter/{array_dados}', [HomologacaoTransacaoController::class, 'filter'])->middleware('permissao:homologacao_transacoes_list');
+});
+// Homologação Transações - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
 // Desenvolvimento - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Route::middleware('auth')->prefix('desenvolvimento')->group(function () {
     Route::get('', [DesenvolvimentoController::class, 'index']);
 });
-// Homologação Solicitações - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+// Desenvolvimento - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 // ApiAcessoSistemaSaude - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 // ApiAcessoSistemaSaude - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''

@@ -2,6 +2,7 @@
 
 namespace App\Domain\MilitarCurso;
 
+use App\Models\HomologacaoTransacao;
 use App\Models\MilitarCurso;
 use App\Services\MilitarCursoSyncService;
 
@@ -45,6 +46,9 @@ class MilitarCursoRepository
 
     public function filter($array_dados, int $limit)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 15, 'user_id' => session('userContext.user.id'), 'operacao' => 'Consulta', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Limit
         $limit = $limit ? $limit : 1000;
 
@@ -163,6 +167,9 @@ class MilitarCursoRepository
 
     public function create(array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 15, 'user_id' => session('userContext.user.id'), 'operacao' => 'Inclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_curso = MilitarCurso::create($data);
 
         app(MilitarCursoSyncService::class)->insert($militar_curso);
@@ -172,6 +179,9 @@ class MilitarCursoRepository
 
     public function update(int $id, array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 15, 'user_id' => session('userContext.user.id'), 'operacao' => 'Alteração', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_curso = $this->find($id);
         $militar_curso->update($data);
 
@@ -182,6 +192,9 @@ class MilitarCursoRepository
 
     public function delete(int $id)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 15, 'user_id' => session('userContext.user.id'), 'operacao' => 'Exclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_curso = $this->find($id);
         $militar_curso->delete();
 

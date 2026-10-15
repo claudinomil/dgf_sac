@@ -2,6 +2,7 @@
 
 namespace App\Domain\MilitarDependente;
 
+use App\Models\HomologacaoTransacao;
 use App\Models\MilitarDependente;
 use App\Services\MilitarDependenteSyncService;
 
@@ -47,6 +48,9 @@ class MilitarDependenteRepository
 
     public function filter($array_dados, int $limit)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 16, 'user_id' => session('userContext.user.id'), 'operacao' => 'Consulta', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Limit
         $limit = $limit ? $limit : 1000;
 
@@ -170,6 +174,9 @@ class MilitarDependenteRepository
 
     public function create(array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 16, 'user_id' => session('userContext.user.id'), 'operacao' => 'Inclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Campos
         $data['excluido'] = 0;
         $data['acesso_sistema_saude_dependente'] = 1;
@@ -185,6 +192,9 @@ class MilitarDependenteRepository
 
     public function update(int $id, array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 16, 'user_id' => session('userContext.user.id'), 'operacao' => 'Alteração', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_dependente = $this->find($id);
         $militar_dependente->update($data);
 
@@ -195,6 +205,9 @@ class MilitarDependenteRepository
 
     public function delete(int $id)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 16, 'user_id' => session('userContext.user.id'), 'operacao' => 'Exclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_dependente = $this->find($id);
         $militar_dependente->delete();
 

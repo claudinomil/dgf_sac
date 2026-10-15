@@ -2,6 +2,7 @@
 
 namespace App\Domain\RessarcimentoPagamento;
 
+use App\Models\HomologacaoTransacao;
 use App\Models\RessarcimentoMilitar;
 use App\Models\RessarcimentoPagamento;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +32,9 @@ class RessarcimentoPagamentoRepository
 
     public function filter($array_dados, $limit)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 11, 'user_id' => session('userContext.user.id'), 'operacao' => 'Consulta', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Limit
         $limit = $limit ? $limit : 1000;
 

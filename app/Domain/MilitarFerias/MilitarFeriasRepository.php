@@ -2,6 +2,7 @@
 
 namespace App\Domain\MilitarFerias;
 
+use App\Models\HomologacaoTransacao;
 use App\Models\MilitarFerias;
 use App\Services\MilitarFeriasSyncService;
 
@@ -43,6 +44,9 @@ class MilitarFeriasRepository
 
     public function filter($array_dados, int $limit)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 20, 'user_id' => session('userContext.user.id'), 'operacao' => 'Consulta', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Limit
         $limit = $limit ? $limit : 1000;
 
@@ -157,6 +161,9 @@ class MilitarFeriasRepository
 
     public function create(array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 20, 'user_id' => session('userContext.user.id'), 'operacao' => 'Inclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_ferias = MilitarFerias::create($data);
 
         app(MilitarFeriasSyncService::class)->insert($militar_ferias);
@@ -166,6 +173,9 @@ class MilitarFeriasRepository
 
     public function update(int $id, array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 20, 'user_id' => session('userContext.user.id'), 'operacao' => 'Alteração', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_ferias = $this->find($id);
         $militar_ferias->update($data);
 
@@ -176,6 +186,9 @@ class MilitarFeriasRepository
 
     public function delete(int $id)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 20, 'user_id' => session('userContext.user.id'), 'operacao' => 'Exclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_ferias = $this->find($id);
         $militar_ferias->delete();
 

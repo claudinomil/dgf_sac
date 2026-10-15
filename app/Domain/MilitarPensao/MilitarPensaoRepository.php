@@ -2,6 +2,7 @@
 
 namespace App\Domain\MilitarPensao;
 
+use App\Models\HomologacaoTransacao;
 use App\Models\MilitarPensao;
 use App\Services\MilitarPensaoSyncService;
 
@@ -45,6 +46,9 @@ class MilitarPensaoRepository
 
     public function filter($array_dados, int $limit)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 21, 'user_id' => session('userContext.user.id'), 'operacao' => 'Consulta', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Limit
         $limit = $limit ? $limit : 1000;
 
@@ -163,6 +167,9 @@ class MilitarPensaoRepository
 
     public function create(array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 21, 'user_id' => session('userContext.user.id'), 'operacao' => 'Inclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Excluído
         $data['excluido'] = 0;
 
@@ -181,6 +188,9 @@ class MilitarPensaoRepository
 
     public function update(int $id, array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 21, 'user_id' => session('userContext.user.id'), 'operacao' => 'Alteração', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Pagamento Ordenar
         if (!empty($data['pagamento'])) {
             [$mes, $ano] = explode('/', $data['pagamento']);
@@ -197,6 +207,9 @@ class MilitarPensaoRepository
 
     public function delete(int $id)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 21, 'user_id' => session('userContext.user.id'), 'operacao' => 'Exclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_pensao = $this->find($id);
         $militar_pensao->delete();
 

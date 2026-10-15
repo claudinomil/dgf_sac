@@ -2,6 +2,7 @@
 
 namespace App\Domain\MilitarContato;
 
+use App\Models\HomologacaoTransacao;
 use App\Models\MilitarContato;
 
 class MilitarContatoRepository
@@ -42,6 +43,9 @@ class MilitarContatoRepository
 
     public function filter($array_dados, int $limit)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 23, 'user_id' => session('userContext.user.id'), 'operacao' => 'Consulta', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Limit
         $limit = $limit ? $limit : 1000;
 
@@ -156,6 +160,9 @@ class MilitarContatoRepository
 
     public function create(array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 23, 'user_id' => session('userContext.user.id'), 'operacao' => 'Inclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_contato = MilitarContato::create($data);
 
         return $militar_contato;
@@ -163,6 +170,9 @@ class MilitarContatoRepository
 
     public function update(int $id, array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 23, 'user_id' => session('userContext.user.id'), 'operacao' => 'Alteração', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_contato = $this->find($id);
         $militar_contato->update($data);
 
@@ -171,6 +181,9 @@ class MilitarContatoRepository
 
     public function delete(int $id)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 23, 'user_id' => session('userContext.user.id'), 'operacao' => 'Exclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_contato = $this->find($id);
         $militar_contato->delete();
 

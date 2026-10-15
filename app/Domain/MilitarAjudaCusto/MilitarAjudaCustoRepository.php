@@ -2,6 +2,7 @@
 
 namespace App\Domain\MilitarAjudaCusto;
 
+use App\Models\HomologacaoTransacao;
 use App\Models\MilitarAjudaCusto;
 use App\Services\MilitarAjudaCustoSyncService;
 
@@ -45,6 +46,9 @@ class MilitarAjudaCustoRepository
 
     public function filter($array_dados, int $limit)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 3, 'user_id' => session('userContext.user.id'), 'operacao' => 'Consulta', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Limit
         $limit = $limit ? $limit : 1000;
 
@@ -163,6 +167,9 @@ class MilitarAjudaCustoRepository
 
     public function create(array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 3, 'user_id' => session('userContext.user.id'), 'operacao' => 'Inclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Excluído
         $data['excluido'] = 0;
 
@@ -181,6 +188,9 @@ class MilitarAjudaCustoRepository
 
     public function update(int $id, array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 3, 'user_id' => session('userContext.user.id'), 'operacao' => 'Alteração', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Pagamento Ordenar
         if (!empty($data['pagamento'])) {
             [$mes, $ano] = explode('/', $data['pagamento']);
@@ -197,6 +207,9 @@ class MilitarAjudaCustoRepository
 
     public function delete(int $id)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 3, 'user_id' => session('userContext.user.id'), 'operacao' => 'Exclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_ajuda_custo = $this->find($id);
         $militar_ajuda_custo->delete();
 

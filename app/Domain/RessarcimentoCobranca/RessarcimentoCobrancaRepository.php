@@ -2,6 +2,7 @@
 
 namespace App\Domain\RessarcimentoCobranca;
 
+use App\Models\HomologacaoTransacao;
 use App\Models\RessarcimentoCobranca;
 use App\Models\RessarcimentoCobrancaDado;
 use App\Models\RessarcimentoCobrancaPdfListagem;
@@ -28,6 +29,9 @@ class RessarcimentoCobrancaRepository
 
     public function dados_ressarcimento($referencia)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 13, 'user_id' => session('userContext.user.id'), 'operacao' => 'Cobrança', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Array de retorno
         $content = array();
 

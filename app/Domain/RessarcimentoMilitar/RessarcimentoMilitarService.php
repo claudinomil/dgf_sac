@@ -9,6 +9,7 @@ use App\Domain\RessarcimentoConfiguracao\RessarcimentoConfiguracaoRepository;
 use App\Domain\RessarcimentoOrgao\RessarcimentoOrgaoRepository;
 use App\Domain\RessarcimentoReferencia\RessarcimentoReferenciaRepository;
 use App\Domain\Transacao\TransacaoRepository;
+use App\Models\HomologacaoTransacao;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -106,6 +107,9 @@ class RessarcimentoMilitarService
     // Importar Militares - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     public function importar(Request $request)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 12, 'user_id' => session('userContext.user.id'), 'operacao' => 'Importação', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         if (!$request->hasFile('ressarcimento_militar_file')) {
             throw new \Exception('Selecione um arquivo CSV.');
         }

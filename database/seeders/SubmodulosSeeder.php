@@ -56,5 +56,6 @@ class SubmodulosSeeder extends Seeder
 
         // Módulo: Homologação
         Submodulo::create(['id' => 9991, 'modulo_id' => 999, 'name' => 'Solictações', 'menu_text' => 'Solictações', 'menu_url' => 'homologacao_solicitacoes', 'menu_route' => 'homologacao_solicitacoes', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'homologacao_solicitacoes', 'prefix_route' => 'homologacao_solicitacoes', 'descricao' => '', 'ordem_visualizacao' => 10]);
+        Submodulo::create(['id' => 9992, 'modulo_id' => 999, 'name' => 'Transações', 'menu_text' => 'Transações', 'menu_url' => 'homologacao_transacoes', 'menu_route' => 'homologacao_transacoes', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'homologacao_transacoes', 'prefix_route' => 'homologacao_transacoes', 'descricao' => '', 'ordem_visualizacao' => 20]);
     }
 }

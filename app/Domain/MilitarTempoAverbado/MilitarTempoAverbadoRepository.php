@@ -2,6 +2,7 @@
 
 namespace App\Domain\MilitarTempoAverbado;
 
+use App\Models\HomologacaoTransacao;
 use App\Models\MilitarTempoAverbado;
 use App\Services\MilitarTempoAverbadoSyncService;
 
@@ -45,6 +46,9 @@ class MilitarTempoAverbadoRepository
 
     public function filter($array_dados, int $limit)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 22, 'user_id' => session('userContext.user.id'), 'operacao' => 'Consulta', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Limit
         $limit = $limit ? $limit : 1000;
 
@@ -163,6 +167,9 @@ class MilitarTempoAverbadoRepository
 
     public function create(array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 22, 'user_id' => session('userContext.user.id'), 'operacao' => 'Inclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_tempo_averbado = MilitarTempoAverbado::create($data);
 
         app(MilitarTempoAverbadoSyncService::class)->insert($militar_tempo_averbado);
@@ -172,6 +179,9 @@ class MilitarTempoAverbadoRepository
 
     public function update(int $id, array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 22, 'user_id' => session('userContext.user.id'), 'operacao' => 'Alteração', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_tempo_averbado = $this->find($id);
         $militar_tempo_averbado->update($data);
 
@@ -182,6 +192,9 @@ class MilitarTempoAverbadoRepository
 
     public function delete(int $id)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 22, 'user_id' => session('userContext.user.id'), 'operacao' => 'Exclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_tempo_averbado = $this->find($id);
         $militar_tempo_averbado->delete();
 

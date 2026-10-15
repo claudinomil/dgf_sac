@@ -250,5 +250,8 @@ class PermissoesSeeder extends Seeder
         Permissao::create(['id' => 9993, 'submodulo_id' => 9991, 'name' => 'homologacao_solicitacoes_show']);
         Permissao::create(['id' => 9994, 'submodulo_id' => 9991, 'name' => 'homologacao_solicitacoes_edit']);
         Permissao::create(['id' => 9995, 'submodulo_id' => 9991, 'name' => 'homologacao_solicitacoes_destroy']);
+
+        // Homologação Transações
+        Permissao::create(['id' => 9996, 'submodulo_id' => 9992, 'name' => 'homologacao_transacoes_list']);
     }
 }

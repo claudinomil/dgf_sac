@@ -2,6 +2,7 @@
 
 namespace App\Domain\MilitarFundoSaude;
 
+use App\Models\HomologacaoTransacao;
 use App\Models\MilitarFundoSaude;
 use App\Services\MilitarFundoSaudeSyncService;
 
@@ -43,6 +44,9 @@ class MilitarFundoSaudeRepository
 
     public function filter($array_dados, int $limit)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 19, 'user_id' => session('userContext.user.id'), 'operacao' => 'Consulta', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Limit
         $limit = $limit ? $limit : 1000;
 
@@ -158,6 +162,9 @@ class MilitarFundoSaudeRepository
 
     public function create(array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 19, 'user_id' => session('userContext.user.id'), 'operacao' => 'Inclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         // Criar
         $militar_fundo_saude = MilitarFundoSaude::create($data);
 
@@ -168,6 +175,9 @@ class MilitarFundoSaudeRepository
 
     public function update(int $id, array $data)
     {
+        // Homologação Transação
+        HomologacaoTransacao::create(['submodulo_id' => 19, 'user_id' => session('userContext.user.id'), 'operacao' => 'Alteração', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
+
         $militar_fundo_saude = $this->find($id);
         $militar_fundo_saude->update($data);
 

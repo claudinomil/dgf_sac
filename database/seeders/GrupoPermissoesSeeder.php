@@ -216,6 +216,8 @@ class GrupoPermissoesSeeder extends Seeder
         GrupoPermissao::create(['grupo_id' => 1, 'permissao_id' => 9993]);
         GrupoPermissao::create(['grupo_id' => 1, 'permissao_id' => 9994]);
         GrupoPermissao::create(['grupo_id' => 1, 'permissao_id' => 9995]);
+
+        GrupoPermissao::create(['grupo_id' => 1, 'permissao_id' => 9996]);
         //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         // criando GrupoPermissao grupo_id=2''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
