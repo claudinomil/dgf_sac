@@ -59,48 +59,101 @@ async function validar_frm_militares_ajudas_custos() {
         mensagem += "Erro ao Validar o MilitarSituacaoIdToken x MilitarSituacaoId." + "<br>";
     }
 
-    // Campo: ajuda_custo_tipo_id (requerido)
-    if (validacao({ op: 1, value: document.getElementById("ajuda_custo_tipo_id").value }) === false) {
-        validacao_ok = false;
-        mensagem += "Ajuda Custo Tipo requerido." + "<br>";
-    }
+    // // Campo: ajuda_custo_tipo_id (requerido)
+    // if (validacao({ op: 1, value: document.getElementById("ajuda_custo_tipo_id").value }) === false) {
+    //     validacao_ok = false;
+    //     mensagem += "Ajuda Custo Tipo requerido." + "<br>";
+    // }
 
-    // Campo: curso (verificar)
-    if (document.getElementById("ajuda_custo_tipo_id").value == 1) {
-        // Campo: curso (vazio)
-        if (validacao({ op: 1, value: document.getElementById("curso").value }) === true) {
-            validacao_ok = false;
-            mensagem += "Curso não requerido para Ajuda Custo Tipo." + "<br>";
-        }
-    } else if (document.getElementById("ajuda_custo_tipo_id").value == 2) {
-        // Campo: curso (requerido)
-        if (validacao({ op: 1, value: document.getElementById("curso").value }) === false) {
-            validacao_ok = false;
-            mensagem += "Curso requerido para Ajuda Custo Tipo." + "<br>";
-        }
-    }
+    // // Campo: boletim (requerido)
+    // if (validacao({ op: 1, value: document.getElementById("boletim").value }) === false) {
+    //     validacao_ok = false;
+    //     mensagem += "Boletim requerido." + "<br>";
+    // } else {
+    //     if (validacao({ op: 20, value: document.getElementById('boletim').value }) === false) {
+    //         validacao_ok = false;
+    //         mensagem += 'Boletim inválido.' + '<br>';
+    //     }
+    // }
 
-    // Campo: boletim (requerido)
-    if (validacao({ op: 1, value: document.getElementById("boletim").value }) === false) {
-        validacao_ok = false;
-        mensagem += "Boletim requerido." + "<br>";
-    } else {
-        if (validacao({ op: 20, value: document.getElementById('boletim').value }) === false) {
-            validacao_ok = false;
-            mensagem += 'Boletim inválido.' + '<br>';
-        }
-    }
+    // // Campo: pagamento (requerido)
+    // if (validacao({ op: 1, value: document.getElementById("pagamento").value }) === false) {
+    //     validacao_ok = false;
+    //     mensagem += "Pagamento requerido." + "<br>";
+    // } else {
+    //     if (validacao({ op: 22, value: document.getElementById('pagamento').value }) === false) {
+    //         validacao_ok = false;
+    //         mensagem += 'Pagamento inválido.' + '<br>';
+    //     }
+    // }
 
-    // Campo: pagamento (requerido)
-    if (validacao({ op: 1, value: document.getElementById("pagamento").value }) === false) {
-        validacao_ok = false;
-        mensagem += "Pagamento requerido." + "<br>";
-    } else {
-        if (validacao({ op: 22, value: document.getElementById('pagamento').value }) === false) {
-            validacao_ok = false;
-            mensagem += 'Pagamento inválido.' + '<br>';
-        }
-    }
+    // // Campo: requerimento_numero (requerido)
+    // if (validacao({ op: 1, value: document.getElementById("requerimento_numero").value }) === false) {
+    //     validacao_ok = false;
+    //     mensagem += "Requerimento Número requerido." + "<br>";
+    // } else {
+    //     if (validacao({ op: 24, value: document.getElementById('requerimento_numero').value }) === false) {
+    //         validacao_ok = false;
+    //         mensagem += 'Requerimento Número inválido.' + '<br>';
+    //     }
+    // }
+
+    // // Campo: requerimento_data (requerido)
+    // if (validacao({ op: 1, value: document.getElementById("requerimento_data").value }) === false) {
+    //     validacao_ok = false;
+    //     mensagem += "Requerimento Data requerido." + "<br>";
+    // } else {
+    //     if (validacao({ op: 8, value: document.getElementById('requerimento_data').value }) === false) {
+    //         validacao_ok = false;
+    //         mensagem += 'Requerimento Data inválida.' + '<br>';
+    //     }
+    // }
+
+    // // Campo: POR MOVIMENTAÇÃO (verificar)
+    // if (document.getElementById("ajuda_custo_tipo_id").value == 1) {
+    //     // Campo: unidade_origem (requerido)
+    //     if (validacao({ op: 1, value: document.getElementById("unidade_origem").value }) === false) {
+    //         validacao_ok = false;
+    //         mensagem += "Unidade Origem requerido." + "<br>";
+    //     }
+
+    //     // Campo: unidade_destino (requerido)
+    //     if (validacao({ op: 1, value: document.getElementById("unidade_destino").value }) === false) {
+    //         validacao_ok = false;
+    //         mensagem += "Unidade Destino requerido." + "<br>";
+    //     }
+
+    //     // Campo: curso (LIMPAR)
+    //     document.getElementById("curso").value = '';
+
+    //     // Campo: boletim_movimentacao_curso (LIMPAR)
+    //     document.getElementById("boletim_movimentacao_curso").value = '';
+
+    // // Campo: POR CURSO (verificar)
+    // } else if (document.getElementById("ajuda_custo_tipo_id").value == 2) {
+    //     // Campo: unidade_origem (LIMPAR)
+    //     document.getElementById("unidade_origem").value = '';
+
+    //     // Campo: unidade_destino (LIMPAR)
+    //     document.getElementById("unidade_destino").value = '';
+
+    //     // Campo: curso (requerido)
+    //     if (validacao({ op: 1, value: document.getElementById("curso").value }) === false) {
+    //         validacao_ok = false;
+    //         mensagem += "Curso requerido." + "<br>";
+    //     }
+
+    //     // Campo: boletim_movimentacao_curso (requerido)
+    //     if (validacao({ op: 1, value: document.getElementById("boletim_movimentacao_curso").value }) === false) {
+    //         validacao_ok = false;
+    //         mensagem += "Boletim Movimentação Curso requerido." + "<br>";
+    //     } else {
+    //         if (validacao({ op: 20, value: document.getElementById('boletim_movimentacao_curso').value }) === false) {
+    //             validacao_ok = false;
+    //             mensagem += 'Boletim Movimentação Curso inválido.' + '<br>';
+    //         }
+    //     }
+    // }
 
     // Mensagem
     if (validacao_ok === false) {
@@ -116,6 +169,30 @@ async function validar_frm_militares_ajudas_custos() {
 
     // Retorno
     return validacao_ok;
+}
+
+// Ajustar Formulário (Por Movimentação e Por Curso)
+async function ajustarFormulario() {
+    const ajuda_custo_tipo_id = document.getElementById('ajuda_custo_tipo_id');
+
+    // Hiden
+    document.querySelectorAll('.por_movimentacao, .por_curso').forEach(elemento => {
+        elemento.classList.add('d-none');
+    });
+
+    // POR MOVIMENTAÇÃO
+    if (ajuda_custo_tipo_id.value == 1) {
+        document.querySelectorAll('.por_movimentacao').forEach(elemento => {
+            elemento.classList.remove('d-none');
+        });
+    }
+
+    // POR CURSO
+    if (ajuda_custo_tipo_id.value == 2) {
+        document.querySelectorAll('.por_curso').forEach(elemento => {
+            elemento.classList.remove('d-none');
+        });
+    }
 }
 
 // Preencher alguns campos no Formulário
@@ -202,4 +279,7 @@ async function settingsSubmoduloCrudConfirmEdit() { }
 // Funções Settings Submodulo - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 // Funções Settings Submodulo - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-document.addEventListener("DOMContentLoaded", function (event) { });
+document.addEventListener("DOMContentLoaded", async function (event) {
+    // Ajustar Formulário (Por Movimentação e Por Curso)
+    await ajustarFormulario();
+});

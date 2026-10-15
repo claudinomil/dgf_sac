@@ -26,7 +26,12 @@ class MilitarAuxilioFardamentoStoreRequest extends FormRequest
             'militarSituacaoId_token' => ['required'],
             'auxilio_fardamento_tipo_id' => ['required'],
             'boletim' => ['required'],
-            'pagamento' => ['required']
+            'pagamento' => ['required'],
+            'data_ultima_promocao' => ['required'],
+            'referencia_processo_sei' => ['required'],
+            'requerimento_numero' => ['required'],
+            'requerimento_data' => ['required', 'date_format:d/m/Y'],
+            'requerimento_unidade' => ['required']
         ];
     }
 
@@ -80,6 +85,9 @@ class MilitarAuxilioFardamentoStoreRequest extends FormRequest
 
             // Validar Pagamento caso esteja com conteúdo
             $this->validarPagamento($validator, 'pagamento', 'Pagamento');
+
+            // Validar Requerimento Número caso esteja com conteúdo
+            $this->validarRequerimento($validator, 'requerimento_numero', 'Requerimento Número');
         });
     }
 
@@ -92,7 +100,13 @@ class MilitarAuxilioFardamentoStoreRequest extends FormRequest
             'militarSituacaoId_token.required' => 'O Token da Situação do Militar é requerido.',
             'auxilio_fardamento_tipo_id.required' => 'O Auxílio Fardamento Tipo é requerido.',
             'boletim.required' => 'O Boletim é requerido.',
-            'pagamento.required' => 'O Pagamento é requerido.'
+            'pagamento.required' => 'O Pagamento é requerido.',
+            'data_ultima_promocao.required' => 'A Data Última Promoção é requerida.',
+            'referencia_processo_sei.required' => 'A Referência Processo SEI é requerida.',
+            'requerimento_numero.required' => 'O Requerimento Número é requerido.',
+            'requerimento_data.required' => 'O Requerimento Data é requerido.',
+            'requerimento_data.date_format' => 'O Requerimento Data é inválido.',
+            'requerimento_unidade.required' => 'O Requerimento Unidade é requerido.'
         ];
     }
 

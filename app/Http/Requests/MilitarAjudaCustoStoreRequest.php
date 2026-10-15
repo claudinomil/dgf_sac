@@ -25,12 +25,40 @@ class MilitarAjudaCustoStoreRequest extends FormRequest
             'militarSituacaoId' => ['required'],
             'militarSituacaoId_token' => ['required'],
             'ajuda_custo_tipo_id' => ['required'],
-            'curso' => ['nullable', 'prohibited_if:ajuda_custo_tipo_id,1', 'required_if:ajuda_custo_tipo_id,2'],
-            // 'data_inicio' => ['nullable', 'date_format:d/m/Y'],
-            // 'data_termino' => ['required', 'date_format:d/m/Y'],
             'boletim' => ['required'],
-            'pagamento' => ['required']
+            'pagamento' => ['required'],
+            'requerimento_numero' => ['required'],
+            'requerimento_data' => ['required', 'date_format:d/m/Y'],
+
+            // Por movimentação
+            'unidade_origem' => ['required_if:ajuda_custo_tipo_id,1'],
+            'unidade_destino' => ['required_if:ajuda_custo_tipo_id,1'],
+
+            // Por curso
+            'curso' => ['required_if:ajuda_custo_tipo_id,2'],
+            'boletim_movimentacao_curso' => ['required_if:ajuda_custo_tipo_id,2']
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $tipo = (int) $this->input('ajuda_custo_tipo_id');
+
+        if ($tipo === 1) {
+            // Por movimentação
+            $this->merge([
+                'curso' => null,
+                'boletim_movimentacao_curso' => null,
+            ]);
+        }
+
+        if ($tipo === 2) {
+            // Por curso
+            $this->merge([
+                'unidade_origem' => null,
+                'unidade_destino' => null,
+            ]);
+        }
     }
 
     public function withValidator($validator)
@@ -83,6 +111,17 @@ class MilitarAjudaCustoStoreRequest extends FormRequest
 
             // Validar Pagamento caso esteja com conteúdo
             $this->validarPagamento($validator, 'pagamento', 'Pagamento');
+
+            // Validar Boletim Movimentação Curso caso esteja com conteúdo
+            if ((int) $this->input('ajuda_custo_tipo_id') === 2) {
+                $this->validarBoletim($validator, 'boletim_movimentacao_curso', 'Boletim Movimentação Curso');
+            }
+
+            // Validar Requerimento Número caso esteja com conteúdo
+            $this->validarRequerimento($validator, 'requerimento_numero', 'Requerimento Número');
+
+            // Validar Referência Processo SEI caso esteja com conteúdo
+            $this->validarProcessoSei($validator, 'referencia_processo_sei', 'Referência Processo SEI');
         });
     }
 
@@ -94,13 +133,15 @@ class MilitarAjudaCustoStoreRequest extends FormRequest
             'militarSituacaoId.required' => 'A Situação do Militar é requerido.',
             'militarSituacaoId_token.required' => 'O Token da Situação do Militar é requerido.',
             'ajuda_custo_tipo_id.required' => 'A Ajuda Custo Tipo é requerido.',
-            'curso.required_if' => 'O Curso é requerido para Ajuda Custo Tipo.',
-            'curso.prohibited_if' => 'O Curso não é requerido para Ajuda Custo Tipo.',
-            // 'data_inicio.date_format' => 'A Data Início inválida.',
-            // 'data_termino.required' => 'A Data Término é requerida.',
-            // 'data_termino.date_format' => 'A Data Término inválida.',
             'boletim.required' => 'O Boletim é requerido.',
-            'pagamento.required' => 'O Pagamento é requerido.'
+            'pagamento.required' => 'O Pagamento é requerido.',
+            'requerimento_numero.required' => 'O Requerimento Número é requerido.',
+            'requerimento_data.required' => 'O Requerimento Data é requerido.',
+            'requerimento_data.date_format' => 'O Requerimento Data inválida.',
+            'unidade_origem.required_if' => 'A Unidade de Origem é requerida.',
+            'unidade_destino.required_if' => 'A Unidade de Destino é requerida.',
+            'curso.required_if' => 'O Curso é requerido.',
+            'boletim_movimentacao_curso.required_if' => 'O Boletim Movimentação Curso é requerido.'
         ];
     }
 

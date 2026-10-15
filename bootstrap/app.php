@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\CheckPermissao;
+use Laravel\Sanctum\Http\Middleware\CheckForAnyAbility;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -13,8 +14,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        // CheckPermissao
-        $middleware->alias(['permissao' => CheckPermissao::class]);
+        $middleware->alias([
+            // Permissões do sistema existente
+            'permissao' => CheckPermissao::class,
+
+            // Permissão do token da API do Fundo de Saúde
+            'ability' => CheckForAnyAbility::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

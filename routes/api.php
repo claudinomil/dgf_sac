@@ -21,3 +21,17 @@ Route::prefix('password')->group(function () {
 
 // Autenticação - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 // Autenticação - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+// ApiAcessoSistemaSaude - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+// ApiAcessoSistemaSaude - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Route::prefix('v1')->group(function () {
+    // Autenticação da integração
+    Route::post('/auth/token', [App\Domain\ApiAcessoSistemaSaude\Controllers\AuthController::class, 'token'])->middleware('throttle:5,1');
+
+    // Endpoints protegidos
+    Route::middleware(['auth:sanctum', 'ability:consultar-sistema-saude', 'throttle:10,1'])->group(function () {
+        Route::post('/acesso_sistema_saude/consultar', [App\Domain\ApiAcessoSistemaSaude\Controllers\AcessoSistemaSaudeController::class, 'consultar']);
+    });
+});
+// ApiAcessoSistemaSaude - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+// ApiAcessoSistemaSaude - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''

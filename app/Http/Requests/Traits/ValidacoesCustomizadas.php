@@ -173,7 +173,7 @@ trait ValidacoesCustomizadas
             $validator->errors()->add($campo, "{$descricao} deve estar no formato 00/0000.000.");
         }
     }
-    
+
     /**
      * Valida um pagamento no formato:
      * mm/aaaa
@@ -201,6 +201,49 @@ trait ValidacoesCustomizadas
         // Validação adicional (a regex já garante mês de 1 a 12)
         if (!checkdate($mes, 1, $ano)) {
             $validator->errors()->add($campo, "{$descricao} inválido.");
+        }
+    }
+
+    /**
+     * Valida um Requerimento Número no formato:
+     * 99999/yyyy
+     */
+    protected function validarRequerimento($validator, string $campo, string $descricao): void
+    {
+        // Recupera o valor da requisição
+        $valor = $this->input($campo);
+
+        // Campo vazio é permitido
+        if (blank($valor)) {
+            return;
+        }
+
+        // Valida o formato: 99999/yyyy
+        if (!preg_match('/^\d{5}\/\d{4}$/', $valor)) {
+            $validator->errors()->add($campo, "O {$descricao} deve estar no formato 00001/2026.");
+        }
+    }
+
+    /**
+     * Valida um Processo Sei no formato:
+     * SEI-999999/999999/99
+     */
+    protected function validarProcessoSei($validator, string $campo, string $descricao): void
+    {
+        // Recupera o valor da requisição
+        $valor = $this->input($campo);
+
+        // Campo vazio é permitido
+        if (blank($valor)) {
+            return;
+        }
+
+        // Valida o formato: SEI-999999/999999/9999
+        if (!preg_match('/^SEI-\d{6}\/\d{6}\/\d{4}$/', $valor)) {
+            $validator->errors()->add(
+                $campo,
+                "O {$descricao} deve estar no formato SEI-342423/423432/4323."
+            );
         }
     }
 }

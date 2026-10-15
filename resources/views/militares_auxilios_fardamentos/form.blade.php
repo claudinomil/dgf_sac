@@ -81,7 +81,7 @@
 
                             <div class="row pt-4">
                                 <div class="font-size-16 pb-4"><i class="fas fa-info text-start"></i>- <b>Informações Gerais</b></div>
-                                <div class="form-group col-12 col-md-3 pb-3">
+                                <div class="form-group col-12 col-md-4 pb-3">
                                     <label class="form-label">Auxílio Fardamento Tipo</label>
                                     <select class="form-control" name="auxilio_fardamento_tipo_id" id="auxilio_fardamento_tipo_id" required="required">
                                         <option value="">Selecione...</option>
@@ -93,11 +93,15 @@
                                 </div>
                                 <div class="form-group col-12 col-md-3 pb-3">
                                     <label class="form-label">Boletim</label>
-                                    <input type="text" class="form-control mask_boletim" id="boletim" name="boletim">
+                                    <input type="text" class="form-control mask_boletim" id="boletim" name="boletim" required="required">
                                 </div>
                                 <div class="form-group col-12 col-md-3 pb-3">
                                     <label class="form-label">Pagamento</label>
-                                    <input type="text" class="form-control mask_pagamento" id="pagamento" name="pagamento">
+                                    <input type="text" class="form-control mask_pagamento" id="pagamento" name="pagamento" required="required">
+                                </div>
+                                <div class="form-group col-12 col-md-2 pb-3">
+                                    <label class="form-label">Data Última Promoção</label>
+                                    <input type="text" class="form-control mask_date" id="data_ultima_promocao" name="data_ultima_promocao" required="required">
                                 </div>
                                 <div class="form-group col-12 col-md-3 pb-3">
                                     <label class="form-label">Referência Processo SEI</label>
@@ -105,19 +109,15 @@
                                 </div>
                                 <div class="form-group col-12 col-md-2 pb-3">
                                     <label class="form-label">Requerimento Número</label>
-                                    <input type="text" class="form-control mask_requerimento" id="requerimento_numero" name="requerimento_numero">
+                                    <input type="text" class="form-control mask_requerimento" id="requerimento_numero" name="requerimento_numero" required="required">
                                 </div>
                                 <div class="form-group col-12 col-md-2 pb-3">
                                     <label class="form-label">Requerimento Data</label>
-                                    <input type="text" class="form-control mask_date" id="requerimento_data" name="requerimento_data">
+                                    <input type="text" class="form-control mask_date" id="requerimento_data" name="requerimento_data" required="required">
                                 </div>
-                                <div class="form-group col-12 col-md-2 pb-3">
-                                    <label class="form-label">Data Última Promoção</label>
-                                    <input type="text" class="form-control mask_date" id="data_ultima_promocao" name="data_ultima_promocao">
-                                </div>
-                                <div class="form-group col-12 col-md-6 pb-3">
+                                <div class="form-group col-12 col-md-5 pb-3">
                                     <label class="form-label">Requerimento Unidade</label>
-                                    <input type="text" class="form-control" id="requerimento_unidade" name="requerimento_unidade">
+                                    <input type="text" class="form-control" id="requerimento_unidade" name="requerimento_unidade" required="required">
                                 </div>
                                 <div class="form-group col-12 col-md-12 pb-3">
                                     <label class="form-label">Observação</label>

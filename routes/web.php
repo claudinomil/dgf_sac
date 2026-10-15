@@ -683,3 +683,13 @@ Route::middleware('auth')->prefix('desenvolvimento')->group(function () {
     Route::get('', [DesenvolvimentoController::class, 'index']);
 });
 // Homologação Solicitações - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+// ApiAcessoSistemaSaude - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+// ApiAcessoSistemaSaude - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Route::prefix('api_acesso_sistema_saude_teste')->group(function () {
+    Route::get('/', function () {
+        return view('api_acesso_sistema_saude_teste.index');
+    });
+});
+// ApiAcessoSistemaSaude - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+// ApiAcessoSistemaSaude - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''

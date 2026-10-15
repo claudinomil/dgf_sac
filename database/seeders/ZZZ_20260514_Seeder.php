@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ApiAcessoSistemaSaude;
 use App\Models\Grafico;
 use App\Models\GraficoGrupo;
 use App\Models\GrupoGrafico;
@@ -9,6 +10,7 @@ use App\Models\GrupoRelatorio;
 use App\Models\Relatorio;
 use App\Models\RelatorioGrupo;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class ZZZ_20260514_Seeder extends Seeder
 {
@@ -106,6 +108,10 @@ class ZZZ_20260514_Seeder extends Seeder
         GrupoRelatorio::create(['grupo_id' => 1, 'relatorio_id' => 11]);
         GrupoRelatorio::create(['grupo_id' => 1, 'relatorio_id' => 12]);
         GrupoRelatorio::create(['grupo_id' => 1, 'relatorio_id' => 13]);
+        //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+        // API Acesso Sitema Saúde - Usuário'''''''''''''''''''''''''''''''''''''''''
+        ApiAcessoSistemaSaude::create(['nome' => 'TESTE API ACESSO SISTEMA SAÚDE', 'email' => 'testeapiacessosistemasaude@xxx.com.br', 'password' => Hash::make('12345678'), 'ativo' => 1]);
         //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     }
 }

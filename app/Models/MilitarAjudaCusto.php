@@ -26,7 +26,7 @@ class MilitarAjudaCusto extends Model
         'unidade_origem',
         'unidade_destino',
         'curso',
-        'boletim_movimentacao'
+        'boletim_movimentacao_curso'
     ];
 
     protected $casts = [

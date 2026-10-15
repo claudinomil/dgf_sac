@@ -25,9 +25,11 @@ return new class extends Migration
             $table->string('mes_recebimento', 2)->nullable();
             $table->string('ano_recebimento', 4)->nullable();
             $table->integer('controle_sistema_cadastramento_fardamentos')->nullable();
+
             $table->string('requerimento_numero', 10)->nullable();
             $table->date('requerimento_data')->nullable();
             $table->string('requerimento_unidade')->nullable();
+
             $table->date('data_requerimento')->nullable();
             $table->date('data_ultima_promocao')->nullable();
             $table->timestamps();

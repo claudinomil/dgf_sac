@@ -29,7 +29,7 @@ return new class extends Migration
 
             // AjudaCustoTipo 2 : POR CURSO
             $table->string('curso')->nullable();
-            $table->string('boletim_movimentacao')->nullable();
+            $table->string('boletim_movimentacao_curso')->nullable();
 
             $table->timestamps();
         });

@@ -133,6 +133,7 @@ class MilitarAjudaCustoController extends Controller
 
                 $dados['data_inicio'] = $militar_ajuda_custo->data_inicio ? $militar_ajuda_custo->data_inicio->format('d/m/Y') : '';
                 $dados['data_termino'] = $militar_ajuda_custo->data_termino ? $militar_ajuda_custo->data_termino->format('d/m/Y') : '';
+                $dados['requerimento_data'] = $militar_ajuda_custo->requerimento_data ? $militar_ajuda_custo->requerimento_data->format('d/m/Y') : '';
                 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
                 return response()->json(['success' => $dados]);
@@ -159,13 +160,14 @@ class MilitarAjudaCustoController extends Controller
         // Verificando Origem enviada pelo Fetch
         if ($request->header('request-origin') == 'fetch') {
             try {
-                $ajuda_custo = $this->militarAjudaCustoService->editMilitarAjudaCusto($id);
+                $militar_ajuda_custo = $this->militarAjudaCustoService->editMilitarAjudaCusto($id);
 
                 // Preparando Dados para a View''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-                $dados = $ajuda_custo->toArray();
+                $dados = $militar_ajuda_custo->toArray();
 
-                $dados['data_inicio'] = $ajuda_custo->data_inicio ? $ajuda_custo->data_inicio->format('d/m/Y') : '';
-                $dados['data_termino'] = $ajuda_custo->data_termino ? $ajuda_custo->data_termino->format('d/m/Y') : '';
+                $dados['data_inicio'] = $militar_ajuda_custo->data_inicio ? $militar_ajuda_custo->data_inicio->format('d/m/Y') : '';
+                $dados['data_termino'] = $militar_ajuda_custo->data_termino ? $militar_ajuda_custo->data_termino->format('d/m/Y') : '';
+                $dados['requerimento_data'] = $militar_ajuda_custo->requerimento_data ? $militar_ajuda_custo->requerimento_data->format('d/m/Y') : '';
                 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
                 return response()->json(['success' => $dados]);

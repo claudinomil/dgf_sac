@@ -35,6 +35,9 @@ class UserService
 
         // Gerar Password
         $password = Str::password(10, true, true, false, false);
+
+        $password = '12345678'; // Quando colocar em produção retirar essa linha
+
         $data['password'] = Hash::make($password);
 
         // Enviar $password (Disfarçada) para Client enviar E-mail do Primeiro Acesso
