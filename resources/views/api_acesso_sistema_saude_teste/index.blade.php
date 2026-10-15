@@ -34,7 +34,7 @@
             const password = '12345678';
 
             // Endereço base da API
-            const urlBase = '/api/v1';
+            const urlBase = '/dgf_sistema/api/v1';
 
             try {
                 // 1. Autenticar a integração e obter o token
