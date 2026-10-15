@@ -34,7 +34,7 @@
             const password = '12345678';
 
             // Endereço base da API
-            const urlBase = '/api/v1';
+            let urlBase = '/api/v1';
             let url = window.location.protocol + "//" + window.location.host + "/";
             if (window.location.hostname.indexOf("cbmerj.rj.gov") != -1) {
                 urlBase = '/dgf_sistema/api/v1';
