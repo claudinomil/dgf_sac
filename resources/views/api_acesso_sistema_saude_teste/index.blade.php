@@ -34,7 +34,11 @@
             const password = '12345678';
 
             // Endereço base da API
-            const urlBase = '/dgf_sistema/api/v1';
+            const urlBase = '/api/v1';
+            let url = window.location.protocol + "//" + window.location.host + "/";
+            if (window.location.hostname.indexOf("cbmerj.rj.gov") != -1) {
+                urlBase = '/dgf_sistema/api/v1';
+            }
 
             try {
                 // 1. Autenticar a integração e obter o token
@@ -54,8 +58,7 @@
 
                 if (!respostaAuth.ok || !dadosAuth.success) {
                     throw new Error(
-                        dadosAuth.error?.autenticacao ||
-                        'Não foi possível autenticar a integração.'
+                        dadosAuth.error?.autenticacao || 'Não foi possível autenticar.'
                     );
                 }
 
