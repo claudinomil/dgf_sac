@@ -18,12 +18,10 @@ class HomologacaoSolicitacao extends Model
         'solicitacao_tipo',
         'solicitacao_prioridade',
         'solicitacao_data',
-        'solicitacao_hora',
         'solicitacao_imagem',
         'resposta',
         'resposta_status',
-        'resposta_data',
-        'resposta_hora'
+        'resposta_data'
     ];
 
     protected $casts = [

@@ -27,6 +27,7 @@
                                     @php
                                         $selectCampoPesquisar = [
                                         ['value' => 'submodulos.name', 'descricao' => 'Submódulo'],
+                                        ['value' => 'homologacao_transacoes.operacao', 'descricao' => 'Operação'],
                                         ['value' => 'users.name', 'descricao' => 'Usuário'],
                                         ['value' => 'homologacao_transacoes.data', 'descricao' => 'Data'],
                                         ];

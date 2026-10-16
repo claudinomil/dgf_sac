@@ -676,6 +676,8 @@ Route::middleware('auth')->prefix('homologacao_solicitacoes')->group(function ()
     Route::post('/{id}', [HomologacaoSolicitacaoController::class, 'update'])->middleware('permissao:homologacao_solicitacoes_edit');
     Route::delete('/{id}', [HomologacaoSolicitacaoController::class, 'destroy'])->middleware('permissao:homologacao_solicitacoes_destroy');
     Route::get('/{id}/edit', [HomologacaoSolicitacaoController::class, 'edit'])->middleware('permissao:homologacao_solicitacoes_edit');
+
+    Route::get('/totais/solicitacoes/respostas', [HomologacaoSolicitacaoController::class, 'totais_solicitacoes_respostas'])->middleware('permissao:homologacao_solicitacoes_list');
 });
 // Homologação Solicitações - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 

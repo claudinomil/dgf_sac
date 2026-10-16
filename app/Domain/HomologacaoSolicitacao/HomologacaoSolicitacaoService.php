@@ -100,4 +100,12 @@ class HomologacaoSolicitacaoService
             $this->lockService->desbloquear('homologacao_solicitacoes', $id, $user_id);
         }
     }
+    
+    public function getTotaisSolicitacoesRespostas()
+    {
+        // Buscar Registros
+        $totais = $this->repository->totais_solicitacoes_respostas();
+
+        return $totais;
+    }
 }

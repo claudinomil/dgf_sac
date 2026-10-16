@@ -29,12 +29,10 @@
                                     'solicitacao_tipo' => $solicitacao->solicitacao_tipo,
                                     'solicitacao_prioridade' => $solicitacao->solicitacao_prioridade,
                                     'solicitacao_data' => $solicitacao->solicitacao_data ? \Carbon\Carbon::parse($solicitacao->solicitacao_data)->format('Y-m-d') : null,
-                                    'solicitacao_hora' => $solicitacao->solicitacao_hora,
                                     'solicitacao_imagem' => $solicitacao->solicitacao_imagem,
                                     'resposta' => $solicitacao->resposta,
                                     'resposta_status' => $solicitacao->resposta_status,
                                     'resposta_data' => $solicitacao->resposta_data ? \Carbon\Carbon::parse($solicitacao->resposta_data)->format('Y-m-d') : null,
-                                    'resposta_hora' => $solicitacao->resposta_hora,
                                 ];
 
                                 $formatarValor = function ($valor) {

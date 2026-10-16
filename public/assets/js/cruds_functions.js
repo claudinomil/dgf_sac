@@ -242,7 +242,13 @@ async function crudTable(route, fieldsColumns='', pageLength=5) {
     });
 
     // Configuração
-    crudConfiguracao({p_fieldsDisabled:false});
+    crudConfiguracao({ p_fieldsDisabled: false });
+
+    // Settings Submódulos''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    if (typeof window['settingsSubmoduloCrudTable'] === 'function') {
+        settingsSubmoduloCrudTable();
+    }
+    //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 }
 
 // Create
@@ -427,13 +433,13 @@ async function crudDelete(registro_id) {
 
             crudConfiguracao({ p_crudTable: 'show', p_crudForm: 'hide' });
 
-            crudTable(prefixPermissaoSubmodulo);
+            await crudTable(prefixPermissaoSubmodulo);
         } else if (data.error) {
             alertSwal('warning', data.error, '', 'true', 3000);
 
             crudConfiguracao({ p_crudTable: 'show', p_crudForm: 'hide' });
 
-            crudTable(prefixPermissaoSubmodulo);
+            await crudTable(prefixPermissaoSubmodulo);
         } else if (data.error_validation) {
             const message = montarMensagemValidacao(data.error_validation);
             alertSwal('warning', "Validação", message, 'true', 3000);
@@ -478,12 +484,12 @@ async function crudConfirmOperation() {
     crudConfiguracao({ p_removeMask: true });
 
     // Função para tratamento comum
-    function tratarResposta(data) {
+    async function tratarResposta(data) {
         if (data.success) {
             alertSwal('success', nameSubmodulo, data.success, 'true', 2000);
             crudLimparFormulario(nameFormSubmodulo);
             crudConfiguracao({ p_crudTable: 'show', p_crudForm: 'hide' });
-            crudTable(prefixPermissaoSubmodulo);
+            await crudTable(prefixPermissaoSubmodulo);
         } else if (data.error_validation) {
             crudConfiguracao({ p_removeMask: true, p_putMask: true });
             const message = montarMensagemValidacao(data.error_validation);
@@ -635,7 +641,7 @@ function crudFilterAdjustItems() {
 }
 
 // Executar Filtros
-function crudFilterExecutar(submodulo='') {
+async function crudFilterExecutar(submodulo='') {
     // Variáveis
     if (submodulo == '') {submodulo = document.getElementById('crudPrefixPermissaoSubmodulo').value;}
 
@@ -666,7 +672,7 @@ function crudFilterExecutar(submodulo='') {
     }
 
     // Table
-    crudTable(submodulo+'/filter/'+array_dados);
+    await crudTable(submodulo + '/filter/' + array_dados);
 }
 
 // OffCanva Profille View

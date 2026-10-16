@@ -109,7 +109,6 @@ class HomologacaoSolicitacaoRepository
     {
         // Acertos
         $data['solicitacao_data'] = date('Y-m-d');
-        $data['solicitacao_hora'] = date('H:i:s');
         $data['user_id'] = session('userContext.user.id');
 
         // Criar
@@ -142,7 +141,6 @@ class HomologacaoSolicitacaoRepository
     {
         // Acertos
         $data['resposta_data'] = date('Y-m-d');
-        $data['resposta_hora'] = date('H:i:s');
 
         $homologacao_solicitacao = $this->find($id);
         $homologacao_solicitacao->update($data);
@@ -156,5 +154,20 @@ class HomologacaoSolicitacaoRepository
         $homologacao_solicitacao->delete();
 
         return;
+    }
+    
+    public function totais_solicitacoes_respostas()
+    {
+        $dados = array();
+
+        $dados['totais_solicitacoes'] = HomologacaoSolicitacao::count();
+        $dados['totais_respostas'] = HomologacaoSolicitacao::whereNotNull('resposta')->where('resposta', '!=', '')->count();
+        $dados['totais_respostas_em_analise'] = HomologacaoSolicitacao::whereNotNull('resposta')->where('resposta', '!=', '')->where('resposta_status', 'Em Análise')->count();
+        $dados['totais_respostas_concluido'] = HomologacaoSolicitacao::whereNotNull('resposta')->where('resposta', '!=', '')->where('resposta_status', 'Concluído')->count();
+        $dados['totais_respostas_em_desenvolvimento'] = HomologacaoSolicitacao::whereNotNull('resposta')->where('resposta', '!=', '')->where('resposta_status', 'Em Desenvolvimento')->count();
+        $dados['totais_respostas_aguardando_validacao'] = HomologacaoSolicitacao::whereNotNull('resposta')->where('resposta', '!=', '')->where('resposta_status', 'Aguardando Validação')->count();
+        $dados['totais_respostas_nao_realizado'] = HomologacaoSolicitacao::whereNotNull('resposta')->where('resposta', '!=', '')->where('resposta_status', 'Não Realizado')->count();
+        
+        return $dados;
     }
 }

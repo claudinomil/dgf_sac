@@ -11,6 +11,15 @@ class HomologacaoTransacaoRepository
         // Limit
         $limit = $limit ? $limit : 1000;
 
+
+
+        // Verificar se Usuário é Claudino ou outros
+        if (session('userContext.user.id') != 1) {
+            return collect();
+        }
+
+
+
         // Return
         return HomologacaoTransacao::join('submodulos', 'submodulos.id', 'homologacao_transacoes.submodulo_id')
             ->join('users', 'users.id', 'homologacao_transacoes.user_id')

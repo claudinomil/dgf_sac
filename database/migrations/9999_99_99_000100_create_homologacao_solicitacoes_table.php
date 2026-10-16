@@ -18,14 +18,12 @@ return new class extends Migration
             $table->enum('solicitacao_tipo', ['Correção', 'Ajuste', 'Melhoria', 'Nova Funcionalidade', 'Dúvida', 'Sugestão']);
             $table->enum('solicitacao_prioridade', ['Baixa', 'Normal', 'Alta', 'Urgente'])->default('Normal');
             $table->date('solicitacao_data');
-            $table->time('solicitacao_hora');
             $table->string('solicitacao_imagem')->nullable();
 
             // Resposta
             $table->text('resposta')->nullable();
             $table->enum('resposta_status', ['Em Análise', 'Em Desenvolvimento', 'Aguardando Validação', 'Concluído', 'Não Realizado'])->nullable()->default('Em Análise');
             $table->date('resposta_data')->nullable();
-            $table->time('resposta_hora')->nullable();
 
             $table->timestamps();
         });

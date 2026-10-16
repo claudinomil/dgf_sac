@@ -76,10 +76,6 @@
                                     <label class="form-label">Solicitação Data</label>
                                     <input type="text" class="form-control mask_date" id="solicitacao_data" name="solicitacao_data">
                                 </div>
-                                <div class="form-group col-12 col-md-4 pb-3 d-none" id="div_cp_solicitacao_hora">
-                                    <label class="form-label">Solicitação Hora</label>
-                                    <input type="text" class="form-control" id="solicitacao_hora" name="solicitacao_hora">
-                                </div>
                                 <div class="form-group col-12 col-md-4 pb-3 d-none" id="div_cp_user_id">
                                     <label class="form-label">Usuário Solicitante</label>
                                     <select class="form-control" name="user_id" id="user_id">
@@ -120,10 +116,6 @@
                                 <div class="form-group col-12 col-md-4 pb-3" id="div_cp_resposta_data">
                                     <label class="form-label">Resposta Data</label>
                                     <input type="text" class="form-control mask_date" id="resposta_data" name="resposta_data">
-                                </div>
-                                <div class="form-group col-12 col-md-4 pb-3" id="div_cp_resposta_hora">
-                                    <label class="form-label">Resposta Hora</label>
-                                    <input type="text" class="form-control" id="resposta_hora" name="resposta_hora">
                                 </div>
                             </div>
                         </fieldset>

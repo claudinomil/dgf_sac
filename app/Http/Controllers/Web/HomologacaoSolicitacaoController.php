@@ -73,7 +73,6 @@ class HomologacaoSolicitacaoController extends Controller
                                                 <th>Tipo</th>
                                                 <th>Prioridade</th>
                                                 <th>Data</th>
-                                                <th>Hora</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -81,7 +80,6 @@ class HomologacaoSolicitacaoController extends Controller
                                                 <td>' . $row["solicitacao_tipo"] . '</th>
                                                 <td>' . $row["solicitacao_prioridade"] . '</td>
                                                 <td>' . getDataFormatada(1, $row["solicitacao_data"]) . '</td>
-                                                <td>' . $row["solicitacao_hora"] . '</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -105,14 +103,12 @@ class HomologacaoSolicitacaoController extends Controller
                                             <tr>
                                                 <th>Status</th>
                                                 <th>Data</th>
-                                                <th>Hora</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>' . $row["resposta_status"] . '</th>
                                                 <td>' . getDataFormatada(1, $row["resposta_data"]) . '</td>
-                                                <td>' . $row["resposta_hora"] . '</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -226,5 +222,12 @@ class HomologacaoSolicitacaoController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
+    }
+    
+    public function totais_solicitacoes_respostas()
+    {
+        $totais = $this->homologacaoSolicitacoesService->getTotaisSolicitacoesRespostas();
+
+        return response()->json(['success' => $totais]);
     }
 }
