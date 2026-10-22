@@ -256,20 +256,3 @@ async function settingsSubmoduloCrudConfirmEdit() { }
 // Funções Settings Submodulo - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 document.addEventListener("DOMContentLoaded", function (event) { });
-
-
-
-
-
-function preenchimento_teste() {
-    document.getElementById('parentesco_id').value = 3;
-    document.getElementById('name').value = 'NOME TESTE';
-    document.getElementById('cpf').value = '80974494046';
-    document.getElementById('data_nascimento').value = '02/06/1971';
-    document.getElementById('sexo_biologico_id').value = 1;
-    document.getElementById('vinculo_permanente').value = 0;
-    document.getElementById('boletim').value = '111-11/11/1111';
-    document.getElementById('decisao_judicial').value = 0;
-    document.getElementById('imposto_renda').value = 0;
-    document.getElementById('fundo_saude').value = 0;
-}

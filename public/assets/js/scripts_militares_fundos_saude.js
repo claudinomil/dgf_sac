@@ -5,6 +5,8 @@ let url = window.location.protocol + "//" + window.location.host + "/";
 if (window.location.hostname.indexOf("cbmerj.rj.gov") != -1) { url += "dgf_sistema/"; }
 
 // Const
+const frm_operacao = document.getElementById('frm_operacao');
+const registro_id = document.getElementById('registro_id');
 const militarNome = document.getElementById('militarNome');
 const militar_id = document.getElementById('militar_id');
 const militar_id_token = document.getElementById('militar_id_token');
@@ -14,6 +16,7 @@ const militarSituacaoId = document.getElementById('militarSituacaoId');
 const militarSituacaoName = document.getElementById('militarSituacaoName');
 const militarGraduacaoName = document.getElementById('militarGraduacaoName');
 const militarQuadroEspecialidadeName = document.getElementById('militarQuadroEspecialidadeName');
+const divMilitarDependentes = document.getElementById('divMilitarDependentes');
 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 // Validação
@@ -129,11 +132,54 @@ async function habilitarCampos() {
     militarSituacaoId.disabled = false;
 }
 
+// Grade de Dependentes do Militar
+async function gradeMilitarDependentes() {
+    // Hidden
+    divMilitarDependentes.classList.add('d-none');
+
+    // View
+    if (frm_operacao.value == 'view') {
+        // Show
+        divMilitarDependentes.classList.remove('d-none');
+
+        // Rota
+        const response = await fetch(`militares/militar/dependentes/${militar_id.value}`, {
+            headers: {
+                'Accept': 'application/json',
+                'request-origin': 'fetch'
+            }
+        });
+
+        // Dados
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message ?? 'Erro ao consultar os dependentes.');
+        }
+
+        // Montar Grade de Dependente
+        montarTabela({
+            elemento: 'divTabelaDependentes',
+            classe: 'table table-sm small',
+            colunas: [
+                { titulo: '#', tipo: 'numero', alinhamento: 'center', nowrap: true },
+                { titulo: 'Situação', campo: 'situacao', alinhamento: 'center', nowrap: true, tipo: 'badge', mapa: { 'Ativo': 'bg-success', 'Excluído': 'bg-danger' } },
+                { titulo: 'Parentesco', campo: 'parentescoName', alinhamento: 'start', nowrap: false },
+                { titulo: 'Dependente', campo: 'name', alinhamento: 'start', nowrap: true },
+                { titulo: 'Acesso Sistema Saúde', campo: 'acesso_sistema_saude_dependente', alinhamento: 'center', tipo: 'booleano', nowrap: true },
+                { titulo: 'Tipo Acesso', campo: 'tipoAcessoName', alinhamento: 'center', nowrap: true, tipo: 'badge', mapa: { 'Negado': 'bg-danger', 'Integral': 'bg-success', 'Ampulatorial': 'bg-warning' } }
+            ],
+            dados: data ?? []
+        });
+    }
+}
+
 // Funções Settings Submodulo - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 // Funções Settings Submodulo - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 async function settingsSubmoduloCrudCreate() {
     await desabilitarCampos();
     await habilitarCampos();
+    await gradeMilitarDependentes();
 
     // Pesquisar Militar
     const militarAuto = crudAutocompleteMilitar('militares_fundos_saude', 'create');
@@ -145,6 +191,7 @@ async function settingsSubmoduloCrudView(data) {
     await preencherCampos(data);
     await desabilitarCampos();
     await habilitarCampos();
+    await gradeMilitarDependentes();
 
     // Verificando permissões para botões
     await configurarBotoesPermissaoSituacao({ modulo: 'militares_fundos_saude', situacaoId: data.militarSituacaoId });
@@ -163,6 +210,7 @@ async function settingsSubmoduloCrudEdit(data) {
     await preencherCampos(data);
     await desabilitarCampos();
     await habilitarCampos();
+    await gradeMilitarDependentes();
 
     // Verificando permissões para botões
     await configurarBotoesPermissaoSituacao({ modulo: 'militares_fundos_saude', situacaoId: data.militarSituacaoId });
@@ -184,14 +232,3 @@ async function settingsSubmoduloCrudConfirmEdit() { }
 // Funções Settings Submodulo - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 document.addEventListener("DOMContentLoaded", function (event) { });
-
-
-
-
-
-function preenchimento_teste() {
-    document.getElementById('cancelar_desconto').value = 0;
-    document.getElementById('data_documento').value = '02/06/1971';
-    document.getElementById('acesso_sistema_saude').value = 1;
-    document.getElementById('tipo_acesso').value = 1;
-}

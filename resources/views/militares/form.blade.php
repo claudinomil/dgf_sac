@@ -36,10 +36,8 @@
                             <input type="hidden" id="frm_operacao" name="frm_operacao">
                             <input type="hidden" id="registro_id" name="registro_id">
 
-                            <input type="hidden" id="militarSituacaoId" name="militarSituacaoId" value="0" />
-                            <input type="hidden" id="militarSituacaoId_token" name="militarSituacaoId_token" value="xxxyyyzzz" />
-
-                            <button type="button" onclick="preenchimento_teste();">Dados Teste</button>
+                            <!-- Inclusão de campos hiddens e da Pesquisa de Militar para Incluir Registro -->
+                            @include('layouts.pesquisar-militar')
 
                             <div class="row pt-4">
                                 <div class="font-size-16 pb-4"><i class="fas fa-info text-start"></i>- <b>Informações Gerais</b></div>

@@ -306,24 +306,3 @@ async function settingsSubmoduloCrudConfirmEdit() { }
 // Funções Settings Submodulo - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 document.addEventListener("DOMContentLoaded", function (event) { });
-
-
-
-
-
-function preenchimento_teste() {
-    document.getElementById('rg').value = '99/9999.999';
-    document.getElementById('identidade_funcional').value = '9999999999';
-    document.getElementById('vinculo').value = '1';
-    document.getElementById('nome').value = 'NOME TESTE';
-    document.getElementById('nome_guerra').value = 'TESTE';
-    document.getElementById('situacao_id').value = 1;
-    document.getElementById('quadro_id').value = 1;
-    document.getElementById('graduacao_id').value = 5;
-    document.getElementById('data_ingresso').value = '01/02/2003';
-    document.getElementById('unidade_id').value = 46;
-    document.getElementById('prestando_servico_id').value = 46;
-    document.getElementById('data_nascimento').value = '02/06/1971';
-    document.getElementById('cpf').value = '80974494046';
-    document.getElementById('temporario').value = 1;
-}

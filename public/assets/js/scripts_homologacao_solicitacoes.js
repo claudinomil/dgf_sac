@@ -56,23 +56,23 @@ async function mudarTituloColunas() {
         const data = await response.json();
 
         const totais_solicitacoes = data.success.totais_solicitacoes;
-        const totais_respostas = data.success.totais_respostas; 
+        const totais_respostas = data.success.totais_respostas;
         const totais_respostas_em_analise = data.success.totais_respostas_em_analise;
         const totais_respostas_concluido = data.success.totais_respostas_concluido;
         const totais_respostas_em_desenvolvimento = data.success.totais_respostas_em_desenvolvimento;
         const totais_respostas_aguardando_validacao = data.success.totais_respostas_aguardando_validacao;
         const totais_respostas_nao_realizado = data.success.totais_respostas_nao_realizado;
-        
+
         // Alterando títulos'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         const tabela = $('#datatable-crud-ajax').DataTable();
 
         // Coluna [0]
         let coluna_0 = `SOLICITAÇÃO <span class="ms-3 badge bg-primary">Total Geral: ${totais_solicitacoes}</span>`;
-        
+
         tabela.column(0).header().innerHTML = coluna_0;
 
         // Coluna [1]
-        let coluna_1 = `RESPOSTA <span class="ms-3 badge bg-primary">Respondidas: ${totais_respostas}</span>`;
+        let coluna_1 = `RESPOSTA `;
 
         if (totais_respostas_em_analise > 0) {
             coluna_1 += `<span class="ms-3 badge bg-info">Em Análise: ${totais_respostas_em_analise}</span>`;

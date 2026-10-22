@@ -33,12 +33,8 @@
             const email = 'testeapiacessosistemasaude@xxx.com.br';
             const password = '12345678';
 
-            // Endereço base da API
-            let urlBase = '/api/v1';
-            let url = window.location.protocol + "//" + window.location.host + "/";
-            if (window.location.hostname.indexOf("cbmerj.rj.gov") != -1) {
-                urlBase = '/dgf_sistema/api/v1';
-            }
+            // Define o prefixo da API conforme o ambiente
+            const urlBase = window.location.hostname.includes('cbmerj.rj.gov') ? '/dgf_sistema/api/v1' : '/api/v1';
 
             try {
                 // 1. Autenticar a integração e obter o token
@@ -49,8 +45,8 @@
                         'Accept': 'application/json'
                     },
                     body: JSON.stringify({
-                        email: email,
-                        password: password
+                        email,
+                        password
                     })
                 });
 
@@ -58,11 +54,17 @@
 
                 if (!respostaAuth.ok || !dadosAuth.success) {
                     throw new Error(
-                        dadosAuth.error?.autenticacao || 'Não foi possível autenticar.'
+                        dadosAuth.error?.autenticacao ||
+                        dadosAuth.message ||
+                        `Falha na autenticação (HTTP ${respostaAuth.status}).`
                     );
                 }
 
-                const token = dadosAuth.content.access_token;
+                const token = dadosAuth.content?.access_token;
+
+                if (!token) {
+                    throw new Error('A API não retornou o token de acesso.');
+                }
 
                 // 2. Consultar o CPF utilizando o token
                 const respostaConsulta = await fetch(
@@ -83,15 +85,12 @@
                 const dadosConsulta = await respostaConsulta.json();
 
                 if (!respostaConsulta.ok || !dadosConsulta.success) {
-                    console.error('Erro na consulta:', dadosConsulta);
-                    throw new Error(
-                        dadosConsulta.error?.cpf ||
-                        dadosConsulta.message ||
-                        'Não foi possível consultar o CPF.'
-                    );
+                    console.warn('Consulta não realizada:', dadosConsulta);
+
+                    return dadosConsulta;
                 }
 
-                // 3. Retornar o resultado da consulta
+                // 3. Retornar o resultado
                 return dadosConsulta;
 
             } catch (erro) {

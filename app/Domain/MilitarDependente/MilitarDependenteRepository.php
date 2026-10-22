@@ -42,7 +42,7 @@ class MilitarDependenteRepository
         $query->orderBy('militares.situacao_id');
         $query->orderBy('militares.graduacao_id');
         $query->orderBy('militares.rg');
-        
+
         return $query->limit($limit)->get();
     }
 

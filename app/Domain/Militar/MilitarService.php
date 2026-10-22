@@ -180,4 +180,9 @@ class MilitarService
     {
         return $this->repository->autocompleteMilitar(50, $pesquisa, $submodulo, $acao);
     }
+
+    public function getMilitarDependentes(int $militar_id)
+    {
+        return $this->repository->militar_dependentes($militar_id);
+    }
 }

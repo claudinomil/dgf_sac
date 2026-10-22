@@ -308,4 +308,14 @@ class MilitarController extends Controller
             return response()->json($registros);
         }
     }
+
+    public function militar_dependentes(Request $request, int $militar_id)
+    {
+        // Verificando Origem enviada pelo Fetch
+        if ($request->header('request-origin') == 'fetch') {
+            $registros = $this->militarService->getMilitarDependentes($militar_id);
+
+            return response()->json($registros);
+        }
+    }
 }

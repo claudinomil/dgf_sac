@@ -66,7 +66,7 @@ class MilitarRepository
         $query->orderBy('militares.situacao_id');
         $query->orderBy('militares.graduacao_id');
         $query->orderBy('militares.rg');
-        
+
         return $query->limit($limit)->get();
     }
 
@@ -528,5 +528,21 @@ class MilitarRepository
         }
 
         return $query->orderBy('militares.nome')->limit($limit)->get();
+    }
+
+    public function militar_dependentes(int $militar_id)
+    {
+        return MilitarDependente::join('parentescos', 'parentescos.id', 'militares_dependentes.parentesco_id')
+            ->select(
+                'militares_dependentes.*',
+                'parentescos.name as parentescoName'
+            )
+            ->selectRaw("CASE militares_dependentes.tipo_acesso WHEN 0 THEN 'Negado' WHEN 1 THEN 'Integral' WHEN 2 THEN 'Ambulatorial' ELSE 'Não informado' END AS tipoAcessoName")
+            ->selectRaw("CASE militares_dependentes.excluido WHEN 0 THEN 'Ativo' WHEN 1 THEN 'Excluído' ELSE 'Não informado' END AS situacao")
+            ->where('militares_dependentes.militar_id', $militar_id)
+            ->orderby('militares_dependentes.excluido')
+            ->orderby('parentescos.name')
+            ->orderby('militares_dependentes.name')
+            ->get();
     }
 }

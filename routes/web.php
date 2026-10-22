@@ -427,6 +427,8 @@ Route::middleware('auth')->prefix('militares')->group(function () {
     Route::post('/informacoes/update_fotografia', [MilitarController::class, 'updateFotografia']);
 
     Route::post('/autocomplete/militar/{submodulo}/{acao}', [MilitarController::class, 'autocompleteMilitar']);
+
+    Route::get('/militar/dependentes/{militar_id}', [MilitarController::class, 'militar_dependentes']);
 });
 // Militares - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
