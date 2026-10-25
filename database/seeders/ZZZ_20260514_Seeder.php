@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\ApiAcessoSistemaSaude;
+use App\Models\ApiAcessoSistemaSaudeUsuario;
 use App\Models\Grafico;
 use App\Models\GraficoGrupo;
 use App\Models\GrupoGrafico;
@@ -111,7 +111,7 @@ class ZZZ_20260514_Seeder extends Seeder
         //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         // API Acesso Sitema Saúde - Usuário'''''''''''''''''''''''''''''''''''''''''
-        ApiAcessoSistemaSaude::create(['nome' => 'TESTE API ACESSO SISTEMA SAÚDE', 'email' => 'testeapiacessosistemasaude@xxx.com.br', 'password' => Hash::make('12345678'), 'ativo' => 1]);
+        ApiAcessoSistemaSaudeUsuario::create(['nome' => 'API ACESSO SISTEMA SAÚDE TESTE', 'usuario' => 'TESTE', 'password' => Hash::make('12345678'), 'ativo' => 1]);
         //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     }
 }

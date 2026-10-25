@@ -117,19 +117,28 @@ class ComportamentoRepository
 
     public function delete(int $id)
     {
-        // Registro
-        $comportamento = $this->find($id);
-
         // Verificar relacionamentos
         $relacionamento = $this->relacionamento($id);
-        if ($relacionamento['status'] === false) {
+        if ($relacionamento['status'] === true) {
             throw new \Exception($relacionamento['message']);
         }
 
-        // Deletar
-        $comportamento->delete();
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        app(ComportamentoSyncService::class)->delete($id);
+        if ($deletarTipo === 1) {
+            // Registro
+            $comportamento = $this->find($id);
+
+            // Deletar fisicamente
+            $comportamento->delete();
+
+            app(ComportamentoSyncService::class)->delete($id);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }
@@ -139,9 +148,9 @@ class ComportamentoRepository
         $qtd = DB::table('militares')->where('comportamento_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Militares.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Militares.'];
         }
 
-        return ['status' => true];
+        return ['status' => false];
     }
 }

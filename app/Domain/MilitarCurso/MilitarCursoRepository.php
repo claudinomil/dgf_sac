@@ -40,7 +40,7 @@ class MilitarCursoRepository
         $query->orderBy('militares.situacao_id');
         $query->orderBy('militares.graduacao_id');
         $query->orderBy('militares.rg');
-        
+
         return $query->limit($limit)->get();
     }
 
@@ -195,10 +195,22 @@ class MilitarCursoRepository
         // Homologação Transação
         HomologacaoTransacao::create(['submodulo_id' => 15, 'user_id' => session('userContext.user.id'), 'operacao' => 'Exclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
 
-        $militar_curso = $this->find($id);
-        $militar_curso->delete();
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        app(MilitarCursoSyncService::class)->delete($id);
+        if ($deletarTipo === 1) {
+            // Registro
+            $militar_curso = $this->find($id);
+
+            // Deletar fisicamente
+            $militar_curso->delete();
+
+            app(MilitarCursoSyncService::class)->delete($id);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }

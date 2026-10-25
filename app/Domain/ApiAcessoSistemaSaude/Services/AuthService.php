@@ -10,9 +10,9 @@ class AuthService
     public function __construct(private readonly AuthRepository $repository)
     {}
 
-    public function autenticar(string $email, string $senha): ?array
+    public function autenticar(string $usuario, string $senha): ?array
     {
-        $integracao = $this->repository->buscarPorEmail($email);
+        $integracao = $this->repository->buscarPorUsuario($usuario);
 
         if (!$integracao || !$integracao->ativo || !Hash::check($senha, $integracao->password)) {
             return null;

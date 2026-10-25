@@ -105,4 +105,9 @@ class ParentescoService
             $this->lockService->desbloquear('parentescos', $id, $user_id);
         }
     }
+
+    public function getRelacionamento(int $id)
+    {
+        return $this->repository->relacionamento($id);
+    }
 }

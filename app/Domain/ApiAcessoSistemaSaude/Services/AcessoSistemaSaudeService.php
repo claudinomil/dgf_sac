@@ -9,7 +9,7 @@ class AcessoSistemaSaudeService
     public function __construct(private readonly AcessoSistemaSaudeRepository $acessoSistemaSaudeRepository)
     {}
 
-    public function consultar(string $cpf): ?array
+    public function consultar(string $cpf, int $api_acesso_sistema_saude_usuario_id): ?array
     {
         $militar = $this->acessoSistemaSaudeRepository->buscarMilitarPorCpf($cpf);
 
@@ -17,6 +17,10 @@ class AcessoSistemaSaudeService
             return null;
         }
 
+        // Gravar na tabela de Controle
+        $this->acessoSistemaSaudeRepository->gravarControle($api_acesso_sistema_saude_usuario_id, $militar->militarId);
+
+        // Dependentes do Militar
         $dependentes = $this->acessoSistemaSaudeRepository->buscarDependentesPorMilitar($cpf);
 
         // Acertos
@@ -44,5 +48,10 @@ class AcessoSistemaSaudeService
             'dependentes' => $dependentes,
             'total_dependentes' => $total_dependentes,
         ];
+    }
+
+    public function retornar_controle()
+    {
+        return $this->acessoSistemaSaudeRepository->retornarControle();
     }
 }

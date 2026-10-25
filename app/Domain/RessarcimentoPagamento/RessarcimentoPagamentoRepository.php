@@ -128,7 +128,7 @@ class RessarcimentoPagamentoRepository
 
         // Verificar relacionamentos
         $relacionamento = $this->relacionamento($id, $ressarcimento_pagamento->referencia);
-        if ($relacionamento['status'] === false) {
+        if ($relacionamento['status'] === true) {
             throw new \Exception($relacionamento['message']);
         }
 
@@ -140,9 +140,9 @@ class RessarcimentoPagamentoRepository
         // Tabela Ressarcimento Cobrança Dados
         $qtd = DB::table('ressarcimento_cobrancas_dados')->where('ressarcimento_pagamento_id', $id)->count();
 
-        if ($qtd > 0) {return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Ressarcimento Cobranças.'];}
+        if ($qtd > 0) {return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Ressarcimento Cobranças.'];}
 
-        return ['status' => true];
+        return ['status' => false];
     }
 
     // Importar Pagamentos - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''

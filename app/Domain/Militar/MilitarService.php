@@ -185,4 +185,9 @@ class MilitarService
     {
         return $this->repository->militar_dependentes($militar_id);
     }
+
+    public function getRelacionamento(int $id)
+    {
+        return $this->repository->relacionamento($id);
+    }
 }

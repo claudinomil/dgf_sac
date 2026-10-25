@@ -14,7 +14,7 @@ class AuthController
     public function token(AuthRequest $request): JsonResponse
     {
         $dados = $this->service->autenticar(
-            $request->validated('email'),
+            $request->validated('usuario'),
             $request->validated('password')
         );
 

@@ -40,7 +40,7 @@ class MilitarPensaoRepository
         $query->orderBy('militares.situacao_id');
         $query->orderBy('militares.graduacao_id');
         $query->orderBy('militares.rg');
-        
+
         return $query->limit($limit)->get();
     }
 
@@ -210,10 +210,22 @@ class MilitarPensaoRepository
         // Homologação Transação
         HomologacaoTransacao::create(['submodulo_id' => 21, 'user_id' => session('userContext.user.id'), 'operacao' => 'Exclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
 
-        $militar_pensao = $this->find($id);
-        $militar_pensao->delete();
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        app(MilitarPensaoSyncService::class)->delete($id);
+        if ($deletarTipo === 1) {
+            // Registro
+            $militar_pensao = $this->find($id);
+
+            // Deletar fisicamente
+            $militar_pensao->delete();
+
+            app(MilitarPensaoSyncService::class)->delete($id);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }

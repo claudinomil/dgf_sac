@@ -40,7 +40,7 @@ class MilitarTempoAverbadoRepository
         $query->orderBy('militares.situacao_id');
         $query->orderBy('militares.graduacao_id');
         $query->orderBy('militares.rg');
-        
+
         return $query->limit($limit)->get();
     }
 
@@ -195,10 +195,22 @@ class MilitarTempoAverbadoRepository
         // Homologação Transação
         HomologacaoTransacao::create(['submodulo_id' => 22, 'user_id' => session('userContext.user.id'), 'operacao' => 'Exclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
 
-        $militar_tempo_averbado = $this->find($id);
-        $militar_tempo_averbado->delete();
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        app(MilitarTempoAverbadoSyncService::class)->delete($id);
+        if ($deletarTipo === 1) {
+            // Registro
+            $militar_tempo_averbado = $this->find($id);
+
+            // Deletar fisicamente
+            $militar_tempo_averbado->delete();
+
+            app(MilitarTempoAverbadoSyncService::class)->delete($id);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }

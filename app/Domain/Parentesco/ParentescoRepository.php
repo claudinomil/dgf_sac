@@ -120,19 +120,28 @@ class ParentescoRepository
 
     public function delete(int $id)
     {
-        // Registro
-        $parentesco = $this->find($id);
-
         // Verificar relacionamentos
         $relacionamento = $this->relacionamento($id);
-        if ($relacionamento['status'] === false) {
+        if ($relacionamento['status'] === true) {
             throw new \Exception($relacionamento['message']);
         }
 
-        // Deletar
-        $parentesco->delete();
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        app(ParentescoSyncService::class)->delete($id);
+        if ($deletarTipo === 1) {
+            // Registro
+            $parentesco = $this->find($id);
+
+            // Deletar fisicamente
+            $parentesco->delete();
+
+            app(ParentescoSyncService::class)->delete($id);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }
@@ -142,9 +151,9 @@ class ParentescoRepository
         $qtd = DB::table('militares_dependentes')->where('parentesco_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Dependentes.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Dependentes.'];
         }
 
-        return ['status' => true];
+        return ['status' => false];
     }
 }

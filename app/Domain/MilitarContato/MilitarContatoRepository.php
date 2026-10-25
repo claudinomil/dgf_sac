@@ -37,7 +37,7 @@ class MilitarContatoRepository
         $query->orderBy('militares.situacao_id');
         $query->orderBy('militares.graduacao_id');
         $query->orderBy('militares.rg');
-        
+
         return $query->limit($limit)->get();
     }
 
@@ -184,8 +184,20 @@ class MilitarContatoRepository
         // Homologação Transação
         HomologacaoTransacao::create(['submodulo_id' => 23, 'user_id' => session('userContext.user.id'), 'operacao' => 'Exclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
 
-        $militar_contato = $this->find($id);
-        $militar_contato->delete();
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
+
+        if ($deletarTipo === 1) {
+            // Registro
+            $militar_contato = $this->find($id);
+
+            // Deletar fisicamente
+            $militar_contato->delete();
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }

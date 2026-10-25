@@ -128,7 +128,7 @@ class UserRepository
 
         // Verificar relacionamentos
         $relacionamento = $this->relacionamento($id);
-        if ($relacionamento['status'] === false) {
+        if ($relacionamento['status'] === true) {
             throw new \Exception($relacionamento['message']);
         }
 
@@ -140,10 +140,10 @@ class UserRepository
         $qtd = DB::table('transacoes')->where('user_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Transações.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Transações.'];
         }
 
-        return ['status' => true];
+        return ['status' => false];
     }
 
     public function totais($op)

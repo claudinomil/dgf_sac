@@ -123,19 +123,28 @@ class SituacaoRepository
 
     public function delete(int $id)
     {
-        // Registro
-        $situacao = $this->find($id);
-
         // Verificar relacionamentos
         $relacionamento = $this->relacionamento($id);
-        if ($relacionamento['status'] === false) {
+        if ($relacionamento['status'] === true) {
             throw new \Exception($relacionamento['message']);
         }
 
-        // Deletar
-        $situacao->delete();
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        app(SituacaoSyncService::class)->delete($id);
+        if ($deletarTipo === 1) {
+            // Registro
+            $situacao = $this->find($id);
+
+            // Deletar fisicamente
+            $situacao->delete();
+            
+            app(SituacaoSyncService::class)->delete($id);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }
@@ -145,9 +154,9 @@ class SituacaoRepository
         $qtd = DB::table('militares')->where('situacao_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Militares.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Militares.'];
         }
 
-        return ['status' => true];
+        return ['status' => false];
     }
 }

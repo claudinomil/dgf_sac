@@ -105,4 +105,9 @@ class UnidadeService
             $this->lockService->desbloquear('unidades', $id, $user_id);
         }
     }
+
+    public function getRelacionamento(int $id)
+    {
+        return $this->repository->relacionamento($id);
+    }
 }

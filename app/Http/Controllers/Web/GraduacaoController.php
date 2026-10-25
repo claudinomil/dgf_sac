@@ -57,7 +57,14 @@ class GraduacaoController extends Controller
         $allData = DataTables::of($registros)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {
-                return $this->columnAction($row['id']);
+                $botoes = 7;
+
+                // Relacionamento (Impedir Botão de Exclusão)'''''''''''''''''''''''''''''''''
+                $relacionamento = $this->graduacaoService->getRelacionamento($row['id']);
+                if ($relacionamento['status'] === true) {$botoes = 4;}
+                //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+                return $this->columnAction($row['id'], $botoes);
             })
             ->rawColumns(['action'])
             ->escapeColumns([])

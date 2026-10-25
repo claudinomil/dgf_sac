@@ -117,7 +117,9 @@ class QuadroRepository
     public function update(int $id, array $data)
     {
         // Quadro Especialidade
-        $data['quadro_especialidade'] = $data['name'].' - '.$data['especialidade'];
+        if (!empty($data['name']) && !empty($data['especialidade'])) {
+            $data['quadro_especialidade'] = $data['name'].' - '.$data['especialidade'];
+        }
 
         $quadro = $this->find($id);
 
@@ -130,22 +132,31 @@ class QuadroRepository
 
     public function delete(int $id)
     {
-        // Registro
-        $quadro = $this->find($id);
-
         // Verificar relacionamentos
         $relacionamento = $this->relacionamento($id);
-        if ($relacionamento['status'] === false) {
+        if ($relacionamento['status'] === true) {
             throw new \Exception($relacionamento['message']);
         }
 
-        // Pegar codigo_quadro
-        $codigo_quadro = $quadro->codigo_quadro;
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        // Deletar
-        $quadro->delete();
+        if ($deletarTipo === 1) {
+            // Registro
+            $quadro = $this->find($id);
 
-        app(QuadroSyncService::class)->delete($id, $codigo_quadro);
+            // Pegar codigo_graduacao
+            $codigo_quadro = $quadro->codigo_quadro;
+
+            // Deletar fisicamente
+            $quadro->delete();
+
+            app(QuadroSyncService::class)->delete($id, $codigo_quadro);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }
@@ -155,9 +166,9 @@ class QuadroRepository
         $qtd = DB::table('militares')->where('quadro_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Militares.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Militares.'];
         }
 
-        return ['status' => true];
+        return ['status' => false];
     }
 }

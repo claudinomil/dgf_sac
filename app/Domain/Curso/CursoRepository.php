@@ -117,19 +117,28 @@ class CursoRepository
 
     public function delete(int $id)
     {
-        // Registro
-        $curso = $this->find($id);
-
         // Verificar relacionamentos
         $relacionamento = $this->relacionamento($id);
-        if ($relacionamento['status'] === false) {
+        if ($relacionamento['status'] === true) {
             throw new \Exception($relacionamento['message']);
         }
 
-        // Deletar
-        $curso->delete();
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        app(CursoSyncService::class)->delete($id);
+        if ($deletarTipo === 1) {
+            // Registro
+            $curso = $this->find($id);
+
+            // Deletar fisicamente
+            $curso->delete();
+
+            app(CursoSyncService::class)->delete($id);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }
@@ -139,9 +148,9 @@ class CursoRepository
         $qtd = DB::table('militares_cursos')->where('curso_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Militares Cursos.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Militares Cursos.'];
         }
 
-        return ['status' => true];
+        return ['status' => false];
     }
 }

@@ -47,15 +47,15 @@ abstract class Controller
 
         public function columnAction(string $id, $botoes=7)
     {
-        //PARAN: $botoes
-        //0: Nenhum Botão
-        //1: Somente Visualização
-        //2: Somente Alteração
-        //3: Somente Exclusão
-        //4: Visualização e Alteração
-        //5: Visualização e Exclusão
-        //6: Alteração e Exclusão
-        //7: Visualização, Alteração e Exclusão
+        // @PARAN: $botoes
+        // 0: Nenhum Botão
+        // 1: Somente Visualização
+        // 2: Somente Alteração
+        // 3: Somente Exclusão
+        // 4: Visualização e Alteração
+        // 5: Visualização e Exclusão
+        // 6: Alteração e Exclusão
+        // 7: Visualização, Alteração e Exclusão
 
         $prefixPermissao = session('crudPrefixPermissaoSubmodulo');
 

@@ -117,19 +117,28 @@ class FuncaoRepository
 
     public function delete(int $id)
     {
-        // Registro
-        $funcao = $this->find($id);
-
         // Verificar relacionamentos
         $relacionamento = $this->relacionamento($id);
-        if ($relacionamento['status'] === false) {
+        if ($relacionamento['status'] === true) {
             throw new \Exception($relacionamento['message']);
         }
 
-        // Deletar
-        $funcao->delete();
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        app(FuncaoSyncService::class)->delete($id);
+        if ($deletarTipo === 1) {
+            // Registro
+            $funcao = $this->find($id);
+
+            // Deletar fisicamente
+            $funcao->delete();
+
+            app(FuncaoSyncService::class)->delete($id);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }
@@ -139,9 +148,9 @@ class FuncaoRepository
         $qtd = DB::table('militares')->where('funcao_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Militares.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Militares.'];
         }
 
-        return ['status' => true];
+        return ['status' => false];
     }
 }

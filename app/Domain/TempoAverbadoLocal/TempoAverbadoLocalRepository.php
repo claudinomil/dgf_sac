@@ -109,10 +109,22 @@ class TempoAverbadoLocalRepository
 
     public function delete(int $id)
     {
-        $tempo_averbado_local = $this->find($id);
-        $tempo_averbado_local->delete();
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        app(TempoAverbadoLocalSyncService::class)->delete($id);
+        if ($deletarTipo === 1) {
+            // Registro
+            $tempo_averbado_local = $this->find($id);
+
+            // Deletar fisicamente
+            $tempo_averbado_local->delete();
+
+            app(TempoAverbadoLocalSyncService::class)->delete($id);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }

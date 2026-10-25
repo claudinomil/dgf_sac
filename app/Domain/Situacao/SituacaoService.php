@@ -105,4 +105,9 @@ class SituacaoService
             $this->lockService->desbloquear('situacoes', $id, $user_id);
         }
     }
+
+    public function getRelacionamento(int $id)
+    {
+        return $this->repository->relacionamento($id);
+    }
 }

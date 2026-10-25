@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
-class ApiAcessoSistemaSaude extends Authenticatable
+class ApiAcessoSistemaSaudeUsuario extends Authenticatable
 {
     use HasApiTokens;
 
-    protected $table = 'api_acesso_sistema_saude';
+    protected $table = 'api_acesso_sistema_saude_usuarios';
 
     protected $fillable = [
         'nome',
-        'email',
+        'usuario',
         'password',
         'ativo',
     ];

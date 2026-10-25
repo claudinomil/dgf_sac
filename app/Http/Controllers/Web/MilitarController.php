@@ -171,6 +171,20 @@ class MilitarController extends Controller
                 if (!$permissaoShow and $permissaoEdit and $permissaoDestroy) {$botoes = 6;}
                 if ($permissaoShow and $permissaoEdit and $permissaoDestroy) {$botoes = 7;}
 
+                // Relacionamento (Impedir Botão de Exclusão)'''''''''''''''''''''''''''''''''
+                $relacionamento = $this->militarService->getRelacionamento($row['id']);
+                if ($relacionamento['status'] === true) {
+                    if ($botoes == 0) {$botoes = 0;}
+                    if ($botoes == 1) {$botoes = 1;}
+                    if ($botoes == 2) {$botoes = 2;}
+                    if ($botoes == 3) {$botoes = 0;}
+                    if ($botoes == 4) {$botoes = 4;}
+                    if ($botoes == 5) {$botoes = 1;}
+                    if ($botoes == 6) {$botoes = 2;}
+                    if ($botoes == 7) {$botoes = 4;}
+                }
+                //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
                 return $this->columnAction($row['id'], $botoes);
             })
             ->rawColumns(['action'])

@@ -117,19 +117,28 @@ class UnidadeRepository
 
     public function delete(int $id)
     {
-        // Registro
-        $unidade = $this->find($id);
-
         // Verificar relacionamentos
         $relacionamento = $this->relacionamento($id);
-        if ($relacionamento['status'] === false) {
+        if ($relacionamento['status'] === true) {
             throw new \Exception($relacionamento['message']);
         }
 
-        // Deletar
-        $unidade->delete();
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        app(UnidadeSyncService::class)->delete($id);
+        if ($deletarTipo === 1) {
+            // Registro
+            $unidade = $this->find($id);
+
+            // Deletar fisicamente
+            $unidade->delete();
+
+            app(UnidadeSyncService::class)->delete($id);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }
@@ -139,9 +148,9 @@ class UnidadeRepository
         $qtd = DB::table('militares')->where('unidade_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Militares.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Militares.'];
         }
 
-        return ['status' => true];
+        return ['status' => false];
     }
 }

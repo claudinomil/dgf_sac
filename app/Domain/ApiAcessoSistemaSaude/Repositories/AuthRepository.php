@@ -2,14 +2,14 @@
 
 namespace App\Domain\ApiAcessoSistemaSaude\Repositories;
 
-use App\Models\ApiAcessoSistemaSaude;
+use App\Models\ApiAcessoSistemaSaudeUsuario;
 
 class AuthRepository
 {
-    public function buscarPorEmail(string $email): ?ApiAcessoSistemaSaude
+    public function buscarPorUsuario(string $usuario)
     {
-        return ApiAcessoSistemaSaude::query()
-            ->where('email', $email)
+        return ApiAcessoSistemaSaudeUsuario::query()
+            ->where('usuario', $usuario)
             ->first();
     }
 }

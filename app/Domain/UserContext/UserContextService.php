@@ -47,18 +47,24 @@ class UserContextService
 
     public function load(int $user_id, int $grupo_id)
     {
+        // Contexto do Usuário
         $user = $this->userService->getUser($user_id);
         $modulos = $this->moduloService->getModulosMenu();
         $submodulos = $this->submoduloService->getSubmodulosMenu();
         $permissoes = $this->permissaoService->getPermissoesGrupo($grupo_id);
         $permissoes_situacoes = $this->grupoService->getPermissoesSituacoes($grupo_id);
 
+        // Configurações
+        $configuracoes = ['deletar_tipo' => 2];
+
+        // Retorno
         return [
             'user' => $user,
             'modulos' => $modulos,
             'submodulos' => $submodulos,
             'permissoes' => $permissoes,
-            'permissoes_situacoes' => $permissoes_situacoes
+            'permissoes_situacoes' => $permissoes_situacoes,
+            'configuracoes' =>$configuracoes
         ];
     }
 

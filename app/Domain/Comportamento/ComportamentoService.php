@@ -105,4 +105,9 @@ class ComportamentoService
             $this->lockService->desbloquear('comportamentos', $id, $user_id);
         }
     }
+
+    public function getRelacionamento(int $id)
+    {
+        return $this->repository->relacionamento($id);
+    }
 }

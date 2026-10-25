@@ -105,4 +105,9 @@ class GraduacaoService
             $this->lockService->desbloquear('graduacoes', $id, $user_id);
         }
     }
+
+    public function getRelacionamento(int $id)
+    {
+        return $this->repository->relacionamento($id);
+    }
 }

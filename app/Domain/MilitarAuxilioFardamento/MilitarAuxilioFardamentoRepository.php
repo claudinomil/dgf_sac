@@ -210,10 +210,22 @@ class MilitarAuxilioFardamentoRepository
         // Homologação Transação
         HomologacaoTransacao::create(['submodulo_id' => 5, 'user_id' => session('userContext.user.id'), 'operacao' => 'Exclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
 
-        $militar_auxilio_fardamento = $this->find($id);
-        $militar_auxilio_fardamento->delete();
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        app(MilitarAuxilioFardamentoSyncService::class)->delete($id);
+        if ($deletarTipo === 1) {
+            // Registro
+            $militar_auxilio_fardamento = $this->find($id);
+
+            // Deletar fisicamente
+            $militar_auxilio_fardamento->delete();
+
+            app(MilitarAuxilioFardamentoSyncService::class)->delete($id);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }

@@ -208,10 +208,22 @@ class MilitarDependenteRepository
         // Homologação Transação
         HomologacaoTransacao::create(['submodulo_id' => 16, 'user_id' => session('userContext.user.id'), 'operacao' => 'Exclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
 
-        $militar_dependente = $this->find($id);
-        $militar_dependente->delete();
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        app(MilitarDependenteSyncService::class)->delete($id);
+        if ($deletarTipo === 1) {
+            // Registro
+            $militar_dependente = $this->find($id);
+
+            // Deletar fisicamente
+            $militar_dependente->delete();
+
+            app(MilitarDependenteSyncService::class)->delete($id);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }

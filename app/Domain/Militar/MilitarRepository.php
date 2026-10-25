@@ -262,17 +262,28 @@ class MilitarRepository
         // Homologação Transação
         HomologacaoTransacao::create(['submodulo_id' => 18, 'user_id' => session('userContext.user.id'), 'operacao' => 'Exclusão', 'data' => date('Y-m-d'), 'hora' => date('H:i:s')]);
 
-        $militar = $this->find($id);
-
         // Verificar relacionamentos
         $relacionamento = $this->relacionamento($id);
-        if ($relacionamento['status'] === false) {
+        if ($relacionamento['status'] === true) {
             throw new \Exception($relacionamento['message']);
         }
 
-        $militar->delete();
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        app(MilitarSyncService::class)->delete($id);
+        if ($deletarTipo === 1) {
+            // Registro
+            $militar = $this->find($id);
+
+            // Deletar fisicamente
+            $militar->delete();
+
+            app(MilitarSyncService::class)->delete($id);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }
@@ -283,52 +294,52 @@ class MilitarRepository
         $qtd = DB::table('militares_cursos')->where('militar_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Cursos.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Cursos.'];
         }
 
         // Militares Contatos
         $qtd = DB::table('militares_contatos')->where('militar_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Contatos.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Contatos.'];
         }
 
         // Militares Ajudas Custos
         $qtd = DB::table('militares_ajudas_custos')->where('militar_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Ajudas Custos.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Ajudas Custos.'];
         }
 
         // Militares Auxílios Fardamentos
         $qtd = DB::table('militares_auxilios_fardamentos')->where('militar_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Auxílios Fardamentos.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Auxílios Fardamentos.'];
         }
 
         // Militares Fundos Saúde
         $qtd = DB::table('militares_fundos_saude')->where('militar_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Fundos Saúde.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Fundos Saúde.'];
         }
 
         // Militares Dependentes
         $qtd = DB::table('militares_dependentes')->where('militar_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Dependentes.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Dependentes.'];
         }
 
         // Users
         $qtd = DB::table('users')->where('militar_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Usuários.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Usuários.'];
         }
 
-        return ['status' => true];
+        return ['status' => false];
     }
 
     public function informacoes_geral(int $militar_id)

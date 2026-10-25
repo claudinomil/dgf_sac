@@ -197,7 +197,7 @@ class GrupoRepository
 
         // Verificar relacionamentos
         $relacionamento = $this->relacionamento($id);
-        if ($relacionamento['status'] === false) {
+        if ($relacionamento['status'] === true) {
             throw new \Exception($relacionamento['message']);
         }
 
@@ -222,10 +222,10 @@ class GrupoRepository
         $qtd = DB::table('users')->where('grupo_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Usuários.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Usuários.'];
         }
 
-        return ['status' => true];
+        return ['status' => false];
     }
 
     public function gravarTransacao(int $operacao_id, Grupo $grupo_anterior, Grupo $grupo_atual, array $permissoes_anterior, array $permissoes_atual, array $relatorios_anterior, array $relatorios_atual, array $graficos_anterior, array $graficos_atual)

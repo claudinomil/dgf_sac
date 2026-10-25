@@ -2,6 +2,7 @@
 
 namespace App\Domain\ApiAcessoSistemaSaude\Repositories;
 
+use App\Models\ApiAcessoSistemaSaudeControle;
 use App\Models\Militar;
 
 class AcessoSistemaSaudeRepository
@@ -10,6 +11,7 @@ class AcessoSistemaSaudeRepository
     {
         return Militar::join('militares_fundos_saude', 'militares_fundos_saude.militar_id', 'militares.id')
         ->select([
+                'militares.id as militarId',
                 'militares.nome',
                 'militares.cpf',
                 'militares_fundos_saude.acesso_sistema_saude',
@@ -51,5 +53,35 @@ class AcessoSistemaSaudeRepository
                 ];
             })
             ->all();
+    }
+
+    public function gravarControle(int $api_acesso_sistema_saude_usuario_id, int $militar_id)
+    {
+        ApiAcessoSistemaSaudeControle::create([
+            'api_acesso_sistema_saude_usuario_id' => $api_acesso_sistema_saude_usuario_id,
+            'origem' => '',
+            'militar_id' => $militar_id,
+            'data' => date('Y-m-d'),
+            'hora' => date('H:i:s')
+        ]);
+
+        return;
+    }
+    
+    public function retornarControle()
+    {
+        return ApiAcessoSistemaSaudeControle::join('api_acesso_sistema_saude_usuarios', 'api_acesso_sistema_saude_usuarios.id', 'api_acesso_sistema_saude_controle.api_acesso_sistema_saude_usuario_id')
+            ->join('militares', 'militares.id', 'api_acesso_sistema_saude_controle.militar_id')
+            ->join('graduacoes', 'graduacoes.id', 'militares.graduacao_id')
+            ->select(
+                'api_acesso_sistema_saude_controle.*',
+                'api_acesso_sistema_saude_usuarios.nome as usuarioName',
+                'militares.nome as militarName',
+                'militares.cpf as militarCpf',
+                'graduacoes.name as militarGraduacaoName'
+            )
+            ->orderby('api_acesso_sistema_saude_controle.data', 'DESC')
+            ->orderby('api_acesso_sistema_saude_controle.hora', 'DESC')
+            ->get();
     }
 }

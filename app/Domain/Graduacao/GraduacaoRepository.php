@@ -124,22 +124,31 @@ class GraduacaoRepository
 
     public function delete(int $id)
     {
-        // Registro
-        $graduacao = $this->find($id);
-
         // Verificar relacionamentos
         $relacionamento = $this->relacionamento($id);
-        if ($relacionamento['status'] === false) {
+        if ($relacionamento['status'] === true) {
             throw new \Exception($relacionamento['message']);
         }
 
-        // Pegar codigo_graduacao
-        $codigo_graduacao = $graduacao->codigo_graduacao;
+        // Deletar''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        $deletarTipo = (int) session('userContext.configuracoes.deletar_tipo');
 
-        // Deletar
-        $graduacao->delete();
+        if ($deletarTipo === 1) {
+            // Registro
+            $graduacao = $this->find($id);
 
-        app(GraduacaoSyncService::class)->delete($id, $codigo_graduacao);
+            // Pegar codigo_graduacao
+            $codigo_graduacao = $graduacao->codigo_graduacao;
+
+            // Deletar fisicamente
+            $graduacao->delete();
+
+            app(GraduacaoSyncService::class)->delete($id, $codigo_graduacao);
+        } elseif ($deletarTipo === 2) {
+            // Deletar virtualmente
+            $this->update($id, ['excluido' => 1]);
+        }
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         return;
     }
@@ -149,9 +158,9 @@ class GraduacaoRepository
         $qtd = DB::table('militares')->where('graduacao_id', $id)->count();
 
         if ($qtd > 0) {
-            return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Militares.'];
+            return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Militares.'];
         }
 
-        return ['status' => true];
+        return ['status' => false];
     }
 }

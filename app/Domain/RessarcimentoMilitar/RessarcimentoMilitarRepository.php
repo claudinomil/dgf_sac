@@ -119,7 +119,7 @@ class RessarcimentoMilitarRepository
 
         // Verificar relacionamentos
         $relacionamento = $this->relacionamento($id, $ressarcimento_militar->referencia);
-        if ($relacionamento['status'] === false) {
+        if ($relacionamento['status'] === true) {
             throw new \Exception($relacionamento['message']);
         }
 
@@ -132,15 +132,15 @@ class RessarcimentoMilitarRepository
         $cobrancaFechada = DB::table('ressarcimento_cobrancas')->where('cobranca_encerrada', 1)->where('referencia', $referencia)->count();
 
         if ($cobrancaFechada == 1) {
-            return ['status' => false, 'message' => 'Náo é possível excluir. Cobrança fechada para a referência: '.getReferencia(1, $referencia)];
+            return ['status' => true, 'message' => 'Náo é possível excluir. Cobrança fechada para a referência: '.getReferencia(1, $referencia)];
         }
 
         // Tabela Pagamentos
         $qtd = DB::table('ressarcimento_pagamentos')->where('ressarcimento_militar_id', $id)->count();
 
-        if ($qtd > 0) {return ['status' => false, 'message' => 'Operação não permitida.<br> Relacionamento com Ressarcimento Pagamentos.'];}
+        if ($qtd > 0) {return ['status' => true, 'message' => 'Operação não permitida.<br> Relacionamento com Ressarcimento Pagamentos.'];}
 
-        return ['status' => true];
+        return ['status' => false];
     }
 
     // Importar Militares - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''

@@ -1,7 +1,9 @@
 <?php
 
+use App\Domain\ApiAcessoSistemaSaude\Controllers\AcessoSistemaSaudeController;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\DashboardTvController;
 use App\Http\Controllers\Web\GrupoController;
 use App\Http\Controllers\Web\IntegracaoController;
 use App\Http\Controllers\Web\MilitarContatoController;
@@ -203,6 +205,13 @@ Route::middleware('auth')->prefix('dashboards')->group(function () {
     Route::get('grafico_17/{data1}/{data2}/{subconta_id}', [DashboardController::class, 'grafico_17'])->middleware('permissao:dashboards_list');
 });
 // Dashboards - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+// Dashboards TVs - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Route::middleware('auth')->prefix('dashboards_tvs')->group(function () {
+    Route::get('/', [DashboardTvController::class, 'index'])->name('dashboards_tvs.index');
+    Route::get('/dados', [DashboardTvController::class, 'dados'])->name('dashboards_tvs.dados');
+});
+// Dashboards TVs - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 // Relatorios - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Route::middleware('auth')->prefix('relatorios')->group(function () {
@@ -702,6 +711,8 @@ Route::prefix('api_acesso_sistema_saude_teste')->group(function () {
     Route::get('/', function () {
         return view('api_acesso_sistema_saude_teste.index');
     });
+
+    Route::get('retornar_controle', [AcessoSistemaSaudeController::class, 'retornar_controle']);
 });
 // ApiAcessoSistemaSaude - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 // ApiAcessoSistemaSaude - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
