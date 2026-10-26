@@ -26,28 +26,13 @@ function ajustarDashboard() {
 
 window.addEventListener('resize', ajustarDashboard);
 
-document.addEventListener('fullscreenchange', ajustarDashboard);
-
-document.getElementById('btn_tela_cheia').addEventListener('click', entrarTelaCheia);
-
-ajustarDashboard();
-// entrarTelaCheia();
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
-
     const btnTelaCheia = document.getElementById('btn_tela_cheia');
-
-    if (!btnTelaCheia) {
-        return;
-    }
-
+    
+    if (!btnTelaCheia) { return; }
+    
     // Alternar entre tela cheia e tela normal
     btnTelaCheia.addEventListener('click', async function () {
-
         try {
             if (!document.fullscreenElement) {
                 await document.documentElement.requestFullscreen();
@@ -58,19 +43,13 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Não foi possível alterar o modo de tela:', erro);
         }
     });
-
+    
     // Atualizar botão conforme o modo atual
     document.addEventListener('fullscreenchange', function () {
-
         if (document.fullscreenElement) {
-            btnTelaCheia.innerHTML = `
-                <i class="bx bx-exit-fullscreen"></i>
-            `;
+            btnTelaCheia.innerHTML = `<i class="bx bx-exit-fullscreen"></i>`;
         } else {
-            btnTelaCheia.innerHTML = `
-                <i class="bx bx-fullscreen"></i>
-            `;
+            btnTelaCheia.innerHTML = `<i class="bx bx-fullscreen"></i>`;
         }
     });
-
 });
