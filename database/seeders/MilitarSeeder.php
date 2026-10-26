@@ -21,5 +21,9 @@ class MilitarSeeder extends Seeder
         Militar::create(['id' => 15158, 'nome' => 'ROBERTO AUGUSTO VIEIRA', 'rg' => '00/0024.098']);
         Militar::create(['id' => 15807, 'nome' => 'VANDERLEI PEREIRA DA COSTA JUNIOR', 'rg' => '00/0025.685']);
         Militar::create(['id' => 16168, 'nome' => 'MARCIANE CANDIDO DE ALMEIDA DOS SANTOS', 'rg' => '00/0026.907']);
+        Militar::create(['id' => 14672, 'nome' => 'ALDO VASCONCELOS DE BRITO', 'rg' => '00/0023.564']);
+        Militar::create(['id' => 19063, 'nome' => 'ALEX SANTOS DE SOUZA', 'rg' => '00/0032.059']);
+        Militar::create(['id' => 16656, 'nome' => 'MESSIAS CARDIAS MACIEL', 'rg' => '00/0027.484']);
+        Militar::create(['id' => 15158, 'nome' => 'ROBERTO AUGUSTO VIEIRA', 'rg' => '00/0024.098']);
     }
 }
