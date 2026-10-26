@@ -516,7 +516,7 @@ async function crudConfirmOperation() {
 
         // FormData (Tem que ser aqui apos a settingsSubmoduloCrudConfirmCreate())
         const formData = new FormData(formulario);
-
+        
         // Fetch
         fetch(prefixPermissaoSubmodulo, {
             method: 'POST',
@@ -543,7 +543,7 @@ async function crudConfirmOperation() {
 
         // FormData (Tem que ser aqui apos a settingsSubmoduloCrudConfirmCreate())
         const formData = new FormData(formulario);
-
+        
         // Fetch
         fetch(`${prefixPermissaoSubmodulo}/${registro_id}`, {
             method: 'POST',

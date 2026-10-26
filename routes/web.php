@@ -4,6 +4,7 @@ use App\Domain\ApiAcessoSistemaSaude\Controllers\AcessoSistemaSaudeController;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\DashboardTvController;
+use App\Http\Controllers\Web\DashboardTvControleController;
 use App\Http\Controllers\Web\GrupoController;
 use App\Http\Controllers\Web\IntegracaoController;
 use App\Http\Controllers\Web\MilitarContatoController;
@@ -676,6 +677,29 @@ Route::middleware('auth')->prefix('token_service')->group(function () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+// Dashboards TVs Controle - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Route::middleware('auth')->prefix('dashboards_tvs_controles')->group(function () {
+    Route::get('', [DashboardTvControleController::class, 'index'])->name('dashboards_tvs_controles.index')->middleware('permissao:dashboards_tvs_controles_list');
+    // Route::post('', [DashboardTvControleController::class, 'store'])->middleware('permissao:dashboards_tvs_controles_create');
+    // Route::get('/create', [DashboardTvControleController::class, 'create'])->middleware('permissao:dashboards_tvs_controles_create');
+    // Route::get('/filter/{array_dados}', [DashboardTvControleController::class, 'filter'])->middleware('permissao:dashboards_tvs_controles_list');
+    // Route::get('/{id}', [DashboardTvControleController::class, 'show'])->middleware('permissao:dashboards_tvs_controles_show');
+    Route::post('/{id}', [DashboardTvControleController::class, 'update'])->middleware('permissao:dashboards_tvs_controles_edit');
+    // Route::delete('/{id}', [DashboardTvControleController::class, 'destroy'])->middleware('permissao:dashboards_tvs_controles_destroy');
+    Route::get('/{id}/edit', [DashboardTvControleController::class, 'edit'])->middleware('permissao:dashboards_tvs_controles_edit');
+});
+// Dashboards TVs Controle - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 // Homologação Solicitações - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Route::middleware('auth')->prefix('homologacao_solicitacoes')->group(function () {

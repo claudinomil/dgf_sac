@@ -244,6 +244,13 @@ class PermissoesSeeder extends Seeder
 
 
 
+        // Dashboards TVs Controle
+        Permissao::create(['id' => 8881, 'submodulo_id' => 8881, 'name' => 'dashboards_tvs_controles_list']);
+        // Permissao::create(['id' => 8882, 'submodulo_id' => 8881, 'name' => 'dashboards_tvs_controles_create']);
+        // Permissao::create(['id' => 8883, 'submodulo_id' => 8881, 'name' => 'dashboards_tvs_controles_show']);
+        Permissao::create(['id' => 8884, 'submodulo_id' => 8881, 'name' => 'dashboards_tvs_controles_edit']);
+        // Permissao::create(['id' => 8885, 'submodulo_id' => 8881, 'name' => 'dashboards_tvs_controles_destroy']);
+
         // Homologação Solicitações
         Permissao::create(['id' => 9991, 'submodulo_id' => 9991, 'name' => 'homologacao_solicitacoes_list']);
         Permissao::create(['id' => 9992, 'submodulo_id' => 9991, 'name' => 'homologacao_solicitacoes_create']);

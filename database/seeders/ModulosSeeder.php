@@ -30,6 +30,9 @@ class ModulosSeeder extends Seeder
         // SAD
         Modulo::create(['id' => 7, 'setor_id' => 7, 'name' => 'Militares', 'menu_text' => 'Militares', 'menu_url' => 'sad_militares', 'menu_route' => 'sad_militares', 'menu_icon' => 'fa fa-users', 'ordem_visualizacao' => 10]);
 
+        // Dashboards TVs
+        Modulo::create(['id' => 888, 'setor_id' => 888, 'name' => 'Dashboards TVs', 'menu_text' => 'Dashboards TVs', 'menu_url' => 'dashboards_tvs', 'menu_route' => 'dashboards_tvs', 'menu_icon' => 'fas fa-tv', 'ordem_visualizacao' => 888]);
+
         // Homologação
         Modulo::create(['id' => 999, 'setor_id' => 999, 'name' => 'Homologação', 'menu_text' => 'Homologação', 'menu_url' => 'homologacao', 'menu_route' => 'homologacao', 'menu_icon' => 'fas fa-award', 'ordem_visualizacao' => 999]);
     }

@@ -54,6 +54,9 @@ class SubmodulosSeeder extends Seeder
         // Módulo: Auxiliares SAD
         Submodulo::create(['id' => 24, 'modulo_id' => 7, 'name' => 'Informações', 'menu_text' => 'Informações', 'menu_url' => 'sad_militares_informacoes', 'menu_route' => 'sad_militares_informacoes', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'sad_militares_informacoes', 'prefix_route' => 'sad_militares_informacoes', 'descricao' => '', 'ordem_visualizacao' => 10]);
 
+        // Módulo: Dashboards TVs
+        Submodulo::create(['id' => 8881, 'modulo_id' => 888, 'name' => 'Controle', 'menu_text' => 'Controle', 'menu_url' => 'dashboards_tvs_controles', 'menu_route' => 'dashboards_tvs_controles', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'dashboards_tvs_controles', 'prefix_route' => 'dashboards_tvs_controles', 'descricao' => '', 'ordem_visualizacao' => 10]);
+
         // Módulo: Homologação
         Submodulo::create(['id' => 9991, 'modulo_id' => 999, 'name' => 'Solictações', 'menu_text' => 'Solictações', 'menu_url' => 'homologacao_solicitacoes', 'menu_route' => 'homologacao_solicitacoes', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'homologacao_solicitacoes', 'prefix_route' => 'homologacao_solicitacoes', 'descricao' => '', 'ordem_visualizacao' => 10]);
         Submodulo::create(['id' => 9992, 'modulo_id' => 999, 'name' => 'Transações', 'menu_text' => 'Transações', 'menu_url' => 'homologacao_transacoes', 'menu_route' => 'homologacao_transacoes', 'menu_icon' => 'fas fa-angle-right', 'prefix_permissao' => 'homologacao_transacoes', 'prefix_route' => 'homologacao_transacoes', 'descricao' => '', 'ordem_visualizacao' => 20]);
