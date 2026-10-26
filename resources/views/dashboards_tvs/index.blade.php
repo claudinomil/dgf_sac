@@ -12,58 +12,6 @@
 
         <style>
             html,
-            body {
-                width: 100%;
-                height: 100%;
-                margin: 0 !important;
-                padding: 0 !important;
-                overflow: hidden !important;
-            }
-
-            body {
-                background-color: #212529;
-            }
-
-            #dashboard {
-                position: fixed;
-                top: 0;
-                left: 0;
-
-                width: 100%;
-                height: 100vh;
-                height: 100dvh;
-
-                margin: 0;
-                padding: 8px;
-                box-sizing: border-box;
-
-                overflow: hidden;
-            }
-
-            #dashboard_conteudo {
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-            }
-
-            #dashboard_header {
-                display: grid;
-                grid-template-columns: 1fr auto 1fr;
-                align-items: start;
-                width: 100%;
-            }
-
-            #dashboard_titulo {
-                justify-self: center;
-                align-self: center;
-                font-size: 1.5rem;
-                font-weight: bold;
-                white-space: nowrap;
-            }
-
-            #dashboard_indicadores {
-                width: 100%;
-            }
 
             .indicador {
                 background-color: #2a3042;
@@ -98,39 +46,23 @@
                 color: #20c997;
                 font-size: 30px;
             }
-
-            .indicador-sem-icone {
-                width: 0px;
-                height: 70px;
-                /* flex-shrink: 0; */
-            }
         </style>
     </head>
-    <body>
-        <div id="dashboard">
-            <div id="dashboard_conteudo" class="d-flex flex-column align-items-stretch">
-                <div id="dashboard_header" class="p-2 mb-2">
-
-                    <!-- Logo à esquerda -->
-                    <div class="d-flex justify-content-start">
+    <body class="w-100 h-100 m-0 p-0 overflow-hidden bg-dark">
+        <div id="dashboard" class="position-fixed top-0 start-0 w-100 vh-100 m-0 p-2 overflow-hidden">
+            <div id="dashboard_conteudo" class="w-100 h-100 overflow-hidden">
+                <div id="dashboard_header" class="row p-2 mb-3">
+                    <div class="col-4">
                         <img src="{{ asset('/assets/images/logo_cbmerj_dgf_branco.png') }}" height="50">
                     </div>
-
-                    <!-- Título centralizado na tela -->
-                    <div class="text-warning text-center" id="dashboard_titulo">
+                    <div class="col-4 text-warning text-center align-self-center fw-bold nowrap" id="dashboard_titulo">
                         DASHBOARD GERENCIAL
                     </div>
-
-                    <!-- Botão à direita -->
-                    <div class="d-flex justify-content-end">
-                        <button
-                            type="button"
-                            class="btn btn-success"
-                            id="btn_tela_cheia">
+                    <div class="col-4 text-end">
+                        <button type="button" class="btn btn-success" id="btn_tela_cheia">
                             <i class="bx bx-fullscreen"></i>
                         </button>
                     </div>
-
                 </div>
 
                 <!-- Indicadores abaixo do cabeçalho -->
@@ -152,11 +84,9 @@
 
                     <!-- Sem Imagem -->
                     <div class="indicador flex-fill p-2 rounded">
-                        <div class="d-flex align-items-start">
-                            <div class="indicador-dados">
-                                <div class="indicador-titulo">Total de Dependentes</div>
-                                <div class="indicador-valor">67.450</div>
-                            </div>
+                        <div class="indicador-dados">
+                            <div class="indicador-titulo">Total de Férias</div>
+                            <div class="indicador-valor">3.000</div>
                         </div>
                     </div>
 
@@ -176,11 +106,9 @@
 
                     <!-- Sem Imagem -->
                     <div class="indicador flex-fill p-2 rounded">
-                        <div class="d-flex align-items-start">
-                            <div class="indicador-dados">
-                                <div class="indicador-titulo">Total de Férias</div>
-                                <div class="indicador-valor">2.450</div>
-                            </div>
+                        <div class="indicador-dados">
+                            <div class="indicador-titulo">Total de Férias</div>
+                            <div class="indicador-valor">3.000</div>
                         </div>
                     </div>
 
@@ -200,11 +128,9 @@
 
                     <!-- Sem Imagem -->
                     <div class="indicador flex-fill p-2 rounded">
-                        <div class="d-flex align-items-start">
-                            <div class="indicador-dados">
-                                <div class="indicador-titulo">Total de Dependentes</div>
-                                <div class="indicador-valor">67.450</div>
-                            </div>
+                        <div class="indicador-dados">
+                            <div class="indicador-titulo">Total de Férias</div>
+                            <div class="indicador-valor">3.000</div>
                         </div>
                     </div>
 
@@ -224,11 +150,9 @@
 
                     <!-- Sem Imagem -->
                     <div class="indicador flex-fill p-2 rounded">
-                        <div class="d-flex align-items-start">
-                            <div class="indicador-dados">
-                                <div class="indicador-titulo">Total de Férias</div>
-                                <div class="indicador-valor">2.450</div>
-                            </div>
+                        <div class="indicador-dados">
+                            <div class="indicador-titulo">Total de Férias</div>
+                            <div class="indicador-valor">3.000</div>
                         </div>
                     </div>
 
@@ -248,11 +172,9 @@
 
                     <!-- Sem Imagem -->
                     <div class="indicador flex-fill p-2 rounded">
-                        <div class="d-flex align-items-start">
-                            <div class="indicador-dados">
-                                <div class="indicador-titulo">Total de Dependentes</div>
-                                <div class="indicador-valor">67.450</div>
-                            </div>
+                        <div class="indicador-dados">
+                            <div class="indicador-titulo">Total de Férias</div>
+                            <div class="indicador-valor">3.000</div>
                         </div>
                     </div>
 
@@ -272,11 +194,9 @@
 
                     <!-- Sem Imagem -->
                     <div class="indicador flex-fill p-2 rounded">
-                        <div class="d-flex align-items-start">
-                            <div class="indicador-dados">
-                                <div class="indicador-titulo">Total de Férias</div>
-                                <div class="indicador-valor">2.450</div>
-                            </div>
+                        <div class="indicador-dados">
+                            <div class="indicador-titulo">Total de Férias</div>
+                            <div class="indicador-valor">3.000</div>
                         </div>
                     </div>
 
