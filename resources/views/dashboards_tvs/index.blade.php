@@ -11,8 +11,6 @@
         @include('layouts.head-css')
 
         <style>
-            html,
-
             .indicador {
                 background-color: #2a3042;
                 border: 1px solid #3b435a;
