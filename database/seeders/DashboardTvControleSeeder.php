@@ -9,6 +9,6 @@ class DashboardTvControleSeeder extends Seeder
 {
     public function run()
     {
-        DashboardTvControle::create(['id' => 1, 'unidade_id' => 46, 'ano' => 2026]);
+        DashboardTvControle::create(['id' => 1, 'unidade_id' => 0, 'ano' => 2026]);
     }
 }
