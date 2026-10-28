@@ -51,57 +51,72 @@ async function validar_frm_homologacao_solicitacoes() {
 
 async function mudarTituloColunas() {
     try {
-        // Pegar totais de Solicitações e Respostas
         const response = await fetch(`homologacao_solicitacoes/totais/solicitacoes/respostas`);
+        
+        if (!response.ok) { throw new Error('Erro ao consultar os totais.'); }
+        
         const data = await response.json();
-
         const totais_solicitacoes = data.success.totais_solicitacoes;
-        const totais_respostas = data.success.totais_respostas;
         const totais_respostas_em_analise = data.success.totais_respostas_em_analise;
         const totais_respostas_concluido = data.success.totais_respostas_concluido;
-        const totais_respostas_em_desenvolvimento = data.success.totais_respostas_em_desenvolvimento;
-        const totais_respostas_aguardando_validacao = data.success.totais_respostas_aguardando_validacao;
         const totais_respostas_nao_realizado = data.success.totais_respostas_nao_realizado;
-
-        // Alterando títulos'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         const tabela = $('#datatable-crud-ajax').DataTable();
-
-        // Coluna [0]
-        let coluna_0 = `SOLICITAÇÃO <span class="ms-3 badge bg-primary">Total Geral: ${totais_solicitacoes}</span>`;
-
-        tabela.column(0).header().innerHTML = coluna_0;
-
-        // Coluna [1]
-        let coluna_1 = `RESPOSTA `;
+        
+        // Coluna 0 - Solicitações
+        tabela.column(0).header().innerHTML = `SOLICITAÇÃO <a href="#" class="ms-3 badge bg-primary text-decoration-none filtro-solicitacao" data-status="todos">Total Geral: ${totais_solicitacoes}</a>`;
+        
+        // Coluna 1 - Respostas
+        let coluna_1 = 'RESPOSTA ';
 
         if (totais_respostas_em_analise > 0) {
-            coluna_1 += `<span class="ms-3 badge bg-info">Em Análise: ${totais_respostas_em_analise}</span>`;
+            coluna_1 += `<a href="#" class="ms-2 badge bg-info text-decoration-none filtro-solicitacao" data-status="em_analise">Em Análise: ${totais_respostas_em_analise}</a>`;
         }
-
+        
         if (totais_respostas_concluido > 0) {
-            coluna_1 += `<span class="ms-3 badge bg-success">Concluído: ${totais_respostas_concluido}</span>`;
+            coluna_1 += `<a href="#" class="ms-2 badge bg-success text-decoration-none filtro-solicitacao" data-status="concluido">Concluído: ${totais_respostas_concluido}</a>`;
         }
-
-        if (totais_respostas_em_desenvolvimento > 0) {
-            coluna_1 += `<span class="ms-3 badge bg-warning">Em Desenvolvimento: ${totais_respostas_em_desenvolvimento}</span>`;
-        }
-
-        if (totais_respostas_aguardando_validacao > 0) {
-            coluna_1 += `<span class="ms-3 badge bg-dark">Aguardando Validação: ${totais_respostas_aguardando_validacao}</span>`;
-        }
-
+        
         if (totais_respostas_nao_realizado > 0) {
-            coluna_1 += `<span class="ms-3 badge bg-danger">Não Realizado: ${totais_respostas_nao_realizado}</span>`;
+            coluna_1 += `<a href="#" class="ms-2 badge bg-danger text-decoration-none filtro-solicitacao" data-status="nao_realizado">Não Realizado: ${totais_respostas_nao_realizado}</a>`;
         }
-
+        
         tabela.column(1).header().innerHTML = coluna_1;
-        //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     } catch (error) {
         console.error(error);
         return false;
     }
 }
 
+function filtrarSolicitacoes(status) {
+    const tabela = $('#datatable-crud-ajax').DataTable();
+    
+    // Limpar filtros anteriores
+    tabela.search('');
+    tabela.columns().search('');
+
+    // Aplicar filtro conforme o status selecionado
+    switch (status) {
+        case 'todos':
+            break;
+        
+        case 'em_analise':
+            tabela.column(1).search('Em Análise', true, false);
+            break;
+        
+        case 'concluido':
+            tabela.column(1).search('Concluído', true, false);
+            break;
+        
+        case 'nao_realizado':
+            tabela.column(1).search('Não Realizado', true, false);
+            break;
+        
+        default:
+            return;
+    }
+    
+    tabela.draw();
+}
 // Funções Settings Submodulo - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 // Funções Settings Submodulo - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 async function settingsSubmoduloCrudCreate() {
@@ -169,4 +184,18 @@ async function settingsSubmoduloCrudTable() {
 
 document.addEventListener("DOMContentLoaded", async function () {
     await mudarTituloColunas();
+
+    // Capturar o clique nos links inseridos nas colunas sem interferir na ordenação
+    document.addEventListener('click', async function (event) {
+        const link = event.target.closest('.filtro-solicitacao');
+        
+        if (!link) { return; }
+        
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const status = link.dataset.status;
+        
+        await filtrarSolicitacoes(status);
+    });
 });

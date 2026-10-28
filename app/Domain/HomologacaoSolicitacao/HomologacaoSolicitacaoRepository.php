@@ -13,9 +13,11 @@ class HomologacaoSolicitacaoRepository
 
         // Return
         return HomologacaoSolicitacao::leftjoin('submodulos', 'submodulos.id', 'homologacao_solicitacoes.submodulo_id')
+            ->leftjoin('users', 'users.id', 'homologacao_solicitacoes.user_id')
             ->select(
                 'homologacao_solicitacoes.*',
-                'submodulos.name as submoduloName'
+                'submodulos.name as submoduloName',
+                'users.name as userName'
             )
             ->orderby('homologacao_solicitacoes.solicitacao_data')
             ->orderby('homologacao_solicitacoes.solicitacao')
@@ -115,14 +117,13 @@ class HomologacaoSolicitacaoRepository
         $homologacao_solicitacao = HomologacaoSolicitacao::create($data);
 
         // Solicitação Imagem
-        if ($data['solicitacao_imagem_file']) {
+        if (isset($data['solicitacao_imagem_file']) && $data['solicitacao_imagem_file']) {
             $file = $data['solicitacao_imagem_file'];
             $ext = $file->getClientOriginalExtension();
             $fileName = 'imagem-' . $homologacao_solicitacao->id . '.' . $ext;
-            $destination = public_path('/assets/images/homologacao_solicitacoes');
+            $destination = public_path('assets/images/homologacao_solicitacoes');
             $file->move($destination, $fileName);
             $solicitacao_imagem = 'assets/images/homologacao_solicitacoes/' . $fileName;
-
             $this->update_solicitacao_imagem($homologacao_solicitacao->id, $solicitacao_imagem);
         }
 
@@ -155,19 +156,17 @@ class HomologacaoSolicitacaoRepository
 
         return;
     }
-    
+
     public function totais_solicitacoes_respostas()
     {
         $dados = array();
 
         $dados['totais_solicitacoes'] = HomologacaoSolicitacao::count();
         $dados['totais_respostas'] = HomologacaoSolicitacao::whereNotNull('resposta')->where('resposta', '!=', '')->count();
-        $dados['totais_respostas_em_analise'] = HomologacaoSolicitacao::whereNotNull('resposta')->where('resposta', '!=', '')->where('resposta_status', 'Em Análise')->count();
+        $dados['totais_respostas_em_analise'] = HomologacaoSolicitacao::where('resposta_status', 'Em Análise')->count();
         $dados['totais_respostas_concluido'] = HomologacaoSolicitacao::whereNotNull('resposta')->where('resposta', '!=', '')->where('resposta_status', 'Concluído')->count();
-        $dados['totais_respostas_em_desenvolvimento'] = HomologacaoSolicitacao::whereNotNull('resposta')->where('resposta', '!=', '')->where('resposta_status', 'Em Desenvolvimento')->count();
-        $dados['totais_respostas_aguardando_validacao'] = HomologacaoSolicitacao::whereNotNull('resposta')->where('resposta', '!=', '')->where('resposta_status', 'Aguardando Validação')->count();
         $dados['totais_respostas_nao_realizado'] = HomologacaoSolicitacao::whereNotNull('resposta')->where('resposta', '!=', '')->where('resposta_status', 'Não Realizado')->count();
-        
+
         return $dados;
     }
 }

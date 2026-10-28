@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
 
             DashboardTvControleSeeder::class,
             HomologacaoSolicitacaoSeeder::class,
+            HomologacaoTransacaoSeeder::class,
 
 
             // ZZZ_FakerSeeder::class

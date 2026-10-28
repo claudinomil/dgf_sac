@@ -65,26 +65,44 @@ class HomologacaoSolicitacaoController extends Controller
         $allData = DataTables::of($registros)
             ->addIndexColumn()
             ->editColumn('solicitacao', function ($row) {
+                if ($row["submoduloName"]) {
+                    $submoduloName = primeiraMaiuscula($row["submoduloName"]);
+                } else {
+                    $submoduloName = 'Geral';
+                }
+
+                if ($row["userName"]) {
+                    $userName = primeiraMaiuscula($row["userName"]);
+                } else {
+                    $userName = '';
+                }
+
                 $retorno = '<div class="row py-3">
                                 <div class="col-12">
                                     <table class="table table-bordered mb-0">
                                         <thead class="table-light">
                                             <tr>
-                                                <th>Tipo</th>
-                                                <th>Prioridade</th>
-                                                <th>Data</th>
+                                                <th class="text-center">#</th>
+                                                <th>Informações</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>' . $row["solicitacao_tipo"] . '</th>
-                                                <td>' . $row["solicitacao_prioridade"] . '</td>
-                                                <td>' . getDataFormatada(1, $row["solicitacao_data"]) . '</td>
+                                                <td class="text-center" width="100"><img src="'.$row['solicitacao_imagem'].'" height=100></td>
+                                                <td>
+                                                    <div class="col-12"><b>Tipo: </b>' . $row["solicitacao_tipo"] . '</div>
+                                                    <div class="col-12 mt-2"><b>Prioridade: </b>' . $row["solicitacao_prioridade"] . '</div>
+                                                    <div class="col-12 mt-2"><b>Data: </b>' . getDataFormatada(1, $row["solicitacao_data"]) . '</div>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="col-12 mt-3" style="text-align: justify;"><b>Solicitação: </b>' . $row["solicitacao"] . '</div>
+                                <div class="row">
+                                    <div class="col-12 col-md-5 mt-3" style="text-align: justify;"><b class="text-success">Submódulo: </b>' . $submoduloName . '</div>
+                                    <div class="col-12 col-md-7 mt-3" style="text-align: justify;"><b class="text-primary">Solicitante: </b>' . $userName . '</div>
+                                    <div class="col-12 mt-3" style="text-align: justify;"><b class="text-black">Solicitação: </b>' . $row["solicitacao"] . '</div>
+                                </div>
                             </div>';
 
                 return $retorno;
@@ -223,7 +241,7 @@ class HomologacaoSolicitacaoController extends Controller
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
-    
+
     public function totais_solicitacoes_respostas()
     {
         $totais = $this->homologacaoSolicitacoesService->getTotaisSolicitacoesRespostas();

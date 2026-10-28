@@ -72,11 +72,11 @@
                                     <label class="form-label">Solicitação</label>
                                     <textarea class="form-control" id="solicitacao" name="solicitacao" rows="3" required="required"></textarea>
                                 </div>
-                                <div class="form-group col-12 col-md-4 pb-3 d-none" id="div_cp_solicitacao_data">
+                                <div class="form-group col-12 col-md-2 pb-3 d-none" id="div_cp_solicitacao_data">
                                     <label class="form-label">Solicitação Data</label>
                                     <input type="text" class="form-control mask_date" id="solicitacao_data" name="solicitacao_data">
                                 </div>
-                                <div class="form-group col-12 col-md-4 pb-3 d-none" id="div_cp_user_id">
+                                <div class="form-group col-12 col-md-10 pb-3 d-none" id="div_cp_user_id">
                                     <label class="form-label">Usuário Solicitante</label>
                                     <select class="form-control" name="user_id" id="user_id">
                                         <option value="">Selecione...</option>
@@ -107,8 +107,6 @@
                                     <label class="form-label">Status</label>
                                     <select class="form-control" name="resposta_status" id="resposta_status" required="required">
                                         <option value="Em Análise">Em Análise</option>
-                                        <option value="Em Desenvolvimento">Em Desenvolvimento</option>
-                                        <option value="Aguardando Validação">Aguardando Validação</option>
                                         <option value="Concluído">Concluído</option>
                                         <option value="Não Realizado">Não Realizado</option>
                                     </select>

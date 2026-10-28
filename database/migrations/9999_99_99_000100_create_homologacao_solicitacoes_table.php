@@ -22,7 +22,7 @@ return new class extends Migration
 
             // Resposta
             $table->text('resposta')->nullable();
-            $table->enum('resposta_status', ['Em Análise', 'Em Desenvolvimento', 'Aguardando Validação', 'Concluído', 'Não Realizado'])->nullable()->default('Em Análise');
+            $table->enum('resposta_status', ['Em Análise', 'Concluído', 'Não Realizado'])->nullable()->default('Em Análise');
             $table->date('resposta_data')->nullable();
 
             $table->timestamps();

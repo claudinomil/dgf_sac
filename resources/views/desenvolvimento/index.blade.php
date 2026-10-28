@@ -68,6 +68,54 @@
                     </div>
                 </div>
 
+                <!-- Homologação Transações Seeder -->
+                <div class="col-12 mt-5">
+                    <h1 class="text-success">Homologação Transações Seeder</h1>
+                    <div class="col-12 font-size-10">
+                        @foreach ($transacoes as $transacao)
+                            @php
+                                $campos = [
+                                    'id' => $transacao->id,
+                                    'submodulo_id' => $transacao->submodulo_id,
+                                    'user_id' => $transacao->user_id,
+                                    'operacao' => $transacao->operacao,
+                                    'data' => $transacao->data ? \Carbon\Carbon::parse($transacao->data)->format('Y-m-d') : null,
+                                    'hora' => $transacao->hora,
+                                ];
+
+                                $formatarValor = function ($valor) {
+                                    if (is_null($valor)) {
+                                        return 'null';
+                                    }
+
+                                    if (is_bool($valor)) {
+                                        return $valor ? 'true' : 'false';
+                                    }
+
+                                    if (is_int($valor) || is_float($valor)) {
+                                        return (string) $valor;
+                                    }
+
+                                    return "'" . str_replace(
+                                        ["\\", "'"],
+                                        ["\\\\", "\\'"],
+                                        (string) $valor
+                                    ) . "'";
+                                };
+
+                                $camposFormatados = [];
+
+                                foreach ($campos as $campo => $valor) {
+                                    $camposFormatados[] = "'" . $campo . "' => " . $formatarValor($valor);
+                                }
+                            @endphp
+
+                            HomologacaoTransacao::create([{!! implode(', ', $camposFormatados) !!}]);
+                            <br>
+                        @endforeach
+                    </div>
+                </div>
+
                 <!-- Users Seeder -->
                 <div class="col-12 mt-5">
                     <h1 class="text-success">Users Seeder</h1>
