@@ -64,19 +64,19 @@ async function validar_frm_militares_pensoes() {
         validacao_ok = false;
         mensagem += "Pensão Tipo requerido." + "<br>";
     }
-    
+
     // Campo: beneficiario (requerido)
     if (validacao({ op: 1, value: document.getElementById("beneficiario").value }) === false) {
         validacao_ok = false;
         mensagem += "Beneficiário requerido." + "<br>";
     }
-    
+
     // Campo: desconto (requerido)
     if (validacao({ op: 1, value: document.getElementById("desconto").value }) === false) {
         validacao_ok = false;
         mensagem += "Desconto requerido." + "<br>";
     }
-    
+
     // Campo: representante_legal (requerido)
     if (validacao({ op: 1, value: document.getElementById("representante_legal").value }) === false) {
         validacao_ok = false;
@@ -88,7 +88,7 @@ async function validar_frm_militares_pensoes() {
         validacao_ok = false;
         mensagem += "CPF requerido." + "<br>";
     }
-    
+
     // Campo: data_documento (validar)
     if (validacao({ op: 1, value: document.getElementById("data_documento").value }) === true) {
         if (validacao({ op: 8, value: document.getElementById('data_documento').value }) === false) {
@@ -96,7 +96,7 @@ async function validar_frm_militares_pensoes() {
             mensagem += 'Data Documento inválida.' + '<br>';
         }
     }
-    
+
     // Campo: implantacao (validar)
     if (validacao({ op: 1, value: document.getElementById("implantacao").value }) === true) {
         if (validacao({ op: 8, value: document.getElementById('implantacao').value }) === false) {
@@ -104,7 +104,7 @@ async function validar_frm_militares_pensoes() {
             mensagem += 'Implantação inválida.' + '<br>';
         }
     }
-    
+
     // Campo: nascimento_beneficiario (validar)
     if (validacao({ op: 1, value: document.getElementById("nascimento_beneficiario").value }) === true) {
         if (validacao({ op: 8, value: document.getElementById('nascimento_beneficiario').value }) === false) {
@@ -112,7 +112,7 @@ async function validar_frm_militares_pensoes() {
             mensagem += 'Nascimento Beneficiário inválida.' + '<br>';
         }
     }
-    
+
     // Mensagem
     if (validacao_ok === false) {
         var texto = '<div class="pt-3">';
@@ -163,6 +163,9 @@ async function settingsSubmoduloCrudCreate() {
     await desabilitarCampos();
     await habilitarCampos();
 
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: 0 });
+
     // Pesquisar Militar
     const militarAuto = crudAutocompleteMilitar('militares_pensoes', 'create');
     militarAuto.init();
@@ -176,6 +179,9 @@ async function settingsSubmoduloCrudView(data) {
 
     // Verificando permissões para botões
     await configurarBotoesPermissaoSituacao({ modulo: 'militares_pensoes', situacaoId: data.militarSituacaoId });
+
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: data.excluido });
 
     // Gerar Token para Controle militar_id
     if (!await tokenServiceGerar('militar_id', data.militar_id)) return;
@@ -194,6 +200,9 @@ async function settingsSubmoduloCrudEdit(data) {
 
     // Verificando permissões para botões
     await configurarBotoesPermissaoSituacao({ modulo: 'militares_pensoes', situacaoId: data.militarSituacaoId });
+
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: data.excluido });
 
     // Gerar Token para Controle militar_id
     if (!await tokenServiceGerar('militar_id', data.militar_id)) return;

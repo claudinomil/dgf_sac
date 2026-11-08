@@ -28,6 +28,9 @@
 
                         <!-- Botão Cancelar Operação -->
                         <x-button-crud op="4" onclick="crudCancelOperation();" />
+
+                        <!-- Transações -->
+                        <x-button-crud op="8" class="float-end" onclick="crudTransacoes(0);" id="crudFormButtons2Transacoes" />
                     </div>
 
                     <!-- Formulário - Form -->

@@ -21,7 +21,6 @@ class MilitarFeriasObserver
 
     public function updated(MilitarFerias $militar_ferias)
     {
-        //$this->transacaoService->transacao(1, 2, 'militares_ferias', $militar_ferias->getChanges(), $militar_ferias->getOriginal());
         $this->transacaoService->transacao(1, 2, 'militares_ferias', $militar_ferias->toArray(), $militar_ferias->getOriginal());
     }
 

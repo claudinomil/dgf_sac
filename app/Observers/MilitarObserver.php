@@ -21,7 +21,6 @@ class MilitarObserver
 
     public function updated(Militar $militar)
     {
-        //$this->transacaoService->transacao(1, 2, 'militares', $militar->getChanges(), $militar->getOriginal());
         $this->transacaoService->transacao(1, 2, 'militares', $militar->toArray(), $militar->getOriginal());
     }
 

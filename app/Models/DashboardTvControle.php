@@ -39,4 +39,14 @@ class DashboardTvControle extends Model
         'grafico_11',
         'grafico_12'
     ];
+
+    public function setUnidadeIdAttribute($value): void
+    {
+        $this->attributes['unidade_id'] = (filter_var($value, FILTER_VALIDATE_INT) !== false && (int) $value > 0) ? (int) $value : null;
+    }
+
+    public function setAnoAttribute($value): void
+    {
+        $this->attributes['ano'] = (filter_var($value, FILTER_VALIDATE_INT) !== false && (int) $value > 0) ? (int) $value : null;
+    }
 }

@@ -17,7 +17,6 @@ class GeneroObserver
 
     public function updated(Genero $genero)
     {
-        //$this->transacaoService->transacao(1, 2, 'generos', $genero->getChanges(), $genero->getOriginal());
         $this->transacaoService->transacao(1, 2, 'generos', $genero->toArray(), $genero->getOriginal());
     }
 

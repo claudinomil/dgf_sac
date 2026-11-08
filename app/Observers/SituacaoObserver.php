@@ -17,7 +17,6 @@ class SituacaoObserver
 
     public function updated(Situacao $situacao)
     {
-        //$this->transacaoService->transacao(1, 2, 'situacoes', $situacao->getChanges(), $situacao->getOriginal());
         $this->transacaoService->transacao(1, 2, 'situacoes', $situacao->toArray(), $situacao->getOriginal());
     }
 

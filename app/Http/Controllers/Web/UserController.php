@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Domain\User\UserService;
 use App\Domain\Grupo\GrupoService;
+use App\Domain\Submodulo\SubmoduloService;
 use App\Domain\UserSituacao\UserSituacaoService;
 use App\Domain\UserContext\UserContextService;
 use App\Domain\UserTipo\UserTipoService;
@@ -18,6 +19,7 @@ class UserController extends Controller
     public function __construct(
         private UserService $userService,
         private GrupoService $grupoService,
+        private SubmoduloService $submoduloService,
         private UserSituacaoService $userSituacaoService,
         private UserTipoService $userTipoService,
         private UserContextService $userContextService
@@ -40,10 +42,11 @@ class UserController extends Controller
             setCrudSessions('users');
 
             $grupos = $this->grupoService->getGrupos(9999);
+            $submodulos = $this->submoduloService->getSubmodulos();
             $userSituacoes = $this->userSituacaoService->getUserSituacoes();
             $userTipos = $this->userTipoService->getUserTipos();
 
-            return view('users.index', compact(['grupos', 'userSituacoes', 'userTipos']));
+            return view('users.index', compact(['grupos', 'submodulos', 'userSituacoes', 'userTipos']));
         }
     }
 
@@ -84,7 +87,10 @@ class UserController extends Controller
                 return $retorno;
             })
             ->addColumn('action', function ($row) {
-                return $this->columnAction($row['id']);
+                // Registro Excluído
+                $excluido = $row['excluido'] ?? 0;
+
+                return $this->columnAction($row['id'], 7, $excluido);
             })
             ->rawColumns(['action'])
             ->escapeColumns([])

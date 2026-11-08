@@ -21,7 +21,6 @@ class MilitarTempoAverbadoObserver
 
     public function updated(MilitarTempoAverbado $militar_tempo_averbado)
     {
-        //$this->transacaoService->transacao(1, 2, 'militares_tempos_averbados', $militar_tempo_averbado->getChanges(), $militar_tempo_averbado->getOriginal());
         $this->transacaoService->transacao(1, 2, 'militares_tempos_averbados', $militar_tempo_averbado->toArray(), $militar_tempo_averbado->getOriginal());
     }
 

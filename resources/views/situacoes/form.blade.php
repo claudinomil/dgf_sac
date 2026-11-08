@@ -28,6 +28,9 @@
 
                         <!-- Botão Cancelar Operação -->
                         <x-button-crud op="4" onclick="crudCancelOperation();" id="crudFormButtons2CancelOperation" />
+
+                        <!-- Transações -->
+                        <x-button-crud op="8" class="float-end" onclick="crudTransacoes(0);" id="crudFormButtons2Transacoes" />
                     </div>
 
                     <!-- Formulário - Form -->
@@ -35,7 +38,7 @@
                         <fieldset>
                             <input type="hidden" id="frm_operacao" name="frm_operacao" />
                             <input type="hidden" id="registro_id" name="registro_id" />
-                            
+
                             <div class="row pt-4">
                                 <div class="font-size-16 pb-4"><i class="fas fa-info text-start"></i>- <b>Informações Gerais</b></div>
                                 <div class="form-group col-12 col-md-6 pb-3">

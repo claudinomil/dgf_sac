@@ -3,39 +3,65 @@
 namespace App\Domain\DashboardTvControle;
 
 use App\Models\DashboardTvControle;
+use Illuminate\Support\Facades\DB;
 
 class DashboardTvControleRepository
 {
-    public function index(int $limit)
-    {
-        // Limit
-        $limit = $limit ? $limit : 1000;
-
-        // Return
-        $query = DashboardTvControle::leftjoin('unidades', 'unidades.id', 'dashboards_tvs_controles.unidade_id')
-            ->select(
-                'dashboards_tvs_controles.*',
-                'unidades.name as unidadeName'
-            );
-            
-        return $query->limit($limit)->get();
-    }
-    
     public function find(int $id)
     {
         return DashboardTvControle::find($id);
     }
-    
+
     public function update(int $id, array $data)
     {
-        $dashboard_tv_controle = $this->find($id);
+        // Separar os campos de ordenação
+        $ordens = [];
 
-        if (!$dashboard_tv_controle) {
-            throw new \Exception('Registro não encontrado.');
+        foreach ($data as $campo => $valor) {
+            if (str_ends_with($campo, '_ordem')) {
+                $identificador = str_replace('_ordem', '', $campo);
+                $ordens[$identificador] = $valor;
+                unset($data[$campo]);
+            }
         }
 
-        $dashboard_tv_controle->update($data);
+        // Separar os campos de colunas
+        $colunas = [];
 
-        return $dashboard_tv_controle->refresh();
+        foreach ($data as $campo => $valor) {
+            if (str_ends_with($campo, '_colunas')) {
+                $identificador = str_replace('_colunas', '', $campo);
+                $colunas[$identificador] = $valor;
+                unset($data[$campo]);
+            }
+        }
+
+        DB::transaction(function () use ($id, $data, $ordens, $colunas) {
+            // Localizar registro
+            $dashboard_tv_controle = $this->find($id);
+
+            if (!$dashboard_tv_controle) {
+                throw new \Exception('Registro não encontrado.');
+            }
+
+            // Atualizar dashboards_tvs_controles
+            $dashboard_tv_controle->update($data);
+
+            // Atualizar ordem dos indicadores e gráficos
+            foreach ($ordens as $identificador => $ordem) {
+                DB::table('dashboards_tvs_indicadores_graficos')
+                    ->where('identificador', $identificador)
+                    ->update(['ordem' => $ordem]);
+            }
+
+            // Atualizar colunas dos indicadores e gráficos
+            foreach ($colunas as $identificador => $coluna) {
+                DB::table('dashboards_tvs_indicadores_graficos')
+                    ->where('identificador', $identificador)
+                    ->update(['colunas' => $coluna]);
+            }
+        });
+
+        return;
     }
 }

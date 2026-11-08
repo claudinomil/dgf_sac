@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('dashboards_tvs_controles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('unidade_id')->nullable()->constrained('unidades');
-            $table->string('ano')->default('0000');
+            $table->integer('ano')->nullable();
             $table->integer('indicador_1')->default(0);
             $table->integer('indicador_2')->default(0);
             $table->integer('indicador_3')->default(0);

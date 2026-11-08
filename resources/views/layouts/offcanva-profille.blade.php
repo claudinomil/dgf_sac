@@ -113,6 +113,32 @@
                             </form>
                         </div>
                     </div>
+                    <div class="card mb-3 profille_user_logado">
+                        <div class="card-body font-size-12">
+                            <h6>{{ __('Submódulo Inicial') }}</h6>
+
+                            <form id="frm_profille_update_submodulo_inicial">
+                                @csrf
+
+                                <div class="row">
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <label>{{ __('Submódulo Inicial') }}</label>
+                                        <select class="form-select form-select-sm" id="inicial_submodulo_id" name="inicial_submodulo_id">
+                                            <option value="">Selecione...</option>
+                                            
+                                            @foreach (session('userContext.submodulos', []) as $submodulo)
+                                                @if (temPermissao($submodulo['prefix_permissao'].'_list'))
+                                                    <option value="{{ $submodulo['id'] }}">{{ $submodulo['name'] }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <button type="button" class="btn btn-success btn-sm" onclick="crudOffCanvaProfilleUpdateSubmoduloInicial()">{{ __('Confirmar Submódulo Inicial') }}</button>
+                            </form>
+                        </div>
+                    </div>
                     <div class="card mb-3">
                         <div class="card-body font-size-12">
                             <h6>{{ __('Transações') }}</h6>

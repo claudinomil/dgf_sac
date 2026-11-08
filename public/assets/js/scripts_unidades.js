@@ -73,18 +73,27 @@ async function habilitarCampos() { }
 async function settingsSubmoduloCrudCreate() {
     await desabilitarCampos();
     await habilitarCampos();
+
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: 0 });
 }
 
 async function settingsSubmoduloCrudView(data) {
     await preencherCampos(data);
     await desabilitarCampos();
     await habilitarCampos();
+
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: data.excluido });
 }
 
 async function settingsSubmoduloCrudEdit(data) {
     await preencherCampos(data);
     await desabilitarCampos();
     await habilitarCampos();
+
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: data.excluido });
 }
 
 async function settingsSubmoduloCrudDelete() { }

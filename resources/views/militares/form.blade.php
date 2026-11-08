@@ -28,6 +28,9 @@
 
                         <!-- Botão Cancelar Operação -->
                         <x-button-crud op="4" onclick="crudCancelOperation();" id="crudFormButtons2CancelOperation" />
+
+                        <!-- Transações -->
+                        <x-button-crud op="8" class="float-end" onclick="crudTransacoes(0);" id="crudFormButtons2Transacoes" />
                     </div>
 
                     <!-- Formulário - Form -->
@@ -43,7 +46,7 @@
                                 <div class="font-size-16 pb-4"><i class="fas fa-info text-start"></i>- <b>Informações Gerais</b></div>
                                 <div class="form-group col-12 col-md-2 pb-3">
                                     <label class="form-label">RG</label>
-                                    <input type="text" class="form-control text-uppercase mask_rg" id="rg" name="rg" required="required">
+                                    <input type="text" class="form-control text-uppercase mask_rg" id="rg" name="rg" placeholder="00/0000.000" required="required">
                                 </div>
                                 <div class="form-group col-12 col-md-2 pb-3">
                                     <label class="form-label">Id. Funcional</label>
@@ -175,9 +178,13 @@
                                     <label class="form-label">Boletim Comportamento</label>
                                     <input type="text" class="form-control text-uppercase mask_boletim" id="boletim_comportamento" name="boletim_comportamento">
                                 </div>
-                                <div class="form-group col-12 col-md-3 pb-3">
+                                <div class="form-group col-12 col-md-2 pb-3">
                                     <label class="form-label">Data Nascimento</label>
                                     <input type="text" class="form-control mask_date" id="data_nascimento" name="data_nascimento" required="required">
+                                </div>
+                                <div class="form-group col-12 col-md-1 pb-3">
+                                    <label class="form-label">Idade</label>
+                                    <input type="text" class="form-control" id="idade" name="idade" readonly="readonly">
                                 </div>
                                 <div class="form-group col-12 col-md-3 pb-3">
                                     <label class="form-label">Estado Civil</label>

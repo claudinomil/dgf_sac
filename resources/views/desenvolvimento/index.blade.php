@@ -134,6 +134,7 @@
                                     'avatar' => $user->avatar,
                                     'militar_id' => $user->militar_id ? $user->militar_id : null,
                                     'layout_menu' => $user->layout_menu,
+                                    'inicial_submodulo_id' => $user->inicial_submodulo_id
                                 ];
 
                                 $camposFormatados = [];

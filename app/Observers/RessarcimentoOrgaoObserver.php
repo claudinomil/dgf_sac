@@ -13,14 +13,9 @@ class RessarcimentoOrgaoObserver
     {
         $this->transacaoService = $transacaoService;
     }
-
-    // public function created(RessarcimentoOrgao $ressarcimento_orgao)
-    // {
-    //     $this->transacaoService->transacao(1, 1, 'ressarcimento_orgaos', $ressarcimento_orgao->toArray(), []);
-    // }
-
+    
     public function updated(RessarcimentoOrgao $ressarcimento_orgao)
     {
-        $this->transacaoService->transacao(1, 2, 'ressarcimento_orgaos', $ressarcimento_orgao->getChanges(), $ressarcimento_orgao->getOriginal());
+        $this->transacaoService->transacao(1, 2, 'ressarcimento_orgaos', $ressarcimento_orgao->toArray(), $ressarcimento_orgao->getOriginal());
     }
 }

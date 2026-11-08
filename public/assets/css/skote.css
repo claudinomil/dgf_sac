@@ -12,6 +12,8 @@
 :root {--thema-cor: #2a3042;}
 /* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' */
 
+#page-topbar {background-color: var(--bs-secondary-bg-subtle) !important;}
+
 /* Em substituição do código acima'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' */
 body[data-topbar="dark"] #page-topbar {background-color: var(--thema-cor) !important;}
 body[data-sidebar="dark"] .navbar-brand-box {background: var(--thema-cor) !important;}
@@ -128,5 +130,11 @@ body[data-sidebar="dark"].vertical-collpsed .vertical-menu #sidebar-menu > ul ul
 
 #offcanvaInformacoesMilitar .offcanvas-header .btn-close {
     color: #ffffff;
+}
+/* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' */
+
+/* Offcanva Transações'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' */
+#offcanvaCrudTransacoes .offcanvas-header {
+    background-color: var(--bs-secondary-bg-subtle) !important;
 }
 /* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' */

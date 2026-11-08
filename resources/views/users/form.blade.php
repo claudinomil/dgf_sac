@@ -28,6 +28,9 @@
 
                     <!-- Botão Cancelar Operação -->
                         <x-button-crud op="4" onclick="crudCancelOperation();" />
+
+                        <!-- Transações -->
+                        <x-button-crud op="8" class="float-end" onclick="crudTransacoes(0);" id="crudFormButtons2Transacoes" />
                     </div>
 
                     <!-- Formulário - Form -->
@@ -60,7 +63,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group col-12 col-md-5 pb-3">
+                                <div class="form-group col-12 col-md-4 pb-3">
                                     <label class="form-label">Grupo</label>
                                     <select class="form-control" name="grupo_id" id="grupo_id">
                                         <option value="">Selecione...</option>
@@ -78,13 +81,23 @@
                                         <!-- <option value="2">Horizontal</option> -->
                                     </select>
                                 </div>
-                                <div class="form-group col-12 col-md-3 pb-3">
+                                <div class="form-group col-12 col-md-2 pb-3">
                                     <label class="form-label">Usuário Tipo</label>
                                     <select class="form-control" name="user_tipo_id" id="user_tipo_id">
                                         <option value="">Selecione...</option>
 
                                         @foreach ($userTipos as $userTipo)
                                             <option value="{{ $userTipo['id'] }}">{{ $userTipo['name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group col-12 col-md-2 pb-3">
+                                    <label class="form-label">Submódulo Inicial</label>
+                                    <select class="form-control" name="inicial_submodulo_id" id="inicial_submodulo_id">
+                                        <option value="">Selecione...</option>
+
+                                        @foreach ($submodulos as $submodulo)
+                                            <option value="{{ $submodulo['id'] }}">{{ $submodulo['name'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>

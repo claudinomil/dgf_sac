@@ -17,7 +17,6 @@ class MilitarFundoSaudeObserver
 
     public function updated(MilitarFundoSaude $militar_fundo_saude)
     {
-        //$this->transacaoService->transacao(1, 2, 'militares_fundos_saude', $militar_fundo_saude->getChanges(), $militar_fundo_saude->getOriginal());
         $this->transacaoService->transacao(1, 2, 'militares_fundos_saude', $militar_fundo_saude->toArray(), $militar_fundo_saude->getOriginal());
     }
 }

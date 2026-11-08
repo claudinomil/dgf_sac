@@ -17,7 +17,6 @@ class FuncaoObserver
 
     public function updated(Funcao $funcao)
     {
-        //$this->transacaoService->transacao(1, 2, 'funcoes', $funcao->getChanges(), $funcao->getOriginal());
         $this->transacaoService->transacao(1, 2, 'funcoes', $funcao->toArray(), $funcao->getOriginal());
     }
 

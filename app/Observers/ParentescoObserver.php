@@ -17,7 +17,6 @@ class ParentescoObserver
 
     public function updated(Parentesco $parentesco)
     {
-        //$this->transacaoService->transacao(1, 2, 'parentescos', $parentesco->getChanges(), $parentesco->getOriginal());
         $this->transacaoService->transacao(1, 2, 'parentescos', $parentesco->toArray(), $parentesco->getOriginal());
     }
 

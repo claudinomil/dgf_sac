@@ -17,7 +17,6 @@ class QuadroObserver
 
     public function updated(Quadro $quadro)
     {
-        //$this->transacaoService->transacao(1, 2, 'quadros', $quadro->getChanges(), $quadro->getOriginal());
         $this->transacaoService->transacao(1, 2, 'quadros', $quadro->toArray(), $quadro->getOriginal());
     }
 

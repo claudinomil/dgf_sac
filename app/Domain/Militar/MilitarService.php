@@ -84,6 +84,11 @@ class MilitarService
                 throw new \Exception('Sem permissão. Sem Permissão para Situação do Militar.');
             }
 
+            // Verificando Registro Excluído
+            if ($militar->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
+            }
+
             // Update
             $this->repository->update($id, $data);
 
@@ -115,6 +120,11 @@ class MilitarService
             // Verificar Permissão para Situação do Militar
             if (!temPermissaoSituacao('militares', 'destroy', $militar->militarSituacaoId)) {
                 throw new \Exception('Sem Permissão para Situação do Militar.');
+            }
+
+            // Verificando Registro Excluído
+            if ($militar->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
             }
 
             // Delete

@@ -1,121 +1,280 @@
 // Globais
+const dashboard_indicadores_container = document.getElementById('dashboard_indicadores_container');
+const dashboard_graficos_container = document.getElementById('dashboard_graficos_container');
+let rota_dashboards_tvs_indicadores_ultimo_retorno = null;
+
+// Ajustar Tela - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+// Ajustar Tela - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 let altura = window.innerHeight;
 let largura = window.innerWidth;
-
-async function entrarTelaCheia() {
-    try {
-        if (!document.fullscreenElement) {
-            await document.documentElement.requestFullscreen();
-        }
-
-        ajustarDashboard();
-    } catch (erro) {
-        console.error('Não foi possível ativar tela cheia:', erro);
-    }
-}
 
 function ajustarDashboard() {
     altura = window.innerHeight;
     largura = window.innerWidth;
 
-    console.log('Altura:', altura);
-    console.log('Largura:', largura);
-
     document.getElementById('dashboard').style.height = `${altura}px`;
 }
 
 window.addEventListener('resize', ajustarDashboard);
+// Ajustar Tela - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+// Ajustar Tela - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 // Indicadores - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 // Indicadores - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-// Retorna um indicador com Legenda e Valor
-function indicador_modelo1_simples({ legenda = null, valor = null }) {
-    if (legenda === null || valor === null) { return; }
+// Retorna um html indicador
+function indicador_html({ identificador = null, colunas = 2 }) {
+    if (identificador === null) { return; }
 
     let indicador = '';
 
-    indicador = `<div class="indicador-modelo1 flex-fill p-2 rounded">
-                    <div class="indicador-modelo1-dados">
-                        <div class="indicador-modelo1-titulo">${legenda}</div>
-                        <div class="indicador-modelo1-valor">${valor}</div>
-                    </div>
-                </div>`;
-    
-    return indicador;
-}
+    // Tela Redimencionamentos
+    if (window.matchMedia('(max-width: 575.98px)').matches) {
+        // MOBILE - Até 575px
 
-// Retorna um indicador com Legenda, Valor e Imagem a Esquerda
-function indicador_modelo1_imagem_esquerda({ imagem = null, legenda = null, valor = null }) {
-    if (imagem === null || legenda === null || valor === null) { return; }
+        // Class
+        classLegenda = 'font-size-10';
+        classValor = 'font-size-16';
+        classImagem = 'font-size-20';
+    } else if (window.matchMedia('(min-width: 576px) and (max-width: 991.98px)').matches) {
+        // TABLET - 576px até 991px
 
-    let indicador = '';
+        // Class
+        classLegenda = 'font-size-12';
+        classValor = 'font-size-18';
+        classImagem = 'font-size-20';
+    } else if (window.matchMedia('(min-width: 992px) and (max-width: 1599.98px)').matches) {
+        // NOTEBOOK / DESKTOP - 992px até 1599px
 
-    indicador = `<div class="indicador-modelo1 flex-fill p-2 rounded">
-                    <div class="d-flex align-items-start gap-3">
-                        <div class="indicador-modelo1-icone">
-                            <i class="${imagem}"></i>
-                        </div>
-                        <div class="indicador-modelo1-dados">
-                            <div class="indicador-modelo1-titulo">${legenda}</div>
-                            <div class="indicador-modelo1-valor">${valor}</div>
-                        </div>
-                    </div>
-                </div>`;
-    
-    return indicador;
-}
+        // Class
+        classLegenda = 'font-size-14';
+        classValor = 'font-size-20';
+        classImagem = 'font-size-20';
+    } else if (window.matchMedia('(min-width: 1600px) and (max-width: 2559.98px)').matches) {
+        // TV / TELAS GRANDES - 1600px até 2559px
 
-// Retorna um indicador com Legenda, Valor e Imagem a Direita
-function indicador_modelo1_imagem_direita({ imagem = null, legenda = null, valor = null }) {
-    if (imagem === null || legenda === null || valor === null) { return; }
+        // Class
+        classLegenda = 'font-size-16';
+        classValor = 'font-size-22';
+        classImagem = 'font-size-30';
+    } else if (window.matchMedia('(min-width: 2560px)').matches) {
+        // TV 4K - 2560px ou mais
 
-    let indicador = '';
+        // Class
+        classLegenda = 'font-size-18';
+        classValor = 'font-size-24';
+        classImagem = 'font-size-30';
+    }
 
-    indicador = `<div class="indicador-modelo1 flex-fill p-2 rounded">
-                    <div class="d-flex align-items-start gap-3">
-                        <div class="indicador-modelo1-dados flex-fill">
-                            <div class="indicador-modelo1-titulo">${legenda}</div>
-                            <div class="indicador-modelo1-valor">${valor}</div>
-                        </div>
-                        <div class="indicador-modelo1-icone">
-                            <i class="${imagem}"></i>
-                        </div>
-                    </div>
-                </div>`;
-    
-    return indicador;
-}
-
-// Retorna um indicador com Legenda, Valor e Imagem a Direita
-function indicador_modelo2_mini_grafico({ legenda = null, imagem = null, imagem_cor = null, valor = null, valor_legenda_cor = null, valor_legenda = null }) {
-    if (legenda === null || imagem === null || imagem_cor === null || valor === null || valor_legenda_cor === null || valor_legenda === null) { return; }
-
-    let indicador = '';
-
-    indicador = `<div class="col-6 col-xl-3">
-                    <div class="card indicador-modelo2 h-100">
+    indicador = `<div class="col-12 col-md-${colunas}">
+                    <div class="card rounded-3 text-white h-100" style="background: #202b3c; border: 1px solid #354156;">
                         <div class="card-body">
-                            <div class="indicador-modelo2-titulo">
-                                ${legenda}
-                                <i class="${imagem} ${imagem_cor}"></i>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="text-truncate ${classLegenda}" id="${identificador}_legenda"></div>
+                                <div class="d-flex text-success ${classImagem}">
+                                    <i class="" id="${identificador}_imagem"></i>
+                                </div>
                             </div>
-                            <div class="indicador-modelo2-valor">${valor}</div>
-                            <div class="indicador-modelo2-legenda ${valor_legenda_cor}">
-                                ${valor_legenda}
-                            </div>
-                            <div id="grafico_militares" class="indicador-modelo2-grafico-mini"></div>
+                            <div class="col-12 my-auto fw-bold text-white ${classValor}" id="${identificador}_valor"></div>
                         </div>
                     </div>
                 </div>`;
-    
+
     return indicador;
+}
+
+// Retorna um indicador com Legenda, Valor e Imagem a Direita
+function grafico_html({ identificador = null, colunas = 2 }) {
+    if (identificador === null) { return; }
+
+    let grafico = '';
+
+    // Tela Redimencionamentos
+    if (window.matchMedia('(max-width: 575.98px)').matches) {
+        // MOBILE - Até 575px
+
+        // Class
+        classLegenda = 'font-size-10';
+        classValor = 'font-size-16';
+        classImagem = 'font-size-20';
+    } else if (window.matchMedia('(min-width: 576px) and (max-width: 991.98px)').matches) {
+        // TABLET - 576px até 991px
+
+        // Class
+        classLegenda = 'font-size-12';
+        classValor = 'font-size-18';
+        classImagem = 'font-size-20';
+    } else if (window.matchMedia('(min-width: 992px) and (max-width: 1599.98px)').matches) {
+        // NOTEBOOK / DESKTOP - 992px até 1599px
+
+        // Class
+        classLegenda = 'font-size-14';
+        classValor = 'font-size-20';
+        classImagem = 'font-size-20';
+    } else if (window.matchMedia('(min-width: 1600px) and (max-width: 2559.98px)').matches) {
+        // TV / TELAS GRANDES - 1600px até 2559px
+
+        // Class
+        classLegenda = 'font-size-16';
+        classValor = 'font-size-22';
+        classImagem = 'font-size-30';
+    } else if (window.matchMedia('(min-width: 2560px)').matches) {
+        // TV 4K - 2560px ou mais
+
+        // Class
+        classLegenda = 'font-size-18';
+        classValor = 'font-size-24';
+        classImagem = 'font-size-30';
+    }
+
+    grafico = `<div class="col-6 col-md-${colunas}">
+                    <div class="card rounded-3 text-white h-100" style="background: #202b3c; border: 1px solid #354156;">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="text-truncate ${classLegenda}" id="${identificador}_legenda"></div>
+                                <div class="d-flex text-success ${classImagem}">
+                                    <i class="" id="${identificador}_imagem"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 my-auto fw-bold text-white ${classValor}" id="${identificador}_valor"></div>
+                            <div class="col-12 w-100 mt-2" style="height: 145px;" id="${identificador}_grafico_mini"></div>
+                        </div>
+                    </div>
+                </div>`;
+
+    return grafico;
 }
 // Indicadores - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 // Indicadores - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
+// Gerar Indicadores e Gráficos - Início'''''''''''''''''''''''''''''''''''''''''''''
+// Gerar Indicadores e Gráficos - Início'''''''''''''''''''''''''''''''''''''''''''''
+async function indicadoresGraficosGerar() {
+    try {
+        const response = await fetch('dashboards_tvs/indicadores_graficos', {
+            method: 'GET',
+            headers: {
+                'REQUEST-ORIGIN': 'fetch',
+                'Accept': 'application/json'
+            }
+        });
 
-document.addEventListener('DOMContentLoaded', function () {
+        const data = await response.json();
+
+        // Verificar se os dados são iguais aos recebidos anteriormente
+        const retornoAtual = JSON.stringify(data);
+
+        if (retornoAtual === rota_dashboards_tvs_indicadores_ultimo_retorno) { return; }
+
+        // Armazenar novo retorno
+        rota_dashboards_tvs_indicadores_ultimo_retorno = retornoAtual;
+
+        // HTML's
+        await indicadoresGraficosHtmls(data);
+
+        // Dados
+        await indicadoresGraficosDados(data);
+    } catch (error) {
+        alert('Erro indicadoresGerar: ' + error);
+    }
+}
+
+async function indicadoresGraficosHtmls(data) {
+    try {
+        if (data.success) {
+            const dados = data.success;
+            const indicadores = dados.indicadores ?? [];
+            const graficos = dados.graficos ?? [];
+
+            const dashboard_info = document.getElementById('dashboard_info');
+            const ano = dados.ano;
+            const agora = new Date();
+            const dataHora = `${agora.toLocaleDateString('pt-BR')} ${agora.toLocaleTimeString('pt-BR', { hour12: false })}`;
+
+            if (ano) {
+                ano_texto = 'Ano de '+ano+'  -  ';
+            } else {
+                ano_texto = '';
+            }
+
+            // Informações do Dashboard
+            dashboard_info.innerHTML = `<div class="col-12 text-warning text-center align-self-center fw-bold font-size-16 nowrap">DASHBOARD GERENCIAL</div>
+                                        <div class="col-12 text-white text-center align-self-center font-size-14 nowrap">${primeiraMaiuscula(dados.unidade_nome ?? '')}</div>
+                                        <div class="col-12 text-white text-center align-self-center font-size-12 nowrap">${ano_texto}Atualizado em ${dataHora}</div>`;
+
+            // Preparando HTML Indicadores
+            dashboard_indicadores_container.innerHTML = '';
+
+            indicadores.forEach(element => {
+                dashboard_indicadores_container.insertAdjacentHTML('beforeend', indicador_html({ identificador: element.identificador, colunas: element.colunas }));
+            });
+
+            // Preparando HTML Gráficos
+            dashboard_graficos_container.innerHTML = '';
+
+            graficos.forEach(element => {
+                dashboard_graficos_container.insertAdjacentHTML('beforeend', grafico_html({ identificador: element.identificador, colunas: element.colunas }));
+            });
+        }
+    } catch (error) {
+        alert('Erro indicadoresGraficosHtmls: ' + error);
+    }
+}
+
+async function indicadoresGraficosDados(data) {
+    try {
+        if (data.success) {
+            const dados = data.success;
+            const indicadores = dados.indicadores ?? [];
+            const graficos = dados.graficos ?? [];
+
+            // Colocar Dados nos Indicadores
+            indicadores.forEach(element => {
+                var identificador = element.identificador;
+                var legenda = primeiraMaiuscula(element.titulo);
+                var imagem = 'fa fa-star';
+                var valor = 0;
+
+                element.dados_grafico.forEach(item => {
+                    valor = valor + item.value;
+                });
+
+                document.getElementById(`${identificador}_legenda`).innerHTML = legenda;
+                document.getElementById(`${identificador}_imagem`).className = imagem;
+                document.getElementById(`${identificador}_valor`).innerHTML = valor;
+
+
+            });
+
+            // Colocar Dados nos Gráficos
+            graficos.forEach(element => {
+                var identificador = element.identificador;
+                var legenda = primeiraMaiuscula(element.titulo);
+                var imagem = 'fa fa-star';
+                var valor = 0;
+
+                element.dados_grafico.forEach(item => {
+                    valor = valor + item.value;
+                });
+
+                document.getElementById(`${identificador}_legenda`).innerHTML = legenda;
+                document.getElementById(`${identificador}_imagem`).className = imagem;
+                document.getElementById(`${identificador}_valor`).innerHTML = valor;
+
+
+
+
+                chartMinPieSimple({ divId: element.identificador + '_grafico_mini', dados: element.dados_grafico });
+            });
+        }
+    } catch (error) {
+        alert('Erro indicadoresGraficosDados: ' + error);
+    }
+}
+// Gerar Indicadores e Gráficos - Fim''''''''''''''''''''''''''''''''''''''''''''''''
+// Gerar Indicadores e Gráficos - Fim''''''''''''''''''''''''''''''''''''''''''''''''
+
+document.addEventListener('DOMContentLoaded', async function () {
     // btnTelaCheia
     const btnTelaCheia = document.getElementById('btn_tela_cheia');
     if (!btnTelaCheia) { return; }
@@ -132,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Não foi possível alterar o modo de tela:', erro);
         }
     });
-    
+
     // Atualizar botão conforme o modo atual
     document.addEventListener('fullscreenchange', function () {
         if (document.fullscreenElement) {
@@ -142,34 +301,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Gerar Indicadores
+    await indicadoresGraficosGerar();
 
+    // Executar a cada 5 segundos
+    setInterval(async () => {
+        await indicadoresGraficosGerar();
+    }, 5000);
 
+    // Executar também quando redimensionar a tela
+    window.addEventListener('resize', async () => {
+        // Forçar atualização da tela reiniciando os dados
+        rota_dashboards_tvs_indicadores_ultimo_retorno = null;
 
-
-    // TESTE DE MONTAR INDICADORES
-    const dashboard_indicadores_modelo1 = document.getElementById('dashboard_indicadores_modelo1');
-
-    dashboard_indicadores_modelo1.insertAdjacentHTML('beforeend', indicador_modelo1_imagem_esquerda({ imagem: 'fas fa-users', legenda: 'Total de Militares', valor: '12.450' }));
-    dashboard_indicadores_modelo1.insertAdjacentHTML('beforeend', indicador_modelo1_simples({ legenda: 'Total de Férias', valor: '3.000' }));
-    dashboard_indicadores_modelo1.insertAdjacentHTML('beforeend', indicador_modelo1_imagem_direita({ imagem: 'fas fa-users', legenda: 'Total de Tempos Averbados', valor: 450 }));
-    dashboard_indicadores_modelo1.insertAdjacentHTML('beforeend', indicador_modelo1_imagem_esquerda({ imagem: 'fas fa-users', legenda: 'Total de Militares', valor: '12.450' }));
-    dashboard_indicadores_modelo1.insertAdjacentHTML('beforeend', indicador_modelo1_simples({ legenda: 'Total de Férias', valor: '3.000' }));
-    dashboard_indicadores_modelo1.insertAdjacentHTML('beforeend', indicador_modelo1_imagem_direita({ imagem: 'fas fa-users', legenda: 'Total de Tempos Averbados', valor: 450 }));
-    dashboard_indicadores_modelo1.insertAdjacentHTML('beforeend', indicador_modelo1_imagem_esquerda({ imagem: 'fas fa-users', legenda: 'Total de Militares', valor: '12.450' }));
-    dashboard_indicadores_modelo1.insertAdjacentHTML('beforeend', indicador_modelo1_simples({ legenda: 'Total de Férias', valor: '3.000' }));
-    dashboard_indicadores_modelo1.insertAdjacentHTML('beforeend', indicador_modelo1_imagem_direita({ imagem: 'fas fa-users', legenda: 'Total de Tempos Averbados', valor: 450 }));
-
-    const dashboard_indicadores_modelo2 = document.getElementById('dashboard_indicadores_modelo2');
-
-    dashboard_indicadores_modelo2.insertAdjacentHTML('beforeend', indicador_modelo2_mini_grafico({ legenda: 'Total de Militares', imagem: 'fa fa-user', imagem_cor: 'text-success', valor: '31.650', valor_legenda_cor: 'text-white', valor_legenda: '<i class="fas fa-arrow-up text-success"></i> <span class="text-success">4,8%</span> <span>no período</span>' }));
-    dashboard_indicadores_modelo2.insertAdjacentHTML('beforeend', indicador_modelo2_mini_grafico({ legenda: 'Total de Militares', imagem: 'fa fa-user', imagem_cor: 'text-success', valor: '31.650', valor_legenda_cor: 'text-white', valor_legenda: '86,9% do efetivo total' }));
-    dashboard_indicadores_modelo2.insertAdjacentHTML('beforeend', indicador_modelo2_mini_grafico({ legenda: 'Total de Militares', imagem: 'fa fa-user', imagem_cor: 'text-success', valor: '31.650', valor_legenda_cor: 'text-white', valor_legenda: 'Meta: 560' }));
-    dashboard_indicadores_modelo2.insertAdjacentHTML('beforeend', indicador_modelo2_mini_grafico({ legenda: 'Total de Militares', imagem: 'fa fa-user', imagem_cor: 'text-success', valor: '31.650', valor_legenda_cor: 'text-white', valor_legenda: 'Efetivo ativo' }));
-
-
-
-
-
-
-
+        await indicadoresGraficosGerar();
+    });
 });

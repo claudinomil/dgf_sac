@@ -65,6 +65,11 @@ class FuncaoService
                 throw new \Exception('Registro não encontrado.');
             }
 
+            // Verificando Registro Excluído
+            if ($funcao->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
+            }
+
             // Valida Lock
             $this->lockService->validar('funcoes', $id, $user_id);
 
@@ -94,6 +99,11 @@ class FuncaoService
 
             if (!$funcao) {
                 throw new \Exception('Registro não encontrado.');
+            }
+
+            // Verificando Registro Excluído
+            if ($funcao->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
             }
 
             // Delete

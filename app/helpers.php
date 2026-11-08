@@ -716,3 +716,17 @@ if (!function_exists('getRemoverAcentos')) {
         return preg_replace('/[^A-Za-z0-9\s]/', '', $texto);
     }
 }
+
+if (!function_exists('getIdade')) {
+    /*
+     * Retorna Idade com relação a data recebida
+     * @PARAN $dataNascimento : yyyy-mm-dd
+     * */
+    function getIdade(string $dataNascimento): int
+    {
+        $nascimento = new DateTime($dataNascimento);
+        $hoje = new DateTime();
+
+        return $nascimento->diff($hoje)->y;
+    }
+}

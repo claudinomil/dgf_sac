@@ -210,7 +210,7 @@ Route::middleware('auth')->prefix('dashboards')->group(function () {
 // Dashboards TVs - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Route::middleware('auth')->prefix('dashboards_tvs')->group(function () {
     Route::get('/', [DashboardTvController::class, 'index'])->name('dashboards_tvs.index');
-    Route::get('/dados', [DashboardTvController::class, 'dados'])->name('dashboards_tvs.dados');
+    Route::get('/indicadores_graficos', [DashboardTvController::class, 'indicadores_graficos']);
 });
 // Dashboards TVs - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -264,6 +264,7 @@ Route::middleware('auth')->prefix('relatorios')->group(function () {
 Route::middleware('auth')->prefix('perfil')->group(function () {
     Route::post('/update_avatar', [ProfileController::class, 'updateAvatar']);
     Route::post('/update_password', [ProfileController::class, 'updatePassword']);
+    Route::post('/update_submodulo_inicial', [ProfileController::class, 'updateSubmoduloInicial']);
 });
 // Perfil Usuário - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -418,6 +419,8 @@ Route::middleware('auth')->prefix('cursos')->group(function () {
 Route::middleware('auth')->prefix('transacoes')->group(function () {
     Route::get('', [TransacaoController::class, 'index'])->name('transacoes.index')->middleware('permissao:transacoes_list');
     Route::get('/filter/{array_dados}', [TransacaoController::class, 'filter'])->middleware('permissao:transacoes_list');
+
+    Route::get('crud_transacoes/{tabela_principal}/{tabela_principal_registro_id}', [TransacaoController::class, 'crud_transacoes']);
 });
 // Transações - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 

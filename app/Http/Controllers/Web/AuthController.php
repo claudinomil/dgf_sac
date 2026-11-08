@@ -40,7 +40,9 @@ class AuthController extends Controller
 
         $this->userContextService->refresh();
 
-        return redirect('/dashboards');
+        $inicialSubmodulo = session('userContext.user.inicialSubmodulo');
+
+        return temPermissao($inicialSubmodulo.'_list') ? redirect('/'.$inicialSubmodulo) : redirect('/dashboards');
     }
 
     public function logout()

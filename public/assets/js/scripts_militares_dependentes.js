@@ -205,6 +205,9 @@ async function settingsSubmoduloCrudCreate() {
     await desabilitarCampos();
     await habilitarCampos();
 
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: 0 });
+
     // Pesquisar Militar
     const militarAuto = crudAutocompleteMilitar('militares_dependentes', 'create');
     militarAuto.init();
@@ -216,8 +219,14 @@ async function settingsSubmoduloCrudView(data) {
     await desabilitarCampos();
     await habilitarCampos();
 
+    // Idade
+    document.getElementById('idade').value = getIdade(formatarData(1, data.data_nascimento));
+
     // Verificando permissões para botões
     await configurarBotoesPermissaoSituacao({ modulo: 'militares_dependentes', situacaoId: data.militarSituacaoId });
+
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: data.excluido });
 
     // Gerar Token para Controle militar_id
     if (!await tokenServiceGerar('militar_id', data.militar_id)) return;
@@ -234,8 +243,14 @@ async function settingsSubmoduloCrudEdit(data) {
     await desabilitarCampos();
     await habilitarCampos();
 
+    // Idade
+    document.getElementById('idade').value = getIdade(formatarData(1, data.data_nascimento));
+
     // Verificando permissões para botões
     await configurarBotoesPermissaoSituacao({ modulo: 'militares_dependentes', situacaoId: data.militarSituacaoId });
+
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: data.excluido });
 
     // Gerar Token para Controle militar_id
     if (!await tokenServiceGerar('militar_id', data.militar_id)) return;

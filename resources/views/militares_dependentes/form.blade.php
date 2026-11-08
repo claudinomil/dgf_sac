@@ -28,6 +28,9 @@
 
                         <!-- Botão Cancelar Operação -->
                         <x-button-crud op="4" onclick="crudCancelOperation();" id="crudFormButtons2CancelOperation" />
+
+                        <!-- Transações -->
+                        <x-button-crud op="8" class="float-end" onclick="crudTransacoes(0);" id="crudFormButtons2Transacoes" />
                     </div>
 
                     <!-- Formulário - Form -->
@@ -51,7 +54,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group col-12 col-md-6 pb-3">
+                                <div class="form-group col-12 col-md-5 pb-3">
                                     <label class="form-label">Nome</label>
                                     <input type="text" class="form-control text-uppercase" id="name" name="name" required="required">
                                 </div>
@@ -62,6 +65,10 @@
                                 <div class="form-group col-12 col-md-2 pb-3">
                                     <label class="form-label">Data Nascimento</label>
                                     <input type="text" class="form-control mask_date" id="data_nascimento" name="data_nascimento">
+                                </div>
+                                <div class="form-group col-12 col-md-1 pb-3">
+                                    <label class="form-label">Idade</label>
+                                    <input type="text" class="form-control" id="idade" name="idade" readonly="readonly">
                                 </div>
                                 <div class="form-group col-12 col-md-2 pb-3">
                                     <label class="form-label">Data Casamento</label>

@@ -65,6 +65,11 @@ class ComportamentoService
                 throw new \Exception('Registro não encontrado.');
             }
 
+            // Verificando Registro Excluído
+            if ($comportamento->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
+            }
+
             // Valida Lock
             $this->lockService->validar('comportamentos', $id, $user_id);
 
@@ -94,6 +99,11 @@ class ComportamentoService
 
             if (!$comportamento) {
                 throw new \Exception('Registro não encontrado.');
+            }
+
+            // Verificando Registro Excluído
+            if ($comportamento->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
             }
 
             // Delete

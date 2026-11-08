@@ -64,7 +64,10 @@ class SituacaoController extends Controller
                 if ($relacionamento['status'] === true) {$botoes = 4;}
                 //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-                return $this->columnAction($row['id'], $botoes);
+                // Registro Excluído
+                $excluido = $row['excluido'] ?? 0;
+
+                return $this->columnAction($row['id'], $botoes, $excluido);
             })
             ->rawColumns(['action'])
             ->escapeColumns([])

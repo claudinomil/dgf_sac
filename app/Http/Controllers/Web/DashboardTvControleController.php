@@ -3,88 +3,30 @@
 namespace App\Http\Controllers\Web;
 
 use App\Domain\DashboardTvControle\DashboardTvControleService;
+use App\Domain\DashboardTvIndicadorGrafico\DashboardTvIndicadorGraficoService;
 use App\Domain\Unidade\UnidadeService;
 use App\Http\Controllers\Controller;
-use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\Request;
 
 class DashboardTvControleController extends Controller
 {
     public function __construct(
         private DashboardTvControleService $dashboardTvControleService,
+        private DashboardTvIndicadorGraficoService $dashboardTvIndicadorGraficoService,
         private UnidadeService $unidadeService
     ) {}
 
     public function index(Request $request)
     {
-        // Requisição Ajax
-        if ($request->ajax()) {
-            $dashboards_tvs_controles = $this->dashboardTvControleService->getDashboardsTvsControles(1000);
+        setCrudSessions('dashboards_tvs_controles');
 
-            // Dados recebidos com sucesso
-            if ($dashboards_tvs_controles) {
-                return $this->datatable($dashboards_tvs_controles);
-            } else {
-                abort(500, 'Erro Interno Dashboard Tv Controle');
-            }
-        } else {
-            // Definir CRUD Sessions
-            setCrudSessions('dashboards_tvs_controles');
+        $indicadores = $this->dashboardTvIndicadorGraficoService->getDashboardsTvsIndicadores();
+        $graficos = $this->dashboardTvIndicadorGraficoService->getDashboardsTvsGraficos();
+        $unidades = $this->unidadeService->getAll();
 
-            $unidades = $this->unidadeService->getAll();
-
-            return view('dashboards_tvs_controles.index', compact(['unidades']));
-        }
+        return view('dashboards_tvs_controles.index', compact(['indicadores', 'graficos', 'unidades']));
     }
-    
-    public function datatable($registros)
-    {
-        $allData = DataTables::of($registros)
-            ->addIndexColumn()
-            ->editColumn('unidade', function ($row) {
-                $retorno = $row["unidadeName"];
-                
-                return $retorno;
-            })
-            ->editColumn('ano', function ($row) {
-                $retorno = $row["ano"];
-                
-                return $retorno;
-            })
-            ->editColumn('indicadores', function ($row) {
-                $retorno = '';
 
-                for ($i = 1; $i <= 12; $i++) {
-                    if (($row['indicador_'.$i] ?? 0) == 1) {
-                        $retorno .= '<div class="col-12 text-primary">Indicador '.$i.'</div>';
-                    }
-                }
-                
-                return $retorno;
-            })
-            ->editColumn('graficos', function ($row) {
-                $retorno = '';
-
-                for ($i = 1; $i <= 12; $i++) {
-                    if (($row['grafico_'.$i] ?? 0) == 1) {
-                        $retorno .= '<div class="col-12 text-success">Gráfico '.$i.'</div>';
-                    }
-                }
-                
-                return $retorno;
-            })
-            ->addColumn('action', function ($row) {
-                $botoes = 2;
-                
-                return $this->columnAction($row['id'], $botoes);
-            })
-            ->rawColumns(['action'])
-            ->escapeColumns([])
-            ->make(true);
-
-        return $allData;
-    }
-    
     public function edit(Request $request, int $id)
     {
         // Verificando Origem enviada pelo Fetch
@@ -107,7 +49,7 @@ class DashboardTvControleController extends Controller
 
             // Unidade
             $dados['unidade_id'] = $request['unidade_id'];
-            
+
             // Ano
             $dados['ano'] = $request['ano'];
 
@@ -123,10 +65,47 @@ class DashboardTvControleController extends Controller
                 $dados[$campo] = $request->exists($campo) ? 1 : 0;
             }
 
+            // Ordens dos indicadores
+            for ($i = 1; $i <= 12; $i++) {
+                $campo = 'indicador_'.$i.'_ordem';
+
+                if ($request->exists($campo)) {
+                    $dados[$campo] = $request->input($campo);
+                }
+            }
+
+            // Ordens dos gráficos
+            for ($i = 1; $i <= 12; $i++) {
+                $campo = 'grafico_'.$i.'_ordem';
+
+                if ($request->exists($campo)) {
+                    $dados[$campo] = $request->input($campo);
+                }
+            }
+
+            // Colunas dos indicadores
+            for ($i = 1; $i <= 12; $i++) {
+                $campo = 'indicador_'.$i.'_colunas';
+
+                if ($request->exists($campo)) {
+                    $dados[$campo] = $request->input($campo);
+                }
+            }
+
+            // Colunas dos gráficos
+            for ($i = 1; $i <= 12; $i++) {
+                $campo = 'grafico_'.$i.'_colunas';
+
+                if ($request->exists($campo)) {
+                    $dados[$campo] = $request->input($campo);
+                }
+            }
+
             // Atualizar registro
             $this->dashboardTvControleService->updateDashboardTvControle($id, $dados);
 
             return response()->json(['success' => 'Registro atualizado com sucesso']);
+
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }

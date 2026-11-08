@@ -13,19 +13,10 @@ class RessarcimentoPagamentoObserver
     {
         $this->transacaoService = $transacaoService;
     }
-
-    // NÃO VAI GRAVAR REGISTRO DE CADA IMPORTAÇÃO E SIM UMA COMPILAÇÃO DA IMPORTAÇÃO'''''''''''''''''''''''''''
-
-    // public function created(RessarcimentoPagamento $ressarcimento_pagamento)
-    // {
-    //     $this->transacaoService->transacao(1, 1, 'ressarcimento_pagamentos', $ressarcimento_pagamento->toArray(), []);
-    // }
-
-    //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-
+    
     public function updated(RessarcimentoPagamento $ressarcimento_pagamento)
     {
-        $this->transacaoService->transacao(1, 2, 'ressarcimento_pagamentos', $ressarcimento_pagamento->getChanges(), $ressarcimento_pagamento->getOriginal());
+        $this->transacaoService->transacao(1, 2, 'ressarcimento_pagamentos', $ressarcimento_pagamento->toArray(), $ressarcimento_pagamento->getOriginal());
     }
 
     public function deleted(RessarcimentoPagamento $ressarcimento_pagamento)

@@ -128,6 +128,15 @@ class UserService
         return true;
     }
 
+    public function updateSubmoduloInicial($user_id, $inicial_submodulo_id)
+    {
+        $user = $this->repository->find($user_id);
+
+        $this->repository->update($user_id, ['inicial_submodulo_id' => $inicial_submodulo_id]);
+
+        return true;
+    }
+
     public function getTotais($op)
     {
         // Total Geral

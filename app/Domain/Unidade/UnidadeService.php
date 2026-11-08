@@ -65,6 +65,11 @@ class UnidadeService
                 throw new \Exception('Registro não encontrado.');
             }
 
+            // Verificando Registro Excluído
+            if ($unidade->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
+            }
+
             // Valida Lock
             $this->lockService->validar('unidades', $id, $user_id);
 
@@ -94,6 +99,11 @@ class UnidadeService
 
             if (!$unidade) {
                 throw new \Exception('Registro não encontrado.');
+            }
+
+            // Verificando Registro Excluído
+            if ($unidade->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
             }
 
             // Delete

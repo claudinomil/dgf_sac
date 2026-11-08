@@ -266,6 +266,9 @@ async function settingsSubmoduloCrudCreate() {
     await habilitarCampos();
     await atualizarSelectSituacaoId();
 
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: 0 });
+
     militarSituacaoId.value = 0;
 
     // Gerar Token para Controle militarSituacaoId
@@ -277,8 +280,14 @@ async function settingsSubmoduloCrudView(data) {
     await desabilitarCampos();
     await habilitarCampos();
 
+    // Idade
+    document.getElementById('idade').value = getIdade(formatarData(1, data.data_nascimento));
+
     // Verificando permissões para botões
     await configurarBotoesPermissaoSituacao({ modulo: 'militares', situacaoId: data.militarSituacaoId });
+
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: data.excluido });
 
     // Gerar Token para Controle militarSituacaoId
     if (!await tokenServiceGerar('militarSituacaoId', data.militarSituacaoId)) return;
@@ -290,8 +299,14 @@ async function settingsSubmoduloCrudEdit(data) {
     await habilitarCampos();
     await atualizarSelectSituacaoId();
 
+    // Idade
+    document.getElementById('idade').value = getIdade(formatarData(1, data.data_nascimento));
+
     // Verificando permissões para botões
     await configurarBotoesPermissaoSituacao({ modulo: 'militares', situacaoId: data.militarSituacaoId });
+
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: data.excluido });
 
     // Gerar Token para Controle militarSituacaoId
     if (!await tokenServiceGerar('militarSituacaoId', data.militarSituacaoId)) return;

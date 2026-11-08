@@ -25,7 +25,8 @@ class User extends Authenticatable
         'user_tipo_id',
         'avatar',
         'militar_id',
-        'layout_menu'
+        'layout_menu',
+        'inicial_submodulo_id'
     ];
 
     protected $hidden = [

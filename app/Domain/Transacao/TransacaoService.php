@@ -34,6 +34,11 @@ class TransacaoService
         return $this->repository->create($data);
     }
 
+    public function getCrudTransacoesDados(string $tabela_principal, int $tabela_principal_registro_id)
+    {
+        return $this->repository->crud_transacoes_dados($tabela_principal, $tabela_principal_registro_id);
+    }
+
     public function transacao(int $op, int $operacao_id, string $prefix_permissao, array $dadosAtual, array $dadosAnterior)
     {
         // Usuário logado
@@ -50,8 +55,17 @@ class TransacaoService
 
         $estruturas = [];
 
+        // Campos referentes a tabela e registro
+        $tabela_principal = null;
+        $tabela_principal_registro_id = null;
+
         // users
         if ($prefix_permissao == 'users') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'users';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'name', 'etiqueta' => 'Nome', 'model_op' => '', 'tipo' => 'string'],
@@ -75,6 +89,11 @@ class TransacaoService
 
         // Situações
         if ($prefix_permissao == 'situacoes') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'situacoes';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -84,6 +103,11 @@ class TransacaoService
 
         // Graduações
         if ($prefix_permissao == 'graduacoes') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'graduacoes';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -94,6 +118,11 @@ class TransacaoService
 
         // Quadros
         if ($prefix_permissao == 'quadros') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'quadros';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -105,6 +134,11 @@ class TransacaoService
 
         // Comportamentos
         if ($prefix_permissao == 'comportamentos') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'comportamentos';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -114,6 +148,11 @@ class TransacaoService
 
         // Funções
         if ($prefix_permissao == 'funcoes') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'funcoes';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -123,6 +162,11 @@ class TransacaoService
 
         // Parentescos
         if ($prefix_permissao == 'parentescos') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'parentescos';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -132,6 +176,11 @@ class TransacaoService
 
         // Gêneros
         if ($prefix_permissao == 'generos') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'generos';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -141,6 +190,11 @@ class TransacaoService
 
         // Cursos
         if ($prefix_permissao == 'cursos') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'cursos';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -154,6 +208,11 @@ class TransacaoService
 
         // Unidades
         if ($prefix_permissao == 'unidades') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'unidades';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -168,6 +227,11 @@ class TransacaoService
 
         // militares
         if ($prefix_permissao == 'militares') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'militares';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -224,6 +288,11 @@ class TransacaoService
 
         // militares_cursos
         if ($prefix_permissao == 'militares_cursos') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'militares_cursos';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -239,6 +308,11 @@ class TransacaoService
 
         // militares_contatos
         if ($prefix_permissao == 'militares_contatos') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'militares_contatos';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -260,6 +334,11 @@ class TransacaoService
 
         // militares_ajudas_custos
         if ($prefix_permissao == 'militares_ajudas_custos') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'militares_ajudas_custos';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -275,6 +354,11 @@ class TransacaoService
 
         // militares_auxilios_fardamentos
         if ($prefix_permissao == 'militares_auxilios_fardamentos') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'militares_auxilios_fardamentos';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -289,6 +373,11 @@ class TransacaoService
 
         // militares_dependentes
         if ($prefix_permissao == 'militares_dependentes') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'militares_dependentes';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -325,6 +414,11 @@ class TransacaoService
 
         // militares_fundos_saude
         if ($prefix_permissao == 'militares_fundos_saude') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'militares_fundos_saude';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -340,6 +434,11 @@ class TransacaoService
 
         // militares_ferias
         if ($prefix_permissao == 'militares_ferias') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'militares_ferias';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -353,6 +452,11 @@ class TransacaoService
 
         // militares_tempos_averbados
         if ($prefix_permissao == 'militares_tempos_averbados') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'militares_tempos_averbados';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -374,6 +478,11 @@ class TransacaoService
 
         // militares_pensoes
         if ($prefix_permissao == 'militares_pensoes') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'militares_pensoes';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'id', 'etiqueta' => 'ID', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'excluido', 'etiqueta' => 'Excluído', 'model_op' => '31', 'tipo' => 'string'],
@@ -412,6 +521,11 @@ class TransacaoService
 
         // ressarcimento_referencias
         if ($prefix_permissao == 'ressarcimento_referencias') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'ressarcimento_referencias';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'referencia', 'etiqueta' => 'Referência', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'ano', 'etiqueta' => 'Ano', 'model_op' => '', 'tipo' => 'string'],
@@ -422,6 +536,11 @@ class TransacaoService
 
         // ressarcimento_orgaos
         if ($prefix_permissao == 'ressarcimento_orgaos') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'ressarcimento_orgaos';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'name', 'etiqueta' => 'Nome', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'cnpj', 'etiqueta' => 'CNPJ', 'model_op' => '', 'tipo' => 'string'],
@@ -454,6 +573,11 @@ class TransacaoService
 
         // ressarcimento_militares
         if ($prefix_permissao == 'ressarcimento_militares') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'ressarcimento_militares';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'referencia', 'etiqueta' => 'Referência', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'identidade_funcional', 'etiqueta' => 'Identidade Funcional', 'model_op' => '', 'tipo' => 'string'],
@@ -470,6 +594,11 @@ class TransacaoService
 
         // ressarcimento_configuracoes
         if ($prefix_permissao == 'ressarcimento_configuracoes') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'ressarcimento_configuracoes';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'referencia', 'etiqueta' => 'Referência', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'data_vencimento', 'etiqueta' => 'Data Vencimento', 'model_op' => '', 'tipo' => 'string'],
@@ -490,6 +619,11 @@ class TransacaoService
 
         // ressarcimento_pagamentos
         if ($prefix_permissao == 'ressarcimento_pagamentos') {
+            // Campos referentes a tabela e registro''''''''''
+            $tabela_principal = 'ressarcimento_pagamentos';
+            $tabela_principal_registro_id = $dadosAtual['id'];
+            //''''''''''''''''''''''''''''''''''''''''''''''''
+
             $estruturas = [
                 ['campo' => 'referencia', 'etiqueta' => 'Referência', 'model_op' => '', 'tipo' => 'string'],
                 ['campo' => 'identidade_funcional', 'etiqueta' => 'Identidade Funcional', 'model_op' => '', 'tipo' => 'string'],
@@ -528,7 +662,7 @@ class TransacaoService
 
         // Só grava se tiver dados
         if (!empty($this->dados)) {
-            $this->transacaoGravarDados();
+            $this->transacaoGravarDados($tabela_principal, $tabela_principal_registro_id);
         }
 
         // evita sujeira de estado
@@ -605,7 +739,7 @@ class TransacaoService
         return $campos;
     }
 
-    private function transacaoGravarDados()
+    private function transacaoGravarDados($tabela_principal=null, $tabela_principal_registro_id=null)
     {
         // Buscar submodulo_id
         $submodulo = $this->submoduloRepository->getSubmoduloPrefixPermissao($this->prefix_permissao);
@@ -617,6 +751,8 @@ class TransacaoService
             'user_id' => $this->user_id,
             'operacao_id' => $this->operacao_id,
             'submodulo_id' => $submodulo_id,
+            'tabela_principal' => $tabela_principal,
+            'tabela_principal_registro_id' => $tabela_principal_registro_id,
             'dados' => $this->dados
         ];
 

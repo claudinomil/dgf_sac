@@ -7,20 +7,7 @@ class DashboardTvControleService
     public function __construct(
         private DashboardTvControleRepository $repository
     ) {}
-    
-    public function getDashboardsTvsControles($limit = null)
-    {
-        return $this->repository->index($limit);
-    }
-    
-    public function getDashboardTvControle(int $id)
-    {
-        // Buscar Registro
-        $dashboard_tv_controle = $this->repository->find($id);
 
-        return $dashboard_tv_controle;
-    }
-    
     public function editDashboardTvControle(int $id)
     {
         $dashboard_tv_controle = $this->repository->find($id);

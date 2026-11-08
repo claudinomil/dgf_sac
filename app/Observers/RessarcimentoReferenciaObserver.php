@@ -21,7 +21,7 @@ class RessarcimentoReferenciaObserver
 
     public function updated(RessarcimentoReferencia $ressarcimento_referencia)
     {
-        $this->transacaoService->transacao(1, 2, 'ressarcimento_referencias', $ressarcimento_referencia->getChanges(), $ressarcimento_referencia->getOriginal());
+        $this->transacaoService->transacao(1, 2, 'ressarcimento_referencias', $ressarcimento_referencia->toArray(), $ressarcimento_referencia->getOriginal());
     }
 
     public function deleted(RessarcimentoReferencia $ressarcimento_referencia)

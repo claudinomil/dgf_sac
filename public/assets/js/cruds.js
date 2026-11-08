@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!el) return;
 
     const prefix = el.value;
-    const excecoes = ['dashboards', 'relatorios', 'logotipos', 'ressarcimento_cobrancas'];
+    const excecoes = ['dashboards', 'relatorios', 'logotipos', 'ressarcimento_cobrancas', 'dashboards_tvs_controles'];
 
     if (prefix && !excecoes.includes(prefix)) {
         crudTable(prefix);

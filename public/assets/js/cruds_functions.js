@@ -49,7 +49,11 @@ function crudConfiguracao({p_frm_operacao=null, p_fieldsDisabled=null, p_crudFor
 
     // Botões do Modal
     if (p_crudFormButtons1 == 'show') {
-        document.getElementById('crudFormButtons1').style.display = 'block';
+        var crudFormButtons1 = document.getElementById('crudFormButtons1');
+
+        if (crudFormButtons1) {
+            crudFormButtons1.style.display = 'block';
+        }
 
         // Verificando botões inferiores no formulário (só alguns submódulos tem esses botões inferiores)'''
         let divBotInf = document.getElementById('crudFormButtons1_inferior');
@@ -58,7 +62,11 @@ function crudConfiguracao({p_frm_operacao=null, p_fieldsDisabled=null, p_crudFor
     }
 
     if (p_crudFormButtons1 == 'hide') {
-        document.getElementById('crudFormButtons1').style.display = 'none';
+        var crudFormButtons1 = document.getElementById('crudFormButtons1');
+
+        if (crudFormButtons1) {
+            crudFormButtons1.style.display = 'none';
+        }
 
         // Verificando botões inferiores no formulário (só alguns submódulos tem esses botões inferiores)'''
         let divBotInf = document.getElementById('crudFormButtons1_inferior');
@@ -67,7 +75,11 @@ function crudConfiguracao({p_frm_operacao=null, p_fieldsDisabled=null, p_crudFor
     }
 
     if (p_crudFormButtons2 == 'show') {
-        document.getElementById('crudFormButtons2').style.display = 'block';
+        var crudFormButtons2 = document.getElementById('crudFormButtons2');
+
+        if (crudFormButtons2) {
+            crudFormButtons2.style.display = 'block';
+        }
 
         // Verificando botões inferiores no formulário (só alguns submódulos tem esses botões inferiores)'''
         let divBotInf = document.getElementById('crudFormButtons2_inferior');
@@ -76,7 +88,11 @@ function crudConfiguracao({p_frm_operacao=null, p_fieldsDisabled=null, p_crudFor
     }
 
     if (p_crudFormButtons2 == 'hide') {
-        document.getElementById('crudFormButtons2').style.display = 'none';
+        var crudFormButtons2 = document.getElementById('crudFormButtons2');
+
+        if (crudFormButtons2) {
+            crudFormButtons2.style.display = 'none';
+        }
 
         // Verificando botões inferiores no formulário (só alguns submódulos tem esses botões inferiores)'''
         let divBotInf = document.getElementById('crudFormButtons2_inferior');
@@ -385,7 +401,7 @@ async function crudEdit(registro_id) {
             alert('Erro interno');
         }
     } catch (error) {
-        alert('Erro Crud Functions View: ' + error);
+        alert('Erro Crud Functions Edit: ' + error);
     } finally {
         // Garantir restauração de máscaras
         crudConfiguracao({ p_removeMask: true, p_putMask: true });
@@ -516,7 +532,7 @@ async function crudConfirmOperation() {
 
         // FormData (Tem que ser aqui apos a settingsSubmoduloCrudConfirmCreate())
         const formData = new FormData(formulario);
-        
+
         // Fetch
         fetch(prefixPermissaoSubmodulo, {
             method: 'POST',
@@ -543,7 +559,7 @@ async function crudConfirmOperation() {
 
         // FormData (Tem que ser aqui apos a settingsSubmoduloCrudConfirmCreate())
         const formData = new FormData(formulario);
-        
+
         // Fetch
         fetch(`${prefixPermissaoSubmodulo}/${registro_id}`, {
             method: 'POST',
@@ -867,6 +883,49 @@ async function crudOffCanvaProfilleUpdatePassword() {
         }
     }).catch(error => {
         alert('Erro crudOffCanvaProfilleUpdatePassword: ' + error);
+    });
+}
+
+// OffCanva Profille Update Submodulo Inicial
+async function crudOffCanvaProfilleUpdateSubmoduloInicial() {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    // Formulário
+    const form = document.getElementById('frm_profille_update_submodulo_inicial');
+    const formData = new FormData(form);
+
+    // URL
+    const url = 'perfil/update_submodulo_inicial';
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'REQUEST-ORIGIN': 'fetch',
+            'X-CSRF-TOKEN': csrfToken,
+            'Accept': 'application/json'
+        },
+        body: formData
+    }).then(async response => {
+        const data = await response.json();
+
+        if (!response.ok) { throw data; }
+
+        return data;
+    }).then(data => {
+        if (data.success) {
+            // Resposta
+            alertSwal('success', "Perfil", data.success, 'true', 2000);
+        } else if (data.error_validation) {
+            const message = montarMensagemValidacao(data.error_validation);
+
+            // Resposta
+            alertSwal('warning', "Validação", message, 'true', 3000);
+        } else if (data.error) {
+            // Resposta
+            alertSwal('warning', "Validação", data.error, 'true', 3000);
+        }
+    }).catch(error => {
+        alert('Erro crudOffCanvaProfilleUpdateSubmoduloInicial: ' + error);
     });
 }
 
@@ -1226,3 +1285,81 @@ async function crudOffCanvaInformacoesMilitarUpdateFotografia() {
         btnOffCanvaInformacoesMilitarUpdateFotografia.disabled = false;
     });
 }
+
+// Crud Transações - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+// Crud Transações - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+async function crudTransacoes(tabela_principal_registro_id) {
+    // Variáveis
+    if (tabela_principal_registro_id == 0) { tabela_principal_registro_id = document.getElementById('registro_id').value; }
+    const tabela_principal = document.getElementById('crudPrefixPermissaoSubmodulo').value;
+
+    await crudTransacoesOffCanva(tabela_principal, tabela_principal_registro_id);
+
+    await crudTransacoesTable(`transacoes/crud_transacoes/${tabela_principal}/${tabela_principal_registro_id}`);
+}
+
+async function crudTransacoesTable(route) {
+    const campos = 'date,usuario,operacaoName,dados';
+    const camposColunasTabelas = campos.split(',');
+    let fieldsColumns = [];
+
+    camposColunasTabelas.forEach(function (campo) {
+        fieldsColumns.push({ data: campo });
+    });
+
+    // DataTable configurações
+    var tabela = document.getElementById('datatable-crud-transacoes');
+
+    new DataTable(tabela, {
+        language: {
+            pageLength: {
+                '-1': 'Mostrar todos os registros',
+                '_': 'Mostrar %d registros'
+            },
+            lengthMenu: 'Exibir _MENU_ resultados por página',
+            emptyTable: 'Nenhum registro encontrado',
+            info: 'Mostrando de _START_ até _END_ de _TOTAL_ registros',
+            infoEmpty: 'Mostrando 0 até 0 de 0 registros',
+            infoFiltered: '(Filtrados de _MAX_ registros)',
+            infoThousands: '.',
+            loadingRecords: 'Carregando...',
+            processing: 'Processando...',
+            zeroRecords: 'Nenhum registro encontrado',
+            search: 'Pesquisar',
+            paginate: {
+                next: 'Próximo',
+                previous: 'Anterior',
+                first: 'Primeiro',
+                last: 'Último'
+            }
+        },
+        bDestroy: true,
+        responsive: false,
+        lengthChange: true,
+        autoWidth: true,
+        order: [],
+        ordering: true,
+        processing: true,
+        serverSide: false,
+        pageLength: 20,
+        ajax: route,
+        columns: fieldsColumns,
+
+        // Após terminar a Grade de Registros
+        initComplete: function () {
+            showTooltips();
+        }
+    });
+
+    // Configuração
+    // crudConfiguracao({ p_fieldsDisabled: false });
+}
+
+async function crudTransacoesOffCanva() {
+    // Abrir OffCanva
+    const offcanvasElement = document.getElementById('offcanvaCrudTransacoes');
+    const offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+    offcanvas.show();
+}
+// Crud Transações - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+// Crud Transações - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''

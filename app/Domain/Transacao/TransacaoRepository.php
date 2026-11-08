@@ -145,6 +145,26 @@ class TransacaoRepository
         return Transacao::create($data);
     }
 
+    public function crud_transacoes_dados(string $tabela_principal, int $tabela_principal_registro_id)
+    {
+        return Transacao::join('users', 'transacoes.user_id', '=', 'users.id')
+            ->join('operacoes', 'transacoes.operacao_id', '=', 'operacoes.id')
+            ->join('submodulos', 'transacoes.submodulo_id', '=', 'submodulos.id')
+            ->select([
+                'transacoes.*',
+                'users.name as userName',
+                'users.user',
+                'users.user_tipo_id',
+                'operacoes.name as operacaoName',
+                'submodulos.name as submoduloName'
+            ])
+            ->where('transacoes.tabela_principal', $tabela_principal)
+            ->where('transacoes.tabela_principal_registro_id', $tabela_principal_registro_id)
+            ->orderby('transacoes.date', 'DESC')
+            ->orderby('transacoes.time', 'DESC')
+            ->get();
+    }
+
     public function getModelValue(int $model_op, int $model_id)
     {
         if ($model_op == 1) {
@@ -383,7 +403,7 @@ class TransacaoRepository
             if ($registro) {return $registro->name;}
             return '';
         }
-        
+
         if ($model_op == 38) {
             $registro = PensaoTipo::find($model_id);
             if ($registro) {return $registro->name;}

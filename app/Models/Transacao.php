@@ -17,6 +17,8 @@ class Transacao extends Model
         'user_id',
         'operacao_id',
         'submodulo_id',
+        'tabela_principal',
+        'tabela_principal_registro_id',
         'dados'
     ];
 

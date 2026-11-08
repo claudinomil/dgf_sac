@@ -95,7 +95,10 @@ class MilitarCursoController extends Controller
                 if (!$permissaoShow and $permissaoEdit and $permissaoDestroy) {$botoes = 6;}
                 if ($permissaoShow and $permissaoEdit and $permissaoDestroy) {$botoes = 7;}
 
-                return $this->columnAction($row['id'], $botoes);
+                // Registro Excluído
+                $excluido = $row['excluido'] ?? 0;
+
+                return $this->columnAction($row['id'], $botoes, $excluido);
             })
             ->rawColumns(['action'])
             ->escapeColumns([])

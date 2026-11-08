@@ -53,11 +53,22 @@
                             </div>
                         </div>
 
+                        <!-- Bloquear Tela -->
+                        <div id="tela_bloqueada_sistema" class="position-fixed top-0 start-0 w-100 h-100 d-none align-items-center justify-content-center" style="background: rgba(0, 0, 0, 0.5); z-index: 20000;">
+                            <div class="text-center text-white">
+                                <div class="spinner-border text-light mb-3" role="status" style="width: 3rem; height: 3rem;">
+                                    <span class="visually-hidden">Aguarde...</span>
+                                </div>
+                                <div class="fw-semibold fs-5">Processando, aguarde...</div>
+                            </div>
+                        </div>
+
                         @yield('content')
                     </div>
                 </div>
 
                 @include('layouts.offcanva-profille')
+                @include('layouts.offcanva-crud-transacoes')
 
                 @if(session('crudPrefixPermissaoSubmodulo') == 'militares')
                     @include('layouts.offcanva-informacoes-militar')

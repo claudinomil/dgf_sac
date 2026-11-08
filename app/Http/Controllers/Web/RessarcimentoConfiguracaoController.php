@@ -93,7 +93,10 @@ class RessarcimentoConfiguracaoController extends Controller
                 return $retorno;
             })
             ->addColumn('action', function ($row, Request $request) {
-                return $this->columnAction($row['id']);
+                // Registro Excluído
+                $excluido = $row['excluido'] ?? 0;
+
+                return $this->columnAction($row['id'], 7, $excluido);
             })
             ->rawColumns(['action'])
             ->escapeColumns([])

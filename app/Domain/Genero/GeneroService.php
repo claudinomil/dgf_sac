@@ -65,6 +65,11 @@ class GeneroService
                 throw new \Exception('Registro não encontrado.');
             }
 
+            // Verificando Registro Excluído
+            if ($genero->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
+            }
+
             // Valida Lock
             $this->lockService->validar('generos', $id, $user_id);
 
@@ -94,6 +99,11 @@ class GeneroService
 
             if (!$genero) {
                 throw new \Exception('Registro não encontrado.');
+            }
+
+            // Verificando Registro Excluído
+            if ($genero->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
             }
 
             // Delete

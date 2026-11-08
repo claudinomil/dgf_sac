@@ -1,35 +1,64 @@
+<style>
+    .indicador-grafico-toggle {
+        display: block;
+        width: 100%;
+        margin: 0;
+        cursor: pointer;
+    }
+
+    .indicador-grafico-checkbox {
+        position: absolute;
+        opacity: 0;
+        width: 1px;
+        height: 1px;
+    }
+
+    .indicador-grafico-botao {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        width: 100%;
+        height: 70px;
+        padding: 10px 14px;
+        border: 1px solid #dc3545;
+        border-radius: 6px;
+        background-color: #dc3545;
+        color: #fff;
+        text-align: center;
+        font-size: 11px;
+        transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .indicador-grafico-linha {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-weight: 600;
+    }
+
+    .indicador-grafico-icone {
+        font-size: 17px;
+    }
+
+    .indicador-grafico-checkbox:checked+.indicador-grafico-botao {
+        background-color: #198754;
+        border-color: #198754;
+    }
+
+    .indicador-grafico-checkbox:focus-visible+.indicador-grafico-botao {
+        outline: 3px solid rgba(13, 110, 253, 0.35);
+        outline-offset: 2px;
+    }
+</style>
+
 <!-- Formulario -->
-<div class="font-size-12" id="crudForm" style="display: none;">
+<div class="font-size-12" id="crudForm">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="modal-buttons" id="crudFormButtons1">
-                        <!-- store or update -->
-                        @if(temPermissao('dashboards_tvs_controles_create') || temPermissao('dashboards_tvs_controles_edit'))
-                        <!-- Botão Confirnar Operação -->
-                        <x-button-crud op="5" onclick="crudConfirmOperation();" id="crudFormButtons1ConfirmOperation" />
-                        @endif
-
-                        <!-- Botão Cancelar Operação -->
-                        <x-button-crud op="4" onclick="crudCancelOperation();" id="crudFormButtons1CancelOperation" />
-                    </div>
-                    <div class="modal-buttons" id="crudFormButtons2">
-                        <!-- edit or delete -->
-                        @if(temPermissao('dashboards_tvs_controles_edit'))
-                        <!-- Botão Alterar Registro -->
-                        <x-button-crud op="2" onclick="crudEdit(0)" id="crudFormButtons2Edit" />
-                        @endif
-
-                        @if(temPermissao('dashboards_tvs_controles_destroy'))
-                        <!-- Botão Excluir Registro -->
-                        <x-button-crud op="3" onclick="crudDelete(0);" id="crudFormButtons2Delete" />
-                        @endif
-
-                        <!-- Botão Cancelar Operação -->
-                        <x-button-crud op="4" onclick="crudCancelOperation();" id="crudFormButtons2CancelOperation" />
-                    </div>
-
                     <!-- Formulário - Form -->
                     <form id="{{ session('crudNameFormSubmodulo') }}" name="{{ session('crudNameFormSubmodulo') }}">
                         <fieldset>
@@ -41,185 +70,92 @@
                                 <div class="form-group col-12 col-md-10 pb-3">
                                     <label class="form-label">Unidade</label>
                                     <select class="form-control" name="unidade_id" id="unidade_id" required="required">
-                                        <option value="0">Selecione...</option>
+                                        <option value="null">Selecione...</option>
 
                                         @foreach ($unidades as $unidade)
-                                            <option value="{{ $unidade['id'] }}">{{ $unidade['name'] }}</option>
+                                        <option value="{{ $unidade['id'] }}">{{ $unidade['name'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group col-12 col-md-2 pb-3">
                                     <label class="form-label">Ano</label>
                                     <select class="form-control" name="ano" id="ano" required="required">
-                                        <option value="0000">Todos</option>
-                                        
+                                        <option value="null">Todos</option>
+
                                         @for ($ano = date('Y'); $ano >= 2000; $ano--)
                                         <option value="{{ $ano }}">{{ $ano }}</option>
                                         @endfor
                                     </select>
                                 </div>
                             </div>
+
                             <div class="row pt-4">
-                                <div class="font-size-16 pb-4"><i class="fas fa-info text-start"></i>- <b>Indicadores</b></div>
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-primary mb-3">
-                                                <input class="form-check-input" type="checkbox" id="indicador_1" name="indicador_1" value="1">
-                                                <label class="form-check-label" for="indicador_1">Checkbox Primary</label>
-                                            </div>
+                                <div class="font-size-16 pb-4"><i class="fas fa-chart-line text-start"></i>- <b>Indicadores</b></div>
+
+                                @foreach ($indicadores as $indicador)
+                                <div class="col-12 col-md-2 pb-3 p-1 indicador-grafico-container">
+                                    <label class="indicador-grafico-toggle" for="{{ $indicador['identificador'] }}">
+                                        <input class="indicador-grafico-checkbox" type="checkbox" id="{{ $indicador['identificador'] }}" name="{{ $indicador['identificador'] }}" value="1">
+                                        <span class="indicador-grafico-botao">
+                                            <span class="indicador-grafico-linha"><i class="fas fa-circle-xmark indicador-grafico-icone"></i></span>
+                                            <span>{{ primeiraMaiuscula($indicador['titulo']) }}</span>
+                                        </span>
+                                    </label>
+
+                                    <div class="row px-2">
+                                        <div class="col-6">
+                                            <label>Colunas</label>
+                                            <select class="form-group col-12 text-center mt-1 indicador-grafico-select-colunas" id="{{ $indicador['identificador'] }}_colunas" name="{{ $indicador['identificador'] }}_colunas">
+                                                @foreach (range(1, 12, 1) as $colunas)
+                                                <option value="{{ $colunas }}" @selected($indicador['colunas'] == $colunas)>{{ $colunas }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-primary mb-3">
-                                                <input class="form-check-input" type="checkbox" id="indicador_2" name="indicador_2" value="1">
-                                                <label class="form-check-label" for="indicador_2">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-primary mb-3">
-                                                <input class="form-check-input" type="checkbox" id="indicador_3" name="indicador_3" value="1">
-                                                <label class="form-check-label" for="indicador_3">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-primary mb-3">
-                                                <input class="form-check-input" type="checkbox" id="indicador_4" name="indicador_4" value="1">
-                                                <label class="form-check-label" for="indicador_4">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-primary mb-3">
-                                                <input class="form-check-input" type="checkbox" id="indicador_5" name="indicador_5" value="1">
-                                                <label class="form-check-label" for="indicador_5">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-primary mb-3">
-                                                <input class="form-check-input" type="checkbox" id="indicador_6" name="indicador_6" value="1">
-                                                <label class="form-check-label" for="indicador_6">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-primary mb-3">
-                                                <input class="form-check-input" type="checkbox" id="indicador_7" name="indicador_7" value="1">
-                                                <label class="form-check-label" for="indicador_7">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-primary mb-3">
-                                                <input class="form-check-input" type="checkbox" id="indicador_8" name="indicador_8" value="1">
-                                                <label class="form-check-label" for="indicador_8">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-primary mb-3">
-                                                <input class="form-check-input" type="checkbox" id="indicador_9" name="indicador_9" value="1">
-                                                <label class="form-check-label" for="indicador_9">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-primary mb-3">
-                                                <input class="form-check-input" type="checkbox" id="indicador_10" name="indicador_10" value="1">
-                                                <label class="form-check-label" for="indicador_10">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-primary mb-3">
-                                                <input class="form-check-input" type="checkbox" id="indicador_11" name="indicador_11" value="1">
-                                                <label class="form-check-label" for="indicador_11">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-primary mb-3">
-                                                <input class="form-check-input" type="checkbox" id="indicador_12" name="indicador_12" value="1">
-                                                <label class="form-check-label" for="indicador_12">Checkbox Primary</label>
-                                            </div>
+                                        <div class="col-6">
+                                            <label>Ordem</label>
+                                            <select class="form-group col-12 text-center mt-1 indicador-grafico-select-ordem" id="{{ $indicador['identificador'] }}_ordem" name="{{ $indicador['identificador'] }}_ordem">
+                                                @foreach (range(5, 120, 5) as $ordem)
+                                                <option value="{{ $ordem }}" @selected($indicador['ordem'] == $ordem)>{{ $ordem }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                             <div class="row pt-4">
-                                <div class="font-size-16 pb-4"><i class="fas fa-info text-start"></i>- <b>Gráficos</b></div>
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-success mb-3">
-                                                <input class="form-check-input" type="checkbox" id="grafico_1" name="grafico_1" value="1">
-                                                <label class="form-check-label" for="grafico_1">Checkbox Primary</label>
-                                            </div>
+                                <div class="font-size-16 pb-4"><i class="fas fa-chart-pie text-start"></i>- <b>Gráficos</b></div>
+
+                                @foreach ($graficos as $grafico)
+                                <div class="col-12 col-md-2 pb-3 p-1 indicador-grafico-container">
+                                    <label class="indicador-grafico-toggle" for="{{ $grafico['identificador'] }}">
+                                        <input class="indicador-grafico-checkbox" type="checkbox" id="{{ $grafico['identificador'] }}" name="{{ $grafico['identificador'] }}" value="1">
+                                        <span class="indicador-grafico-botao">
+                                            <span class="indicador-grafico-linha"><i class="fas fa-circle-xmark indicador-grafico-icone"></i></span>
+                                            <span>{{ primeiraMaiuscula($grafico['titulo']) }}</span>
+                                        </span>
+                                    </label>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label>Colunas</label>
+                                            <select class="form-group col-12 text-center mt-1 indicador-grafico-select-colunas" id="{{ $grafico['identificador'] }}_colunas" name="{{ $grafico['identificador'] }}_colunas">
+                                                @foreach (range(1, 12, 1) as $colunas)
+                                                <option value="{{ $colunas }}" @selected($grafico['colunas'] == $colunas)>{{ $colunas }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-success mb-3">
-                                                <input class="form-check-input" type="checkbox" id="grafico_2" name="grafico_2" value="1">
-                                                <label class="form-check-label" for="grafico_2">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-success mb-3">
-                                                <input class="form-check-input" type="checkbox" id="grafico_3" name="grafico_3" value="1">
-                                                <label class="form-check-label" for="grafico_3">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-success mb-3">
-                                                <input class="form-check-input" type="checkbox" id="grafico_4" name="grafico_4" value="1">
-                                                <label class="form-check-label" for="grafico_4">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-success mb-3">
-                                                <input class="form-check-input" type="checkbox" id="grafico_5" name="grafico_5" value="1">
-                                                <label class="form-check-label" for="grafico_5">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-success mb-3">
-                                                <input class="form-check-input" type="checkbox" id="grafico_6" name="grafico_6" value="1">
-                                                <label class="form-check-label" for="grafico_6">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-success mb-3">
-                                                <input class="form-check-input" type="checkbox" id="grafico_7" name="grafico_7" value="1">
-                                                <label class="form-check-label" for="grafico_7">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-success mb-3">
-                                                <input class="form-check-input" type="checkbox" id="grafico_8" name="grafico_8" value="1">
-                                                <label class="form-check-label" for="grafico_8">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-success mb-3">
-                                                <input class="form-check-input" type="checkbox" id="grafico_9" name="grafico_9" value="1">
-                                                <label class="form-check-label" for="grafico_9">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-success mb-3">
-                                                <input class="form-check-input" type="checkbox" id="grafico_10" name="grafico_10" value="1">
-                                                <label class="form-check-label" for="grafico_10">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-success mb-3">
-                                                <input class="form-check-input" type="checkbox" id="grafico_11" name="grafico_11" value="1">
-                                                <label class="form-check-label" for="grafico_11">Checkbox Primary</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12 pb-3">
-                                            <div class="form-check form-check-success mb-3">
-                                                <input class="form-check-input" type="checkbox" id="grafico_12" name="grafico_12" value="1">
-                                                <label class="form-check-label" for="grafico_12">Checkbox Primary</label>
-                                            </div>
+                                        <div class="col-6">
+                                            <label>Ordem</label>
+                                            <select class="form-group col-12 text-center mt-1 indicador-grafico-select-ordem" id="{{ $grafico['identificador'] }}_ordem" name="{{ $grafico['identificador'] }}_ordem">
+                                                @foreach (range(5, 120, 5) as $ordem)
+                                                <option value="{{ $ordem }}" @selected($grafico['ordem'] == $ordem)>{{ $ordem }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                         </fieldset>
                     </form>

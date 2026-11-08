@@ -16,6 +16,6 @@ class RessarcimentoRecebimentoObserver
 
     public function updated(RessarcimentoRecebimento $ressarcimento_recebimento)
     {
-        $this->transacaoService->transacao(1, 2, 'ressarcimento_recebimentos', $ressarcimento_recebimento->getChanges(), $ressarcimento_recebimento->getOriginal());
+        $this->transacaoService->transacao(1, 2, 'ressarcimento_recebimentos', $ressarcimento_recebimento->toArray(), $ressarcimento_recebimento->getOriginal());
     }
 }

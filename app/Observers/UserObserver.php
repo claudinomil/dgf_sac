@@ -21,7 +21,7 @@ class UserObserver
 
     public function updated(User $user)
     {
-        $this->transacaoService->transacao(1, 2, 'users', $user->getChanges(), $user->getOriginal());
+        $this->transacaoService->transacao(1, 2, 'users', $user->toArray(), $user->getOriginal());
     }
 
     public function deleted(User $user)

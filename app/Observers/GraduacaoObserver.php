@@ -17,7 +17,6 @@ class GraduacaoObserver
 
     public function updated(Graduacao $graduacao)
     {
-        //$this->transacaoService->transacao(1, 2, 'graduacoes', $graduacao->getChanges(), $graduacao->getOriginal());
         $this->transacaoService->transacao(1, 2, 'graduacoes', $graduacao->toArray(), $graduacao->getOriginal());
     }
 

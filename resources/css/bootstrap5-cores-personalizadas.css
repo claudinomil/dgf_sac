@@ -1,0 +1,413 @@
+/*
+|--------------------------------------------------------------------------
+| PALETA DE CORES PERSONALIZADAS - BOOTSTRAP 5 / SKOTE
+|--------------------------------------------------------------------------
+| Classes:
+| .btn-{cor}          Botão preenchido
+| .btn-outline-{cor}  Botão com contorno
+| .text-{cor}         Texto
+| .bg-{cor}           Fundo
+| .border-{cor}       Borda
+| .badge-{cor}        Badge
+|--------------------------------------------------------------------------
+*/
+
+/* PALETA */
+:root {
+    --color-azul: #0d6efd;
+    --color-azul-escuro: #084298;
+    --color-azul-claro: #6ea8fe;
+    --color-ciano: #0dcaf0;
+    --color-turquesa: #20c997;
+    --color-verde: #198754;
+    --color-verde-claro: #75b798;
+    --color-lima: #a3cfbb;
+    --color-amarelo: #ffc107;
+    --color-ambar: #ffca2c;
+    --color-laranja: #fd7e14;
+    --color-coral: #fd6c5f;
+    --color-vermelho: #dc3545;
+    --color-rosa: #d63384;
+    --color-pink: #e685b5;
+    --color-magenta: #c026d3;
+    --color-roxo: #6f42c1;
+    --color-violeta: #8b5cf6;
+    --color-indigo: #6610f2;
+    --color-marrom: #795548;
+    --color-caramelo: #b08968;
+    --color-oliva: #808000;
+    --color-musgo: #556b2f;
+    --color-petroleo: #0f766e;
+    --color-ardosia: #64748b;
+    --color-cinza-azulado: #495057;
+    --color-grafite: #343a40;
+    --color-prata: #adb5bd;
+    --color-bege: #f5deb3;
+    --color-creme: #fff3cd;
+}
+
+/* TEXTOS */
+.text-azul { color: var(--color-azul) !important; }
+.text-azul-escuro { color: var(--color-azul-escuro) !important; }
+.text-azul-claro { color: var(--color-azul-claro) !important; }
+.text-ciano { color: var(--color-ciano) !important; }
+.text-turquesa { color: var(--color-turquesa) !important; }
+.text-verde { color: var(--color-verde) !important; }
+.text-verde-claro { color: var(--color-verde-claro) !important; }
+.text-lima { color: var(--color-lima) !important; }
+.text-amarelo { color: var(--color-amarelo) !important; }
+.text-ambar { color: var(--color-ambar) !important; }
+.text-laranja { color: var(--color-laranja) !important; }
+.text-coral { color: var(--color-coral) !important; }
+.text-vermelho { color: var(--color-vermelho) !important; }
+.text-rosa { color: var(--color-rosa) !important; }
+.text-pink { color: var(--color-pink) !important; }
+.text-magenta { color: var(--color-magenta) !important; }
+.text-roxo { color: var(--color-roxo) !important; }
+.text-violeta { color: var(--color-violeta) !important; }
+.text-indigo { color: var(--color-indigo) !important; }
+.text-marrom { color: var(--color-marrom) !important; }
+.text-caramelo { color: var(--color-caramelo) !important; }
+.text-oliva { color: var(--color-oliva) !important; }
+.text-musgo { color: var(--color-musgo) !important; }
+.text-petroleo { color: var(--color-petroleo) !important; }
+.text-ardosia { color: var(--color-ardosia) !important; }
+.text-cinza-azulado { color: var(--color-cinza-azulado) !important; }
+.text-grafite { color: var(--color-grafite) !important; }
+.text-prata { color: var(--color-prata) !important; }
+.text-bege { color: var(--color-bege) !important; }
+.text-creme { color: var(--color-creme) !important; }
+
+/* FUNDOS */
+.bg-azul { background-color: var(--color-azul) !important; }
+.bg-azul-escuro { background-color: var(--color-azul-escuro) !important; }
+.bg-azul-claro { background-color: var(--color-azul-claro) !important; }
+.bg-ciano { background-color: var(--color-ciano) !important; }
+.bg-turquesa { background-color: var(--color-turquesa) !important; }
+.bg-verde { background-color: var(--color-verde) !important; }
+.bg-verde-claro { background-color: var(--color-verde-claro) !important; }
+.bg-lima { background-color: var(--color-lima) !important; }
+.bg-amarelo { background-color: var(--color-amarelo) !important; }
+.bg-ambar { background-color: var(--color-ambar) !important; }
+.bg-laranja { background-color: var(--color-laranja) !important; }
+.bg-coral { background-color: var(--color-coral) !important; }
+.bg-vermelho { background-color: var(--color-vermelho) !important; }
+.bg-rosa { background-color: var(--color-rosa) !important; }
+.bg-pink { background-color: var(--color-pink) !important; }
+.bg-magenta { background-color: var(--color-magenta) !important; }
+.bg-roxo { background-color: var(--color-roxo) !important; }
+.bg-violeta { background-color: var(--color-violeta) !important; }
+.bg-indigo { background-color: var(--color-indigo) !important; }
+.bg-marrom { background-color: var(--color-marrom) !important; }
+.bg-caramelo { background-color: var(--color-caramelo) !important; }
+.bg-oliva { background-color: var(--color-oliva) !important; }
+.bg-musgo { background-color: var(--color-musgo) !important; }
+.bg-petroleo { background-color: var(--color-petroleo) !important; }
+.bg-ardosia { background-color: var(--color-ardosia) !important; }
+.bg-cinza-azulado { background-color: var(--color-cinza-azulado) !important; }
+.bg-grafite { background-color: var(--color-grafite) !important; }
+.bg-prata { background-color: var(--color-prata) !important; }
+.bg-bege { background-color: var(--color-bege) !important; }
+.bg-creme { background-color: var(--color-creme) !important; }
+
+/* BORDAS */
+.border-azul { border-color: var(--color-azul) !important; }
+.border-azul-escuro { border-color: var(--color-azul-escuro) !important; }
+.border-azul-claro { border-color: var(--color-azul-claro) !important; }
+.border-ciano { border-color: var(--color-ciano) !important; }
+.border-turquesa { border-color: var(--color-turquesa) !important; }
+.border-verde { border-color: var(--color-verde) !important; }
+.border-verde-claro { border-color: var(--color-verde-claro) !important; }
+.border-lima { border-color: var(--color-lima) !important; }
+.border-amarelo { border-color: var(--color-amarelo) !important; }
+.border-ambar { border-color: var(--color-ambar) !important; }
+.border-laranja { border-color: var(--color-laranja) !important; }
+.border-coral { border-color: var(--color-coral) !important; }
+.border-vermelho { border-color: var(--color-vermelho) !important; }
+.border-rosa { border-color: var(--color-rosa) !important; }
+.border-pink { border-color: var(--color-pink) !important; }
+.border-magenta { border-color: var(--color-magenta) !important; }
+.border-roxo { border-color: var(--color-roxo) !important; }
+.border-violeta { border-color: var(--color-violeta) !important; }
+.border-indigo { border-color: var(--color-indigo) !important; }
+.border-marrom { border-color: var(--color-marrom) !important; }
+.border-caramelo { border-color: var(--color-caramelo) !important; }
+.border-oliva { border-color: var(--color-oliva) !important; }
+.border-musgo { border-color: var(--color-musgo) !important; }
+.border-petroleo { border-color: var(--color-petroleo) !important; }
+.border-ardosia { border-color: var(--color-ardosia) !important; }
+.border-cinza-azulado { border-color: var(--color-cinza-azulado) !important; }
+.border-grafite { border-color: var(--color-grafite) !important; }
+.border-prata { border-color: var(--color-prata) !important; }
+.border-bege { border-color: var(--color-bege) !important; }
+.border-creme { border-color: var(--color-creme) !important; }
+
+/* CONFIGURAÇÃO DAS CORES DOS BOTÕES */
+.btn-azul { --custom-btn-color: #0d6efd; --custom-btn-text: #fff; }
+.btn-azul-escuro { --custom-btn-color: #084298; --custom-btn-text: #fff; }
+.btn-azul-claro { --custom-btn-color: #6ea8fe; --custom-btn-text: #212529; }
+.btn-ciano { --custom-btn-color: #0dcaf0; --custom-btn-text: #212529; }
+.btn-turquesa { --custom-btn-color: #20c997; --custom-btn-text: #212529; }
+.btn-verde { --custom-btn-color: #198754; --custom-btn-text: #fff; }
+.btn-verde-claro { --custom-btn-color: #75b798; --custom-btn-text: #ffffff; }
+.btn-lima { --custom-btn-color: #a3cfbb; --custom-btn-text: #212529; }
+.btn-amarelo { --custom-btn-color: #ffc107; --custom-btn-text: #212529; }
+.btn-ambar { --custom-btn-color: #ffca2c; --custom-btn-text: #212529; }
+.btn-laranja { --custom-btn-color: #fd7e14; --custom-btn-text: #212529; }
+.btn-coral { --custom-btn-color: #fd6c5f; --custom-btn-text: #212529; }
+.btn-vermelho { --custom-btn-color: #dc3545; --custom-btn-text: #fff; }
+.btn-rosa { --custom-btn-color: #d63384; --custom-btn-text: #fff; }
+.btn-pink { --custom-btn-color: #e685b5; --custom-btn-text: #212529; }
+.btn-magenta { --custom-btn-color: #c026d3; --custom-btn-text: #fff; }
+.btn-roxo { --custom-btn-color: #6f42c1; --custom-btn-text: #fff; }
+.btn-violeta { --custom-btn-color: #8b5cf6; --custom-btn-text: #fff; }
+.btn-indigo { --custom-btn-color: #6610f2; --custom-btn-text: #fff; }
+.btn-marrom { --custom-btn-color: #795548; --custom-btn-text: #fff; }
+.btn-caramelo { --custom-btn-color: #b08968; --custom-btn-text: #212529; }
+.btn-oliva { --custom-btn-color: #808000; --custom-btn-text: #fff; }
+.btn-musgo { --custom-btn-color: #556b2f; --custom-btn-text: #fff; }
+.btn-petroleo { --custom-btn-color: #0f766e; --custom-btn-text: #fff; }
+.btn-ardosia { --custom-btn-color: #64748b; --custom-btn-text: #fff; }
+.btn-cinza-azulado { --custom-btn-color: #495057; --custom-btn-text: #fff; }
+.btn-grafite { --custom-btn-color: #343a40; --custom-btn-text: #fff; }
+.btn-prata { --custom-btn-color: #adb5bd; --custom-btn-text: #212529; }
+.btn-bege { --custom-btn-color: #f5deb3; --custom-btn-text: #212529; }
+.btn-creme { --custom-btn-color: #fff3cd; --custom-btn-text: #212529; }
+
+/* BOTÕES PREENCHIDOS */
+.btn:is(
+    .btn-azul, .btn-azul-escuro, .btn-azul-claro, .btn-ciano,
+    .btn-turquesa, .btn-verde, .btn-verde-claro, .btn-lima,
+    .btn-amarelo, .btn-ambar, .btn-laranja, .btn-coral,
+    .btn-vermelho, .btn-rosa, .btn-pink, .btn-magenta,
+    .btn-roxo, .btn-violeta, .btn-indigo, .btn-marrom,
+    .btn-caramelo, .btn-oliva, .btn-musgo, .btn-petroleo,
+    .btn-ardosia, .btn-cinza-azulado, .btn-grafite, .btn-prata,
+    .btn-bege, .btn-creme
+) {
+    color: var(--custom-btn-text) !important;
+    background-color: var(--custom-btn-color) !important;
+    border-color: var(--custom-btn-color) !important;
+    background-image: none !important;
+}
+
+.btn:is(
+    .btn-azul, .btn-azul-escuro, .btn-azul-claro, .btn-ciano,
+    .btn-turquesa, .btn-verde, .btn-verde-claro, .btn-lima,
+    .btn-amarelo, .btn-ambar, .btn-laranja, .btn-coral,
+    .btn-vermelho, .btn-rosa, .btn-pink, .btn-magenta,
+    .btn-roxo, .btn-violeta, .btn-indigo, .btn-marrom,
+    .btn-caramelo, .btn-oliva, .btn-musgo, .btn-petroleo,
+    .btn-ardosia, .btn-cinza-azulado, .btn-grafite, .btn-prata,
+    .btn-bege, .btn-creme
+):hover {
+    filter: brightness(.88);
+}
+
+.btn:is(
+    .btn-azul, .btn-azul-escuro, .btn-azul-claro, .btn-ciano,
+    .btn-turquesa, .btn-verde, .btn-verde-claro, .btn-lima,
+    .btn-amarelo, .btn-ambar, .btn-laranja, .btn-coral,
+    .btn-vermelho, .btn-rosa, .btn-pink, .btn-magenta,
+    .btn-roxo, .btn-violeta, .btn-indigo, .btn-marrom,
+    .btn-caramelo, .btn-oliva, .btn-musgo, .btn-petroleo,
+    .btn-ardosia, .btn-cinza-azulado, .btn-grafite, .btn-prata,
+    .btn-bege, .btn-creme
+):focus,
+.btn:is(
+    .btn-azul, .btn-azul-escuro, .btn-azul-claro, .btn-ciano,
+    .btn-turquesa, .btn-verde, .btn-verde-claro, .btn-lima,
+    .btn-amarelo, .btn-ambar, .btn-laranja, .btn-coral,
+    .btn-vermelho, .btn-rosa, .btn-pink, .btn-magenta,
+    .btn-roxo, .btn-violeta, .btn-indigo, .btn-marrom,
+    .btn-caramelo, .btn-oliva, .btn-musgo, .btn-petroleo,
+    .btn-ardosia, .btn-cinza-azulado, .btn-grafite, .btn-prata,
+    .btn-bege, .btn-creme
+):focus-visible {
+    box-shadow: 0 0 0 .25rem color-mix(in srgb, var(--custom-btn-color), transparent 65%) !important;
+}
+
+.btn:is(
+    .btn-azul, .btn-azul-escuro, .btn-azul-claro, .btn-ciano,
+    .btn-turquesa, .btn-verde, .btn-verde-claro, .btn-lima,
+    .btn-amarelo, .btn-ambar, .btn-laranja, .btn-coral,
+    .btn-vermelho, .btn-rosa, .btn-pink, .btn-magenta,
+    .btn-roxo, .btn-violeta, .btn-indigo, .btn-marrom,
+    .btn-caramelo, .btn-oliva, .btn-musgo, .btn-petroleo,
+    .btn-ardosia, .btn-cinza-azulado, .btn-grafite, .btn-prata,
+    .btn-bege, .btn-creme
+):active,
+.btn:is(
+    .btn-azul, .btn-azul-escuro, .btn-azul-claro, .btn-ciano,
+    .btn-turquesa, .btn-verde, .btn-verde-claro, .btn-lima,
+    .btn-amarelo, .btn-ambar, .btn-laranja, .btn-coral,
+    .btn-vermelho, .btn-rosa, .btn-pink, .btn-magenta,
+    .btn-roxo, .btn-violeta, .btn-indigo, .btn-marrom,
+    .btn-caramelo, .btn-oliva, .btn-musgo, .btn-petroleo,
+    .btn-ardosia, .btn-cinza-azulado, .btn-grafite, .btn-prata,
+    .btn-bege, .btn-creme
+).active {
+    filter: brightness(.80);
+}
+
+.btn:is(
+    .btn-azul, .btn-azul-escuro, .btn-azul-claro, .btn-ciano,
+    .btn-turquesa, .btn-verde, .btn-verde-claro, .btn-lima,
+    .btn-amarelo, .btn-ambar, .btn-laranja, .btn-coral,
+    .btn-vermelho, .btn-rosa, .btn-pink, .btn-magenta,
+    .btn-roxo, .btn-violeta, .btn-indigo, .btn-marrom,
+    .btn-caramelo, .btn-oliva, .btn-musgo, .btn-petroleo,
+    .btn-ardosia, .btn-cinza-azulado, .btn-grafite, .btn-prata,
+    .btn-bege, .btn-creme
+):disabled,
+.btn:is(
+    .btn-azul, .btn-azul-escuro, .btn-azul-claro, .btn-ciano,
+    .btn-turquesa, .btn-verde, .btn-verde-claro, .btn-lima,
+    .btn-amarelo, .btn-ambar, .btn-laranja, .btn-coral,
+    .btn-vermelho, .btn-rosa, .btn-pink, .btn-magenta,
+    .btn-roxo, .btn-violeta, .btn-indigo, .btn-marrom,
+    .btn-caramelo, .btn-oliva, .btn-musgo, .btn-petroleo,
+    .btn-ardosia, .btn-cinza-azulado, .btn-grafite, .btn-prata,
+    .btn-bege, .btn-creme
+).disabled {
+    opacity: .65;
+    filter: none;
+}
+
+/* BOTÕES OUTLINE */
+.btn-outline-azul { --custom-outline-color: #0d6efd; }
+.btn-outline-azul-escuro { --custom-outline-color: #084298; }
+.btn-outline-azul-claro { --custom-outline-color: #6ea8fe; }
+.btn-outline-ciano { --custom-outline-color: #0dcaf0; }
+.btn-outline-turquesa { --custom-outline-color: #20c997; }
+.btn-outline-verde { --custom-outline-color: #198754; }
+.btn-outline-verde-claro { --custom-outline-color: #75b798; }
+.btn-outline-lima { --custom-outline-color: #a3cfbb; }
+.btn-outline-amarelo { --custom-outline-color: #ffc107; }
+.btn-outline-ambar { --custom-outline-color: #ffca2c; }
+.btn-outline-laranja { --custom-outline-color: #fd7e14; }
+.btn-outline-coral { --custom-outline-color: #fd6c5f; }
+.btn-outline-vermelho { --custom-outline-color: #dc3545; }
+.btn-outline-rosa { --custom-outline-color: #d63384; }
+.btn-outline-pink { --custom-outline-color: #e685b5; }
+.btn-outline-magenta { --custom-outline-color: #c026d3; }
+.btn-outline-roxo { --custom-outline-color: #6f42c1; }
+.btn-outline-violeta { --custom-outline-color: #8b5cf6; }
+.btn-outline-indigo { --custom-outline-color: #6610f2; }
+.btn-outline-marrom { --custom-outline-color: #795548; }
+.btn-outline-caramelo { --custom-outline-color: #b08968; }
+.btn-outline-oliva { --custom-outline-color: #808000; }
+.btn-outline-musgo { --custom-outline-color: #556b2f; }
+.btn-outline-petroleo { --custom-outline-color: #0f766e; }
+.btn-outline-ardosia { --custom-outline-color: #64748b; }
+.btn-outline-cinza-azulado { --custom-outline-color: #495057; }
+.btn-outline-grafite { --custom-outline-color: #343a40; }
+.btn-outline-prata { --custom-outline-color: #adb5bd; }
+.btn-outline-bege { --custom-outline-color: #f5deb3; }
+.btn-outline-creme { --custom-outline-color: #fff3cd; }
+
+.btn:is(
+    .btn-outline-azul, .btn-outline-azul-escuro, .btn-outline-azul-claro,
+    .btn-outline-ciano, .btn-outline-turquesa, .btn-outline-verde,
+    .btn-outline-verde-claro, .btn-outline-lima, .btn-outline-amarelo,
+    .btn-outline-ambar, .btn-outline-laranja, .btn-outline-coral,
+    .btn-outline-vermelho, .btn-outline-rosa, .btn-outline-pink,
+    .btn-outline-magenta, .btn-outline-roxo, .btn-outline-violeta,
+    .btn-outline-indigo, .btn-outline-marrom, .btn-outline-caramelo,
+    .btn-outline-oliva, .btn-outline-musgo, .btn-outline-petroleo,
+    .btn-outline-ardosia, .btn-outline-cinza-azulado, .btn-outline-grafite,
+    .btn-outline-prata, .btn-outline-bege, .btn-outline-creme
+) {
+    color: var(--custom-outline-color) !important;
+    background-color: transparent !important;
+    border: 1px solid var(--custom-outline-color) !important;
+    background-image: none !important;
+}
+
+.btn:is(
+    .btn-outline-azul, .btn-outline-azul-escuro, .btn-outline-azul-claro,
+    .btn-outline-ciano, .btn-outline-turquesa, .btn-outline-verde,
+    .btn-outline-verde-claro, .btn-outline-lima, .btn-outline-amarelo,
+    .btn-outline-ambar, .btn-outline-laranja, .btn-outline-coral,
+    .btn-outline-vermelho, .btn-outline-rosa, .btn-outline-pink,
+    .btn-outline-magenta, .btn-outline-roxo, .btn-outline-violeta,
+    .btn-outline-indigo, .btn-outline-marrom, .btn-outline-caramelo,
+    .btn-outline-oliva, .btn-outline-musgo, .btn-outline-petroleo,
+    .btn-outline-ardosia, .btn-outline-cinza-azulado, .btn-outline-grafite,
+    .btn-outline-prata, .btn-outline-bege, .btn-outline-creme
+):hover,
+.btn:is(
+    .btn-outline-azul, .btn-outline-azul-escuro, .btn-outline-azul-claro,
+    .btn-outline-ciano, .btn-outline-turquesa, .btn-outline-verde,
+    .btn-outline-verde-claro, .btn-outline-lima, .btn-outline-amarelo,
+    .btn-outline-ambar, .btn-outline-laranja, .btn-outline-coral,
+    .btn-outline-vermelho, .btn-outline-rosa, .btn-outline-pink,
+    .btn-outline-magenta, .btn-outline-roxo, .btn-outline-violeta,
+    .btn-outline-indigo, .btn-outline-marrom, .btn-outline-caramelo,
+    .btn-outline-oliva, .btn-outline-musgo, .btn-outline-petroleo,
+    .btn-outline-ardosia, .btn-outline-cinza-azulado, .btn-outline-grafite,
+    .btn-outline-prata, .btn-outline-bege, .btn-outline-creme
+):active {
+    color: #fff !important;
+    background-color: var(--custom-outline-color) !important;
+    border-color: var(--custom-outline-color) !important;
+}
+
+.btn:is(
+    .btn-outline-azul, .btn-outline-azul-escuro, .btn-outline-azul-claro,
+    .btn-outline-ciano, .btn-outline-turquesa, .btn-outline-verde,
+    .btn-outline-verde-claro, .btn-outline-lima, .btn-outline-amarelo,
+    .btn-outline-ambar, .btn-outline-laranja, .btn-outline-coral,
+    .btn-outline-vermelho, .btn-outline-rosa, .btn-outline-pink,
+    .btn-outline-magenta, .btn-outline-roxo, .btn-outline-violeta,
+    .btn-outline-indigo, .btn-outline-marrom, .btn-outline-caramelo,
+    .btn-outline-oliva, .btn-outline-musgo, .btn-outline-petroleo,
+    .btn-outline-ardosia, .btn-outline-cinza-azulado, .btn-outline-grafite,
+    .btn-outline-prata, .btn-outline-bege, .btn-outline-creme
+):focus,
+.btn:is(
+    .btn-outline-azul, .btn-outline-azul-escuro, .btn-outline-azul-claro,
+    .btn-outline-ciano, .btn-outline-turquesa, .btn-outline-verde,
+    .btn-outline-verde-claro, .btn-outline-lima, .btn-outline-amarelo,
+    .btn-outline-ambar, .btn-outline-laranja, .btn-outline-coral,
+    .btn-outline-vermelho, .btn-outline-rosa, .btn-outline-pink,
+    .btn-outline-magenta, .btn-outline-roxo, .btn-outline-violeta,
+    .btn-outline-indigo, .btn-outline-marrom, .btn-outline-caramelo,
+    .btn-outline-oliva, .btn-outline-musgo, .btn-outline-petroleo,
+    .btn-outline-ardosia, .btn-outline-cinza-azulado, .btn-outline-grafite,
+    .btn-outline-prata, .btn-outline-bege, .btn-outline-creme
+):focus-visible {
+    box-shadow: 0 0 0 .25rem color-mix(in srgb, var(--custom-outline-color), transparent 65%) !important;
+}
+
+/* BADGES */
+.badge-azul { background-color: var(--color-azul) !important; color: #fff !important; }
+.badge-azul-escuro { background-color: var(--color-azul-escuro) !important; color: #fff !important; }
+.badge-azul-claro { background-color: var(--color-azul-claro) !important; color: #212529 !important; }
+.badge-ciano { background-color: var(--color-ciano) !important; color: #212529 !important; }
+.badge-turquesa { background-color: var(--color-turquesa) !important; color: #212529 !important; }
+.badge-verde { background-color: var(--color-verde) !important; color: #fff !important; }
+.badge-verde-claro { background-color: var(--color-verde-claro) !important; color: #212529 !important; }
+.badge-lima { background-color: var(--color-lima) !important; color: #212529 !important; }
+.badge-amarelo { background-color: var(--color-amarelo) !important; color: #212529 !important; }
+.badge-ambar { background-color: var(--color-ambar) !important; color: #212529 !important; }
+.badge-laranja { background-color: var(--color-laranja) !important; color: #212529 !important; }
+.badge-coral { background-color: var(--color-coral) !important; color: #212529 !important; }
+.badge-vermelho { background-color: var(--color-vermelho) !important; color: #fff !important; }
+.badge-rosa { background-color: var(--color-rosa) !important; color: #fff !important; }
+.badge-pink { background-color: var(--color-pink) !important; color: #212529 !important; }
+.badge-magenta { background-color: var(--color-magenta) !important; color: #fff !important; }
+.badge-roxo { background-color: var(--color-roxo) !important; color: #fff !important; }
+.badge-violeta { background-color: var(--color-violeta) !important; color: #fff !important; }
+.badge-indigo { background-color: var(--color-indigo) !important; color: #fff !important; }
+.badge-marrom { background-color: var(--color-marrom) !important; color: #fff !important; }
+.badge-caramelo { background-color: var(--color-caramelo) !important; color: #212529 !important; }
+.badge-oliva { background-color: var(--color-oliva) !important; color: #fff !important; }
+.badge-musgo { background-color: var(--color-musgo) !important; color: #fff !important; }
+.badge-petroleo { background-color: var(--color-petroleo) !important; color: #fff !important; }
+.badge-ardosia { background-color: var(--color-ardosia) !important; color: #fff !important; }
+.badge-cinza-azulado { background-color: var(--color-cinza-azulado) !important; color: #fff !important; }
+.badge-grafite { background-color: var(--color-grafite) !important; color: #fff !important; }
+.badge-prata { background-color: var(--color-prata) !important; color: #212529 !important; }
+.badge-bege { background-color: var(--color-bege) !important; color: #212529 !important; }
+.badge-creme { background-color: var(--color-creme) !important; color: #212529 !important; }

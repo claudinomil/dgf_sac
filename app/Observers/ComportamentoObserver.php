@@ -17,7 +17,6 @@ class ComportamentoObserver
 
     public function updated(Comportamento $comportamento)
     {
-        //$this->transacaoService->transacao(1, 2, 'comportamentos', $comportamento->getChanges(), $comportamento->getOriginal());
         $this->transacaoService->transacao(1, 2, 'comportamentos', $comportamento->toArray(), $comportamento->getOriginal());
     }
 

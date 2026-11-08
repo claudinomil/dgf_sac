@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->foreignId('user_tipo_id')->constrained('user_tipos');
             $table->integer('layout_menu')->default(1);
+            $table->foreignId('inicial_submodulo_id')->constrained('submodulos')->default(8);
 
             // Militar de referência para o Usuário
             $table->foreignId('militar_id')->nullable()->constrained('militares');

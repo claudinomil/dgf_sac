@@ -65,6 +65,11 @@ class CursoService
                 throw new \Exception('Registro não encontrado.');
             }
 
+            // Verificando Registro Excluído
+            if ($curso->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
+            }
+
             // Valida Lock
             $this->lockService->validar('cursos', $id, $user_id);
 
@@ -94,6 +99,11 @@ class CursoService
 
             if (!$curso) {
                 throw new \Exception('Registro não encontrado.');
+            }
+
+            // Verificando Registro Excluído
+            if ($curso->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
             }
 
             // Delete

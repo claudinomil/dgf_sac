@@ -79,6 +79,11 @@ class MilitarDependenteService
                 throw new \Exception('Sem permissão. Sem Permissão para Situação do Militar.');
             }
 
+            // Verificando Registro Excluído
+            if ($militar_dependente->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
+            }
+
             // Valida Lock
             $this->lockService->validar('militares_dependentes', $id, $user_id);
 
@@ -113,6 +118,11 @@ class MilitarDependenteService
             // Verificar Permissão para Situação do Militar
             if (!temPermissaoSituacao('militares_dependentes', 'destroy', $militar_dependente->militarSituacaoId)) {
                 throw new \Exception('Sem Permissão para Situação do Militar.');
+            }
+
+            // Verificando Registro Excluído
+            if ($militar_dependente->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
             }
 
             // Delete

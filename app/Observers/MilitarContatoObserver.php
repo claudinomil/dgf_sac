@@ -21,7 +21,6 @@ class MilitarContatoObserver
 
     public function updated(MilitarContato $militar_contato)
     {
-        //$this->transacaoService->transacao(1, 2, 'militares_contatos', $militar_contato->getChanges(), $militar_contato->getOriginal());
         $this->transacaoService->transacao(1, 2, 'militares_contatos', $militar_contato->toArray(), $militar_contato->getOriginal());
     }
 

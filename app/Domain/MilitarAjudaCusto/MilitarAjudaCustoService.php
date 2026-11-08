@@ -79,6 +79,11 @@ class MilitarAjudaCustoService
                 throw new \Exception('Sem permissão. Sem Permissão para Situação do Militar.');
             }
 
+            // Verificando Registro Excluído
+            if ($ajuda_custo->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
+            }
+
             // Valida Lock
             $this->lockService->validar('militares_ajudas_custos', $id, $user_id);
 
@@ -113,6 +118,11 @@ class MilitarAjudaCustoService
             // Verificar Permissão para Situação do Militar
             if (!temPermissaoSituacao('militares_ajudas_custos', 'destroy', $ajuda_custo->militarSituacaoId)) {
                 throw new \Exception('Sem Permissão para Situação do Militar.');
+            }
+
+            // Verificando Registro Excluído
+            if ($ajuda_custo->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
             }
 
             // Delete

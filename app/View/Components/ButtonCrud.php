@@ -34,12 +34,15 @@ class ButtonCrud extends Component
         $this->title = $title;
         $this->image = $image;
         $this->label = $label;
-        $this->model = $model; //1(Default) 2(Snip) 3(Icon)
+        $this->model = $model; // 1(Default) 2(Snip) 3(Icon)
     }
 
     public function render()
     {
-        //Modelo do Botão
+        $modelClass = "";
+        $imageClass = "";
+
+        // Modelo do Botão
         if ($this->model == 1) {
             $modelClass = "";
             $imageClass = "";
@@ -55,12 +58,12 @@ class ButtonCrud extends Component
             $imageClass = "label-icon";
         }
 
-        //Botão Incluir Registro (CRUD)
+        // Botão Incluir Registro (CRUD)
         if ($this->op == 1) {
             $this->title = __('Adicionar Registro');
             $this->label = __('Adicionar');
 
-            //Modelo do Botão
+            // Modelo do Botão
             if ($this->model == 2 or $this->model == 3) {
                 $this->image = "bx bx-plus ".$imageClass;
             }
@@ -68,12 +71,12 @@ class ButtonCrud extends Component
             $this->class = "btn btn-sm btn-success text-white mb-2 font-size-12 ".$modelClass." ".$this->class;
         }
 
-        //Botão Alterar Registro (CRUD)
+        // Botão Alterar Registro (CRUD)
         if ($this->op == 2) {
             $this->title = __('Alterar Registro');
             $this->label = __('Alterar');
 
-            //Modelo do Botão
+            // Modelo do Botão
             if ($this->model == 2 or $this->model == 3) {
                 $this->image = "fas fa-pencil-alt ".$imageClass;
             }
@@ -81,12 +84,12 @@ class ButtonCrud extends Component
             $this->class = "btn btn-sm btn-primary text-white mb-2 font-size-12 ".$modelClass." ".$this->class;
         }
 
-        //Botão Excluir Registro (CRUD)
+        // Botão Excluir Registro (CRUD)
         if ($this->op == 3) {
             $this->title = __('Excluir Registro');
             $this->label = __('Excluir');
 
-            //Modelo do Botão
+            // Modelo do Botão
             if ($this->model == 2 or $this->model == 3) {
                 $this->image = "fa fa-trash-alt ".$imageClass;
             }
@@ -94,12 +97,12 @@ class ButtonCrud extends Component
             $this->class = "btn btn-sm btn-danger text-white mb-2 font-size-12 ".$modelClass." ".$this->class;
         }
 
-        //Botão Cancelar Operação (CRUD)
+        // Botão Cancelar Operação (CRUD)
         if ($this->op == 4) {
             $this->title = __('Cancelar Operação');
             $this->label = __('Cancelar');
 
-            //Modelo do Botão
+            // Modelo do Botão
             if ($this->model == 2 or $this->model == 3) {
                 $this->image = "fa fa-arrow-left ".$imageClass;
             }
@@ -107,12 +110,12 @@ class ButtonCrud extends Component
             $this->class = "btn btn-sm btn-secondary text-white mb-2 font-size-12 ".$modelClass." ".$this->class;
         }
 
-        //Botão Confirmar Operação (CRUD)
+        // Botão Confirmar Operação (CRUD)
         if ($this->op == 5) {
             $this->title = __('Confirmar Operação');
             $this->label = __('Confirmar');
 
-            //Modelo do Botão
+            // Modelo do Botão
             if ($this->model == 2 or $this->model == 3) {
                 $this->image = "fa fa-save ".$imageClass;
             }
@@ -120,7 +123,7 @@ class ButtonCrud extends Component
             $this->class = "btn btn-sm btn-success text-white mb-2 font-size-12 ".$modelClass." ".$this->class;
         }
 
-        //Botão Pesquisar no Banco (CRUD) - min
+        // Botão Pesquisar no Banco (CRUD) - min
         if ($this->op == 6) {
             $this->title = __('Pesquisar no Banco de Dados');
             $this->image = "fa fa-arrow-right";
@@ -128,7 +131,7 @@ class ButtonCrud extends Component
             $this->class = "btn btn-sm btn-success text-white text-center mb-2 font-size-12 ".$this->class;
         }
 
-        //Botão Info (CRUD)
+        // Botão Info (CRUD)
         if ($this->op == 7) {
             $this->dataBsToggle = "modal";
             $this->dataBsPlacement = "";
@@ -136,7 +139,7 @@ class ButtonCrud extends Component
             $this->title = __('Informações');
             $this->label = __('Info');
 
-            //Modelo do Botão
+            // Modelo do Botão
             if ($this->model == 2 or $this->model == 3) {
                 $this->image = "bx bx-photo-album ".$imageClass;
             }
@@ -144,24 +147,37 @@ class ButtonCrud extends Component
             $this->class = "btn btn-sm btn-warning text-white mb-2 font-size-12 ".$modelClass." ".$this->class;
         }
 
-        //Botão Customizado
+        // Botão Visualizar Transações (CRUD)
+        if ($this->op == 8) {
+            $this->title = __('Visualizar Transações');
+            $this->label = __('Transações');
+
+            // Modelo do Botão
+            if ($this->model == 2 or $this->model == 3) {
+                $this->image = "fa fa-clock-rotate-left ".$imageClass;
+            }
+
+            $this->class = "btn btn-sm btn-indigo mb-2 font-size-12 ".$modelClass." ".$this->class;
+        }
+
+        // Botão Customizado
         if ($this->op == 99) {
-            //Classe de Cor de Fundo
+            // Classe de Cor de Fundo
             if ($this->bgColor != '') {$this->bgColor = "btn-".$this->bgColor;}
 
-            //Classe de Cor do Texto
+            // Classe de Cor do Texto
             if ($this->textColor != '') {$this->textColor = "text-".$this->textColor;}
 
-            //Modelo do Botão
+            // Modelo do Botão
             if ($this->model == 2 or $this->model == 3) {
                 $this->image = $this->image." ".$imageClass;
             }
 
-            //Class
+            // Class
             $this->class = "btn mb-2 font-size-12 ".$this->bgColor." ".$this->textColor." ".$modelClass." ".$this->class;
         }
 
-        //Return View
+        // Return View
         return view('components.button-crud');
     }
 }

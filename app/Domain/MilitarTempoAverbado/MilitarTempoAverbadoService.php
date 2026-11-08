@@ -79,6 +79,11 @@ class MilitarTempoAverbadoService
                 throw new \Exception('Sem permissão. Sem Permissão para Situação do Militar.');
             }
 
+            // Verificando Registro Excluído
+            if ($tempo_averbado->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
+            }
+
             // Valida Lock
             $this->lockService->validar('militares_tempos_averbados', $id, $user_id);
 
@@ -113,6 +118,11 @@ class MilitarTempoAverbadoService
             // Verificar Permissão para Situação do Militar
             if (!temPermissaoSituacao('militares_tempos_averbados', 'destroy', $tempo_averbado->militarSituacaoId)) {
                 throw new \Exception('Sem Permissão para Situação do Militar.');
+            }
+
+            // Verificando Registro Excluído
+            if ($tempo_averbado->excluido == 1) {
+                throw new \Exception('Este registro está excluído e não pode ser alterado.');
             }
 
             // Delete

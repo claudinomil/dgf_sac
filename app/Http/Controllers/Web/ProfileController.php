@@ -8,6 +8,7 @@ use App\Domain\UserContext\UserContextService;
 use App\Http\Requests\AvatarUpdateRequest;
 use App\Http\Requests\PasswordUpdateRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -40,6 +41,16 @@ class ProfileController extends Controller
             }
 
             return response()->json(['success' => 'Senha atualizada']);
+        }
+    }
+
+    public function updateSubmoduloInicial(Request $request)
+    {
+        // Verificando Origem enviada pelo Fetch
+        if ($request->header('request-origin') == 'fetch') {
+            $result = $this->userService->updateSubmoduloInicial(Auth::user()->id, $request->inicial_submodulo_id);
+
+            return response()->json(['success' => 'Submódulo Inicial atualizado']);
         }
     }
 }

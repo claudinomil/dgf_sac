@@ -32,7 +32,10 @@
                                         $selectCampoPesquisar = [
                                         ['value' => 'militares.rg', 'descricao' => 'RG'],
                                         ['value' => 'militares.identidade_funcional', 'descricao' => 'ID Funcional'],
-                                        ['value' => 'militares.nome', 'descricao' => 'Nome']
+                                        ['value' => 'militares.nome', 'descricao' => 'Nome'],
+                                        ['value' => 'militares_ferias.mes', 'descricao' => 'Mês'],
+                                        ['value' => 'militares_ferias.ano', 'descricao' => 'Ano'],
+                                        ['value' => 'militares_ferias.referencia', 'descricao' => 'Referência']
                                         ];
                                     @endphp
 

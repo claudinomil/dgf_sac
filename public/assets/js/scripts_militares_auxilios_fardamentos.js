@@ -176,6 +176,9 @@ async function settingsSubmoduloCrudCreate() {
     await desabilitarCampos();
     await habilitarCampos();
 
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: 0 });
+
     // Pesquisar Militar
     const militarAuto = crudAutocompleteMilitar('militares_auxilios_fardamentos', 'create');
     militarAuto.init();
@@ -189,6 +192,9 @@ async function settingsSubmoduloCrudView(data) {
 
     // Verificando permissões para botões
     await configurarBotoesPermissaoSituacao({ modulo: 'militares_auxilios_fardamentos', situacaoId: data.militarSituacaoId });
+
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: data.excluido });
 
     // Gerar Token para Controle militar_id
     if (!await tokenServiceGerar('militar_id', data.militar_id)) return;
@@ -207,6 +213,9 @@ async function settingsSubmoduloCrudEdit(data) {
 
     // Verificando permissões para botões
     await configurarBotoesPermissaoSituacao({ modulo: 'militares_auxilios_fardamentos', situacaoId: data.militarSituacaoId });
+
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: data.excluido });
 
     // Gerar Token para Controle militar_id
     if (!await tokenServiceGerar('militar_id', data.militar_id)) return;

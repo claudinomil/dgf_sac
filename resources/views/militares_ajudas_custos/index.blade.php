@@ -33,6 +33,7 @@
                                         ['value' => 'militares.rg', 'descricao' => 'RG'],
                                         ['value' => 'militares.identidade_funcional', 'descricao' => 'ID Funcional'],
                                         ['value' => 'militares.nome', 'descricao' => 'Nome'],
+                                        ['value' => 'militares_ajudas_custos.pagamento', 'descricao' => 'Pagamento'],
                                         ['value' => 'ajuda_custo_tipos.name', 'descricao' => 'Ajuda Custo Tipo'],
                                         ];
                                     @endphp

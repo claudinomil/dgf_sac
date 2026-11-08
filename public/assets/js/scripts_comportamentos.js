@@ -11,13 +11,13 @@ if (window.location.hostname.indexOf("cbmerj.rj.gov") != -1) { url += "dgf_siste
 async function validar_frm_comportamentos() {
     var validacao_ok = true;
     var mensagem = "";
-    
+
     // Campo: name (requerido)
     if (validacao({ op: 1, value: document.getElementById("name").value }) === false) {
         validacao_ok = false;
         mensagem += "Nome requerido." + "<br>";
     }
-    
+
     // Mensagem
     if (validacao_ok === false) {
         var texto = '<div class="pt-3">';
@@ -48,18 +48,27 @@ async function habilitarCampos() { }
 async function settingsSubmoduloCrudCreate() {
     await desabilitarCampos();
     await habilitarCampos();
+
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: 0 });
 }
 
 async function settingsSubmoduloCrudView(data) {
     await preencherCampos(data);
     await desabilitarCampos();
     await habilitarCampos();
+
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: data.excluido });
 }
 
 async function settingsSubmoduloCrudEdit(data) {
     await preencherCampos(data);
     await desabilitarCampos();
     await habilitarCampos();
+
+    // Verificando Registro Excluído para botões
+    await configurarBotoesRegistroExcluido({ excluido: data.excluido });
 }
 
 async function settingsSubmoduloCrudDelete() { }

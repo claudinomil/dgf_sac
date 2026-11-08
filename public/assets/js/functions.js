@@ -1,3 +1,11 @@
+// Variáveis e Constantes Globais''''''''''''''''''''''''''''''''''''''''''
+
+// Botões dos CRUDs para controle principalmente nas Funções configurarBotoesPermissaoSituacao() e configurarBotoesRegistroExcluido()
+let crudButtonEdit = true;
+let crudButtonDelete = true;
+
+//'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
 /*
 * Validar valor recebido
 * Retorna true se valor foi validado
@@ -466,6 +474,20 @@ function primeiraMaiuscula(frase) {
         .join(' ');
 }
 
+function bloquearTelaSistema() {
+    const tela = document.getElementById('tela_bloqueada_sistema');
+
+    tela.classList.remove('d-none');
+    tela.classList.add('d-flex');
+}
+
+function desbloquearTelaSistema() {
+    const tela = document.getElementById('tela_bloqueada_sistema');
+
+    tela.classList.remove('d-flex');
+    tela.classList.add('d-none');
+}
+
 async function chartPieSimple({ divId = '', titleText = '', titleSubText = '', legenda = 'bottom', dados = [], modalFiltroId = '' }) {
     if (divId == '') { return; }
     if (!document.getElementById(divId)) { return; }
@@ -699,6 +721,436 @@ async function chartBarSimple({ divId = '', titleText = '', titleSubText = '', l
 
         // Aplica a configuração ao gráfico
     option && myChart.setOption(option);
+}
+
+// Gráfico para Dashboards TVs
+function chartMinPieSimple({ divId = '', dados = [] }) {
+    const elemento = document.getElementById(divId);
+
+    if (!elemento || !dados.length) return;
+
+    // Remove gráfico anterior, se existir.
+    if (echarts.getInstanceByDom(elemento)) {
+        echarts.dispose(elemento);
+    }
+
+    const grafico = echarts.init(elemento);
+
+    grafico.setOption({
+        animation: false,
+
+        tooltip: {
+            trigger: 'item',
+            formatter: '{b}: {d}%'
+        },
+        legend: {
+            type: 'plain',
+            orient: 'vertical',
+            right: 5,
+            top: 'center',
+            width: 150,
+            itemWidth: 10,
+            itemHeight: 10,
+            itemGap: 4,
+            textStyle: {
+                color: '#ffffff',
+                fontSize: 9
+            }
+        },
+        series: [{
+            type: 'pie',
+            radius: '85%',
+            center: ['32%', '50%'],
+
+            label: {
+                show: true,
+                position: 'inside',
+                color: '#ffffff',
+                fontSize: 10,
+                fontWeight: 'bold',
+                formatter: '{d}%'
+            },
+
+            labelLine: {
+                show: false
+            },
+
+            data: dados
+        }]
+    });
+
+    return grafico;
+}
+
+// Gráfico para Dashboards TVs
+function chartMinDonutSimple({ divId = '', dados = [] }) {
+    const elemento = document.getElementById(divId);
+
+    if (!elemento || !dados.length) return;
+
+    // Remove gráfico anterior, se existir.
+    if (echarts.getInstanceByDom(elemento)) {
+        echarts.dispose(elemento);
+    }
+
+    const grafico = echarts.init(elemento);
+
+    grafico.setOption({
+        animation: false,
+
+        tooltip: {
+            trigger: 'item',
+            formatter: '{b}: {d}%'
+        },
+
+        legend: {
+            type: 'scroll',
+            orient: 'vertical',
+            right: 2,
+            top: 'center',
+            itemWidth: 8,
+            itemHeight: 8,
+            itemGap: 5,
+            textStyle: {
+                color: '#ffffff',
+                fontSize: 9
+            }
+        },
+
+        series: [{
+            type: 'pie',
+
+            // Cria o formato de rosca.
+            radius: ['45%', '80%'],
+            center: ['32%', '50%'],
+
+            label: {
+                show: true,
+                position: 'inside',
+                color: '#ffffff',
+                fontSize: 10,
+                fontWeight: 'bold',
+                formatter: '{d}%'
+            },
+
+            labelLine: {
+                show: false
+            },
+
+            data: dados
+        }]
+    });
+
+    return grafico;
+}
+
+// Gráfico para Dashboards TVs
+function chartMinBarLeftSimple({ divId = '', dados = [] }) {
+    const elemento = document.getElementById(divId);
+
+    if (!elemento || !dados.length) return;
+
+    // Remove a instância anterior.
+    if (echarts.getInstanceByDom(elemento)) {
+        echarts.dispose(elemento);
+    }
+
+    // Limpa o elemento.
+    elemento.innerHTML = '';
+
+    // Estrutura do gráfico e da legenda.
+    elemento.style.display = 'flex';
+    elemento.style.alignItems = 'center';
+    elemento.style.width = '100%';
+
+    const divGrafico = document.createElement('div');
+    divGrafico.style.width = '60%';
+    divGrafico.style.height = '100%';
+    divGrafico.style.minWidth = '0';
+
+    const divLegenda = document.createElement('div');
+    divLegenda.style.width = '40%';
+    divLegenda.style.paddingLeft = '25px';
+    divLegenda.style.marginTop = '0px';
+    divLegenda.style.maxHeight = '100%';
+
+    elemento.append(divGrafico, divLegenda);
+
+    // Cria a legenda HTML.
+    dados.forEach(item => {
+        const cor = item.itemStyle?.color || '#60a5fa';
+
+        const linha = document.createElement('div');
+        linha.style.display = 'flex';
+        linha.style.alignItems = 'center';
+        linha.style.gap = '5px';
+        linha.style.marginBottom = '5px';
+        linha.style.fontSize = '9px';
+        linha.style.color = '#ffffff';
+        linha.style.lineHeight = '1.2';
+
+        const marcador = document.createElement('span');
+        marcador.style.width = '8px';
+        marcador.style.height = '8px';
+        marcador.style.minWidth = '8px';
+        marcador.style.borderRadius = '2px';
+        marcador.style.backgroundColor = cor;
+
+        const texto = document.createElement('span');
+        texto.textContent = item.name;
+        texto.style.overflow = 'hidden';
+        texto.style.textOverflow = 'ellipsis';
+        texto.style.whiteSpace = 'nowrap';
+        texto.title = item.name;
+
+        linha.append(marcador, texto);
+        divLegenda.appendChild(linha);
+    });
+
+    // Calcula o total para exibir percentuais.
+    const total = dados.reduce(
+        (soma, item) => soma + Number(item.value || 0),
+        0
+    );
+
+    const grafico = echarts.init(divGrafico);
+
+    grafico.setOption({
+        animation: false,
+
+        tooltip: {
+            trigger: 'item',
+            formatter: params => {
+                const percentual = total > 0
+                    ? (Number(params.value) / total) * 100
+                    : 0;
+
+                return `${params.name}: ${
+                    Number(params.value).toLocaleString('pt-BR')
+                } (${percentual.toLocaleString('pt-BR', {
+                    maximumFractionDigits: 1
+                })}%)`;
+            }
+        },
+
+        grid: {
+            top: 5,
+            bottom: 5,
+            left: 2,
+            right: 5,
+            containLabel: false
+        },
+
+        xAxis: {
+            type: 'value',
+            show: false
+        },
+
+        yAxis: {
+            type: 'category',
+            inverse: true,
+            show: false,
+            data: dados.map(item => item.name)
+        },
+
+        series: [{
+            type: 'bar',
+            barWidth: '55%',
+
+            data: dados.map(item => ({
+                value: Number(item.value || 0),
+                name: item.name,
+                itemStyle: {
+                    color: item.itemStyle?.color || '#60a5fa',
+                    borderRadius: [0, 4, 4, 0]
+                }
+            })),
+
+            label: {
+                show: true,
+                position: 'inside',
+                color: '#ffffff',
+                fontSize: 9,
+                fontWeight: 'bold',
+                formatter: params => {
+                    const percentual = total > 0
+                        ? (Number(params.value) / total) * 100
+                        : 0;
+
+                    return `${percentual.toLocaleString('pt-BR', {
+                        maximumFractionDigits: 1
+                    })}%`;
+                }
+            }
+        }]
+    });
+
+    return grafico;
+}
+
+// Gráfico para Dashboards TVs
+function chartMinBarVerticalSimple({ divId = '', dados = [] }) {
+    const elemento = document.getElementById(divId);
+
+    if (!elemento || !dados.length) return;
+
+    // Remove o gráfico anterior.
+    if (echarts.getInstanceByDom(elemento)) {
+        echarts.dispose(elemento);
+    }
+
+    // Limpa o elemento.
+    elemento.innerHTML = '';
+
+    elemento.style.display = 'flex';
+    elemento.style.alignItems = 'center';
+    elemento.style.width = '100%';
+
+    // Coluna do gráfico.
+    const divGrafico = document.createElement('div');
+    divGrafico.style.width = '60%';
+    divGrafico.style.height = '100%';
+    divGrafico.style.minWidth = '0';
+
+    // Coluna da legenda.
+    const divLegenda = document.createElement('div');
+    divLegenda.style.width = '40%';
+    divLegenda.style.paddingLeft = '25px';
+    divLegenda.style.maxHeight = '100%';
+    divLegenda.style.overflowY = 'auto';
+
+    elemento.append(divGrafico, divLegenda);
+
+    // Cria a legenda.
+    dados.forEach(item => {
+        const cor = item.itemStyle?.color || '#60a5fa';
+
+        const linha = document.createElement('div');
+        linha.style.display = 'flex';
+        linha.style.alignItems = 'center';
+        linha.style.gap = '5px';
+        linha.style.marginBottom = '5px';
+        linha.style.fontSize = '9px';
+        linha.style.color = '#ffffff';
+        linha.style.lineHeight = '1.2';
+
+        const marcador = document.createElement('span');
+        marcador.style.width = '8px';
+        marcador.style.height = '8px';
+        marcador.style.minWidth = '8px';
+        marcador.style.borderRadius = '2px';
+        marcador.style.backgroundColor = cor;
+
+        const texto = document.createElement('span');
+        texto.textContent = item.name;
+        texto.style.overflow = 'hidden';
+        texto.style.textOverflow = 'ellipsis';
+        texto.style.whiteSpace = 'nowrap';
+        texto.title = item.name;
+
+        linha.append(marcador, texto);
+        divLegenda.appendChild(linha);
+    });
+
+    // Calcula o total.
+    const total = dados.reduce(
+        (soma, item) => soma + Number(item.value || 0),
+        0
+    );
+
+    const grafico = echarts.init(divGrafico);
+
+    grafico.setOption({
+        animation: false,
+
+        tooltip: {
+            trigger: 'item',
+            formatter: params => {
+                const percentual = total > 0
+                    ? (Number(params.value) / total) * 100
+                    : 0;
+
+                return `${params.name}: ${
+                    Number(params.value).toLocaleString('pt-BR')
+                } (${percentual.toLocaleString('pt-BR', {
+                    maximumFractionDigits: 1
+                })}%)`;
+            }
+        },
+
+        grid: {
+            top: 10,
+            bottom: 20,
+            left: 2,
+            right: 2,
+            containLabel: false
+        },
+
+        xAxis: {
+            type: 'category',
+            data: dados.map(item => item.name),
+            show: false
+        },
+
+        yAxis: {
+            type: 'value',
+            show: false,
+            min: 0
+        },
+
+        series: [{
+            type: 'bar',
+            barWidth: '50%',
+
+            data: dados.map(item => ({
+                value: Number(item.value || 0),
+                name: item.name,
+                itemStyle: {
+                    color: item.itemStyle?.color || '#60a5fa',
+                    borderRadius: [4, 4, 0, 0]
+                }
+            })),
+
+            label: {
+                show: true,
+                position: 'inside',
+                color: '#ffffff',
+                fontSize: 9,
+                fontWeight: 'bold',
+
+                formatter: params => {
+                    const percentual = total > 0
+                        ? (Number(params.value) / total) * 100
+                        : 0;
+
+                    return `${percentual.toLocaleString('pt-BR', {
+                        maximumFractionDigits: 1
+                    })}%`;
+                }
+            }
+        }]
+    });
+
+    return grafico;
+}
+
+function getIdade(dataNascimento) {
+    /*
+     * Retorna Idade com relação a data recebida
+     * @PARAN $dataNascimento : yyyy-mm-dd
+     * */
+    if (!dataNascimento) return null;
+
+    const [ano, mes, dia] = dataNascimento.split('-').map(Number);
+    const nascimento = new Date(ano, mes - 1, dia);
+    const hoje = new Date();
+    let idade = hoje.getFullYear() - nascimento.getFullYear();
+
+    if (hoje.getMonth() < nascimento.getMonth() || (hoje.getMonth() === nascimento.getMonth() && hoje.getDate() < nascimento.getDate())) {
+        idade--;
+    }
+
+    return idade;
 }
 
 /*
@@ -1573,7 +2025,7 @@ async function temPermissaoSituacao(modulo, acao, situacaoId) {
     }
 }
 
-// Configurar os Botões dos CRUDs para cada submodulo (Submódulos Militares e todos relacionados a ele)
+// Configurar os Botões dos CRUDs para cada submodulo com relação a Permissão à Situação (Submódulos Militares e todos relacionados a ele)
 async function configurarBotoesPermissaoSituacao({ modulo, situacaoId }) {
     const botaoConfirmar = document.getElementById('crudFormButtons1ConfirmOperation');
     const botaoEditar = document.getElementById('crudFormButtons2Edit');
@@ -1586,9 +2038,65 @@ async function configurarBotoesPermissaoSituacao({ modulo, situacaoId }) {
     ocultarElemento(botaoEditar);
     ocultarElemento(botaoExcluir);
 
+    crudButtonEdit = false;
+    crudButtonDelete = false;
+
     if (podeEditar || podeExcluir) { mostrarElemento(botaoConfirmar); }
-    if (podeEditar) { mostrarElemento(botaoEditar); }
-    if (podeExcluir) { mostrarElemento(botaoExcluir); }
+    if (podeEditar) {
+        mostrarElemento(botaoEditar);
+        crudButtonEdit = true;
+    }
+    if (podeExcluir) {
+        mostrarElemento(botaoExcluir);
+        crudButtonDelete = true;
+    }
+}
+
+// Configurar os Botões dos CRUDs para cada submodulo com relação ao Registro está Excluído
+async function configurarBotoesRegistroExcluido({ excluido = 0 }) {
+    const crudFormButtons2 = document.getElementById('crudFormButtons2');
+    const registroExcluidoAviso = document.getElementById('registroExcluidoAviso');
+    const botaoConfirmar = document.getElementById('crudFormButtons1ConfirmOperation');
+    const botaoEditar = document.getElementById('crudFormButtons2Edit');
+    const botaoExcluir = document.getElementById('crudFormButtons2Delete');
+
+    const confirmarOculto = getComputedStyle(botaoConfirmar).display === 'none';
+    const editarOculto = getComputedStyle(botaoEditar).display === 'none';
+    const excluirOculto = getComputedStyle(botaoExcluir).display === 'none';
+
+    const podeEditar = excluido == 0;
+    const podeExcluir = excluido == 0;
+
+    if (registroExcluidoAviso) {
+        registroExcluidoAviso.remove();
+    }
+
+    if (crudButtonEdit === true || crudButtonDelete === true) {
+        if (crudButtonEdit === true) { mostrarElemento(botaoEditar); }
+        if (crudButtonDelete === true) { mostrarElemento(botaoExcluir); }
+
+        if (excluido == 1) {
+            crudFormButtons2.insertAdjacentHTML('afterbegin', '<div id="registroExcluidoAviso" class="badge bg-danger px-3 me-2"><b>Registro Excluído</b></div>');
+
+            if (!confirmarOculto) {
+                ocultarElemento(botaoConfirmar);
+
+                if (podeEditar || podeExcluir) { mostrarElemento(botaoConfirmar); }
+            }
+
+            if (!editarOculto) {
+                ocultarElemento(botaoEditar);
+
+                if (podeEditar) { mostrarElemento(botaoEditar); }
+            }
+
+            if (!excluirOculto) {
+                ocultarElemento(botaoExcluir);
+
+                if (podeExcluir) { mostrarElemento(botaoExcluir); }
+            }
+        }
+    }
 }
 
 // Autocomplete Militar (Com todos os Militares)

@@ -94,6 +94,7 @@ class UserRepository
             ->leftjoin('situacoes', 'situacoes.id', 'militares.situacao_id')
             ->leftjoin('graduacoes', 'graduacoes.id', 'militares.graduacao_id')
             ->leftjoin('quadros', 'quadros.id', 'militares.quadro_id')
+            ->leftjoin('submodulos', 'submodulos.id', 'users.inicial_submodulo_id')
             ->select(
                 'users.*',
                 'grupos.name as grupoName',
@@ -104,7 +105,8 @@ class UserRepository
                 'militares.identidade_funcional as militarIdentidadeFuncional',
                 'situacoes.name as militarSituacaoName',
                 'graduacoes.name as militarGraduacaoName',
-                'quadros.quadro_especialidade as militarQuadroEspecialidadeName'
+                'quadros.quadro_especialidade as militarQuadroEspecialidadeName',
+                'submodulos.prefix_route as inicialSubmodulo'
             )
             ->find($id);
     }

@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             ZZZ_20260514_Seeder::class,
 
             DashboardTvControleSeeder::class,
+            DashboardTvIndicadorGraficoSeeder::class,
             HomologacaoSolicitacaoSeeder::class,
             HomologacaoTransacaoSeeder::class,
 

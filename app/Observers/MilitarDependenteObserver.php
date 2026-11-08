@@ -17,7 +17,6 @@ class MilitarDependenteObserver
 
     public function updated(MilitarDependente $militar_dependente)
     {
-        //$this->transacaoService->transacao(1, 2, 'militares_dependentes', $militar_dependente->getChanges(), $militar_dependente->getOriginal());
         $this->transacaoService->transacao(1, 2, 'militares_dependentes', $militar_dependente->toArray(), $militar_dependente->getOriginal());
     }
 

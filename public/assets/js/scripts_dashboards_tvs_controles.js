@@ -5,40 +5,13 @@ let url = window.location.protocol + "//" + window.location.host + "/";
 if (window.location.hostname.indexOf("cbmerj.rj.gov") != -1) { url += "dgf_sistema/"; }
 
 // Const
+const formulario = document.getElementById('frm_dashboards_tvs_controles');
+
+// Salvamento
+let salvamentoEmAndamento = false;
+let salvamentoPendente = false;
+let temporizadorSalvamento = null;
 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-
-// Validação
-async function validar_frm_dashboards_tvs_controles() {
-    var validacao_ok = true;
-    var mensagem = "";
-
-    // Campo: unidade_id (requerido)
-    if (validacao({ op: 1, value: document.getElementById("unidade_id").value }) === false) {
-        validacao_ok = false;
-        mensagem += "Unidade requerida." + "<br>";
-    }
-
-    // Campo: ano (requerido)
-    if (validacao({ op: 1, value: document.getElementById("ano").value }) === false) {
-        validacao_ok = false;
-        mensagem += "Ano requerido." + "<br>";
-    }
-    
-    // Mensagem
-    if (validacao_ok === false) {
-        var texto = '<div class="pt-3">';
-        texto +=
-            '<div class="col-12 text-start font-size-12">' +
-            mensagem +
-            "</div>";
-        texto += "</div>";
-
-        alertSwal("warning", "Validação", texto, "true", 5000);
-    }
-
-    // Retorno
-    return validacao_ok;
-}
 
 // Preencher checkboxes do Dashboard TV
 function preencherCheckboxesDashboardTv(registro) {
@@ -62,17 +35,129 @@ function preencherCheckboxesDashboardTv(registro) {
     }
 }
 
+async function edit() {
+    const response = await fetch(url + 'dashboards_tvs_controles/1/edit', {
+        method: 'GET',
+        headers: {
+            'REQUEST-ORIGIN': 'fetch',
+            'Accept': 'application/json'
+        }
+    });
+
+    const data = await response.json();
+
+    // Lendo dados
+    if (data.success) {
+        // Limpar formulário
+        crudLimparFormulario('dashboards_tvs_controles');
+
+        // Preencher formulário
+        const campos = document.getElementById('crudFieldsFormSubmodulo').value.split(',');
+
+        campos.forEach(field => {
+            crudPreencherFormulario(field, data.success);
+        });
+
+        // Settings Submódulos
+        settingsSubmoduloCrudEdit(data.success);
+    }
+}
+
+function agendarSalvamento() {
+    salvamentoPendente = true;
+
+    clearTimeout(temporizadorSalvamento);
+
+    temporizadorSalvamento = setTimeout(() => {
+        confirmEdit();
+    }, 500);
+}
+
+async function confirmEdit() {
+    // Indica que existe uma alteração aguardando gravação.
+    salvamentoPendente = true;
+
+    // Evita duas requisições simultâneas.
+    if (salvamentoEmAndamento) return;
+
+    clearTimeout(temporizadorSalvamento);
+
+    salvamentoEmAndamento = true;
+    bloquearTelaSistema();
+
+    try {
+        while (salvamentoPendente) {
+            salvamentoPendente = false;
+
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            const formData = new FormData(document.getElementById('frm_dashboards_tvs_controles'));
+
+            const response = await fetch(url + 'dashboards_tvs_controles/1', {
+                method: 'POST',
+                headers: {
+                    'REQUEST-ORIGIN': 'fetch',
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Accept': 'application/json'
+                },
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Erro ao atualizar registro.');
+            }
+        }
+
+        // Todas as alterações foram gravadas.
+        window.location.href = url + 'dashboards_tvs_controles';
+    } catch (error) {
+        console.error('Erro ao salvar configurações:', error);
+        alert(error.message);
+
+        salvamentoPendente = false;
+        salvamentoEmAndamento = false;
+        desbloquearTelaSistema();
+    }
+}
+
 // Funções Settings Submodulo - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 // Funções Settings Submodulo - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 async function settingsSubmoduloCrudCreate() { }
 async function settingsSubmoduloCrudView(data) { }
-async function settingsSubmoduloCrudEdit(data) {
-    preencherCheckboxesDashboardTv(data);
-}
+async function settingsSubmoduloCrudEdit(data) { preencherCheckboxesDashboardTv(data); }
 async function settingsSubmoduloCrudDelete() { }
 async function settingsSubmoduloCrudConfirmCreate() { }
 async function settingsSubmoduloCrudConfirmEdit() { }
 // Funções Settings Submodulo - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 // Funções Settings Submodulo - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-document.addEventListener("DOMContentLoaded", function (event) { });
+document.addEventListener("DOMContentLoaded", async function (event) {
+    await edit();
+
+    // Ao clicar no input/quadro do Indicador ou Gráfico
+    document.querySelectorAll('.indicador-grafico-checkbox').forEach(function (checkbox) {
+        function atualizarIndicador() {
+            const container = checkbox.parentElement.parentElement;
+            const icone = container.querySelector('.indicador-grafico-icone');
+            const select = container.querySelector('.indicador-grafico-select-ordem');
+
+            icone.classList.toggle('fa-circle-xmark', !checkbox.checked);
+            icone.classList.toggle('fa-circle-check', checkbox.checked);
+
+            // Se desmarcado, assume ordem 120
+            if (!checkbox.checked) { select.value = '120'; }
+        }
+
+        checkbox.addEventListener('change', atualizarIndicador);
+
+        atualizarIndicador();
+    });
+
+    // Detecta alterações em selects, inputs e checkboxes
+    formulario.addEventListener('change', function (event) {
+        if (event.target.matches('input, select, textarea')) {
+            agendarSalvamento();
+        }
+    });
+});

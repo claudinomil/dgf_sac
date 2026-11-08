@@ -103,7 +103,10 @@ class MilitarFundoSaudeController extends Controller
                 if (!$permissaoShow and $permissaoEdit) {$botoes = 2;}
                 if ($permissaoShow and $permissaoEdit) {$botoes = 4;}
 
-                return $this->columnAction($row['id'], $botoes);
+                // Registro Excluído
+                $excluido = $row['excluido'] ?? 0;
+
+                return $this->columnAction($row['id'], $botoes, $excluido);
             })
             ->rawColumns(['action'])
             ->escapeColumns([])
