@@ -722,7 +722,7 @@ Route::middleware('auth')->prefix('homologacao_solicitacoes')->group(function ()
 // Homologação Transações - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Route::middleware('auth')->prefix('homologacao_transacoes')->group(function () {
     Route::get('', [HomologacaoTransacaoController::class, 'index'])->name('homologacao_transacoes.index')->middleware('permissao:homologacao_transacoes_list');
-    Route::get('/filter/{array_dados}', [HomologacaoTransacaoController::class, 'filter'])->middleware('permissao:homologacao_transacoes_list');
+    Route::get('/datatable/dados_users', [HomologacaoTransacaoController::class, 'dados_users']);
 });
 // Homologação Transações - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 

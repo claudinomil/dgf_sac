@@ -40,28 +40,17 @@ class HomologacaoTransacaoController extends Controller
             return view('homologacao_transacoes.index', compact(['transacoes', 'submodulos', 'users']));
         }
     }
-
-    public function filter(Request $request, string $array_dados)
-    {
-        //Requisição Ajax
-        if ($request->ajax()) {
-            $homologacao_transacoes = $this->homologacaoTransacoesService->getHomologacaoTransacoesFilter($array_dados, 1000);
-
-            // Dados recebidos com sucesso
-            if ($homologacao_transacoes) {
-                return $this->datatable($homologacao_transacoes);
-            } else {
-                abort(500, 'Erro Interno Homologação Transacao');
-            }
-        } else {
-            return view('homologacao_transacoes.index');
-        }
-    }
-
+    
     public function datatable($registros)
     {
         $allData = DataTables::of($registros)
             ->addIndexColumn()
+            ->editColumn('submoduloName', function ($row) {
+                return primeiraMaiuscula($row['submoduloName']);
+            })
+            ->editColumn('userName', function ($row) {
+                return primeiraMaiuscula($row['userName']);
+            })
             ->editColumn('operacao', function ($row) {
                 $class = 'text-dark';
 
@@ -87,6 +76,29 @@ class HomologacaoTransacaoController extends Controller
             ->escapeColumns([])
             ->make(true);
 
+        return $allData;
+    }
+
+    public function dados_users(Request $request)
+    {
+        // Requisição Ajax
+        if ($request->ajax()) {
+            $dados_users = $this->homologacaoTransacoesService->getDadosUsers();
+            
+            return $this->datatable_users($dados_users);
+        }
+    }
+
+    public function datatable_users($registros)
+    {
+        $allData = DataTables::of($registros)
+            ->addIndexColumn()
+            ->editColumn('userName', function ($row) {
+                return primeiraMaiuscula($row['userName']);
+            })
+            ->escapeColumns([])
+            ->make(true);
+            
         return $allData;
     }
 }

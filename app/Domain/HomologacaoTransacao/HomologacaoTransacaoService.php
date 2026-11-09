@@ -15,9 +15,9 @@ class HomologacaoTransacaoService
     {
         return $this->repository->index($limit);
     }
-
-    public function getHomologacaoTransacoesFilter($array_dados, $limit = null)
+    
+    public function getDadosUsers()
     {
-        return $this->repository->filter($array_dados, $limit);
+        return $this->repository->dados_users();
     }
 }

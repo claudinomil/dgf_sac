@@ -204,19 +204,20 @@ function crudLimparFormulario(nomeFormulario) {
 }
 
 //Montartabela
-async function crudTable(route, fieldsColumns='', pageLength=5) {
-    if (fieldsColumns == '') {
-        let crudFieldsColumnsTable = document.getElementById('crudFieldsColumnsTable').value;
-        let camposColunasTabelas = crudFieldsColumnsTable.split(',');
-        fieldsColumns = [];
-        camposColunasTabelas.forEach(function (campo) {
-            fieldsColumns.push({data: campo});
-        });
-    }
+async function crudTable(route) {
+    let fieldsColumns = [];
+    let pageLength = 10;
+    let crudFieldsColumnsTable = document.getElementById('crudFieldsColumnsTable').value;
+    let camposColunasTabelas = crudFieldsColumnsTable.split(',');
 
-    //DataTable configurações
+    camposColunasTabelas.forEach(function (campo) {
+        fieldsColumns.push({ data: campo });
+    });
+
+    // DataTable configurações
     var tabela = document.getElementById('datatable-crud-ajax');
-    var dataTable = new DataTable(tabela, {
+
+    new DataTable(tabela, {
         language: {
             pageLength: {
                 '-1': 'Mostrar todos os registros',
@@ -1299,9 +1300,10 @@ async function crudTransacoes(tabela_principal_registro_id) {
 }
 
 async function crudTransacoesTable(route) {
+    let fieldsColumns = [];
+    let pageLength = 10;
     const campos = 'date,usuario,operacaoName,dados';
     const camposColunasTabelas = campos.split(',');
-    let fieldsColumns = [];
 
     camposColunasTabelas.forEach(function (campo) {
         fieldsColumns.push({ data: campo });
@@ -1341,7 +1343,7 @@ async function crudTransacoesTable(route) {
         ordering: true,
         processing: true,
         serverSide: false,
-        pageLength: 20,
+        pageLength: pageLength,
         ajax: route,
         columns: fieldsColumns,
 
