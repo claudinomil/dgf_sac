@@ -46,9 +46,28 @@
                         </div>
                     </div>
 
-                    <!-- Tabela (Componente Blade) -->
-                    <x-table-crud-ajax :colsNames="['Solicitação', 'Resposta', 'Ações']" />
-                    <input type="hidden" id="crudFieldsColumnsTable" name="crudFieldsColumnsTable" value="solicitacao,resposta,action">
+                    <div class="row">
+                        <div class="col-12 col-md-7">
+                            <!-- Tabela (Componente Blade) -->
+                            <x-table-crud-ajax :colsNames="['Solicitação & Resposta', 'Ações']" />
+                            <input type="hidden" id="crudFieldsColumnsTable" name="crudFieldsColumnsTable" value="solicitacao_resposta,action">
+                        </div>
+                        <div class="col-12 col-md-5">
+                            <div class="pt-4 font-size-12">
+                                <table class="table table-bordered dt-responsive table-striped w-100" id="datatable-dados-users-ajax">
+                                    <thead>
+                                        <tr>
+                                            <th class="bg-dark-subtle text-dark text-center" nowrap>USUÁRIO</th>
+                                            <th class="bg-dark-subtle text-dark text-center" nowrap>SOL</th>
+                                            <th class="bg-dark-subtle text-dark text-center" nowrap>RES</th>
+                                            <th class="bg-dark-subtle text-dark text-center" nowrap>PEN</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

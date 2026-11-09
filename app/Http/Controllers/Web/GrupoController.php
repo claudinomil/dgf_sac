@@ -71,10 +71,16 @@ class GrupoController extends Controller
         $allData = DataTables::of($registros)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {
+                // Botões
+                $botoes = 7;
+
                 // Registro Excluído
                 $excluido = $row['excluido'] ?? 0;
 
-                return $this->columnAction($row['id'], 7, $excluido);
+                // Transações
+                $transacoes = 1;
+
+                return $this->columnAction($row['id'], $botoes, $excluido, $transacoes);
             })
             ->rawColumns(['action'])
             ->escapeColumns([])

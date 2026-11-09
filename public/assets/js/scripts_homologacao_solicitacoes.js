@@ -52,35 +52,34 @@ async function validar_frm_homologacao_solicitacoes() {
 async function mudarTituloColunas() {
     try {
         const response = await fetch(`homologacao_solicitacoes/totais/solicitacoes/respostas`);
-        
+
         if (!response.ok) { throw new Error('Erro ao consultar os totais.'); }
-        
+
         const data = await response.json();
         const totais_solicitacoes = data.success.totais_solicitacoes;
         const totais_respostas_em_analise = data.success.totais_respostas_em_analise;
         const totais_respostas_concluido = data.success.totais_respostas_concluido;
         const totais_respostas_nao_realizado = data.success.totais_respostas_nao_realizado;
         const tabela = $('#datatable-crud-ajax').DataTable();
-        
-        // Coluna 0 - Solicitações
-        tabela.column(0).header().innerHTML = `SOLICITAÇÃO <a href="#" class="ms-3 badge bg-primary text-decoration-none filtro-solicitacao" data-status="todos">Total Geral: ${totais_solicitacoes}</a>`;
-        
-        // Coluna 1 - Respostas
-        let coluna_1 = 'RESPOSTA ';
+
+        // Coluna 0 - SOLICITAÇÃO & RESPOSTA
+        let coluna_0 = 'SOLICITAÇÃO & RESPOSTA ';
+
+        coluna_0 += `<a href="#" class="ms-3 badge bg-primary text-decoration-none filtro-solicitacao" data-status="todos">Total Geral: ${totais_solicitacoes}</a>`;
 
         if (totais_respostas_em_analise > 0) {
-            coluna_1 += `<a href="#" class="ms-2 badge bg-info text-decoration-none filtro-solicitacao" data-status="em_analise">Em Análise: ${totais_respostas_em_analise}</a>`;
+            coluna_0 += `<a href="#" class="ms-2 badge bg-info text-decoration-none filtro-solicitacao" data-status="em_analise">Em Análise: ${totais_respostas_em_analise}</a>`;
         }
-        
+
         if (totais_respostas_concluido > 0) {
-            coluna_1 += `<a href="#" class="ms-2 badge bg-success text-decoration-none filtro-solicitacao" data-status="concluido">Concluído: ${totais_respostas_concluido}</a>`;
+            coluna_0 += `<a href="#" class="ms-2 badge bg-success text-decoration-none filtro-solicitacao" data-status="concluido">Concluído: ${totais_respostas_concluido}</a>`;
         }
-        
+
         if (totais_respostas_nao_realizado > 0) {
-            coluna_1 += `<a href="#" class="ms-2 badge bg-danger text-decoration-none filtro-solicitacao" data-status="nao_realizado">Não Realizado: ${totais_respostas_nao_realizado}</a>`;
+            coluna_0 += `<a href="#" class="ms-2 badge bg-danger text-decoration-none filtro-solicitacao" data-status="nao_realizado">Não Realizado: ${totais_respostas_nao_realizado}</a>`;
         }
-        
-        tabela.column(1).header().innerHTML = coluna_1;
+
+        tabela.column(0).header().innerHTML = coluna_0;
     } catch (error) {
         console.error(error);
         return false;
@@ -89,7 +88,7 @@ async function mudarTituloColunas() {
 
 function filtrarSolicitacoes(status) {
     const tabela = $('#datatable-crud-ajax').DataTable();
-    
+
     // Limpar filtros anteriores
     tabela.search('');
     tabela.columns().search('');
@@ -98,23 +97,23 @@ function filtrarSolicitacoes(status) {
     switch (status) {
         case 'todos':
             break;
-        
+
         case 'em_analise':
-            tabela.column(1).search('Em Análise', true, false);
+            tabela.column(0).search('Em Análise', true, false);
             break;
-        
+
         case 'concluido':
-            tabela.column(1).search('Concluído', true, false);
+            tabela.column(0).search('Concluído', true, false);
             break;
-        
+
         case 'nao_realizado':
-            tabela.column(1).search('Não Realizado', true, false);
+            tabela.column(0).search('Não Realizado', true, false);
             break;
-        
+
         default:
             return;
     }
-    
+
     tabela.draw();
 }
 // Funções Settings Submodulo - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -178,6 +177,56 @@ async function settingsSubmoduloCrudConfirmCreate() { }
 async function settingsSubmoduloCrudConfirmEdit() { }
 async function settingsSubmoduloCrudTable() {
     await mudarTituloColunas();
+
+    // Montando tabela Dados Users
+    route = 'homologacao_solicitacoes/datatable/dados_users';
+    let fieldsColumns = [];
+    let pageLength = 10;
+    let crudFieldsColumnsTable = 'userName,sol,res,pen';
+    let camposColunasTabelas = crudFieldsColumnsTable.split(',');
+
+    camposColunasTabelas.forEach(function (campo) {
+        fieldsColumns.push({ data: campo });
+    });
+
+    // DataTable configurações
+    var tabela = document.getElementById('datatable-dados-users-ajax');
+
+    new DataTable(tabela, {
+        language: {
+            pageLength: {
+                '-1': 'Mostrar todos os registros',
+                '_': 'Mostrar %d registros'
+            },
+            lengthMenu: 'Exibir _MENU_ resultados por página',
+            emptyTable: 'Nenhum registro encontrado',
+            info: 'Mostrando de _START_ até _END_ de _TOTAL_ registros',
+            infoEmpty: 'Mostrando 0 até 0 de 0 registros',
+            infoFiltered: '(Filtrados de _MAX_ registros)',
+            infoThousands: '.',
+            loadingRecords: 'Carregando...',
+            processing: 'Processando...',
+            zeroRecords: 'Nenhum registro encontrado',
+            search: 'Pesquisar',
+            paginate: {
+                next: 'Próximo',
+                previous: 'Anterior',
+                first: 'Primeiro',
+                last: 'Último'
+            }
+        },
+        bDestroy: true,
+        responsive: false,
+        lengthChange: true,
+        autoWidth: true,
+        order: [],
+        ordering: true,
+        processing: true,
+        serverSide: false,
+        pageLength: pageLength,
+        ajax: route,
+        columns: fieldsColumns
+    });
 }
 // Funções Settings Submodulo - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 // Funções Settings Submodulo - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -188,14 +237,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Capturar o clique nos links inseridos nas colunas sem interferir na ordenação
     document.addEventListener('click', async function (event) {
         const link = event.target.closest('.filtro-solicitacao');
-        
+
         if (!link) { return; }
-        
+
         event.preventDefault();
         event.stopPropagation();
-        
+
         const status = link.dataset.status;
-        
+
         await filtrarSolicitacoes(status);
     });
 });

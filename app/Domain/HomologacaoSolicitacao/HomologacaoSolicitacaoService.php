@@ -26,7 +26,7 @@ class HomologacaoSolicitacaoService
     {
         // Buscar Registro
         $homologacao_solicitacao = $this->repository->find($id);
-        
+
         return $homologacao_solicitacao;
     }
 
@@ -44,7 +44,7 @@ class HomologacaoSolicitacaoService
         if (!$homologacao_solicitacao) {
             throw new \Exception('Registro não encontrado.');
         }
-        
+
         return $homologacao_solicitacao;
     }
 
@@ -59,7 +59,7 @@ class HomologacaoSolicitacaoService
             if (!$homologacao_solicitacao) {
                 throw new \Exception('Registro não encontrado.');
             }
-            
+
             // Valida Lock
             $this->lockService->validar('homologacao_solicitacoes', $id, $user_id);
 
@@ -90,7 +90,7 @@ class HomologacaoSolicitacaoService
             if (!$homologacao_solicitacao) {
                 throw new \Exception('Registro não encontrado.');
             }
-            
+
             // Delete
             $this->repository->delete($id);
 
@@ -100,12 +100,17 @@ class HomologacaoSolicitacaoService
             $this->lockService->desbloquear('homologacao_solicitacoes', $id, $user_id);
         }
     }
-    
+
     public function getTotaisSolicitacoesRespostas()
     {
         // Buscar Registros
         $totais = $this->repository->totais_solicitacoes_respostas();
 
         return $totais;
+    }
+
+    public function getDadosUsers()
+    {
+        return $this->repository->dados_users();
     }
 }

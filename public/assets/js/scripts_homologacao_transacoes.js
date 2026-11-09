@@ -10,7 +10,7 @@ async function settingsSubmoduloCrudTable() {
     route = 'homologacao_transacoes/datatable/dados_users';
     let fieldsColumns = [];
     let pageLength = 10;
-    let crudFieldsColumnsTable = 'userName,c,i,a,e,t';
+    let crudFieldsColumnsTable = 'userName,c,i,a,e,tot,iae';
     let camposColunasTabelas = crudFieldsColumnsTable.split(',');
 
     camposColunasTabelas.forEach(function (campo) {

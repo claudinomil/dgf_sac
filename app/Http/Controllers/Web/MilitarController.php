@@ -188,7 +188,10 @@ class MilitarController extends Controller
                 // Registro Excluído
                 $excluido = $row['excluido'] ?? 0;
 
-                return $this->columnAction($row['id'], $botoes, $excluido);
+                // Transações
+                $transacoes = 1;
+
+                return $this->columnAction($row['id'], $botoes, $excluido, $transacoes);
             })
             ->rawColumns(['action'])
             ->escapeColumns([])

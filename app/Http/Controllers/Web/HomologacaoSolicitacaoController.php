@@ -64,7 +64,9 @@ class HomologacaoSolicitacaoController extends Controller
     {
         $allData = DataTables::of($registros)
             ->addIndexColumn()
-            ->editColumn('solicitacao', function ($row) {
+            ->editColumn('solicitacao_resposta', function ($row) {
+                // Montando Solicitação - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                // Montando Solicitação - Início'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
                 if ($row["submoduloName"]) {
                     $submoduloName = primeiraMaiuscula($row["submoduloName"]);
                 } else {
@@ -77,44 +79,40 @@ class HomologacaoSolicitacaoController extends Controller
                     $userName = '';
                 }
 
-                $retorno = '<div class="row py-3">
-                                <div class="col-12">
-                                    <table class="table table-bordered mb-0">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th class="text-center">#</th>
-                                                <th>Informações</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="text-center" width="100"><img src="'.$row['solicitacao_imagem'].'" height=100></td>
-                                                <td>
-                                                    <div class="col-12"><b>Tipo: </b>' . $row["solicitacao_tipo"] . '</div>
-                                                    <div class="col-12 mt-2"><b>Prioridade: </b>' . $row["solicitacao_prioridade"] . '</div>
-                                                    <div class="col-12 mt-2"><b>Data: </b>' . getDataFormatada(1, $row["solicitacao_data"]) . '</div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 col-md-5 mt-3" style="text-align: justify;"><b class="text-success">Submódulo: </b>' . $submoduloName . '</div>
-                                    <div class="col-12 col-md-7 mt-3" style="text-align: justify;"><b class="text-primary">Solicitante: </b>' . $userName . '</div>
-                                    <div class="col-12 mt-3" style="text-align: justify;"><b class="text-black">Solicitação: </b>' . $row["solicitacao"] . '</div>
-                                </div>
-                            </div>';
+                $solicitacao = '<div class="row py-3">
+                                    <div class="col-12 mb-3 text-black" style="text-align: justify;"><b>:: SOLICITAÇÃO: </b>' . $row["solicitacao"] . '</div>
+                                    <div class="col-12">
+                                        <table class="table table-bordered mb-0">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th class="text-center">#</th>
+                                                    <th>Informações</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center" width="100"><img src="'.$row['solicitacao_imagem'].'" height=100></td>
+                                                    <td>
+                                                        <div class="col-12"><b>Tipo: </b>' . $row["solicitacao_tipo"] . '</div>
+                                                        <div class="col-12 mt-2"><b>Prioridade: </b>' . $row["solicitacao_prioridade"] . '</div>
+                                                        <div class="col-12 mt-2"><b>Data: </b>' . getDataFormatada(1, $row["solicitacao_data"]) . '</div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-md-5 mt-3" style="text-align: justify;"><b class="text-success">Submódulo: </b>' . $submoduloName . '</div>
+                                        <div class="col-12 col-md-7 mt-3" style="text-align: justify;"><b class="text-primary">Solicitante: </b>' . $userName . '</div>
+                                    </div>
+                                </div>';
+                // Montando Solicitação - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                // Montando Solicitação - Fim''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-                return $retorno;
-            })
-            ->editColumn('resposta', function ($row) {
-                if (trim($row['resposta'] ?? '') !== '') {
-                    $resposta = '<b>Resposta: </b>' . $row['resposta'] . '</div>';
-                } else {
-                    $resposta = '';
-                }
-
-                $retorno = '<div class="row py-3">
+                // Montando Resposta - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                // Montando Resposta - Início''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                $resposta = '<div class="row py-3">
+                                <div class="col-12 mb-3 text-black" style="text-align: justify;"><b>:: RESPOSTA: </b>' . $row['resposta'] . '</div>
                                 <div class="col-12">
                                     <table class="table table-bordered mb-0">
                                         <thead class="table-light">
@@ -131,15 +129,16 @@ class HomologacaoSolicitacaoController extends Controller
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="col-12 mt-3 text-success" style="text-align: justify;">'.$resposta.'</div>
                             </div>';
+                // Montando Resposta - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                // Montando Resposta - Fim'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-                return $retorno;
+                return $solicitacao.$resposta;
             })
             ->addColumn('action', function ($row) {
                 // Verificar se Usuário é Claudino ou outros
                 if (session('userContext.user.id') == 1) {
-                    $botoes = 7;
+                    $botoes = 4;
                 } else {
                     $botoes = 1;
                 }
@@ -147,7 +146,10 @@ class HomologacaoSolicitacaoController extends Controller
                 // Registro Excluído
                 $excluido = $row['excluido'] ?? 0;
 
-                return $this->columnAction($row['id'], $botoes, $excluido);
+                // Transações
+                $transacoes = 0;
+
+                return $this->columnAction($row['id'], $botoes, $excluido, $transacoes);
             })
             ->rawColumns(['action'])
             ->escapeColumns([])
@@ -250,5 +252,28 @@ class HomologacaoSolicitacaoController extends Controller
         $totais = $this->homologacaoSolicitacoesService->getTotaisSolicitacoesRespostas();
 
         return response()->json(['success' => $totais]);
+    }
+
+    public function dados_users(Request $request)
+    {
+        // Requisição Ajax
+        if ($request->ajax()) {
+            $dados_users = $this->homologacaoSolicitacoesService->getDadosUsers();
+
+            return $this->datatable_users($dados_users);
+        }
+    }
+
+    public function datatable_users($registros)
+    {
+        $allData = DataTables::of($registros)
+            ->addIndexColumn()
+            ->editColumn('userName', function ($row) {
+                return primeiraMaiuscula($row['userName']);
+            })
+            ->escapeColumns([])
+            ->make(true);
+
+        return $allData;
     }
 }

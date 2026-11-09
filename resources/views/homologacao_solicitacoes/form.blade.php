@@ -6,9 +6,11 @@
                 <div class="card-body">
                     <div class="modal-buttons" id="crudFormButtons1">
                         <!-- store or update -->
+                        @if(session('userContext.user.id') == 1)
                         @if(temPermissao('homologacao_solicitacoes_create') || temPermissao('homologacao_solicitacoes_edit'))
                         <!-- Botão Confirnar Operação -->
                         <x-button-crud op="5" onclick="crudConfirmOperation();" id="crudFormButtons1ConfirmOperation" />
+                        @endif
                         @endif
 
                         <!-- Botão Cancelar Operação -->
@@ -16,14 +18,18 @@
                     </div>
                     <div class="modal-buttons" id="crudFormButtons2">
                         <!-- edit or delete -->
+                        @if(session('userContext.user.id') == 1)
                         @if(temPermissao('homologacao_solicitacoes_edit'))
                         <!-- Botão Alterar Registro -->
                         <x-button-crud op="2" onclick="crudEdit(0)" id="crudFormButtons2Edit" />
                         @endif
+                        @endif
 
+                        @if(session('userContext.user.id') == 1)
                         @if(temPermissao('homologacao_solicitacoes_destroy'))
                         <!-- Botão Excluir Registro -->
                         <x-button-crud op="3" onclick="crudDelete(0);" id="crudFormButtons2Delete" />
+                        @endif
                         @endif
 
                         <!-- Botão Cancelar Operação -->

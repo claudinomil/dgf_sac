@@ -31,7 +31,8 @@
                                             <th class="bg-dark-subtle text-dark text-center" nowrap>I</th>
                                             <th class="bg-dark-subtle text-dark text-center" nowrap>A</th>
                                             <th class="bg-dark-subtle text-dark text-center" nowrap>E</th>
-                                            <th class="bg-dark-subtle text-dark text-center" nowrap>T</th>
+                                            <th class="bg-dark-subtle text-dark text-center" nowrap>TOT</th>
+                                            <th class="bg-dark-subtle text-dark text-center" nowrap>IAE</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>

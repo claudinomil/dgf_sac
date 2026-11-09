@@ -7,7 +7,7 @@ abstract class Controller
     /*
      * Função para retornar Botões para a coluna Ações da tabela de registros do CRUD
      */
-    public function columnAction(int $id, int $botoes=7, int $excluido=0)
+    public function columnAction(int $id, int $botoes=7, int $excluido=0, int $transacoes=1)
     {
         // @PARAN: $botoes
         // 0: Nenhum Botão
@@ -62,7 +62,9 @@ abstract class Controller
             }
         }
 
-        $btn .= '<button type="button" class="btn btn-sm text-indigo" data-bs-toggle="tooltip" data-bs-placement="top" title="Visualizar Transações" onclick="crudTransacoes(' . $id . ');"><i class="fa fa-clock-rotate-left font-size-20"></i></button>';
+        if ($transacoes == 1) {
+            $btn .= '<button type="button" class="btn btn-sm text-indigo" data-bs-toggle="tooltip" data-bs-placement="top" title="Visualizar Transações" onclick="crudTransacoes(' . $id . ');"><i class="fa fa-clock-rotate-left font-size-20"></i></button>';
+        }
 
         $btn .= '</div>';
         $btn .= '</td>';

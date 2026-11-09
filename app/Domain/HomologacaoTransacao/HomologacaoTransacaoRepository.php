@@ -12,15 +12,6 @@ class HomologacaoTransacaoRepository
         // Limit
         $limit = $limit ? $limit : 1000;
 
-
-
-        // Verificar se Usuário é Claudino ou outros
-        if (session('userContext.user.id') != 1) {
-            return collect();
-        }
-
-
-
         // Return
         return HomologacaoTransacao::join('submodulos', 'submodulos.id', 'homologacao_transacoes.submodulo_id')
             ->join('users', 'users.id', 'homologacao_transacoes.user_id')
@@ -35,14 +26,9 @@ class HomologacaoTransacaoRepository
             ->limit($limit)
             ->get();
     }
-    
+
     public function dados_users()
     {
-        // Verificar se Usuário é Claudino ou outros
-        if (session('userContext.user.id') != 1) {
-            return collect();
-        }
-
         // Return
         return User::leftJoin('homologacao_transacoes', 'homologacao_transacoes.user_id', '=', 'users.id')
             ->selectRaw("
@@ -51,11 +37,13 @@ class HomologacaoTransacaoRepository
                 SUM(CASE WHEN homologacao_transacoes.operacao = 'Inclusão' THEN 1 ELSE 0 END) as i,
                 SUM(CASE WHEN homologacao_transacoes.operacao = 'Alteração' THEN 1 ELSE 0 END) as a,
                 SUM(CASE WHEN homologacao_transacoes.operacao = 'Exclusão' THEN 1 ELSE 0 END) as e,
-                COUNT(homologacao_transacoes.id) as t
+                SUM(CASE WHEN homologacao_transacoes.operacao IN ('Inclusão', 'Alteração', 'Exclusão') THEN 1 ELSE 0 END) as iae,
+                COUNT(homologacao_transacoes.id) as tot
             ")
             ->where('users.id', '!=', 1)
             ->groupBy('users.id', 'users.name')
-            ->orderByDesc('t')
+            ->orderByDesc('iae')
+            ->orderByDesc('tot')
             ->get();
     }
 }

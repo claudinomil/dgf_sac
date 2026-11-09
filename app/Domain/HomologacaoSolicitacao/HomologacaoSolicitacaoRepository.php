@@ -3,6 +3,7 @@
 namespace App\Domain\HomologacaoSolicitacao;
 
 use App\Models\HomologacaoSolicitacao;
+use App\Models\User;
 
 class HomologacaoSolicitacaoRepository
 {
@@ -19,6 +20,7 @@ class HomologacaoSolicitacaoRepository
                 'submodulos.name as submoduloName',
                 'users.name as userName'
             )
+            ->where('users.id', '!=', 1)
             ->orderby('homologacao_solicitacoes.solicitacao_data')
             ->orderby('homologacao_solicitacoes.solicitacao')
             ->limit($limit)
@@ -168,5 +170,26 @@ class HomologacaoSolicitacaoRepository
         $dados['totais_respostas_nao_realizado'] = HomologacaoSolicitacao::whereNotNull('resposta')->where('resposta', '!=', '')->where('resposta_status', 'Não Realizado')->count();
 
         return $dados;
+    }
+
+    public function dados_users()
+    {
+        // Verificar se Usuário é Claudino ou outros
+        if (session('userContext.user.id') != 1) {
+            return collect();
+        }
+
+        // Return
+        return User::leftJoin('homologacao_solicitacoes', 'homologacao_solicitacoes.user_id', '=', 'users.id')
+            ->selectRaw("
+                users.name as userName,
+                COUNT(homologacao_solicitacoes.id) as sol,
+                SUM(CASE WHEN homologacao_solicitacoes.id IS NOT NULL AND homologacao_solicitacoes.resposta IS NOT NULL AND homologacao_solicitacoes.resposta != '' THEN 1 ELSE 0 END) as res,
+                SUM(CASE WHEN homologacao_solicitacoes.id IS NOT NULL AND (homologacao_solicitacoes.resposta IS NULL OR homologacao_solicitacoes.resposta = '') THEN 1 ELSE 0 END) as pen
+            ")
+            ->where('users.id', '!=', 1)
+            ->groupBy('users.id', 'users.name')
+            ->orderByDesc('sol')
+            ->get();
     }
 }
